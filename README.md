@@ -9,12 +9,12 @@
 </h1>
 
 <p align="center">
-  <img alt="paginas" src="https://img.shields.io/badge/dashboard-em progresso-blue">
+  <img alt="paginas" src="https://img.shields.io/badge/dashboard-finalizado-green">
   <img alt="paginas" src="https://img.shields.io/badge/login-finalizado-green">
   <img alt="paginas" src="https://img.shields.io/badge/cadastro-finalizado-green">
   <img alt="paginas" src="https://img.shields.io/badge/pagina_principal-em_progresso-blue">
-  <img alt="paginas" src="https://img.shields.io/badge/pagina_inicial-pendente-red">
-  <img alt="paginas" src="https://img.shields.io/badge/criação_de_template-pendente-red">
+  <img alt="paginas" src="https://img.shields.io/badge/pagina_inicial-finalizado-green">
+  <img alt="paginas" src="https://img.shields.io/badge/criação_de_template-finalizado-green">
   <img alt="paginas" src="https://img.shields.io/badge/tela_usuarios-pendente-red">
   <img alt="paginas" src="https://img.shields.io/badge/upload_arquivos-pendente-red">
   <img alt="paginas" src="https://img.shields.io/badge/meu_perfil-pendente-red">
