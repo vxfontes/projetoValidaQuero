@@ -9,8 +9,8 @@
 <p align="center">
   <img alt="My message" src="https://img.shields.io/badge/Fase_1-ValidaQuero-8A2BE2">
 <br>
-  <img alt="etapas" src="https://img.shields.io/badge/protótipo-em_progresso-blue">
-  <img alt="etapas" src="https://img.shields.io/badge/MER-não_iniciado-red">
+  <img alt="etapas" src="https://img.shields.io/badge/protótipo-concluido-green">
+  <img alt="etapas" src="https://img.shields.io/badge/MER-em_progresso-blue">
   <img alt="etapas" src="https://img.shields.io/badge/backend-não_iniciado-red">
   <img alt="etapas" src="https://img.shields.io/badge/frontend-não_iniciado-red">
   <img alt="etapas" src="https://img.shields.io/badge/entrega_final-não_iniciado-red">
