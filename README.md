@@ -12,12 +12,12 @@
   <img alt="paginas" src="https://img.shields.io/badge/dashboard-finalizado-green">
   <img alt="paginas" src="https://img.shields.io/badge/login-finalizado-green">
   <img alt="paginas" src="https://img.shields.io/badge/cadastro-finalizado-green">
-  <img alt="paginas" src="https://img.shields.io/badge/pagina_principal-em_progresso-blue">
+  <img alt="paginas" src="https://img.shields.io/badge/pagina_principal-finalizado-green">
   <img alt="paginas" src="https://img.shields.io/badge/pagina_inicial-finalizado-green">
   <img alt="paginas" src="https://img.shields.io/badge/criação_de_template-finalizado-green">
-  <img alt="paginas" src="https://img.shields.io/badge/tela_usuarios-pendente-red">
+  <img alt="paginas" src="https://img.shields.io/badge/tela_usuarios-finalizado-green">
   <img alt="paginas" src="https://img.shields.io/badge/upload_arquivos-finalizado-green">
-  <img alt="paginas" src="https://img.shields.io/badge/meu_perfil-pendente-red">
+  <img alt="paginas" src="https://img.shields.io/badge/meu_perfil-finalizado-green">
   <img alt="paginas" src="https://img.shields.io/badge/pagina_de_templates-finalizado-green">
 </p>
 
@@ -26,7 +26,7 @@
 <h4 align="center"> 
 	
 	Protótipo
-	🚧 Figma 🚀 Em progresso...  🚧
+	🔒 Figma 🚀 Finalizado  🔒
 </h4> 
 
 <hr>
@@ -39,5 +39,5 @@
 
 ## :rocket: Utilização ##
 
-- [Planejamento Excalidraw](https://excalidraw.com/#json=nNbxmHpA8l2hMIIJ1o_bZ,N9DSmkW0B8_ID-aREWss6w)
+- [Planejamento Excalidraw](https://excalidraw.com/#json=965q1ALN3HIEahRHDpwFn,mNdMTPpnCXavz5N4M7HOrQ)
 - [Pacote de ilustrações](https://www.drawkit.com/illustrations/product-project-managers-illustrations)
