@@ -1,5 +1,5 @@
 <div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="Estagio" />
+  <img src="https://firebasestorage.googleapis.com/v0/b/vxfontes.appspot.com/o/pics%20projects%2Fvalidaquero%2FvalidaQuero.png?alt=media&token=a22a195b-e266-4eb5-b30c-5db30954c5a3" alt="Estagio" />
 
   &#xa0;
 </div>
