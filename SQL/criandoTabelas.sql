@@ -30,7 +30,7 @@ CREATE TABLE template (
     id SERIAL PRIMARY KEY,
     titulo VARCHAR(30) NOT NULL,
     descricao TEXT NOT NULL,
-    dataCriacao DATETIME DEFAULT GETDATE(),
+    dataCriacao DATE DEFAULT CURRENT_DATE,
     autor INTEGER NOT NULL,
     status INTEGER NOT NULL,
     formato INTEGER NOT NULL,
@@ -38,5 +38,5 @@ CREATE TABLE template (
     campos JSONB NOT NULL,
     FOREIGN KEY (autor) REFERENCES usuario(matricula),
     FOREIGN KEY (status) REFERENCES status(id),
-    FOREIGN KEY (formato) REFERENCES formato(id),
+    FOREIGN KEY (formato) REFERENCES formato(id)
 )
