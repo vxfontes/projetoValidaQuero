@@ -54,3 +54,9 @@ CREATE TABLE arquivo (
     FOREIGN KEY (template) REFERENCES template(id),
     FOREIGN KEY (formato) REFERENCES formato(id)
 )
+
+CREATE TABLE aprovacaoArquivos (
+    id SERIAL PRIMARY KEY,
+    tipo VARCHAR(15) NOT NULL,
+    valor INTEGER NOT NULL
+)
