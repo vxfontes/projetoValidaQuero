@@ -9,16 +9,18 @@
 </h1>
 
 <p align="center">
-  <img alt="paginas" src="https://img.shields.io/badge/dashboard-finalizado-green">
-  <img alt="paginas" src="https://img.shields.io/badge/login-finalizado-green">
-  <img alt="paginas" src="https://img.shields.io/badge/cadastro-finalizado-green">
-  <img alt="paginas" src="https://img.shields.io/badge/pagina_principal-finalizado-green">
-  <img alt="paginas" src="https://img.shields.io/badge/pagina_inicial-finalizado-green">
-  <img alt="paginas" src="https://img.shields.io/badge/criação_de_template-finalizado-green">
-  <img alt="paginas" src="https://img.shields.io/badge/tela_usuarios-finalizado-green">
-  <img alt="paginas" src="https://img.shields.io/badge/upload_arquivos-finalizado-green">
-  <img alt="paginas" src="https://img.shields.io/badge/meu_perfil-finalizado-green">
-  <img alt="paginas" src="https://img.shields.io/badge/pagina_de_templates-finalizado-green">
+  <img alt="paginas" src="https://img.shields.io/badge/tabela_de_usuario-pendente-red">
+  <img alt="paginas" src="https://img.shields.io/badge/tabela_de_perfil-pendente-red">
+  <img alt="paginas" src="https://img.shields.io/badge/tabela_de_template-pendente-red">
+  <img alt="paginas" src="https://img.shields.io/badge/tabela_de_status-pendente-red">
+  <img alt="paginas" src="https://img.shields.io/badge/tabela_de_arquivos-pendente-red">
+  <img alt="paginas" src="https://img.shields.io/badge/tabela_de_formato-pendente-red">
+  <img alt="paginas" src="https://img.shields.io/badge/tabela_de_aprovado-pendente-red">
+  <img alt="paginas" src="https://img.shields.io/badge/fixando_status-pendente-red">
+  <img alt="paginas" src="https://img.shields.io/badge/fixando_perfil-pendente-red">
+  <img alt="paginas" src="https://img.shields.io/badge/fixando_formato-pendente-red">
+  <img alt="paginas" src="https://img.shields.io/badge/fixando_aprovado-pendente-red">
+  <img alt="paginas" src="https://img.shields.io/badge/populando_tabela-pendente-red">
 </p>
 
 <!-- Status -->
@@ -26,7 +28,7 @@
 <h4 align="center"> 
 	
 	Protótipo
-	🔒 Figma 🚀 Finalizado  🔒
+	🚧 MER 🚀 Em progresso  🚧
 </h4> 
 
 <hr>
@@ -35,9 +37,16 @@
 
 ## :dart: Sobre ##
 
-- Utilização do figma para a criação das telas do protótipo
+- Criação do modelo ER 
+- Utilização de postgres
+- NoSQL do firebase para armazenamento de arquivos
+
+## 💫 Ideias ##
+- Tabela de status - informa o status do template: desativado, ativado, pendente
+- Tabela de formato - csv, xls, xlsx
+- Tabela de aprovado - informa o status do arquivo e faz contagem(?): aprovado ou negado
+- Tabela de perfil - time, gerente ou gestão
 
 ## :rocket: Utilização ##
 
-- [Planejamento Excalidraw](https://excalidraw.com/#json=965q1ALN3HIEahRHDpwFn,mNdMTPpnCXavz5N4M7HOrQ)
 - [Pacote de ilustrações](https://www.drawkit.com/illustrations/product-project-managers-illustrations)
