@@ -13,14 +13,14 @@
   <img alt="paginas" src="https://img.shields.io/badge/tabela_de_perfil-finalizado-green">
   <img alt="paginas" src="https://img.shields.io/badge/tabela_de_template-finalizado-green">
   <img alt="paginas" src="https://img.shields.io/badge/tabela_de_status-finalizado-green">
-  <img alt="paginas" src="https://img.shields.io/badge/tabela_de_arquivos-pendente-red">
+  <img alt="paginas" src="https://img.shields.io/badge/tabela_de_arquivos-finalizado-green">
   <img alt="paginas" src="https://img.shields.io/badge/tabela_de_formato-finalizado-green">
   <img alt="paginas" src="https://img.shields.io/badge/tabela_de_aprovado-pendente-red">
-  <img alt="paginas" src="https://img.shields.io/badge/fixando_status-pendente-red">
-  <img alt="paginas" src="https://img.shields.io/badge/fixando_perfil-pendente-red">
-  <img alt="paginas" src="https://img.shields.io/badge/fixando_formato-pendente-red">
+  <img alt="paginas" src="https://img.shields.io/badge/fixando_status-finalizado-green">
+  <img alt="paginas" src="https://img.shields.io/badge/fixando_perfil-finalizado-green">
+  <img alt="paginas" src="https://img.shields.io/badge/fixando_formato-finalizado-green">
   <img alt="paginas" src="https://img.shields.io/badge/fixando_aprovado-pendente-red">
-  <img alt="paginas" src="https://img.shields.io/badge/populando_tabela-pendente-red">
+  <img alt="paginas" src="https://img.shields.io/badge/populando_tabelas-pendente-red">
   <img alt="paginas" src="https://img.shields.io/badge/fazer_diagrama-pendente-red">
 </p>
 

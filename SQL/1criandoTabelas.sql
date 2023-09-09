@@ -40,3 +40,17 @@ CREATE TABLE template (
     FOREIGN KEY (status) REFERENCES status(id),
     FOREIGN KEY (formato) REFERENCES formato(id)
 )
+
+CREATE TABLE arquivo (
+    id SERIAL PRIMARY KEY,
+    titulo VARCHAR(30) NOT NULL,
+    dataCriacao DATE DEFAULT CURRENT_DATE,
+    autor INTEGER NOT NULL,
+    formato INTEGER NOT NULL,
+    linhas INTEGER NOT NULL,
+    template INTEGER NOT NULL,
+    url TEXT NOT NULL,
+    FOREIGN KEY (autor) REFERENCES usuario(matricula),
+    FOREIGN KEY (template) REFERENCES template(id),
+    FOREIGN KEY (formato) REFERENCES formato(id)
+)
