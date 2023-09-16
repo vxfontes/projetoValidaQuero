@@ -6,6 +6,3 @@ select * from status s
 
 insert into perfil (titulo) values ('Time'), ('Gerente'), ('Gestor')
 select * from perfil p 
-
-insert into aprovacaoArquivos (tipo, valor) values ('Aprovado', 0), ('Negado', 0), ('Total', 0);
-select * from aprovacaoarquivos 

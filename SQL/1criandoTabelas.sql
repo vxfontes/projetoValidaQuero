@@ -49,14 +49,9 @@ CREATE TABLE arquivo (
     formato INTEGER NOT NULL,
     linhas INTEGER NOT NULL,
     template INTEGER NOT NULL,
-    url TEXT NOT NULL,
+    aprovado BOOLEAN NOT NULL,
+    url VARCHAR,  -- pode ser nulo caso não esteja aprovado
     FOREIGN KEY (autor) REFERENCES usuario(matricula),
     FOREIGN KEY (template) REFERENCES template(id),
     FOREIGN KEY (formato) REFERENCES formato(id)
-)
-
-CREATE TABLE aprovacaoArquivos (
-    id SERIAL PRIMARY KEY,
-    tipo VARCHAR(15) NOT NULL,
-    valor INTEGER NOT NULL
 )
