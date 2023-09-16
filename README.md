@@ -12,7 +12,7 @@
   <img alt="etapas" src="https://img.shields.io/badge/protótipo-concluido-green">
   <img alt="etapas" src="https://img.shields.io/badge/MER-em_progresso-blue">
   <img alt="etapas" src="https://img.shields.io/badge/backend-iniciado-orange">
-  <img alt="etapas" src="https://img.shields.io/badge/frontend-iniciado-orange">
+  <img alt="etapas" src="https://img.shields.io/badge/frontend-em_progresso-blue">
   <img alt="etapas" src="https://img.shields.io/badge/entrega_final-não_iniciado-red">
 </p>
 
@@ -33,13 +33,19 @@ Projeto final da parte de treinamento do estágio QQTech
 Teremos 5 entregas diferentes:
 - 1 - Protótipo das telas
 - 2 - Esquema de banco de dados
-- 3 - Desenvolvimento do backend
 - 4 - Desenvolvimento do frontend
+- 3 - Desenvolvimento do backend
 - 5 - Entrega final
 
 ## :rocket: Tecnologias ##
 
 :heavy_check_mark: Excalidraw\
-:heavy_check_mark: Figma
+:heavy_check_mark: Figma\
+:heavy_check_mark: ReactJS\
+:heavy_check_mark: MaterialUI\
+:heavy_check_mark: NodeJS\
+:heavy_check_mark: Express\
+:heavy_check_mark: Nodemon\
+:heavy_check_mark: Postgres
 
 
