@@ -25,12 +25,12 @@ CREATE TABLE formato (
 );
 
 -- data atual do sistema -> DATETIME DEFAULT GETDATE()
--- EXEMPLO DE COMO VAI SER JSONB: [{ "nome": "campo1", "tipo": "inteiro" }, { "nome": "campo2", "tipo": "inteiro" }] - precisa das aspas
+-- EXEMPLO DE COMO VAI SER JSONB: [{ "nome": "campo1", "tipo": "inteiro", "nulo": true }, { "nome": "campo2", "tipo": "float", "nulo": false }] - precisa das aspas
 CREATE TABLE template (
     id SERIAL PRIMARY KEY,
     titulo VARCHAR(30) NOT NULL,
     descricao TEXT NOT NULL,
-    dataCriacao DATE DEFAULT CURRENT_DATE,
+    dataCriacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     autor INTEGER NOT NULL,
     status INTEGER NOT NULL,
     formato INTEGER NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE template (
 CREATE TABLE arquivo (
     id SERIAL PRIMARY KEY,
     titulo VARCHAR(30) NOT NULL,
-    dataCriacao DATE DEFAULT CURRENT_DATE,
+    dataCriacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     autor INTEGER NOT NULL,
     formato INTEGER NOT NULL,
     linhas INTEGER NOT NULL,
