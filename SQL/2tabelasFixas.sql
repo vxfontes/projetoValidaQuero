@@ -1,8 +1,8 @@
-insert into formato (titulo) values ('CSV'), ('XLSX'), ('XLS')
-select * from formato f 
+insert into "ValidaQuero"."formato" (titulo) values ('CSV'), ('XLSX'), ('XLS')
+select * from "ValidaQuero".formato 
 
-insert into status (titulo) values ('Ativo'), ('Pendente'), ('Desativado')
-select * from status s 
+insert into "ValidaQuero".status (titulo) values ('Ativo'), ('Pendente'), ('Desativado')
+select * from "ValidaQuero".status s 
 
-insert into perfil (titulo) values ('Time'), ('Gerente'), ('Gestor')
-select * from perfil p 
+insert into "ValidaQuero".perfil (titulo) values ('Time'), ('Gerente'), ('Gestor')
+select * from "ValidaQuero".perfil p

@@ -1,37 +1,39 @@
+CREATE SCHEMA ValidaQuero
+
 -- gestor, time, gerente
-CREATE TABLE perfil (
+CREATE TABLE "ValidaQuero"."perfil" (
     id SERIAL PRIMARY KEY,
     titulo VARCHAR(15)
 );
 
-CREATE TABLE usuario (
+CREATE TABLE "ValidaQuero"."usuario" (
     nome VARCHAR(255) NOT NULL,
-    matricula INTEGER PRIMARY KEY,
+    matricula VARCHAR(30) PRIMARY KEY,
     senha VARCHAR(255) NOT NULL,
     perfil INTEGER NOT NULL,
     FOREIGN KEY (perfil) REFERENCES perfil(id)
 );
 
 -- pendente, ativo, desativado
-CREATE TABLE status (
+CREATE TABLE "ValidaQuero"."status" (
     id SERIAL PRIMARY KEY,
     titulo VARCHAR(15)
 );
 
 -- csv, xls, xlsx
-CREATE TABLE formato (
+CREATE TABLE "ValidaQuero"."formato" (
     id SERIAL PRIMARY KEY,
     titulo VARCHAR(15)
 );
 
 -- data atual do sistema -> DATETIME DEFAULT GETDATE()
 -- EXEMPLO DE COMO VAI SER JSONB: [{ "nome": "campo1", "tipo": "inteiro", "nulo": true }, { "nome": "campo2", "tipo": "float", "nulo": false }] - precisa das aspas
-CREATE TABLE template (
+CREATE TABLE "ValidaQuero"."template" (
     id SERIAL PRIMARY KEY,
     titulo VARCHAR(30) NOT NULL,
     descricao TEXT NOT NULL,
     dataCriacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    autor INTEGER NOT NULL,
+    autor VARCHAR(30) NOT NULL,
     status INTEGER NOT NULL,
     formato INTEGER NOT NULL,
     quantidadeCampos INTEGER NOT NULL,
@@ -41,11 +43,11 @@ CREATE TABLE template (
     FOREIGN KEY (formato) REFERENCES formato(id)
 )
 
-CREATE TABLE arquivo (
+CREATE TABLE "ValidaQuero"."arquivo" (
     id SERIAL PRIMARY KEY,
     titulo VARCHAR(30) NOT NULL,
     dataCriacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    autor INTEGER NOT NULL,
+    autor VARCHAR(30) NOT NULL,
     formato INTEGER NOT NULL,
     linhas INTEGER NOT NULL,
     template INTEGER NOT NULL,
