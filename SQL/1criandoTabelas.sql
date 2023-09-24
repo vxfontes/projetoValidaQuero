@@ -1,17 +1,12 @@
 CREATE SCHEMA ValidaQuero
 
--- gestor, time, gerente
-CREATE TABLE "ValidaQuero"."perfil" (
-    id SERIAL PRIMARY KEY,
-    titulo VARCHAR(15)
-);
 
+-- perfil: gestor, time, gerente
 CREATE TABLE "ValidaQuero"."usuario" (
     nome VARCHAR(255) NOT NULL,
     matricula VARCHAR(30) PRIMARY KEY,
     senha VARCHAR(255) NOT NULL,
-    perfil INTEGER NOT NULL,
-    FOREIGN KEY (perfil) REFERENCES perfil(id)
+    perfil VARCHAR(10),
 );
 
 -- pendente, ativo, desativado
