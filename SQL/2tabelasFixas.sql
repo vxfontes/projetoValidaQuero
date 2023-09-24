@@ -3,6 +3,3 @@ select * from "ValidaQuero".formato
 
 insert into "ValidaQuero".status (titulo) values ('Ativo'), ('Pendente'), ('Desativado')
 select * from "ValidaQuero".status s 
-
-insert into "ValidaQuero".perfil (titulo) values ('Time'), ('Gerente'), ('Gestor')
-select * from "ValidaQuero".perfil p
