@@ -6,7 +6,8 @@ CREATE TABLE "ValidaQuero"."usuario" (
     nome VARCHAR(255) NOT NULL,
     matricula VARCHAR(30) PRIMARY KEY,
     senha VARCHAR(255) NOT NULL,
-    perfil VARCHAR(10),
+    perfil VARCHAR(10)NOT NULL,
+    verificado BOOLEAN NOT NULL
 );
 
 -- pendente, ativo, desativado
