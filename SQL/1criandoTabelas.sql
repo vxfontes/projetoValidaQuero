@@ -1,4 +1,4 @@
-CREATE SCHEMA ValidaQuero
+CREATE SCHEMA ValidaQuero;
 
 -- perfil: gestor, time, gerente
 CREATE TABLE "ValidaQuero"."usuario" (
@@ -36,7 +36,7 @@ CREATE TABLE "ValidaQuero"."template" (
     FOREIGN KEY (autor) REFERENCES usuario(matricula),
     FOREIGN KEY (status) REFERENCES status(id),
     FOREIGN KEY (formato) REFERENCES formato(id)
-)
+);
 
 CREATE TABLE "ValidaQuero"."arquivo" (
     id SERIAL PRIMARY KEY,
@@ -48,5 +48,5 @@ CREATE TABLE "ValidaQuero"."arquivo" (
     aprovado BOOLEAN NOT NULL,
     url VARCHAR,  -- pode ser nulo caso não esteja aprovado
     FOREIGN KEY (autor) REFERENCES usuario(matricula),
-    FOREIGN KEY (template) REFERENCES template(id),
-)
+    FOREIGN KEY (template) REFERENCES template(id)
+);
