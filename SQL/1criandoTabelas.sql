@@ -1,12 +1,11 @@
 CREATE SCHEMA ValidaQuero
 
-
 -- perfil: gestor, time, gerente
 CREATE TABLE "ValidaQuero"."usuario" (
     nome VARCHAR(255) NOT NULL,
     matricula VARCHAR(30) PRIMARY KEY,
     senha VARCHAR(255) NOT NULL,
-    perfil VARCHAR(10)NOT NULL,
+    perfil VARCHAR(10) NOT NULL,
     verificado BOOLEAN NOT NULL
 );
 
@@ -44,12 +43,10 @@ CREATE TABLE "ValidaQuero"."arquivo" (
     titulo VARCHAR(30) NOT NULL,
     dataCriacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     autor VARCHAR(30) NOT NULL,
-    formato INTEGER NOT NULL,
     linhas INTEGER NOT NULL,
     template INTEGER NOT NULL,
     aprovado BOOLEAN NOT NULL,
     url VARCHAR,  -- pode ser nulo caso não esteja aprovado
     FOREIGN KEY (autor) REFERENCES usuario(matricula),
     FOREIGN KEY (template) REFERENCES template(id),
-    FOREIGN KEY (formato) REFERENCES formato(id)
 )
