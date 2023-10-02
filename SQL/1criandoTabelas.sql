@@ -1,13 +1,15 @@
 CREATE SCHEMA ValidaQuero;
 
--- perfil: gestor, time, gerente
+CREATE TYPE perfil_enum AS ENUM ('Gestor', 'Gerente', 'Time');
+
 CREATE TABLE "ValidaQuero"."usuario" (
-    nome VARCHAR(255) NOT NULL,
-    matricula VARCHAR(30) PRIMARY KEY,
-    senha VARCHAR(255) NOT NULL,
-    perfil VARCHAR(10) NOT NULL,
-    verificado BOOLEAN NOT NULL
+  "nome" VARCHAR(255) NOT NULL,
+  "matricula" VARCHAR(30) PRIMARY KEY,
+  "senha" VARCHAR(255) NOT NULL,
+  "perfil" perfil_enum NOT NULL,
+  "verificado" BOOLEAN NOT NULL
 );
+
 
 -- pendente, ativo, desativado
 CREATE TABLE "ValidaQuero"."status" (
