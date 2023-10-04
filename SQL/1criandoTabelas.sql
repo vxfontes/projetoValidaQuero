@@ -1,6 +1,6 @@
 CREATE SCHEMA ValidaQuero;
 
-CREATE TYPE perfil_enum AS ENUM ('Gestor', 'Gerente', 'Time');
+CREATE TYPE ValidaQuero.perfil_enum AS ENUM ('Gestor', 'Gerente', 'Time');
 
 CREATE TABLE "ValidaQuero"."usuario" (
   "nome" VARCHAR(255) NOT NULL,
