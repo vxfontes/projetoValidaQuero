@@ -15,7 +15,7 @@ export class UserController {
      */
     async all(request: Request, response: Response) {
         try {
-            const usuarios = this.userRepository.find()
+            const usuarios = await this.userRepository.find()
             response.status(201).json({ status: 'success', message: 'Usuário encontrados com sucesso', usuarios: usuarios });
         } catch (error) {
             console.error('Erro ao obter usuários:', error);
@@ -54,9 +54,11 @@ export class UserController {
      * @param request nome, matricula, senha, verificado, perfil
      * @param response verifica se a matricula ja existe e retorna usuario criado ou não
      */
-    async save(request: Request, response: Response) {
+    async create(request: Request, response: Response) {
+        console.log(request.query);
+        
         try {
-            const { nome, matricula, senha, verificado, perfil } = request.query;
+            const { nome, matricula, senha, perfil } = request.query;
 
             // Verificar se o perfil fornecido é válido
             if (!Object.values(PerfilEnum).includes(perfil)) {
@@ -70,7 +72,7 @@ export class UserController {
                 response.status(400).json({ status: 'error', message: 'Matrícula já existe no banco de dados' });
             } else {
                 const user = Object.assign(new Usuario(), {
-                    nome, matricula, senha, verificado, perfil,
+                    nome, matricula, senha, verificado: false, perfil,
                 });
 
                 await this.userRepository.save(user);
