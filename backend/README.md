@@ -52,6 +52,10 @@
 - Arquivo: criar (validar), baixar + consultar, listar
 
 ## :rocket: Utilização ##
-
-- [Planejamento Excalidraw](https://excalidraw.com/#json=965q1ALN3HIEahRHDpwFn,mNdMTPpnCXavz5N4M7HOrQ)
-- [Pacote de ilustrações](https://www.drawkit.com/illustrations/product-project-managers-illustrations)
+```
+1. Para usar, primeiro criamos o schema no banco com o nome: ValidaQuero
+2. Logo depois, instalamos as dependencias com: yarn install
+3. Criamos então as migrations com: yarn migration:generate 
+4. Rodamos as migrations com: yarn migration:run 
+5. Então agora rodamos o servidor com: yarn dev
+```

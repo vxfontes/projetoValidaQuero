@@ -1,22 +1,28 @@
 {
-    "name": "projetovalidaquero",
-    "version": "1.0.0",
-    "description": "Backend do valida quero",
-    "main": "index.js",
-    "scripts": {
-        "start": "nodemon src/index.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [],
-    "author": "vxfontes",
-    "license": "ISC",
-    "devDependencies": {
-        "nodemon": "^3.0.1"
-    },
-    "dependencies": {
-        "cors": "^2.8.5",
-        "express": "^4.18.2",
-        "morgan": "^1.10.0",
-        "pg": "^8.11.3"
-    }
+   "name": "projetovalidaquero",
+   "version": "1.0.0",
+   "description": "Backend do valida quero",
+   "type": "commonjs",
+   "devDependencies": {
+      "@types/node": "^16.11.10",
+      "ts-node": "10.7.0",
+      "typescript": "4.5.2"
+   },
+   "dependencies": {
+      "body-parser": "^1.19.1",
+      "cors": "^2.8.5",
+      "express": "^4.17.2",
+      "morgan": "^1.10.0",
+      "nodemon": "^3.0.1",
+      "pg": "^8.4.0",
+      "reflect-metadata": "^0.1.13",
+      "typeorm": "0.3.17"
+   },
+   "scripts": {
+      "start": "ts-node src/index.ts",
+      "dev": "nodemon --exec ts-node src/index.ts",
+      "typeorm": "typeorm-ts-node-commonjs",
+      "migration:generate": "typeorm-ts-node-commonjs -d ./src/data-source.ts migration:generate ./src/migration/default",
+      "migration:run": "typeorm-ts-node-commonjs -d ./src/data-source.ts migration:run"
+   }
 }
