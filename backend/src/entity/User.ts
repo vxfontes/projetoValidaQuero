@@ -1,20 +1,14 @@
-import { Entity, Column, OneToMany } from "typeorm"
-import { Base } from "./Base";
+import { Entity, Column, OneToMany, PrimaryColumn } from "typeorm";
 import { Template } from "./Template";
 import { Arquivo } from "./Arquivo";
-
-export enum PerfilEnum {
-    Gestor = 'Gestor',
-    Gerente = 'Gerente',
-    Time = 'Time',
-}
+import { PerfilEnum } from "./Perfil";
 
 @Entity({ schema: "ValidaQuero" })
-export class Usuario extends Base {
+export class Usuario {
     @Column({ type: 'varchar', nullable: false })
     nome: string;
 
-    @Column({ type: 'varchar', unique: true, nullable: false })
+    @PrimaryColumn({ type: 'varchar', unique: true, nullable: false })
     matricula: string;
 
     @Column({ type: 'varchar', nullable: false })
