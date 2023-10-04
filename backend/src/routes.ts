@@ -20,4 +20,9 @@ export const Routes = [{
     route: "/users/:matricula",
     controller: UserController,
     action: "remove"
+}, {
+    method: "post",
+    route: "/login",
+    controller: UserController,
+    action: "auth"
 }]

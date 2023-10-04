@@ -1,5 +1,5 @@
 import { AppDataSource } from "../data-source"
-import { NextFunction, Request, Response } from "express"
+import { Request, Response } from "express"
 import { Usuario } from "../entity/User"
 import { PerfilEnum } from "../entity/Perfil"
 
@@ -55,8 +55,6 @@ export class UserController {
      * @param response verifica se a matricula ja existe e retorna usuario criado ou não
      */
     async create(request: Request, response: Response) {
-        console.log(request.query);
-        
         try {
             const { nome, matricula, senha, perfil } = request.query;
 
@@ -108,6 +106,31 @@ export class UserController {
         } catch (error) {
             console.error('Erro ao deletar o usuário:', error);
             response.status(500).json({ status: 'error', message: 'Erro ao deletar o usuário', error: error });
+        }
+    }
+
+    /**
+     * 
+     * @param request matricula e senha
+     * @param response login efetuado ou não
+     */
+    async auth(request: Request, response: Response) {
+        const { matricula, senha } = request.query;
+
+        try {
+            const user = await this.userRepository.findOne({
+                where: { matricula, senha },
+                select: ["matricula", "nome", "perfil", "verificado"]
+            });
+
+            if (!user) {
+                response.status(400).json({ status: 'error', message: "Usuário não encontrado" });
+            }
+
+            response.status(201).json({ status: 'success', message: 'Login efetuado com sucesso', usuario: user });
+        } catch (error) {
+            console.error('Erro ao procurar o usuário:', error);
+            response.status(500).json({ status: 'error', message: 'Erro ao procurar o usuário', error: error });
         }
     }
 }
