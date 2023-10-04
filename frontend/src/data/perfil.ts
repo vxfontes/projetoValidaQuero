@@ -1,0 +1,1 @@
+export const perfilArray = ['Time','Gerente','Gestor']
