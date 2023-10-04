@@ -3,8 +3,9 @@ CREATE SCHEMA ValidaQuero;
 CREATE TYPE ValidaQuero.perfil_enum AS ENUM ('Gestor', 'Gerente', 'Time');
 
 CREATE TABLE ValidaQuero.usuario (
+  "id" SERIAL PRIMARY KEY,
   "nome" VARCHAR(255) NOT NULL,
-  "matricula" VARCHAR(30) PRIMARY KEY,
+  "matricula" VARCHAR(30) NOT NULL UNIQUE,
   "senha" VARCHAR(255) NOT NULL,
   "perfil" ValidaQuero.perfil_enum NOT NULL,
   "verificado" BOOLEAN NOT NULL
@@ -30,8 +31,7 @@ CREATE TABLE ValidaQuero.template (
     formato INTEGER NOT NULL,
     quantidadeCampos INTEGER NOT NULL,
     campos JSONB NOT NULL,
-    FOREIGN KEY (autor) REFERENCES ValidaQuero.usuario(matricula),
-    FOREIGN KEY (status) REFERENCES ValidaQuero.status(id),
+    FOREIGN KEY (autor) REFERENCES ValidaQuero.usuario(id),
     FOREIGN KEY (formato) REFERENCES ValidaQuero.formato(id)
 );
 
@@ -44,6 +44,6 @@ CREATE TABLE ValidaQuero.arquivo (
     template INTEGER NOT NULL,
     aprovado BOOLEAN NOT NULL,
     url VARCHAR,  -- pode ser nulo caso não esteja aprovado
-    FOREIGN KEY (autor) REFERENCES ValidaQuero.usuario(matricula),
+    FOREIGN KEY (autor) REFERENCES ValidaQuero.usuario(id),
     FOREIGN KEY (template) REFERENCES ValidaQuero.template(id)
 );
