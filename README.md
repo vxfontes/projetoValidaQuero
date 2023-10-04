@@ -10,10 +10,10 @@
   <img alt="My message" src="https://img.shields.io/badge/Fase_2-ValidaQuero-8A2BE2">
 <br>
   <img alt="etapas" src="https://img.shields.io/badge/protótipo-concluido-green">
-  <img alt="etapas" src="https://img.shields.io/badge/MER-em_progresso-blue">
-  <img alt="etapas" src="https://img.shields.io/badge/backend-iniciado-orange">
+  <img alt="etapas" src="https://img.shields.io/badge/MER-concluido-green">
+  <img alt="etapas" src="https://img.shields.io/badge/backend-em_progresso-blue">
   <img alt="etapas" src="https://img.shields.io/badge/frontend-em_progresso-blue">
-  <img alt="etapas" src="https://img.shields.io/badge/entrega_final-não_iniciado-red">
+  <img alt="etapas" src="https://img.shields.io/badge/entrega_final-iniciado-orange">
 </p>
 
 <!-- Status -->
