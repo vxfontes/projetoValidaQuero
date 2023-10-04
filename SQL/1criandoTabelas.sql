@@ -10,12 +10,7 @@ CREATE TABLE ValidaQuero.usuario (
   "verificado" BOOLEAN NOT NULL
 );
 
-
--- pendente, ativo, desativado
-CREATE TABLE ValidaQuero.status (
-    id SERIAL PRIMARY KEY,
-    titulo VARCHAR(15)
-);
+CREATE TYPE ValidaQuero.status_enum AS ENUM ('Ativo', 'Pendente', 'Desativado');
 
 -- csv, xls, xlsx
 CREATE TABLE ValidaQuero.formato (
@@ -31,7 +26,7 @@ CREATE TABLE ValidaQuero.template (
     descricao TEXT NOT NULL,
     dataCriacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     autor VARCHAR(30) NOT NULL,
-    status INTEGER NOT NULL,
+    status ValidaQuero.status_enum NOT NULL,
     formato INTEGER NOT NULL,
     quantidadeCampos INTEGER NOT NULL,
     campos JSONB NOT NULL,
