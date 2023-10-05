@@ -13,6 +13,7 @@ AppDataSource.initialize().then(async () => {
     app.use(cors()); // permissão para front
     app.use(express.json())
     app.use(routes)
+    // definirFormatos() // caso nao tenham formatos definidos ainda (rodar apenas uma vez)
 
     app.listen(port, ip, () => console.log("O servidor está rodando na porta", port, "com ip", ip));
 
