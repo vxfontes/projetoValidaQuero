@@ -95,7 +95,7 @@ const CustomDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== '
 const SideBar = ({ children, show }: SideProps) => {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
-    const [selectedItem, setSelectedItem] = React.useState<string | null>(null);
+    const [selectedItem, setSelectedItem] = React.useState<string | null>('Início');
     const { getUser } = useUsuario();
 
     const handleListItemClick = (value: string) => {
@@ -147,7 +147,7 @@ const SideBar = ({ children, show }: SideProps) => {
 
                         <Divider />
 
-                        {getUser().result.verificado && (
+                        {(getUser().result.verificado && getUser().result.perfil !== 'Time') && (
                             <MenuTemplate open={open} />
                         )}
 
