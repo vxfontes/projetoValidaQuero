@@ -36,13 +36,13 @@ const fieldpl = {
 }
 
 export const FormCadastro = () => {
-    const { create } = useUsuario()
+    const { login } = useUsuario()
 
     async function onSubmit(values: UserFormProps) {
 
         api.post('/users', null, { params: { nome: values.nome, matricula: values.matricula, senha: values.senha, perfil: values.perfil } }).then((res) => {
             if (res.data.status === 'success') {
-                create(res.data.usuario)
+                login(res.data.usuario)
                 Swal.fire({
                     icon: res.data.status,
                     iconColor: theme.palette.primary.main,

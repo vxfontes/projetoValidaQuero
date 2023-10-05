@@ -7,6 +7,7 @@ import { AiOutlineArrowRight } from 'react-icons/ai';
 import { UserLoginProps } from '../../logic/interfaces/user';
 import useUsuario from '../../logic/core/functions/user';
 import Swal from 'sweetalert2';
+import api from '../../logic/api/api';
 
 const FormContainer = styled(Box)({
     display: 'block',
@@ -27,33 +28,33 @@ const field100 = {
 export const FormLogin = () => {
     const { login } = useUsuario();
 
-    function onSubmit(values: UserLoginProps, { setSubmitting, setStatus }: FormikHelpers<UserLoginProps>) {
-        const result = login(values);
-        if (result.status === 'success') {
+    async function onSubmit(values: UserLoginProps, { setSubmitting, setStatus }: FormikHelpers<UserLoginProps>) {
+        api.post('/login', null, { params: { matricula: values.matricula, senha: values.senha } }).then((res) => {
+            if (res.data.status === 'success') {
+                login(res.data.usuario)
+                Swal.fire({
+                    icon: res.data.status,
+                    iconColor: theme.palette.primary.main,
+                    title: res.data.message,
+                    confirmButtonColor: theme.palette.primary.main,
+                    confirmButtonText: 'Continue',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '/';
+                    }
+                });
+            }
+        }).catch(error => {
             Swal.fire({
-                icon: 'success',
-                iconColor: theme.palette.primary.main,
-                title: 'Sucesso!',
-                text: result.result,
-                confirmButtonColor: theme.palette.primary.main,
-                confirmButtonText: 'Continue',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = '/';
-                }
-            });
-        } else {
-            Swal.fire({
-                icon: 'error',
+                icon: error.response.data.status,
                 iconColor: theme.palette.secondary.main,
-                title: 'Houve um erro',
-                text: result.result,
+                title: error.response.data.message,
                 confirmButtonColor: theme.palette.secondary.main,
                 confirmButtonText: 'Retornar',
             })
-        }
-        setStatus(result.result);
-        setSubmitting(false);
+            setStatus(error.response.data.message);
+            setSubmitting(false);
+        })
     }
 
     return (
