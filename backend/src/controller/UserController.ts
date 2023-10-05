@@ -3,11 +3,9 @@ import { Request, Response } from "express"
 import { Usuario } from "../entity/User"
 import { PerfilEnum } from "../entity/Perfil";
 import bcrypt = require("bcrypt");
+import { userRepository } from "../configs/repository";
 
 export class UserController {
-
-    private userRepository = AppDataSource.getRepository(Usuario)
-
 
     /**
      * 
@@ -16,12 +14,11 @@ export class UserController {
      */
     async all(request: Request, response: Response) {
         try {
-            const usuarios = await this.userRepository.find({
+            const usuarios = await userRepository.find({
                 select: ["nome", "matricula", "perfil", "verificado"]
             });
             response.status(201).json({ status: 'success', message: 'Usuário encontrados com sucesso', usuarios: usuarios });
         } catch (error) {
-            console.error('Erro ao obter usuários:', error);
             response.status(500).json({ status: 'error', message: 'Erro ao obter usuários', error: error });
         }
     }
@@ -36,19 +33,18 @@ export class UserController {
         const matricula = request.params.matricula
 
         try {
-            const user = await this.userRepository.findOne({
+            const user = await userRepository.findOne({
                 where: { matricula },
                 select: ["nome", "matricula", "perfil", "verificado"]
             });
 
             if (!user) {
-                response.status(400).json({ status: 'error', message: "Usuário não encontrado" });
+                throw new Error("Usuário não encontrado")
             }
 
             response.status(201).json({ status: 'success', message: 'Usuário encontrado com sucesso', usuario: user });
         } catch (error) {
-            console.error('Erro ao procurar o usuário:', error);
-            response.status(500).json({ status: 'error', message: 'Erro ao procurar o usuário', error: error });
+            response.status(500).json({ status: 'error', message: error.message, error: error });
         }
     }
 
@@ -63,19 +59,18 @@ export class UserController {
             const { nome, matricula, senha, perfil } = request.query;
 
             if (!matricula || !matricula || !senha || !perfil) {
-                return response.status(400).json({ status: 'error', message: "Todos os campos são obrigatórias." });
+                throw new Error("Todos os campos são obrigatórias.");
             }
 
             // Verificar se o perfil fornecido é válido
             if (!Object.values(PerfilEnum).includes(perfil)) {
-                response.status(400).json({ status: 'error', message: 'Perfil inválido' });
-                return;
+                throw new Error('Perfil inválido');
             }
 
-            const existingUser = await this.userRepository.findOne({ where: { matricula } });
+            const existingUser = await userRepository.findOne({ where: { matricula } });
 
             if (existingUser) {
-                response.status(400).json({ status: 'error', message: 'Matrícula já existe no banco de dados' });
+                throw new Error('Matrícula já existe no banco de dados');
             } else {
                 const hashedSenha = await bcrypt.hash(senha, 10);
                 const user = Object.assign(new Usuario(), {
@@ -83,14 +78,12 @@ export class UserController {
                 });
 
                 const userSubset = { nome, matricula, verificado: false, perfil };
-
-                await this.userRepository.save(user);
+                await userRepository.save(user);
 
                 response.status(201).json({ status: 'success', message: 'Usuário criado com sucesso', usuario: userSubset });
             }
         } catch (error) {
-            console.error('Erro ao criar o usuário:', error);
-            response.status(500).json({ status: 'error', message: 'Erro ao criar o usuário', error: error });
+            response.status(500).json({ status: 'error', message: error.message, error: error });
         }
     }
 
@@ -104,19 +97,17 @@ export class UserController {
         const matricula = (request.params.matricula)
 
         try {
-            let userToRemove = await this.userRepository.findOneBy({ matricula })
+            const userToRemove = await userRepository.findOneBy({ matricula })
 
             if (!userToRemove) {
-                response.status(400).json({ status: 'error', message: "Usuário não encontrado" });
+                throw new Error("Usuário não encontrado");
             }
 
-            await this.userRepository.remove(userToRemove)
+            await userRepository.remove(userToRemove);
 
             response.status(201).json({ status: 'success', message: `Usuário de matrícula: ${matricula} deletado com sucesso` });
-
         } catch (error) {
-            console.error('Erro ao deletar o usuário:', error);
-            response.status(500).json({ status: 'error', message: 'Erro ao deletar o usuário', error: error });
+            response.status(500).json({ status: 'error', message: error.message, error: error });
         }
     }
 
@@ -131,18 +122,18 @@ export class UserController {
             const { matricula, senha } = request.query;
 
             if (!matricula || !senha) {
-                return response.status(400).json({ status: 'error', message: "Matrícula e senha são obrigatórias." });
+                throw new Error("Matrícula e senha são obrigatórias.");
             }
 
-            const user = await this.userRepository.findOne({ where: { matricula: matricula } });
+            const user = await userRepository.findOne({ where: { matricula: matricula } });
 
             if (!user) {
-                response.status(400).json({ status: 'error', message: "Usuário não encontrado" });
+                throw new Error("Usuário não encontrado");
             }
 
-            const isPasswordValid = await bcrypt.compare(senha, user.senha);
+            const isPasswordValid = bcrypt.compareSync(senha, user.senha);
             if (!isPasswordValid) {
-                return response.status(401).json({ status: 'error', message: "Credenciais inválidas." });
+                throw new Error("Credenciais inválidas.");
             }
 
             const { nome, verificado, perfil } = user;
@@ -150,8 +141,7 @@ export class UserController {
 
             response.status(201).json({ status: 'success', message: 'Login efetuado com sucesso', usuario: userSubset });
         } catch (error) {
-            console.error('Erro ao procurar o usuário:', error);
-            response.status(500).json({ status: 'error', message: 'Erro ao procurar o usuário', error: error });
+            response.status(500).json({ status: 'error', message: error.message, error: error });
         }
     }
 }
