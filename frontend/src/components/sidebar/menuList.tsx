@@ -1,7 +1,9 @@
+import * as React from 'react';
 import { ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import theme from "../../theme";
 import { useNavigate } from "react-router-dom";
 import { HiPlusCircle } from 'react-icons/hi'
+import CriarTemplate from '../stepper/stepper';
 
 export interface MenuItem {
     nome: string;
@@ -78,52 +80,62 @@ export const MenuList = ({ open, selectedItem, handleListItemClick, data }: Menu
 
 
 export const MenuTemplate = ({ open }: { open: boolean }) => {
+
+    const [openmodal, setOpen] = React.useState(false);
+
+    const handleClose = () => setOpen(false)
+    const handleOpen = () => setOpen(true)
+
     return (
-        <ListItem
-            key={123}
-            disablePadding
-            sx={{
-                display: 'block',
-                mt: 2,
-                backgroundColor: open ? 'white' : 'transparent',
-                mx: '5%',
-                width: '90%',
-                borderRadius: 8,
-                transition: 'background-color 0.4s ease',
-                transform: 'scale(1)',
-                '&:hover': {
-                    backgroundColor: '#ebebeb',
-                    transform: 'scale(1.10)',
-                    transition: 'transform 0.4s ease'
-                },
-            }}
-        >
-            <ListItemButton
+        <>
+            <ListItem
+                key={123}
+                disablePadding
                 sx={{
-                    minHeight: 48,
-                    justifyContent: 'center',
-                    px: 2.5,
+                    display: 'block',
+                    mt: 2,
+                    backgroundColor: open ? 'white' : 'transparent',
+                    mx: '5%',
+                    width: '90%',
+                    borderRadius: 8,
+                    transition: 'background-color 0.4s ease',
+                    transform: 'scale(1)',
+                    '&:hover': {
+                        backgroundColor: '#ebebeb',
+                        transform: 'scale(1.10)',
+                        transition: 'transform 0.4s ease'
+                    },
                 }}
             >
-                <ListItemIcon
+                <ListItemButton
                     sx={{
-                        minWidth: 0,
+                        minHeight: 48,
                         justifyContent: 'center',
-                        color: theme.palette.secondary.main,
+                        px: 2.5,
                     }}
+                    onClick={handleOpen}
                 >
-                    <HiPlusCircle size={30} />
-                </ListItemIcon>
-                <ListItemText
-                    primary="Criar template"
-                    sx={{
-                        ml: open ? 2 : 0,
-                        opacity: open ? 1 : 0,
-                        color: 'black',
-                        transition: 'font-weight 0.3s ease'
-                    }}
-                />
-            </ListItemButton>
-        </ListItem>
+                    <ListItemIcon
+                        sx={{
+                            minWidth: 0,
+                            justifyContent: 'center',
+                            color: theme.palette.secondary.main,
+                        }}
+                    >
+                        <HiPlusCircle size={30} />
+                    </ListItemIcon>
+                    <ListItemText
+                        primary="Criar template"
+                        sx={{
+                            ml: open ? 2 : 0,
+                            opacity: open ? 1 : 0,
+                            color: 'black',
+                            transition: 'font-weight 0.3s ease'
+                        }}
+                    />
+                </ListItemButton>
+            </ListItem>
+            <CriarTemplate handleClose={handleClose} open={openmodal} />
+        </>
     );
 };
