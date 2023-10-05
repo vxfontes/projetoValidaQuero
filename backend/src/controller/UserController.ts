@@ -17,7 +17,7 @@ export class UserController {
             const usuarios = await userRepository.find({
                 select: ["nome", "matricula", "perfil", "verificado"]
             });
-            response.status(201).json({ status: 'success', message: 'Usuário encontrados com sucesso', usuarios: usuarios });
+            response.status(201).json({ status: 'success', message: 'Usuários encontrados com sucesso', usuarios: usuarios });
         } catch (error) {
             response.status(500).json({ status: 'error', message: 'Erro ao obter usuários', error: error });
         }

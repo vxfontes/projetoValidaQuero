@@ -11,9 +11,14 @@ export class FormatoController {
     async all(request: Request, response: Response) {
         try {
             const formatos = await formatoRepository.find();
+
+            if(!formatos) {
+                throw new Error("Formatos não encontrados")
+            }
+
             response.status(201).json({ status: 'success', message: 'Formatos encontrados com sucesso', formatos: formatos });
         } catch (error) {
-            response.status(500).json({ status: 'error', message: 'Erro ao obter Formatos', error: error });
+            response.status(500).json({ status: 'error', message: error.message, error: error });
         }
     }
 
@@ -27,7 +32,7 @@ export class FormatoController {
             const { formato } = request.body;
 
             if (!formato) {
-                throw new Error("Campo é obrigatório.");
+                throw new Error("Campo é obrigatório");
             }
 
             const existingFormato = await formatoRepository.findOne({ where: formato });
