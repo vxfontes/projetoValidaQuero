@@ -1,28 +1,13 @@
-import { UserController } from "./controller/UserController"
+import { Router } from "express";
+import { UserController } from "./controller/UserController";
 
-export const Routes = [{
-    method: "get",
-    route: "/users",
-    controller: UserController,
-    action: "all"
-}, {
-    method: "get",
-    route: "/users/:matricula",
-    controller: UserController,
-    action: "one"
-}, {
-    method: "post",
-    route: "/users",
-    controller: UserController,
-    action: "create"
-}, {
-    method: "delete",
-    route: "/users/:matricula",
-    controller: UserController,
-    action: "remove"
-}, {
-    method: "post",
-    route: "/login",
-    controller: UserController,
-    action: "auth"
-}]
+const routes = Router();
+const UsuarioController = new UserController()
+
+routes.get("/users", UsuarioController.all);
+routes.get("/users/:matricula", UsuarioController.one);
+routes.post("/users", UsuarioController.create);
+routes.delete("/users/:matricula", UsuarioController.remove);
+routes.post("/login", UsuarioController.auth);
+
+export default routes;
