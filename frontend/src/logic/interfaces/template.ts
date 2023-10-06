@@ -1,11 +1,14 @@
 import { UserMainProps } from "./user";
 
-export interface TemplateCreateProps {
-    titulo: string;
-    descricao: string;
-    formato: number;
+export interface TemplateCreateProps extends TemplateMainProps{
     quantidadeCampos: number;
     campos: CamposProps[];
+}
+
+export interface TemplateMainProps {
+    titulo: string;
+    formato: string;
+    descricao: string;
 }
 
 export interface TemplateProps extends TemplateCreateProps {
