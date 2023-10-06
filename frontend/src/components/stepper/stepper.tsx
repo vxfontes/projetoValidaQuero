@@ -1,13 +1,12 @@
 import * as React from 'react';
 import DialogSlide from '../muiComponents/dialog';
-import { Box, Grid, Step, StepLabel, Stepper, styled, Typography, Button } from '@mui/material';
+import { Box, Step, StepLabel, Stepper, styled, Typography, Button } from '@mui/material';
 import { QontoConnector, QontoStepIcon } from './stepperProvider';
 import Step1 from './steps/step1';
 import api from '../../logic/api/api';
 import Swal from 'sweetalert2';
 import theme from '../../theme';
 import { FormatoProps } from '../../logic/interfaces/formato';
-import GridContainers from '../muiComponents/gridContainers';
 
 interface DialogProps {
     open: boolean;
@@ -15,8 +14,10 @@ interface DialogProps {
 }
 
 
-const Container = styled(Grid)({
+const Container = styled(Box)({
     background: '#FFFFFF',
+    width: '100%',
+    textAlign: 'center',
 })
 
 const steps = ['', '', ''];
@@ -57,11 +58,11 @@ const CriarTemplate = ({ handleClose, open }: DialogProps) => {
 
     return (
         <DialogSlide open={open} handleClose={handleClose}>
-            <Container container display='block' justifyContent={'center'} textAlign={'center'} spacing={3} px={6} py={3}>
+            <Container px={6} py={3}>
 
-                <Typography variant="h5" color="initial" fontWeight='light' mt={4} mb={1} align='left'>Criação de template</Typography>
+                <Typography variant="h5" color="initial" fontWeight='light' mb={1} align='left'>Criação de template</Typography>
 
-                <Stepper alternativeLabel activeStep={activeStep} connector={<QontoConnector />}>
+                <Stepper sx={{ mb: 3 }} alternativeLabel activeStep={activeStep} connector={<QontoConnector />}>
                     {steps.map((label, index) => {
                         const stepProps: { completed?: boolean } = {};
                         const labelProps: {
@@ -87,7 +88,7 @@ const CriarTemplate = ({ handleClose, open }: DialogProps) => {
                         </Box>
                     </>
                 ) : (
-                    <GridContainers sx={{mt: 2}} align='center' direction='column' justify='center'>
+                    <>
                         {activeStep === 0 && (
                             <Step1 numberPage={0} advanceClick={() => handleNext()} returnClick={() => handleBack()} formatos={formatos} />
                         )}
@@ -110,7 +111,7 @@ const CriarTemplate = ({ handleClose, open }: DialogProps) => {
                                 </Box>
                             </>
                         )}
-                    </GridContainers>
+                    </>
                 )}
 
             </Container>

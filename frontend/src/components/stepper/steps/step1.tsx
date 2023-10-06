@@ -1,16 +1,12 @@
 import { Field, Form, Formik } from "formik";
 import { FormNavigation } from "../formnavigate";
 import { schemaCadastroTemplate } from "../../../logic/utils/schemas/templateSchema";
-import { field100 } from "../../../styles/fieldStyle";
+import { fieldFormik } from "../../../styles/fieldStyle";
 import { FieldSelectFilled, TextFieldFilled } from "../../muiComponents/textFields";
-import { Box, Grid, MenuItem } from "@mui/material";
+import { Box, MenuItem } from "@mui/material";
 import { FormatoProps } from '../../../logic/interfaces/formato';
-
-interface ValueProps {
-    titulo: string;
-    formato: string;
-    descricao: string;
-}
+import { TemplateMainProps } from "../../../logic/interfaces/template";
+import useTemplate from "../../../logic/core/functions/template";
 
 interface Props {
     formatos: FormatoProps[];
@@ -21,8 +17,10 @@ interface Props {
 
 const Step1 = ({ formatos, advanceClick, returnClick, numberPage }: Props) => {
 
-    const enviando = (values: ValueProps) => {
-        // pessoalControl(values);
+    const {templateDescription} = useTemplate()
+
+    const enviando = (values: TemplateMainProps) => {
+        templateDescription(values);
         advanceClick();
     }
 
@@ -40,13 +38,13 @@ const Step1 = ({ formatos, advanceClick, returnClick, numberPage }: Props) => {
                     <Form>
                         <Box sx={{ textAlign: 'center', justifyContent: 'center', alignContent: 'center' }}>
 
-                            <Field sx={field100} name='titulo' component={TextFieldFilled} label='Título' />
-                            <Field sx={field100} name='formato' label='Formato' component={FieldSelectFilled}>
+                            <Field sx={fieldFormik} name='titulo' component={TextFieldFilled} label='Título' />
+                            <Field sx={fieldFormik} name='formato' label='Formato' component={FieldSelectFilled}>
                                 {formatos.map(formato => (
                                     <MenuItem key={formato.id} value={formato.id}>{formato.titulo}</MenuItem>
                                 ))}
                             </Field>
-                            <Field sx={field100} name='descricao' component={TextFieldFilled} label='Descrição' />
+                            <Field sx={fieldFormik} name='descricao' component={TextFieldFilled} label='Descrição' />
 
                             <FormNavigation submitting={isSubmitting} numberPage={numberPage} advanceClick={advanceClick} returnClick={returnClick} />
                         </Box>
