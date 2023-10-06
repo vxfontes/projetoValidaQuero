@@ -38,7 +38,7 @@ export default function DialogSlide({ children, handleClose, open }: DialogProps
             TransitionComponent={Transition}
             keepMounted
             onClose={handleClose}
-            PaperProps={{ sx: { borderRadius: "25px" } }}
+            PaperProps={{ sx: { borderRadius: "25px", width: '100%' } }}
         >
             {children}
         </Dialog>
