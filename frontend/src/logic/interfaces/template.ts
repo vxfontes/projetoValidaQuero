@@ -21,11 +21,11 @@ export interface CamposProps {
 }
 
 export interface TemplateCreateNumberProps extends TemplateCreateProps {
-    status: number
+    status: string
 }
 
 export interface TemplateNumberProps extends TemplateProps {
-    status: number
+    status: string
 }
 
 export interface TemplateStatusProps extends TemplateProps {

@@ -1,8 +1,8 @@
 import { statusArray } from "../../data/status";
 import { StatusProps } from "../interfaces/template";
 
-export const getStatusTemplate = (status: number): StatusProps => {
-    const statusEncontrado = statusArray.find((item) => item.id === status);
+export const getStatusTemplate = (status: string): StatusProps => {
+    const statusEncontrado = statusArray.find((item) => item.titulo === status);
 
     if (statusEncontrado) {
         // Map string values to the allowed string literals

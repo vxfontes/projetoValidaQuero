@@ -4,7 +4,7 @@ export const TemplateState: TemplateCreateNumberProps = {
     titulo: '',
     descricao: '',
     quantidadeCampos: 0,
-    status: 0,
+    status: 'Pendente',
     campos: [],
     formato: 0
 }
