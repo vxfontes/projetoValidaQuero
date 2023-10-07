@@ -11,3 +11,18 @@ export const schemaCadastroTemplate = yup.object().shape({
         .mixed()
         .required("Informe qual o formato do template"),
 })
+
+export const schemaTemplateCampos = yup.object().shape({
+    campos: yup.array()
+        .of(yup.object().shape({
+            nome: yup
+                .string()
+                .required("Nome do campo"),
+            tipo: yup
+                .mixed()
+                .required("Tipagem"),
+            nulo: yup
+                .bool()
+                .required("Pode ser nulo?"),
+        })),
+})
