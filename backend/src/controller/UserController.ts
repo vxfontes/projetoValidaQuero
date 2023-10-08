@@ -3,7 +3,7 @@ import { Request, Response } from "express"
 import { Usuario } from "../entity/User"
 import { PerfilEnum } from "../entity/Perfil";
 import bcrypt = require("bcrypt");
-import { userRepository } from "../configs/repository";
+import { templateRepository, userRepository } from "../configs/repository";
 
 export class UserController {
 
@@ -102,6 +102,9 @@ export class UserController {
             if (!userToRemove) {
                 throw new Error("Usuário não encontrado");
             }
+
+            // Excluir templates associados ao usuário
+            await templateRepository.delete({ usuario: matricula });
 
             await userRepository.remove(userToRemove);
 

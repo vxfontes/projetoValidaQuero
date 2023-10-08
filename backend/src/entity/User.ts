@@ -20,9 +20,9 @@ export class Usuario {
     @Column({ type: 'boolean', nullable: false })
     verificado: boolean;
 
-    @OneToMany(() => Arquivo, (arquivo) => arquivo.usuario)
+    @OneToMany(() => Arquivo, (arquivo) => arquivo.usuario, { cascade: true })
     arquivo: Arquivo[];
 
-    @OneToMany(() => Template, (template) => template.usuario)
+    @OneToMany(() => Template, (template) => template.usuario, { cascade: true })
     template: Template[];
 }
