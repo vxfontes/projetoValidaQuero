@@ -17,9 +17,9 @@ const TemplateContainer = ({ itemsPerPage, onlyActive }: Props) => {
 
     const template = fakeTemplates.filter((template) => {
         if (onlyActive) {
-            return template.status === 1;
+            return template.status === "Ativo";
         } else {
-            return template.status !== 2;
+            return template.status !== "Pendente";
         }
     });
 
