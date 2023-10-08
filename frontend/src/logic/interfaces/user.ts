@@ -19,10 +19,6 @@ export interface UserFormProps extends UserProps {
     confirmarSenha: string
 }
 
-export interface UserGetProps {
-    usuario: UserProtectedProps
-}
-
 export interface UserLoginProps {
     matricula: string;
     senha: string;
