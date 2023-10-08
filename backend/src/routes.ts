@@ -24,6 +24,7 @@ routes.post("/formato", FormatController.create);
 routes.post("/template", TemplateControl.create);
 routes.get("/template", TemplateControl.all);
 routes.get("/template/:id", TemplateControl.one);
+routes.delete("/template/:id", TemplateControl.excluir);
 routes.get("/template/aprovar/:id", TemplateControl.aprovar);
 routes.get("/template/desativar/:id", TemplateControl.desativar);
 

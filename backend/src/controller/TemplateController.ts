@@ -35,8 +35,8 @@ export class TemplateController {
             response.status(500).json({ status: "error", message: error.message, error: error });
         }
     }
-    
-    
+
+
     /**
      * aprovar um template
      * @param request id 
@@ -50,14 +50,12 @@ export class TemplateController {
             if (!id) {
                 throw new Error("ID é obrigatório.");
             }
-            
-            const template = await templateRepository.findOne({
-                where: { id }
-            });
-            
+
+            const template = await templateRepository.findOneBy({ id })
+
             if (template) {
                 template.status = StatusEnum.Ativo
-                
+
                 await templateRepository.save(template);
                 response.status(201).json({ status: "success", message: "Template aprovado com sucesso", template: template });
             } else {
@@ -83,16 +81,47 @@ export class TemplateController {
             if (!id) {
                 throw new Error("ID é obrigatório.");
             }
-            
-            const template = await templateRepository.findOne({
-                where: { id }
-            });
-            
+
+            const template = await templateRepository.findOneBy({ id })
+
             if (template) {
                 template.status = StatusEnum.Desativado
-                
+
                 await templateRepository.save(template);
                 response.status(201).json({ status: "success", message: "Template desativado com sucesso", template: template });
+            } else {
+                throw new Error('Template não encontrado');
+            }
+
+        } catch (error) {
+            response.status(500).json({ status: "error", message: error.message, error: error });
+        }
+    }
+
+
+    /**
+     * excluir template pendente
+     * @param request id 
+     * @param response resposta se foi excluido ou não
+     */
+    async excluir(request: Request, response: Response) {
+        try {
+            const id = parseInt(request.params.id)
+
+            // Verifique se todos os campos obrigatórios estão presentes
+            if (!id) {
+                throw new Error("ID é obrigatório.");
+            }
+
+            const template = await templateRepository.findOneBy({ id })
+
+            if (template) {
+                if (template.status === StatusEnum.Pendente) {
+                    await templateRepository.remove(template);
+                } else {
+                    throw new Error('Template não pode ser excluido pois não é pendente');
+                }
+                response.status(201).json({ status: "success", message: "Template excluido com sucesso" });
             } else {
                 throw new Error('Template não encontrado');
             }
