@@ -20,11 +20,11 @@ export class Arquivo extends Base {
     @Column({ type: 'varchar', nullable: true })
     url: string;
 
-    @ManyToOne(() => Usuario)
+    @ManyToOne(() => Usuario, { nullable: false })
     @JoinColumn({ name: 'usuario' })
     usuario: Usuario;
     
-    @ManyToOne(() => Template)
+    @ManyToOne(() => Template, { nullable: false })
     @JoinColumn({ name: 'template' })
     template: Template;
 }

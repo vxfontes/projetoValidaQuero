@@ -29,11 +29,11 @@ export class Template extends Base {
     arquivos: Arquivo[];
 
     // @ManyToOne(() => Formato, (formato) => formato.template) -> se, o joincolumn
-    @ManyToOne(() => Formato)
+    @ManyToOne(() => Formato, { nullable: false })
     @JoinColumn({ name: 'formato' })
     formato: Formato;
 
-    @ManyToOne(() => Usuario)
+    @ManyToOne(() => Usuario, { nullable: false })
     @JoinColumn({ name: 'usuario' })
     usuario: Usuario;
 }
