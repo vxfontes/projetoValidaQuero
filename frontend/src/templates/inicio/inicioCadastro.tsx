@@ -3,14 +3,12 @@ import img1 from '../../assets/drawkit/inicio/gerente1.svg'
 import img2 from '../../assets/drawkit/inicio/gerente2.svg'
 import { Grid } from "@mui/material";
 import TemplateContainer from "../../components/templates/container";
-import { useScreenSize } from "../../components/muiComponents/breakpoints";
 import FileContainer from '../../components/files/container';
 import TemplateCharts from "../../components/charts/mine/TemplateActives";
+import { TemplateContainerProps } from "../../logic/interfaces/template";
 
 
-const InicioCadastro = () => {
-    const { showTablet } = useScreenSize()
-
+const InicioCadastro = ({formatos, message, templates, loading}: TemplateContainerProps) => {
     return (
         <GridContainers sx={{ mt: 5 }} align='center' direction='row'>
 
@@ -22,7 +20,7 @@ const InicioCadastro = () => {
 
 
             <Grid p={5} item xl={8} lg={8} md={8} sm={12} xs={12}>
-                <TemplateContainer itemsPerPage={6} onlyActive={false} />
+                <TemplateContainer itemsPerPage={6} onlyActive={false} formatos={formatos} templates={templates} message={message} loading={loading} />
 
                 <GridContainers align='center' direction='row'>
                     <Grid item xl={7} lg={7} md={7} sm={12} xs={12}>

@@ -1,7 +1,6 @@
 import { Box, Chip, Grid, Typography, styled } from "@mui/material";
 import { StatusProps, TemplateAllProps } from "../../logic/interfaces/template";
 import GridContainers from "../muiComponents/gridContainers";
-import { getFormatoTemplate } from "../../logic/utils/GetFormato";
 import { getStatusTemplate } from "../../logic/utils/GetStatus";
 import { useNavigate } from "react-router-dom";
 
@@ -28,9 +27,9 @@ const TemplateGrade = ({ template }: TemplateAllProps) => {
                 <Grid pt={2} item xl={9} lg={9} md={9} sm={9} xs={9}>
                     <Typography variant="body1" color="initial" fontWeight={'bold'}>{template.titulo}</Typography>
                     <Typography variant="body1" color="initial"><Box component='span' sx={{ color: '#636363' }}>Número de colunas:</Box> {template.quantidadeCampos}</Typography>
-                    <Typography variant="body1" color="initial"><Box component='span' sx={{ color: '#636363' }}>Autor:</Box> {template.autor.nome}</Typography>
+                    <Typography variant="body1" color="initial"><Box component='span' sx={{ color: '#636363' }}>Autor:</Box> {template.usuario.nome}</Typography>
                 </Grid>
-                <Grid display={'flex'} justifyContent='end' item xl={2} lg={2} md={2} sm={2} xs={2}><Chip color='secondary' label={getFormatoTemplate(template.formato)} /></Grid>
+                <Grid display={'flex'} justifyContent='end' item xl={2} lg={2} md={2} sm={2} xs={2}><Chip color='secondary' label={template.formato} /></Grid>
                 <Grid item py={2} pl={1} xl={12} lg={12} md={12} sm={12} xs={12}><Chip variant="outlined" color={getStatus.color} label={getStatus.titulo} /></Grid>
             </GridContainers>
         </TemplateComponent>

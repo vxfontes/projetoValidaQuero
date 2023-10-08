@@ -6,9 +6,10 @@ import TemplateContainer from "../../components/templates/container";
 import { useScreenSize } from "../../components/muiComponents/breakpoints";
 import FileContainer from '../../components/files/container';
 import TemplateCharts from "../../components/charts/mine/TemplateActives";
+import { TemplateContainerProps } from "../../logic/interfaces/template";
 
 
-const InicioUpload = () => {
+const InicioUpload = ({formatos, message, templates, loading}: TemplateContainerProps) => {
     const { showTablet } = useScreenSize()
 
     return (
@@ -22,7 +23,7 @@ const InicioUpload = () => {
 
 
             <Grid p={5} item xl={8} lg={8} md={8} sm={12} xs={12}>
-                <TemplateContainer itemsPerPage={6} onlyActive />
+                <TemplateContainer itemsPerPage={6} onlyActive formatos={formatos} templates={templates} message={message} loading={loading} />
 
                 <GridContainers align='center' direction='row'>
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12}>

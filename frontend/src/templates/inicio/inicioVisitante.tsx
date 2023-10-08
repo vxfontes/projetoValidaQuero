@@ -5,12 +5,16 @@ import img3 from '../../assets/drawkit/inicio/visitante3.svg'
 import { Box, Grid, Typography } from "@mui/material";
 import TemplateContainer from "../../components/templates/container";
 import theme from "../../theme";
-import { UserGetProps } from "../../logic/interfaces/user";
 import { useScreenSize } from "../../components/muiComponents/breakpoints";
 import TemplateCharts from "../../components/charts/mine/TemplateActives";
+import { TemplateContainerProps } from "../../logic/interfaces/template";
+import { UserProtectedProps } from "../../logic/interfaces/user";
 
+interface UserGetProps extends TemplateContainerProps {
+    usuario: UserProtectedProps
+}
 
-const InicioVisitante = ({ usuario }: UserGetProps) => {
+const InicioVisitante = ({ usuario, formatos, message, templates, loading }: UserGetProps) => {
     const { showTablet } = useScreenSize()
 
     return (
@@ -40,7 +44,7 @@ const InicioVisitante = ({ usuario }: UserGetProps) => {
                     <img src={img2} alt="imagem 2" height='100%' />
                 </Grid>
 
-                <TemplateContainer itemsPerPage={6} onlyActive />
+                <TemplateContainer itemsPerPage={6} onlyActive formatos={formatos} templates={templates} message={message} loading={loading} />
             </Grid>
 
         </GridContainers>

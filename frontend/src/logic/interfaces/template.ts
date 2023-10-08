@@ -1,6 +1,8 @@
+import { FileProps } from "./file";
+import { FormatoProps } from "./formato";
 import { UserMainProps } from "./user";
 
-export interface TemplateCreateProps extends TemplateMainProps{
+export interface TemplateCreateProps extends TemplateMainProps {
     quantidadeCampos: number;
     campos: CamposProps[];
 }
@@ -11,10 +13,23 @@ export interface TemplateMainProps {
     descricao: string;
 }
 
+export interface GetTemplateProps {
+    id: number;
+    titulo: string;
+    descricao: string;
+    dataCriacao: string;
+    quantidadeCampos: number;
+    campos: CamposProps[];
+    status: string;
+    usuario: UserMainProps;
+    formato: string;
+    arquivos: FileProps[]
+}
+
 export interface TemplateProps extends TemplateCreateProps {
     id: number;
     dataCriacao: string;
-    autor: UserMainProps;
+    usuario: UserMainProps;
 }
 
 export interface CamposProps {
@@ -48,5 +63,16 @@ export interface StatusProps {
 }
 
 export interface TemplateAllProps {
-    template: TemplateNumberProps
+    template: GetTemplateProps
+}
+
+export interface TemplatesAllProps {
+    templates: GetTemplateProps[]
+}
+
+export interface TemplateContainerProps {
+    formatos: FormatoProps[];
+    templates: GetTemplateProps[];
+    loading?: boolean;
+    message?: string
 }
