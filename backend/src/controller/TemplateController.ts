@@ -35,6 +35,46 @@ export class TemplateController {
             response.status(500).json({ status: "error", message: error.message, error: error });
         }
     }
+    
+    
+    /**
+     * 
+     * @param request json com: id, status
+     * @param response resposta se foi mudado ou não
+     */
+    async status(request: Request, response: Response) {
+        console.log(request.body);
+        try {
+            const { id, status } = request.body;
+            
+
+            // Verifique se todos os campos obrigatórios estão presentes
+            if (!id || !status) {
+                throw new Error("Todos os campos são obrigatórios.");
+            }
+
+            // Verificar se o status fornecido é válido
+            if (!Object.values(StatusEnum).includes(status)) {
+                throw new Error('Status inválido');
+            }
+            
+            const template = await templateRepository.findOne({
+                where: { id }
+            });
+            
+            if (template) {
+                template.status = status
+                
+                await templateRepository.save(template);
+                response.status(201).json({ status: "success", message: "Status salvo com sucesso", template: template });
+            } else {
+                throw new Error('Template não encontrado');
+            }
+
+        } catch (error) {
+            response.status(500).json({ status: "error", message: error.message, error: error });
+        }
+    }
 
 
     /**
@@ -66,7 +106,7 @@ export class TemplateController {
 
             response.status(201).json({ status: 'success', message: 'Templates encontrados com sucesso', templates: formattedTemplates });
         } catch (error) {
-            response.status(500).json({ status: 'error', message: 'Erro ao obter usuários', error: error });
+            response.status(500).json({ status: 'error', message: 'Erro ao obter template', error: error });
         }
     }
 
