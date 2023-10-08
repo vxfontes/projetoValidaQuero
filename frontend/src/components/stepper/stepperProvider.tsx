@@ -1,6 +1,7 @@
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
-import { styled } from '@mui/material';
+import { Box, Button, styled } from '@mui/material';
 import { AiFillCheckCircle } from 'react-icons/ai'
+import useTemplate from '../../logic/core/functions/template';
 
 
 export const QontoStepIconRoot = styled('div')<{ ownerState: { active?: boolean } }>(
@@ -62,3 +63,28 @@ export function QontoStepIcon(props: any) {
         </QontoStepIconRoot>
     );
 }
+
+export interface StepperButtonsProps {
+    handleNext: () => void;
+    handleBack: () => void;
+    isLastStep: boolean;
+}
+
+export const StepperButtons: React.FC<StepperButtonsProps> = ({ handleNext, handleBack, isLastStep }) => {
+
+    const {templateFinalizando} = useTemplate()
+
+    function click() {
+        if (!isLastStep) templateFinalizando()
+        handleNext();
+    }
+    return (
+        <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+            <Button disabled={isLastStep ? true: false} color="primary" variant="contained" onClick={handleBack} sx={{ mr: 1 }}>
+                Voltar
+            </Button>
+            <Box sx={{ flex: '1 1 auto' }} />
+            <Button color="primary" variant="contained" onClick={click}>Finalizar</Button>
+        </Box>
+    );
+};

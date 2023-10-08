@@ -52,7 +52,7 @@ const Step2 = ({ advanceClick, returnClick, numberPage }: PropsButtons) => {
                                         <Grid container direction='row' alignItems='center' gap={1}>
                                             {values.campos.length > 0 &&
                                                 values.campos.map((_campo, index) => (
-                                                    <Grid item xl={12} lg={12} md={12} sm={12} xs={12} display='flex' alignItems='start' gap={1}>
+                                                    <Grid key={index} item xl={12} lg={12} md={12} sm={12} xs={12} display='flex' alignItems='start' gap={1}>
 
                                                         <FieldCampo campo="nome" errors={errors} index={index}>
                                                             <Field sx={fieldFormik} name={`campos.${index}.nome`} component={TextFieldFilled} label={"Nome do campo"} />

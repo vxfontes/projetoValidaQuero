@@ -7,15 +7,18 @@ export default function useTemplate() {
         TemplateState.titulo = values.titulo;
         TemplateState.descricao = values.descricao;
         TemplateState.formato = values.formato;
-        console.log(TemplateState);
-        
     }
-    
+
     const templateCampos = (values: CamposProps[]) => {
+        TemplateState.quantidadeCampos = values.length
         TemplateState.campos = values;
     }
 
+    const templateFinalizando = () => {
+        console.log(TemplateState);
+    }
+
     return {
-        templateDescription, templateCampos
+        templateDescription, templateCampos, templateFinalizando
     }
 }
