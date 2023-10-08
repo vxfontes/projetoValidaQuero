@@ -7,7 +7,7 @@ export interface TemplateCreateProps extends TemplateMainProps{
 
 export interface TemplateMainProps {
     titulo: string;
-    formato: string;
+    formato: number;
     descricao: string;
 }
 
@@ -21,6 +21,12 @@ export interface CamposProps {
     nome: string;
     tipo: string;
     nulo: boolean;
+}
+
+export interface CamposFirstProps {
+    nome: string;
+    tipo: string;
+    nulo: string;
 }
 
 export interface TemplateCreateNumberProps extends TemplateCreateProps {

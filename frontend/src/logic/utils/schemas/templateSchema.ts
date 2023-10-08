@@ -22,7 +22,8 @@ export const schemaTemplateCampos = yup.object().shape({
                 .mixed()
                 .required("Tipagem"),
             nulo: yup
-                .bool()
+                .mixed()
                 .required("Pode ser nulo?"),
-        })),
+        }))
+        .required('Precisa ter ao menos um campo')
 })

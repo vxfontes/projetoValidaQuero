@@ -1,5 +1,5 @@
 import { TemplateState } from "../../../data/templateState"
-import { TemplateMainProps } from "../../interfaces/template"
+import { CamposProps, TemplateMainProps } from "../../interfaces/template"
 
 export default function useTemplate() {
 
@@ -7,9 +7,15 @@ export default function useTemplate() {
         TemplateState.titulo = values.titulo;
         TemplateState.descricao = values.descricao;
         TemplateState.formato = values.formato;
+        console.log(TemplateState);
+        
+    }
+    
+    const templateCampos = (values: CamposProps[]) => {
+        TemplateState.campos = values;
     }
 
     return {
-        templateDescription
+        templateDescription, templateCampos
     }
 }
