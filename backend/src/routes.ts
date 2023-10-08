@@ -22,5 +22,6 @@ routes.post("/formato", FormatController.create);
 
 // template
 routes.post("/template", TemplateControl.create);
+routes.get("/template", TemplateControl.all);
 
 export default routes;
