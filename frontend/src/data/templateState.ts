@@ -6,5 +6,6 @@ export const TemplateState: TemplateCreateNumberProps = {
     quantidadeCampos: 0,
     status: 'Pendente',
     campos: [],
-    formato: 0
+    formato: 0,
+    usuario: ''
 }

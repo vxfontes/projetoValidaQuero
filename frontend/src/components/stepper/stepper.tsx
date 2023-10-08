@@ -1,7 +1,7 @@
 import * as React from 'react';
 import DialogSlide from '../muiComponents/dialog';
 import { Box, Step, StepLabel, Stepper, styled, Typography } from '@mui/material';
-import { QontoConnector, QontoStepIcon, StepperButtons } from './stepperProvider';
+import { QontoConnector, QontoStepIcon } from './stepperProvider';
 import Step1 from './steps/step1';
 import api from '../../logic/api/api';
 import Swal from 'sweetalert2';
@@ -9,6 +9,7 @@ import theme from '../../theme';
 import { FormatoProps } from '../../logic/interfaces/formato';
 import Step2 from './steps/step2';
 import Step3 from './steps/step3';
+import Step4 from './steps/step4';
 
 interface DialogProps {
     open: boolean;
@@ -82,10 +83,7 @@ const CriarTemplate = ({ handleClose, open }: DialogProps) => {
 
                 {/* tela final e todas as outras telas */}
                 {activeStep === steps.length ? (
-                    <>
-                        <Typography variant="h5" color="initial">Template cadastrado com sucesso!</Typography>
-                        <StepperButtons handleNext={handleCloseModal} handleBack={handleBack} isLastStep={activeStep === steps.length} />
-                    </>
+                    <Step4 handleNext={handleCloseModal} handleBack={handleBack} />
                 ) : (
                     <>
                         {activeStep === 0 && (
@@ -95,7 +93,7 @@ const CriarTemplate = ({ handleClose, open }: DialogProps) => {
                             <Step2 numberPage={1} advanceClick={() => handleNext()} returnClick={() => handleBack()} />
                         )}
                         {activeStep === 2 && (
-                            <Step3 handleNext={handleNext} handleBack={handleBack} isLastStep={activeStep === steps.length} />
+                            <Step3 handleNext={handleNext} handleBack={handleBack} />
                         )}
                     </>
                 )}
