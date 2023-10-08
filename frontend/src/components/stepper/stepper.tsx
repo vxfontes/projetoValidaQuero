@@ -1,6 +1,6 @@
 import * as React from 'react';
 import DialogSlide from '../muiComponents/dialog';
-import { Box, Step, StepLabel, Stepper, styled, Typography, Button } from '@mui/material';
+import { Box, Step, StepLabel, Stepper, styled, Typography } from '@mui/material';
 import { QontoConnector, QontoStepIcon, StepperButtons } from './stepperProvider';
 import Step1 from './steps/step1';
 import api from '../../logic/api/api';
