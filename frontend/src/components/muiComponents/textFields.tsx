@@ -89,3 +89,19 @@ export const FieldSelectFilled = ({
         </TextField>
     </div>
 );
+
+export const FieldSelectFilledCampos = ({
+    field, // { name, value, onChange, onBlur }
+    children,
+    form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+    ...props
+}: any) => (
+
+    <div>
+        <TextField select {...field} {...props} variant='filled'
+            value={field.value} error={touched[field.name] && Boolean(errors[field.name])}
+            helperText={touched[field.name] && errors[field.name]} onChange={field.onChange}>
+            {children}
+        </TextField>
+    </div>
+);
