@@ -56,7 +56,7 @@ export class UserController {
      */
     async create(request: Request, response: Response) {
         try {
-            const { nome, matricula, senha, perfil } = request.query;
+            const { nome, matricula, senha, perfil } = request.body;
 
             if (!matricula || !matricula || !senha || !perfil) {
                 throw new Error("Todos os campos são obrigatórias.");
@@ -119,7 +119,7 @@ export class UserController {
     async auth(request: Request, response: Response) {
 
         try {
-            const { matricula, senha } = request.query;
+            const { matricula, senha } = request.body;
 
             if (!matricula || !senha) {
                 throw new Error("Matrícula e senha são obrigatórias.");

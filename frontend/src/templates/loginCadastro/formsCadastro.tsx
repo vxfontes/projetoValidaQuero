@@ -40,7 +40,7 @@ export const FormCadastro = () => {
 
     async function onSubmit(values: UserFormProps) {
 
-        api.post('/users', null, { params: { nome: values.nome, matricula: values.matricula, senha: values.senha, perfil: values.perfil } }).then((res) => {
+        api.post('/users', values).then((res) => {
             if (res.data.status === 'success') {
                 login(res.data.usuario)
                 Swal.fire({
