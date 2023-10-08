@@ -29,7 +29,7 @@ const Step1 = ({ formatos, advanceClick, returnClick, numberPage }: Props) => {
             <Formik
                 initialValues={{
                     titulo: '',
-                    formato: '',
+                    formato: 1,
                     descricao: '',
                 }}
                 onSubmit={enviando}
