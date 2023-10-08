@@ -1,8 +1,9 @@
-import { Entity, Column, ManyToOne, JoinColumn } from "typeorm";
+import { Entity, Column, ManyToOne, JoinColumn, OneToMany } from "typeorm";
 import { Base } from "./Base";
 import { Usuario } from "./User";
 import { StatusEnum } from "./Status";
 import { Formato } from "./Formato";
+import { Arquivo } from "./Arquivo";
 
 @Entity({ schema: "ValidaQuero" })
 export class Template extends Base {
@@ -23,6 +24,9 @@ export class Template extends Base {
 
     @Column({ type: 'enum', enum: StatusEnum, nullable: false })
     status: StatusEnum;
+
+    @OneToMany(() => Arquivo, (arquivo) => arquivo.template, { cascade: true })
+    arquivos: Arquivo[];
 
     // @ManyToOne(() => Formato, (formato) => formato.template) -> se, o joincolumn
     @ManyToOne(() => Formato)
