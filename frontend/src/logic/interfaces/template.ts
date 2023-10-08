@@ -30,7 +30,8 @@ export interface CamposFirstProps {
 }
 
 export interface TemplateCreateNumberProps extends TemplateCreateProps {
-    status: string
+    status: string;
+    usuario: string;
 }
 
 export interface TemplateNumberProps extends TemplateProps {

@@ -14,11 +14,7 @@ export default function useTemplate() {
         TemplateState.campos = values;
     }
 
-    const templateFinalizando = () => {
-        console.log(TemplateState);
-    }
-
     return {
-        templateDescription, templateCampos, templateFinalizando
+        templateDescription, templateCampos
     }
 }
