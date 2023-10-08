@@ -98,14 +98,11 @@ export class UserController {
 
         try {
             const userToRemove = await userRepository.findOneBy({ matricula })
+            
+            if (!userToRemove) throw new Error("Usuário não encontrado");
 
-            if (!userToRemove) {
-                throw new Error("Usuário não encontrado");
-            }
-
-            // Excluir templates associados ao usuário
-            await templateRepository.delete({ usuario: matricula });
-
+            if(userToRemove.verificado) throw new Error("Usuário verificado não pode ser excluido")
+            
             await userRepository.remove(userToRemove);
 
             response.status(201).json({ status: 'success', message: `Usuário de matrícula: ${matricula} deletado com sucesso` });
