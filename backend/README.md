@@ -10,13 +10,13 @@
 
 <p align="center">
   <img alt="rotas" src="https://img.shields.io/badge/inicializar_projeto-finalizado-green"><br>
-  <img alt="rotas" src="https://img.shields.io/badge/criar_template-pendente-red">
-  <img alt="rotas" src="https://img.shields.io/badge/excluir_template-pendente-red">
-  <img alt="rotas" src="https://img.shields.io/badge/consultar_template-pendente-red"><br>
-  <img alt="rotas" src="https://img.shields.io/badge/criar_usuario-pendente-red">
-  <img alt="rotas" src="https://img.shields.io/badge/excluir_usuario-pendente-red">
-  <img alt="rotas" src="https://img.shields.io/badge/consultar_usuario-pendente-red">
-  <img alt="rotas" src="https://img.shields.io/badge/mudar_permissão_usuario-pendente-red"><b>
+  <img alt="rotas" src="https://img.shields.io/badge/criar_template-finalizada-green">
+  <img alt="rotas" src="https://img.shields.io/badge/excluir_template-finalizada-green">
+  <img alt="rotas" src="https://img.shields.io/badge/consultar_template-finalizada-green"><br>
+  <img alt="rotas" src="https://img.shields.io/badge/criar_usuario-finalizada-green">
+  <img alt="rotas" src="https://img.shields.io/badge/excluir_usuario-finalizada-green">
+  <img alt="rotas" src="https://img.shields.io/badge/consultar_usuario-finalizada-green">
+  <img alt="rotas" src="https://img.shields.io/badge/mudar_permissão_usuario-finalizada-green"><b>
   <img alt="rotas" src="https://img.shields.io/badge/criar_arquivo-pendente-red">
   <img alt="rotas" src="https://img.shields.io/badge/consultar_arquivo-pendente-red">
   <img alt="rotas" src="https://img.shields.io/badge/lista_de_arquivos-pendente-red">

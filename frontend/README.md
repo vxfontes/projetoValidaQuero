@@ -13,12 +13,12 @@
   <img alt="paginas" src="https://img.shields.io/badge/login-finalizada-green">
   <img alt="paginas" src="https://img.shields.io/badge/cadastro-finalizada-green">
   <img alt="paginas" src="https://img.shields.io/badge/pagina_principal-não_iniciado-red">
-  <img alt="paginas" src="https://img.shields.io/badge/pagina_inicial-não_iniciado-red">
-  <img alt="paginas" src="https://img.shields.io/badge/criação_de_template-não_iniciado-red">
+  <img alt="paginas" src="https://img.shields.io/badge/pagina_inicial-finalizada-green">
+  <img alt="paginas" src="https://img.shields.io/badge/criação_de_template-finalizada-green">
   <img alt="paginas" src="https://img.shields.io/badge/tela_usuarios-não_iniciado-red">
   <img alt="paginas" src="https://img.shields.io/badge/upload_arquivos-não_iniciado-red">
-  <img alt="paginas" src="https://img.shields.io/badge/meu_perfil-não_iniciado-red">
-  <img alt="paginas" src="https://img.shields.io/badge/pagina_de_templates-não_iniciado-red">
+  <img alt="paginas" src="https://img.shields.io/badge/meu_perfil-finalizada-green">
+  <img alt="paginas" src="https://img.shields.io/badge/pagina_de_templates-finalizada-green">
 </p>
 
 <!-- Status -->
