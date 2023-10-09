@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { StatusEnum } from "../entity/Status";
 import { Template } from "../entity/Template";
 import { formatoRepository, templateRepository, userRepository } from "../configs/repository";
+import { PerfilEnum } from "../entity/Perfil";
 
 export class TemplateController {
 
@@ -24,9 +25,11 @@ export class TemplateController {
 
             const statusExistente = await formatoRepository.findOneBy({ id: formato });
             if (!statusExistente) throw new Error('Formato não encontrado no banco de dados');
-
+            
             const usuarioExistente = await userRepository.findOneBy({ matricula: usuario });
             if (!usuarioExistente) throw new Error('Usuário não encontrado no banco de dados');
+            if(usuarioExistente.perfil === PerfilEnum.Time) throw new Error("Usuários do time não podem fazer criação de templates");
+            if(!usuarioExistente.verificado) throw new Error("Usuários não verificados não podem fazer upload de arquivos");
 
             const template = Object.assign(new Template(), {
                 titulo, descricao, quantidadeCampos, status, campos, formato, usuario
