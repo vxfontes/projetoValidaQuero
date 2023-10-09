@@ -8,10 +8,50 @@ import GridContainers from "../components/muiComponents/gridContainers";
 import TemplateContainer from "../components/templates/container";
 import FileContainer from "../components/files/container";
 import theme from "../theme";
+import * as React from 'react';
+import { GetTemplateProps } from "../logic/interfaces/template";
+import api from "../logic/api/api";
+import Swal from "sweetalert2";
+
 
 const MeuPerfil = () => {
     const { getUser } = useUsuario();
     const perfil = getUser().result;
+    const [formatos, setFormatos] = React.useState([]);
+    const [templates, setTemplates] = React.useState<GetTemplateProps[]>([]);
+    const [messageTemplate, setMessageTemplate] = React.useState("");
+    const [loading, setLoading] = React.useState(true);
+
+    React.useEffect(() => {
+
+        // get formatos
+        api.get('/formato').then(res => {
+            if (res.data.status === 'success') {
+                setFormatos(res.data.formatos)
+            }
+        }).catch((error) => {
+            Swal.fire({
+                icon: error.response.data.status,
+                iconColor: theme.palette.secondary.main,
+                title: error.response.data.message,
+                confirmButtonColor: theme.palette.secondary.main,
+                confirmButtonText: 'Retornar',
+            })
+        })
+
+
+        // get templates
+        api.get(`/user/templates/${perfil.matricula}`).then(res => {
+            if (res.data.status === 'success') {
+                if (res.data.templates.lenght === 0) setMessageTemplate("Não existem templates cadastrados pelo usuário")
+                else setTemplates(res.data.templates)
+            }
+        }).catch((error) => {
+            setMessageTemplate(error.response.data.message)
+        }).finally(() => {
+            setLoading(false)
+        })
+    }, []);
 
 
     return (
@@ -40,7 +80,7 @@ const MeuPerfil = () => {
 
                 {perfil.perfil === 'Gerente' && (
                     <Grid mt={4} item xl={12} lg={12} md={12} sm={12} xs={12}>
-                        <TemplateContainer itemsPerPage={6} onlyActive={false} />
+                        <TemplateContainer itemsPerPage={6} onlyActive formatos={formatos} templates={templates} message={messageTemplate} loading={loading} />
                     </Grid>
                 )}
 
@@ -53,7 +93,7 @@ const MeuPerfil = () => {
                 {perfil.perfil === 'Gestor' && (
                     <GridContainers align="start" direction="row" justify="space-evenly">
                         <Grid mt={4} item xl={8} lg={8} md={8} sm={12} xs={12}>
-                            <TemplateContainer itemsPerPage={6} onlyActive={false} />
+                            <TemplateContainer itemsPerPage={6} onlyActive={false} formatos={formatos} templates={templates} message={messageTemplate} loading={loading} />
                         </Grid>
                         <Grid mt={4} item xl={3} lg={3} md={3} sm={12} xs={12}>
                             <FileContainer itemsPerPage={10} />
