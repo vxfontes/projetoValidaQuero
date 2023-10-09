@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { StatusEnum } from "../entity/Status";
 import { Template } from "../entity/Template";
-import { templateRepository } from "../configs/repository";
+import { formatoRepository, templateRepository, userRepository } from "../configs/repository";
 
 export class TemplateController {
 
@@ -22,6 +22,16 @@ export class TemplateController {
             // Verificar se o status fornecido é válido
             if (!Object.values(StatusEnum).includes(status)) {
                 throw new Error('Status inválido');
+            }
+
+            const statusExistente = await formatoRepository.findOneBy({ id: formato });
+            if (!statusExistente) {
+                throw new Error('Formato não encontrado no banco de dados');
+            }
+
+            const usuarioExistente = await userRepository.findOneBy({ matricula: usuario });
+            if (!usuarioExistente) {
+                throw new Error('Usuário não encontrado no banco de dados');
             }
 
             const template = Object.assign(new Template(), {
