@@ -20,19 +20,13 @@ export class TemplateController {
             }
 
             // Verificar se o status fornecido é válido
-            if (!Object.values(StatusEnum).includes(status)) {
-                throw new Error('Status inválido');
-            }
+            if (!Object.values(StatusEnum).includes(status)) throw new Error('Status inválido');
 
             const statusExistente = await formatoRepository.findOneBy({ id: formato });
-            if (!statusExistente) {
-                throw new Error('Formato não encontrado no banco de dados');
-            }
+            if (!statusExistente) throw new Error('Formato não encontrado no banco de dados');
 
             const usuarioExistente = await userRepository.findOneBy({ matricula: usuario });
-            if (!usuarioExistente) {
-                throw new Error('Usuário não encontrado no banco de dados');
-            }
+            if (!usuarioExistente) throw new Error('Usuário não encontrado no banco de dados');
 
             const template = Object.assign(new Template(), {
                 titulo, descricao, quantidadeCampos, status, campos, formato, usuario
@@ -57,9 +51,7 @@ export class TemplateController {
             const id = parseInt(request.params.id)
 
             // Verifique se todos os campos obrigatórios estão presentes
-            if (!id) {
-                throw new Error("ID é obrigatório.");
-            }
+            if (!id) throw new Error("ID é obrigatório.");
 
             const template = await templateRepository.findOneBy({ id })
 
@@ -88,10 +80,8 @@ export class TemplateController {
             const id = parseInt(request.params.id)
 
             // Verifique se todos os campos obrigatórios estão presentes
-            if (!id) {
-                throw new Error("ID é obrigatório.");
-            }
-
+            if (!id) throw new Error("ID é obrigatório.");
+            
             const template = await templateRepository.findOneBy({ id })
 
             if (template) {
@@ -126,11 +116,8 @@ export class TemplateController {
             const template = await templateRepository.findOneBy({ id })
 
             if (template) {
-                if (template.status === StatusEnum.Pendente) {
-                    await templateRepository.remove(template);
-                } else {
-                    throw new Error('Template não pode ser excluido pois não é pendente');
-                }
+                if (template.status === StatusEnum.Pendente) await templateRepository.remove(template);
+                else throw new Error('Template não pode ser excluido pois não é pendente');
                 response.status(201).json({ status: "success", message: "Template excluido com sucesso" });
             } else {
                 throw new Error('Template não encontrado');
@@ -201,10 +188,7 @@ export class TemplateController {
                 ])
                 .getOne();
 
-            if (!template) {
-                response.status(404).json({ status: 'error', message: 'Template não encontrado' });
-                return;
-            }
+            if (!template) return response.status(404).json({ status: 'error', message: 'Template não encontrado' });
 
             const formattedTemplate = {
                 ...template,
