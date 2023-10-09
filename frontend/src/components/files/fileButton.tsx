@@ -31,7 +31,7 @@ const FileButton = ({ file }: FileAllProps) => {
                             <BoxSpanGray>Template: </BoxSpanGray>{file.template}<br />
                             <BoxSpanGray>Formato: </BoxSpanGray>{getFormatoTemplate(file.formato)}<br />
                             <BoxSpanGray>Data de criação: </BoxSpanGray>{formatarData(file.dataCriacao)}<br />
-                            <BoxSpanGray>Autor: </BoxSpanGray>{file.autor}<br />
+                            <BoxSpanGray>Autor: </BoxSpanGray>{file.usuario.nome}<br />
                             <BoxSpanGray>Quantidade de linhas: </BoxSpanGray>{file.linhas}
                         </Typography>
                     </Box>
