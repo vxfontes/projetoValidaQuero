@@ -60,9 +60,11 @@ export class ArquivoController {
                 .leftJoinAndSelect("arquivo.usuario", "usuario")
                 .leftJoinAndSelect("arquivo.template", "template")
                 .leftJoinAndSelect("template.formato", "formato")
+                .where("arquivo.aprovado = :aprovado", { aprovado: true })
                 .select([
                     "arquivo",
                     "usuario.nome",
+                    "usuario.matricula",
                     "template.titulo",
                     "formato.titulo",
                 ])
@@ -70,7 +72,6 @@ export class ArquivoController {
 
             const formattedArquivos = arquivos.map(arquivo => ({
                 ...arquivo,
-                usuario: arquivo.usuario.nome,
                 template: arquivo.template.titulo,
                 formato: arquivo.template.formato.titulo
             }));
@@ -99,6 +100,7 @@ export class ArquivoController {
                 .select([
                     "arquivo",
                     "usuario.nome",
+                    "usuario.matricula",
                     "template.titulo",
                     "formato.titulo",
                 ])
@@ -108,7 +110,6 @@ export class ArquivoController {
 
             const formattedArquivo = {
                 ...arquivo,
-                usuario: arquivo.usuario.nome,
                 template: arquivo.template.titulo,
                 formato: arquivo.template.formato.titulo
             }
