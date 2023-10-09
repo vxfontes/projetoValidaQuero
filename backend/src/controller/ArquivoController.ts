@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { StatusEnum } from "../entity/Status";
-import { Template } from "../entity/Template";
-import { arquivoRepository, formatoRepository, templateRepository, userRepository } from "../configs/repository";
+import { arquivoRepository, templateRepository, userRepository } from "../configs/repository";
 import { Arquivo } from "../entity/Arquivo";
 import { PerfilEnum } from "../entity/Perfil";
 
