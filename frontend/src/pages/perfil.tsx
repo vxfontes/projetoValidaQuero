@@ -61,7 +61,7 @@ const MeuPerfil = () => {
         // get arquivos
         api.get(`/user/arquivos/${perfil.matricula}`).then(res => {
             if (res.data.status === 'success') {
-                if (res.data.arquivos.lenght === 0) setMessageArquivo("Não existem arquivos cadastrados pelo usuário")
+                if (res.data.arquivos.lenght === undefined) setMessageArquivo("Não existem arquivos cadastrados pelo usuário")
                 else setArquivos(res.data.arquivos)
             }
         }).catch((error) => {

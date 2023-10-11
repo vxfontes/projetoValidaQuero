@@ -37,7 +37,7 @@ export class UserPerfilController {
                 .getMany();
 
 
-            if (!templates) throw new Error('Usuário não possui templates');
+            if (templates.length === 0) throw new Error('Usuário não possui templates');
 
             const formattedTemplates = templates.map(template => ({
                 ...template,
@@ -72,7 +72,7 @@ export class UserPerfilController {
                 .leftJoinAndSelect("arquivo.template", "template")
                 .leftJoinAndSelect("template.formato", "formato")
                 .where("usuario.matricula = :matricula", { matricula })
-                .where("arquivo.aprovado = :aprovado", { aprovado: true })
+                .andWhere("arquivo.aprovado = :aprovado", { aprovado: true })
                 .select([
                     "arquivo",
                     "usuario.nome",
@@ -81,9 +81,8 @@ export class UserPerfilController {
                     "formato.titulo",
                 ])
                 .getMany();
-
-
-            if (!arquivos) throw new Error('Usuário não possui arquivos');
+                
+            if (arquivos.length === 0) throw new Error('Usuário não possui arquivos');
 
             const formattedArquivos = arquivos.map(arquivo => ({
                 ...arquivo,
