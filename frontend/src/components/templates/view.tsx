@@ -35,14 +35,15 @@ const ViewTemplate = () => {
 
         // get templates
         api.get(`/template/${Number(id)}`).then(res => {
-            console.log(res.data.template)
             if (res.data.status === 'success') {
                 if (res.data.template === undefined) setMessage("Não existem templates cadastrados")
-                else setTemplate(res.data.template)
+                else {
+                    setTemplate(res.data.template)
+                    if(res.data.template.arquivos.lenght === undefined) setMessage("Template não possui arquivos")
+                }
             } else {
                 setMessage(res.data.message)
             }
-            console.log(res.data.template);
         }).catch((error) => {
             setMessage(error.response.data.message)
         }).finally(() => {
@@ -127,7 +128,7 @@ const ViewTemplate = () => {
 
 
                                     <Grid item xl={7} lg={7} md={7} sm={12} xs={12}>
-                                        <FileContainer formato={template.formato} arquivos={template.arquivos} itemsPerPage={template.campos.length <= 9 ? (showFullHD ? 12 : 6) : template.campos.length - 2} />
+                                        <FileContainer message={message} formato={template.formato} arquivos={template.arquivos} itemsPerPage={template.campos.length <= 9 ? (showFullHD ? 12 : 6) : template.campos.length - 2} />
                                     </Grid>
 
                                 </GridContainers>
