@@ -44,7 +44,7 @@ const theme = createTheme({
         azulClaro: {
             main: '#4F709C',
             dark: '#3c5577',
-            light: '#4F709C',
+            light: '#648abb89',
             contrastText: '#fff'
         }
     },
