@@ -72,7 +72,9 @@ export class ArquivoController {
 
             const formattedArquivos = arquivos.map(arquivo => ({
                 ...arquivo,
-                template: arquivo.template.titulo,
+                template: {
+                    titulo: arquivo.template.titulo
+                },
                 formato: arquivo.template.formato.titulo
             }));
 
@@ -110,7 +112,6 @@ export class ArquivoController {
 
             const formattedArquivo = {
                 ...arquivo,
-                template: arquivo.template.titulo,
                 formato: arquivo.template.formato.titulo
             }
 

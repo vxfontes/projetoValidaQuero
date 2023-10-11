@@ -87,7 +87,6 @@ export class UserPerfilController {
 
             const formattedArquivos = arquivos.map(arquivo => ({
                 ...arquivo,
-                template: arquivo.template.titulo,
                 formato: arquivo.template.formato.titulo
             }));
 
