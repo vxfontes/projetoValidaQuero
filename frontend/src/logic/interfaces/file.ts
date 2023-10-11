@@ -6,7 +6,9 @@ export interface FileProps {
     dataCriacao: string;
     formato: number;
     linhas: number;
-    template: string;
+    template: {
+        titulo: string
+    };
     aprovado: boolean;
     url: string;
     usuario: UserMainProps;
