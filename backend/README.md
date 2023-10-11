@@ -17,9 +17,9 @@
   <img alt="rotas" src="https://img.shields.io/badge/excluir_usuario-finalizada-green">
   <img alt="rotas" src="https://img.shields.io/badge/consultar_usuario-finalizada-green">
   <img alt="rotas" src="https://img.shields.io/badge/mudar_permissão_usuario-finalizada-green"><b>
-  <img alt="rotas" src="https://img.shields.io/badge/criar_arquivo-pendente-red">
-  <img alt="rotas" src="https://img.shields.io/badge/consultar_arquivo-pendente-red">
-  <img alt="rotas" src="https://img.shields.io/badge/lista_de_arquivos-pendente-red">
+  <img alt="rotas" src="https://img.shields.io/badge/criar_arquivo-finalizada-green">
+  <img alt="rotas" src="https://img.shields.io/badge/consultar_arquivo-finalizada-green">
+  <img alt="rotas" src="https://img.shields.io/badge/lista_de_arquivos-finalizada-green">
 </p>
 
 <!-- Status -->
@@ -40,6 +40,7 @@
 - Utilização de postgres
 - NoSQL do firebase para armazenamento de arquivos
 - CRUD para template, arquivos, usuários entre outros
+- Criptografia de senha
 
 ## 💫 Ideias ##
 - Tabela de status - informa o status do template: desativado, ativado, pendente
