@@ -1,4 +1,4 @@
-import { Box, Chip, CircularProgress, Grid, IconButton, Typography, styled } from "@mui/material";
+import { Box, Chip, Grid, IconButton, Typography, styled } from "@mui/material";
 import * as React from 'react';
 import { FundoBackground } from "../background/fundoPrincipal";
 import { AiOutlineUser } from 'react-icons/ai'
@@ -14,6 +14,7 @@ import useUsuario from "../../logic/core/functions/user";
 import { GetTemplateProps } from "../../logic/interfaces/template";
 import api from "../../logic/api/api";
 import { getStatusTemplate } from "../../logic/utils/GetStatus";
+import BoxLoading from "../muiComponents/boxLoading";
 
 const FundoComponente = styled(Grid)({
     minHeight: '90%',
@@ -34,6 +35,7 @@ const ViewTemplate = () => {
 
         // get templates
         api.get(`/template/${Number(id)}`).then(res => {
+            console.log(res.data.template)
             if (res.data.status === 'success') {
                 if (res.data.template === undefined) setMessage("Não existem templates cadastrados")
                 else setTemplate(res.data.template)
@@ -125,26 +127,16 @@ const ViewTemplate = () => {
 
 
                                     <Grid item xl={7} lg={7} md={7} sm={12} xs={12}>
-                                        <FileContainer itemsPerPage={template.campos.length <= 9 ? (showFullHD ? 12 : 6) : template.campos.length - 2} />
+                                        <FileContainer formato={template.formato} arquivos={template.arquivos} itemsPerPage={template.campos.length <= 9 ? (showFullHD ? 12 : 6) : template.campos.length - 2} />
                                     </Grid>
 
                                 </GridContainers>
                             ) : (
-                                <Box sx={{ width: '100%', display: 'block', textAlign: 'center' }}>
-                                    <CircularProgress /> <br />
-                                    {message.length !== 0 && (
-                                        <Typography mt={3} variant="body1" color="initial">{message}</Typography>
-                                    )}
-                                </Box>
+                                <BoxLoading message={message} loading />
                             )}
                         </>
                     ) : (
-                        <Box sx={{ width: '100%', display: 'block', textAlign: 'center' }}>
-                            <CircularProgress /> <br />
-                            {message.length !== 0 && (
-                                <Typography mt={3} variant="body1" color="initial">{message}</Typography>
-                            )}
-                        </Box>
+                        <BoxLoading message={message} loading />
                     )}
 
                 </Grid>
