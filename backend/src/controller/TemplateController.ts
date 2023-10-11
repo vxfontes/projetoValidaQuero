@@ -25,11 +25,11 @@ export class TemplateController {
 
             const statusExistente = await formatoRepository.findOneBy({ id: formato });
             if (!statusExistente) throw new Error('Formato não encontrado no banco de dados');
-            
+
             const usuarioExistente = await userRepository.findOneBy({ matricula: usuario });
             if (!usuarioExistente) throw new Error('Usuário não encontrado no banco de dados');
-            if(usuarioExistente.perfil === PerfilEnum.Time) throw new Error("Usuários do time não podem fazer criação de templates");
-            if(!usuarioExistente.verificado) throw new Error("Usuários não verificados não podem fazer upload de arquivos");
+            if (usuarioExistente.perfil === PerfilEnum.Time) throw new Error("Usuários do time não podem fazer criação de templates");
+            if (!usuarioExistente.verificado) throw new Error("Usuários não verificados não podem fazer upload de arquivos");
 
             const template = Object.assign(new Template(), {
                 titulo, descricao, quantidadeCampos, status, campos, formato, usuario
@@ -84,7 +84,7 @@ export class TemplateController {
 
             // Verifique se todos os campos obrigatórios estão presentes
             if (!id) throw new Error("ID é obrigatório.");
-            
+
             const template = await templateRepository.findOneBy({ id })
 
             if (template) {
@@ -179,6 +179,8 @@ export class TemplateController {
                 .leftJoinAndSelect("template.usuario", "usuario")
                 .leftJoinAndSelect("template.formato", "formato")
                 .leftJoinAndSelect("template.arquivos", "arquivos")
+                .leftJoinAndSelect("arquivos.usuario", "arquivo_usuario") 
+                .leftJoinAndSelect("arquivos.template", "arquivo_template")
                 .where("template.id = :id", { id: templateId })
                 .select([
                     "template",
@@ -187,7 +189,10 @@ export class TemplateController {
                     "usuario.perfil",
                     "usuario.verificado",
                     "formato.titulo",
-                    "arquivos"
+                    "arquivos",
+                    "arquivo_usuario.nome",
+                    "arquivo_usuario.matricula",
+                    "arquivo_template.titulo",
                 ])
                 .getOne();
 
