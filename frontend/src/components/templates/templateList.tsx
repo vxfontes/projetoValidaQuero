@@ -26,9 +26,8 @@ export const GetTemplate = ({ templates, itemsPerPage, formatos, message }: Prop
 
     React.useMemo(() => {
         setCurrentPage(1);
-    }, [selectedFormat])
-
-    console.log();
+    }, [selectedFormat]);
+    
     return (
         <>
             <Box pl={1} display='flex' justifyContent='space-between' alignItems='center'>
