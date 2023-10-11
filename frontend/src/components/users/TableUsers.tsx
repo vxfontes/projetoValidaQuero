@@ -121,7 +121,7 @@ const TableUsers = ({ users }: { users: UserPerfilProps[] }) => {
                 </Table>
             </TableContainer>
             <TablePagination
-                rowsPerPageOptions={[5, 10, 25]}
+                rowsPerPageOptions={[5, 8, 10, 15, 25]}
                 component="div"
                 count={users.length}
                 rowsPerPage={rowsPerPage}
