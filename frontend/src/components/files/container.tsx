@@ -8,11 +8,13 @@ import BoxLoading from '../muiComponents/boxLoading';
 interface Props {
     itemsPerPage: number;
     arquivos: FileProps[];
-    formato: string;
+    formato?: string;
+    message?: string;
 }
 
-const FileContainer = ({ arquivos, itemsPerPage, formato }: Props) => {
+const FileContainer = ({ arquivos, itemsPerPage, formato, message }: Props) => {
     const getitemsPerPage = itemsPerPage;
+    const newMessage = message === undefined ? 'Arquivos não foram encontrados' : message
     const [currentPage, setCurrentPage] = React.useState(1);
     const startIndex = (currentPage - 1) * getitemsPerPage;
     const endIndex = startIndex + getitemsPerPage;
@@ -25,12 +27,15 @@ const FileContainer = ({ arquivos, itemsPerPage, formato }: Props) => {
 
             {arquivos.length !== 0 ? (
                 <>
-                    {arquivosToDisplay.map((file) => (
-                        <FileButton key={file.id} file={file} formato={formato} />
-                    ))}
+                    {arquivosToDisplay.map((file) => {
+                        const newFormato = formato === undefined ? file.formato : formato;
+                        return (
+                            <FileButton key={file.id} file={file} formato={newFormato} />
+                        )
+                    })}
                 </>
             ) : (
-                <BoxLoading message='Template ainda não possui arquivos' loading={false} />
+                <BoxLoading message={newMessage} loading={false} />
             )}
 
             <Box display="flex" justifyContent="flex-end" mt={2}>
