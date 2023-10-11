@@ -6,16 +6,43 @@ import TemplateContainer from "../../components/templates/container";
 import FileContainer from '../../components/files/container';
 import TemplateCharts from "../../components/charts/mine/TemplateActives";
 import { TemplateContainerProps } from "../../logic/interfaces/template";
+import * as React from 'react';
+import { FileProps } from "../../logic/interfaces/file";
+import api from "../../logic/api/api";
+import BoxLoading from "../../components/muiComponents/boxLoading";
 
 
-const InicioCadastro = ({formatos, message, templates, loading}: TemplateContainerProps) => {
+const InicioCadastro = ({ formatos, message, templates, loading }: TemplateContainerProps) => {
+
+    const [arquivos, setArquivos] = React.useState<FileProps[]>([]);
+    const [messageArquivo, setMessageArquivo] = React.useState("");
+    const [loadingFile, setLoadingFile] = React.useState(true);
+
+    React.useEffect(() => {
+        // get arquivos
+        api.get(`/arquivo`).then(res => {
+            if (res.data.status === 'success') {
+                if (res.data.arquivos.lenght === 0) setMessageArquivo("Não existem arquivos cadastrados pelo usuário")
+                else setArquivos(res.data.arquivos)
+            }
+        }).catch((error) => {
+            setMessageArquivo(error.response.data.message)
+        }).finally(() => {
+            setLoadingFile(false)
+        })
+    }, [])
+
     return (
         <GridContainers sx={{ mt: 5 }} align='center' direction='row'>
 
             <Grid p={5} display='block' textAlign={'center'} item xl={4} lg={4} md={4} sm={12} xs={12}>
                 <img src={img1} alt="imagem 1" width='90%' />
 
-                <FileContainer itemsPerPage={12} />
+                {loadingFile ? (
+                    <BoxLoading loading message={messageArquivo === undefined ? "Carregando..." : messageArquivo} />
+                ) : (
+                    <FileContainer message={messageArquivo} itemsPerPage={12} arquivos={arquivos} />
+                )}
             </Grid>
 
 

@@ -3,14 +3,33 @@ import img1 from '../../assets/drawkit/inicio/time1.svg'
 import img2 from '../../assets/drawkit/inicio/time2.svg'
 import { Grid } from "@mui/material";
 import TemplateContainer from "../../components/templates/container";
-import { useScreenSize } from "../../components/muiComponents/breakpoints";
+import * as React from 'react';
 import FileContainer from '../../components/files/container';
 import TemplateCharts from "../../components/charts/mine/TemplateActives";
 import { TemplateContainerProps } from "../../logic/interfaces/template";
+import { FileProps } from "../../logic/interfaces/file";
+import api from "../../logic/api/api";
+import BoxLoading from "../../components/muiComponents/boxLoading";
 
 
 const InicioUpload = ({formatos, message, templates, loading}: TemplateContainerProps) => {
-    const { showTablet } = useScreenSize()
+    const [arquivos, setArquivos] = React.useState<FileProps[]>([]);
+    const [messageArquivo, setMessageArquivo] = React.useState("");
+    const [loadingFile, setLoadingFile] = React.useState(true);
+
+    React.useEffect(() => {
+        // get arquivos
+        api.get(`/arquivo`).then(res => {
+            if (res.data.status === 'success') {
+                if (res.data.arquivos.lenght === 0) setMessageArquivo("Não existem arquivos cadastrados pelo usuário")
+                else setArquivos(res.data.arquivos)
+            }
+        }).catch((error) => {
+            setMessageArquivo(error.response.data.message)
+        }).finally(() => {
+            setLoadingFile(false)
+        })
+    }, [])
 
     return (
         <GridContainers sx={{ mt: 5 }} align='center' direction='row'>
@@ -18,7 +37,11 @@ const InicioUpload = ({formatos, message, templates, loading}: TemplateContainer
             <Grid p={5} display='block' textAlign={'center'} item xl={4} lg={4} md={4} sm={12} xs={12}>
                 <img src={img1} alt="imagem 1" height='90%' />
 
-                <FileContainer itemsPerPage={13} />
+                {loadingFile ? (
+                    <BoxLoading loading message={messageArquivo === undefined ? "Carregando..." : messageArquivo} />
+                ) : (
+                    <FileContainer message={messageArquivo} itemsPerPage={13} arquivos={arquivos} />
+                )}
             </Grid>
 
 

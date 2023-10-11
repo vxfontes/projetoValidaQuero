@@ -12,6 +12,8 @@ import * as React from 'react';
 import { GetTemplateProps } from "../logic/interfaces/template";
 import api from "../logic/api/api";
 import Swal from "sweetalert2";
+import { FileProps } from "../logic/interfaces/file";
+import BoxLoading from "../components/muiComponents/boxLoading";
 
 
 const MeuPerfil = () => {
@@ -19,8 +21,11 @@ const MeuPerfil = () => {
     const perfil = getUser().result;
     const [formatos, setFormatos] = React.useState([]);
     const [templates, setTemplates] = React.useState<GetTemplateProps[]>([]);
+    const [arquivos, setArquivos] = React.useState<FileProps[]>([]);
     const [messageTemplate, setMessageTemplate] = React.useState("");
+    const [messageArquivo, setMessageArquivo] = React.useState("");
     const [loading, setLoading] = React.useState(true);
+    const [loadingFile, setLoadingFile] = React.useState(true);
 
     React.useEffect(() => {
 
@@ -50,6 +55,19 @@ const MeuPerfil = () => {
             setMessageTemplate(error.response.data.message)
         }).finally(() => {
             setLoading(false)
+        })
+
+
+        // get arquivos
+        api.get(`/user/arquivos/${perfil.matricula}`).then(res => {
+            if (res.data.status === 'success') {
+                if (res.data.arquivos.lenght === 0) setMessageArquivo("Não existem arquivos cadastrados pelo usuário")
+                else setArquivos(res.data.arquivos)
+            }
+        }).catch((error) => {
+            setMessageArquivo(error.response.data.message)
+        }).finally(() => {
+            setLoadingFile(false)
         })
     }, []);
 
@@ -86,7 +104,11 @@ const MeuPerfil = () => {
 
                 {perfil.perfil === 'Time' && (
                     <Grid mt={4} item xl={12} lg={12} md={12} sm={12} xs={12}>
-                        <FileContainer itemsPerPage={10} />
+                        {loadingFile ? (
+                            <BoxLoading loading message={messageArquivo === undefined ? "Carregando..." : messageArquivo} />
+                        ) : (
+                            <FileContainer message={messageArquivo} itemsPerPage={10} arquivos={arquivos} />
+                        )}
                     </Grid>
                 )}
 
@@ -96,7 +118,11 @@ const MeuPerfil = () => {
                             <TemplateContainer itemsPerPage={6} onlyActive={false} formatos={formatos} templates={templates} message={messageTemplate} loading={loading} />
                         </Grid>
                         <Grid mt={4} item xl={3} lg={3} md={3} sm={12} xs={12}>
-                            <FileContainer itemsPerPage={10} />
+                            {loadingFile ? (
+                                <BoxLoading loading message={messageArquivo === undefined ? "Carregando..." : messageArquivo} />
+                            ) : (
+                                <FileContainer message={messageArquivo} itemsPerPage={10} arquivos={arquivos} />
+                            )}
                         </Grid>
                     </GridContainers>
                 )}
