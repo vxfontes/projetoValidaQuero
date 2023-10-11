@@ -30,7 +30,7 @@ const FileButton = ({ file, formato }: {file: FileProps, formato: string}) => {
                             <BoxSpanGray>Template: </BoxSpanGray>{file.template.titulo}<br />
                             <BoxSpanGray>Formato: </BoxSpanGray>{formato}<br />
                             <BoxSpanGray>Data de criação: </BoxSpanGray>{formatarData(file.dataCriacao)}<br />
-                            <BoxSpanGray>Autor: </BoxSpanGray>{file.usuario.nome}<br />
+                            <BoxSpanGray>Autor: </BoxSpanGray>{file.usuario.nome} (matrícula: <BoxSpanGray>{file.usuario.matricula}</BoxSpanGray>) <br />
                             <BoxSpanGray>Quantidade de linhas: </BoxSpanGray>{file.linhas}
                         </Typography>
                     </Box>
