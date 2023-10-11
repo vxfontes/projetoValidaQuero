@@ -7,8 +7,19 @@ export interface UserMainProps {
     matricula: string
 }
 
-export interface UserVerifyProps  extends UserProtectedProps{
+export interface UserVerifyProps extends UserProtectedProps {
     verificado: boolean
+}
+
+export interface UserPerfilProps extends UserVerifyProps {
+    template: {
+        ativo: number,
+        desativado: number
+    },
+    arquivo: {
+        aprovados: number,
+        naoaprovados: number
+    }
 }
 
 export interface UserProps extends UserProtectedProps {
