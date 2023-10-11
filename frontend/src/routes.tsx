@@ -7,6 +7,11 @@ import SideBar from "./components/sidebar/sidebar";
 import ViewTemplate from "./components/templates/view";
 import MeuPerfil from "./pages/perfil";
 import useUsuario from "./logic/core/functions/user";
+import { FundoBackground } from './components/background/fundoPrincipal';
+import theme from './theme';
+import { Box, Typography } from '@mui/material';
+import UsersPage from './pages/user';
+
 
 const Rotas = () => {
     const location = useLocation();
@@ -38,11 +43,25 @@ const Rotas = () => {
 
                 <Route path='/' element={<Inicio />} />
                 <Route path='/perfil' element={<MeuPerfil />} />
+                <Route path='/users' element={<UsersPage />} />
 
                 <Route path='/template/:id' element={<ViewTemplate />} />
+
+                <Route path="*" element={<Pagina404 />} />
             </Routes>
         </SideBar>
     )
 }
 
 export default Rotas;
+
+const Pagina404 = () => {
+    return (
+        <FundoBackground sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Box>
+                <Typography variant="h4" color={theme.palette.fundoPrincipal?.dark}>404 | Página não encontrada</Typography>
+                <Typography variant="body1" color={theme.palette.fundoPrincipal?.dark}>A página que você está procurando não existe.</Typography>
+            </Box>
+        </FundoBackground>
+    );
+};
