@@ -4,7 +4,7 @@ export interface FileProps {
     id: number;
     titulo: string;
     dataCriacao: string;
-    formato: number;
+    formato: string;
     linhas: number;
     template: {
         titulo: string
