@@ -14,6 +14,7 @@ import api from "../logic/api/api";
 import Swal from "sweetalert2";
 import { FileProps } from "../logic/interfaces/file";
 import BoxLoading from "../components/muiComponents/boxLoading";
+import { UserPerfilProps } from "../logic/interfaces/user";
 
 
 const MeuPerfil = () => {
@@ -25,6 +26,8 @@ const MeuPerfil = () => {
     const [messageTemplate, setMessageTemplate] = React.useState("");
     const [messageArquivo, setMessageArquivo] = React.useState("");
     const [loading, setLoading] = React.useState(true);
+    const [loadingPerfil, setLoadingPerfil] = React.useState(false);
+    const [user, setUser] = React.useState<UserPerfilProps>();
     const [loadingFile, setLoadingFile] = React.useState(true);
 
     React.useEffect(() => {
@@ -43,6 +46,23 @@ const MeuPerfil = () => {
                 confirmButtonText: 'Retornar',
             })
         })
+
+        // get user infos
+        api.get(`/users/${perfil.matricula}`).then(res => {
+            if (res.data.status === 'success') {
+                setUser(res.data.usuario);
+            }
+        }).catch((error) => {
+            Swal.fire({
+                icon: error.response.data.status,
+                iconColor: theme.palette.secondary.main,
+                title: error.response.data.message,
+                confirmButtonColor: theme.palette.secondary.main,
+                confirmButtonText: 'Retornar',
+            });
+        }).finally(() => {
+            setLoadingPerfil(true)
+        });
 
 
         // get templates
@@ -74,7 +94,7 @@ const MeuPerfil = () => {
 
     return (
         <FundoBackground container display='flex'>
-            <GridContainers sx={{ [theme.breakpoints.down('md')]: { pt: 10 }, px: 20 }} align="center" direction="row" justify="space-between">
+            <GridContainers sx={{ px: 8, pt: 10, pb: 4 }} align="center" direction="row" justify="space-between">
 
                 <Box mb={1}>
                     <Typography variant="h5" color="initial">Seu perfil, {perfil.nome}</Typography>
@@ -87,12 +107,18 @@ const MeuPerfil = () => {
                 <Box display='flex' gap={3}>
                     <img src={svg} alt="Calculadora" width='100px' />
 
-                    {(perfil.perfil === 'Gerente' || perfil.perfil === 'Gestor') && (
-                        <CardDataInfo type="template" value={34} subValue={54} />
-                    )}
+                    {(loadingPerfil && user !== undefined) ? (
+                        <>
+                            {(perfil.perfil === 'Gerente' || perfil.perfil === 'Gestor') && (
+                                <CardDataInfo type="template" value={user?.template.ativo} subValue={user?.template.ativo + user?.template.desativado} />
+                            )}
 
-                    {(perfil.perfil === 'Time' || perfil.perfil === 'Gestor') && (
-                        <CardDataInfo type="arquivo" value={90} />
+                            {(perfil.perfil === 'Time' || perfil.perfil === 'Gestor') && (
+                                <CardDataInfo type="arquivo" value={user?.arquivo.aprovados} />
+                            )}
+                        </>
+                    ) : (
+                        <BoxLoading loading message="" />
                     )}
                 </Box>
 
