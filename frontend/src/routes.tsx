@@ -11,49 +11,72 @@ import { FundoBackground } from './components/background/fundoPrincipal';
 import theme from './theme';
 import { Box, Typography } from '@mui/material';
 import UsersPage from './pages/user';
-
+import Swal from 'sweetalert2';
 
 const Rotas = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { getUser } = useUsuario();
+    const user = getUser();
 
-    // Define um array de caminhos onde a SideBar n deve aparecer
+    // Define um array de caminhos onde a SideBar não deve aparecer
     const sideBarPaths = ['/login', '/cadastro'];
     const showSideBar = !sideBarPaths.includes(location.pathname);
 
     const isUserAuthenticated = () => {
-        if (getUser().status === 'success') return true
-        else return false
+        return user.status === 'success';
+    };
+
+    const isUserGestor = () => {
+        return user.result.perfil === 'Gestor';
     };
 
     React.useEffect(() => {
         const isAuthenticated = isUserAuthenticated();
+        const isGestor = isUserGestor();
 
         if (!isAuthenticated && !sideBarPaths.includes(location.pathname)) {
             navigate("/login");
         }
-    }, [location.pathname, navigate]);
+
+        if (!isGestor) {
+            if (location.pathname === '/dashboard' || location.pathname === '/users') {
+                Swal.fire({
+                    icon: "error",
+                    iconColor: theme.palette.secondary.main,
+                    title: "Você não está autorizado a entrar nessa rota",
+                    confirmButtonColor: theme.palette.secondary.main,
+                    confirmButtonText: 'Retornar',
+                })
+                navigate("/");
+            }
+        }
+    }, [location.pathname, navigate, user]);
 
     return (
         <SideBar show={showSideBar}>
             <Routes location={location}>
                 <Route path='/login' element={<Login />} />
                 <Route path='/cadastro' element={<Cadastro />} />
-
                 <Route path='/' element={<Inicio />} />
                 <Route path='/perfil' element={<MeuPerfil />} />
-                <Route path='/users' element={<UsersPage />} />
+
+                {isUserGestor() && (
+                    <>
+                        <Route path='/users' element={<UsersPage />} />
+                        {/* <Route path='/dashboard' element={<DashboardPage />} /> */}
+                    </>
+                )}
 
                 <Route path='/template/:id' element={<ViewTemplate />} />
-
                 <Route path="*" element={<Pagina404 />} />
             </Routes>
         </SideBar>
-    )
+    );
 }
 
 export default Rotas;
+
 
 const Pagina404 = () => {
     return (
