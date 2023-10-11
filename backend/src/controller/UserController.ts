@@ -3,7 +3,8 @@ import { Request, Response } from "express"
 import { Usuario } from "../entity/User"
 import { PerfilEnum } from "../entity/Perfil";
 import bcrypt = require("bcrypt");
-import { templateRepository, userRepository } from "../configs/repository";
+import { arquivoRepository, templateRepository, userRepository } from "../configs/repository";
+import { StatusEnum } from "../entity/Status";
 
 export class UserController {
 
@@ -14,10 +15,36 @@ export class UserController {
      */
     async all(request: Request, response: Response) {
         try {
+
             const usuarios = await userRepository.find({
-                select: ["nome", "matricula", "perfil", "verificado"]
+                select: ["nome", "matricula", "perfil", "verificado"],
+                relations: ["template", "arquivo"]
             });
-            response.status(201).json({ status: 'success', message: 'Usuários encontrados com sucesso', usuarios: usuarios });
+
+            const result = usuarios.map(async (usuario) => {
+                const templatesAtivos = usuario.template.filter((template) => template.status === StatusEnum.Ativo).length;
+                const templatesDesativados = usuario.template.filter((template) => template.status === StatusEnum.Desativado).length;
+                const arquivosAprovados = usuario.arquivo.filter((arquivo) => arquivo.aprovado === true).length;
+                const arquivosNaoAprovados = usuario.arquivo.filter((arquivo) => arquivo.aprovado === false).length;
+
+                const formattedResult = {
+                    ...usuario,
+                    template: {
+                        ativo: templatesAtivos,
+                        desativado: templatesDesativados
+                    },
+                    arquivo: {
+                        aprovados: arquivosAprovados,
+                        naoaprovados: arquivosNaoAprovados
+                    }
+                };
+
+                return formattedResult
+            });
+
+            const results = await Promise.all(result);
+
+            response.status(201).json({ status: 'success', message: 'Usuários encontrados com sucesso', usuarios: results });
         } catch (error) {
             response.status(500).json({ status: 'error', message: 'Erro ao obter usuários', error: error });
         }
@@ -35,14 +62,32 @@ export class UserController {
         try {
             const user = await userRepository.findOne({
                 where: { matricula },
-                select: ["nome", "matricula", "perfil", "verificado"]
+                select: ["nome", "matricula", "perfil", "verificado"],
+                relations: ["template", "arquivo"]
             });
 
             if (!user) {
                 throw new Error("Usuário não encontrado")
             }
 
-            response.status(201).json({ status: 'success', message: 'Usuário encontrado com sucesso', usuario: user });
+            const templatesAtivos = user.template.filter((template) => template.status === StatusEnum.Ativo).length;
+            const templatesDesativados = user.template.filter((template) => template.status === StatusEnum.Desativado).length;
+            const arquivosAprovados = user.arquivo.filter((arquivo) => arquivo.aprovado === true).length;
+            const arquivosNaoAprovados = user.arquivo.filter((arquivo) => arquivo.aprovado === false).length;
+
+            const formattedResult = {
+                ...user,
+                template: {
+                    ativo: templatesAtivos,
+                    desativado: templatesDesativados
+                },
+                arquivo: {
+                    aprovados: arquivosAprovados,
+                    naoaprovados: arquivosNaoAprovados
+                }
+            };
+
+            response.status(201).json({ status: 'success', message: 'Usuário encontrado com sucesso', usuario: formattedResult });
         } catch (error) {
             response.status(500).json({ status: 'error', message: error.message, error: error });
         }
@@ -98,11 +143,11 @@ export class UserController {
 
         try {
             const userToRemove = await userRepository.findOneBy({ matricula })
-            
+
             if (!userToRemove) throw new Error("Usuário não encontrado");
 
-            if(userToRemove.verificado) throw new Error("Usuário verificado não pode ser excluido")
-            
+            if (userToRemove.verificado) throw new Error("Usuário verificado não pode ser excluido")
+
             await userRepository.remove(userToRemove);
 
             response.status(201).json({ status: 'success', message: `Usuário de matrícula: ${matricula} deletado com sucesso` });
