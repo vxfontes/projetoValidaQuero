@@ -156,6 +156,7 @@ export class UserController {
         }
     }
 
+
     /**
      * 
      * @param request matricula e senha
@@ -185,6 +186,36 @@ export class UserController {
             const userSubset = { nome, matricula, verificado, perfil };
 
             response.status(201).json({ status: 'success', message: 'Login efetuado com sucesso', usuario: userSubset });
+        } catch (error) {
+            response.status(500).json({ status: 'error', message: error.message, error: error });
+        }
+    }
+
+
+    /**
+     * 
+     * @param request matricula e senha
+     * @param response login efetuado ou não
+    */
+    async verify(request: Request, response: Response) {
+
+        try {
+            const { matricula } = request.body;
+
+            if (!matricula) {
+                throw new Error("Matrícula é obrigatória");
+            }
+
+            const user = await userRepository.findOne({ where: { matricula: matricula } });
+
+            if (!user) {
+                throw new Error("Usuário não encontrado");
+            } else {
+                user.verificado = true;
+                await userRepository.save(user)
+
+                response.status(201).json({ status: "success", message: "Usuário verificado com sucesso" });
+            }
         } catch (error) {
             response.status(500).json({ status: 'error', message: error.message, error: error });
         }
