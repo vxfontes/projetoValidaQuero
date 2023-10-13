@@ -15,6 +15,7 @@ import { GetTemplateProps } from "../../logic/interfaces/template";
 import api from "../../logic/api/api";
 import { getStatusTemplate } from "../../logic/utils/GetStatus";
 import BoxLoading from "../muiComponents/boxLoading";
+import python from "../../logic/api/python";
 
 const FundoComponente = styled(Grid)({
     minHeight: '90%',
@@ -30,6 +31,10 @@ const ViewTemplate = () => {
     const [template, setTemplate] = React.useState<GetTemplateProps>();
     const [message, setMessage] = React.useState("");
     const [loading, setLoading] = React.useState(true);
+    const [file, setFile] = React.useState<File | null>(null);
+    const { showFullHD } = useScreenSize();
+    const { getUser } = useUsuario();
+    const usuario = getUser().result;
 
     React.useEffect(() => {
 
@@ -39,7 +44,7 @@ const ViewTemplate = () => {
                 if (res.data.template === undefined) setMessage("Não existem templates cadastrados")
                 else {
                     setTemplate(res.data.template)
-                    if(res.data.template.arquivos.lenght === undefined) setMessage("Template não possui arquivos")
+                    if (res.data.template.arquivos.lenght === undefined) setMessage("Template não possui arquivos")
                 }
             } else {
                 setMessage(res.data.message)
@@ -51,9 +56,31 @@ const ViewTemplate = () => {
         });
     }, []);
 
-    const { showFullHD } = useScreenSize();
-    const { getUser } = useUsuario();
-    const usuario = getUser().result;
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const selectedFile = event.target.files && event.target.files[0];
+        if (selectedFile) {
+            setFile(selectedFile);
+        }
+    };
+
+    const handleUpload = async (event: any) => {
+        event.preventDefault()
+        if (file) {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            python.post('/file/upload', formData)
+                .then((data) => {
+                    console.log('Arquivo enviado com sucesso:', data);
+                })
+                .catch((error) => {
+                    console.log('Erro ao enviar arquivo:', error);
+                });
+        } else {
+            console.log('Nenhum arquivo selecionado');
+        }
+    };
+
 
     return (
         <FundoBackground container>
@@ -99,26 +126,40 @@ const ViewTemplate = () => {
                                                 )}
                                             </Box>
 
-                                            <Box display='flex' gap={1} alignItems='center'>
-                                                {(usuario.verificado && usuario.perfil !== 'Gerente') && (
-                                                    <Chip
-                                                        label='Upload de arquivo'
-                                                        sx={{
-                                                            cursor: 'pointer',
-                                                            backgroundColor: theme.palette.azulClaro?.main,
-                                                            color: 'white',
-                                                            transition: 'background-color 0.3s, transform 0.3s',
-
-                                                            '&:hover': {
+                                            <form onSubmit={handleUpload}>
+                                                <Box display='flex' gap={1} alignItems='center'>
+                                                    {file ? (
+                                                        <span>{file.name}</span>
+                                                    ) : (
+                                                        <span>Selecionar arquivo</span>
+                                                    )}
+                                                    {(usuario.verificado && usuario.perfil !== 'Gerente') && (
+                                                        <Chip
+                                                            label='Upload de arquivo'
+                                                            sx={{
                                                                 cursor: 'pointer',
-                                                                backgroundColor: theme.palette.azulClaro?.dark,
-                                                                transform: 'scale(1.06)',
-                                                            },
-                                                        }}
-                                                        icon={<FiUpload color="white" size={20} style={{ marginLeft: 10 }} />}
-                                                    />
-                                                )}
-                                            </Box>
+                                                                backgroundColor: theme.palette.azulClaro?.main,
+                                                                color: 'white',
+                                                                transition: 'background-color 0.3s, transform 0.3s',
+
+                                                                '&:hover': {
+                                                                    cursor: 'pointer',
+                                                                    backgroundColor: theme.palette.azulClaro?.dark,
+                                                                    transform: 'scale(1.06)',
+                                                                },
+                                                            }}
+                                                            icon={<FiUpload color="white" size={20} style={{ marginLeft: 10 }} />}
+                                                        />
+                                                    )}
+                                                </Box>
+
+                                                <input
+                                                    type="file"
+                                                    onChange={handleFileChange}
+                                                />
+                                                <button type="submit">Enviar Arquivo</button>
+
+                                            </form>
                                         </Box>
 
                                         <Box>

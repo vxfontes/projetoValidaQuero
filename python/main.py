@@ -19,13 +19,19 @@ class GenerateFileRequest(BaseModel):
 
 app = FastAPI()
 
+origins = [
+    "*"
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
 
 @app.post("/file/upload/")
 async def upload_file(file: UploadFile):
@@ -36,10 +42,6 @@ async def upload_file(file: UploadFile):
     else:
         return {"status": "error", "message": "Arquivo não enviado ou formato não permitido"}
 
-
-@app.get("/teste/")
-async def teste():
-    return {"status": "error", "message": "Arquivo não enviado ou formato não permitido"}
 
 
 @app.post("/file/generate/")
