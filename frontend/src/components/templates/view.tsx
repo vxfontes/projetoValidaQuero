@@ -16,6 +16,7 @@ import api from "../../logic/api/api";
 import { getStatusTemplate } from "../../logic/utils/GetStatus";
 import BoxLoading from "../muiComponents/boxLoading";
 import python from "../../logic/api/python";
+import DialogSlide from "../muiComponents/dialog";
 
 const FundoComponente = styled(Grid)({
     minHeight: '90%',
@@ -30,7 +31,9 @@ const ViewTemplate = () => {
     const { id } = useParams();
     const [template, setTemplate] = React.useState<GetTemplateProps>();
     const [message, setMessage] = React.useState("");
+    const [nome, setnome] = React.useState("");
     const [loading, setLoading] = React.useState(true);
+    const [modal, setModal] = React.useState(false);
     const [file, setFile] = React.useState<File | null>(null);
     const { showFullHD } = useScreenSize();
     const { getUser } = useUsuario();
@@ -65,11 +68,20 @@ const ViewTemplate = () => {
 
     const handleUpload = async (event: any) => {
         event.preventDefault()
-        if (file) {
-            const formData = new FormData();
+        if (file && template) {
+            // const formData = {
+            //     file: file,
+            //     usuario: usuario.matricula
+            //     'campos': JSON.stringify(template.campos),
+            // }
+            const formData = new FormData()
             formData.append('file', file);
+            // formData.append('usuario', usuario.matricula);
+            // formData.append('campos', JSON.stringify(template.campos));
+            console.log(formData);
+            
 
-            python.post('/file/upload', formData)
+            python.post(`/file/upload/?usuario=${usuario.matricula}`, formData)
                 .then((data) => {
                     console.log('Arquivo enviado com sucesso:', data);
                 })
@@ -126,40 +138,39 @@ const ViewTemplate = () => {
                                                 )}
                                             </Box>
 
-                                            <form onSubmit={handleUpload}>
-                                                <Box display='flex' gap={1} alignItems='center'>
-                                                    {file ? (
-                                                        <span>{file.name}</span>
-                                                    ) : (
-                                                        <span>Selecionar arquivo</span>
-                                                    )}
-                                                    {(usuario.verificado && usuario.perfil !== 'Gerente') && (
-                                                        <Chip
-                                                            label='Upload de arquivo'
-                                                            sx={{
+                                            <DialogSlide open={modal} handleClose={() => setModal(false)}>
+                                                <Grid container bgcolor='#fff' display='block' justifyContent={'center'} textAlign={'center'} spacing={3} px={6} py={3}>
+                                                    <Typography mt={3} variant="h5" color="inherit" align="left">Upload de Arquivo</Typography>
+
+                                                    <input
+                                                        type="file"
+                                                        onChange={handleFileChange}
+                                                    />
+                                                    <button onClick={handleUpload}>Enviar Arquivo</button>
+                                                </Grid>
+                                            </DialogSlide>
+
+                                            <Box display='flex' gap={1} alignItems='center'>
+                                                {(usuario.verificado && usuario.perfil !== 'Gerente') && (
+                                                    <Chip
+                                                        label='Upload de arquivo'
+                                                        sx={{
+                                                            cursor: 'pointer',
+                                                            backgroundColor: theme.palette.azulClaro?.main,
+                                                            color: 'white',
+                                                            transition: 'background-color 0.3s, transform 0.3s',
+
+                                                            '&:hover': {
                                                                 cursor: 'pointer',
-                                                                backgroundColor: theme.palette.azulClaro?.main,
-                                                                color: 'white',
-                                                                transition: 'background-color 0.3s, transform 0.3s',
-
-                                                                '&:hover': {
-                                                                    cursor: 'pointer',
-                                                                    backgroundColor: theme.palette.azulClaro?.dark,
-                                                                    transform: 'scale(1.06)',
-                                                                },
-                                                            }}
-                                                            icon={<FiUpload color="white" size={20} style={{ marginLeft: 10 }} />}
-                                                        />
-                                                    )}
-                                                </Box>
-
-                                                <input
-                                                    type="file"
-                                                    onChange={handleFileChange}
-                                                />
-                                                <button type="submit">Enviar Arquivo</button>
-
-                                            </form>
+                                                                backgroundColor: theme.palette.azulClaro?.dark,
+                                                                transform: 'scale(1.06)',
+                                                            },
+                                                        }}
+                                                        onClick={() => setModal(true)}
+                                                        icon={<FiUpload color="white" size={20} style={{ marginLeft: 10 }} />}
+                                                    />
+                                                )}
+                                            </Box>
                                         </Box>
 
                                         <Box>

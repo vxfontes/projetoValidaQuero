@@ -7,11 +7,7 @@ from pydantic import BaseModel
 from typing import List
 import io
 from io import BytesIO
-
-class Campo(BaseModel):
-    nome: str
-    tipo: str
-    nulo: bool
+from file import Campo, dataframeCampos
 
 class GenerateFileRequest(BaseModel):
     formato: str
@@ -34,11 +30,12 @@ app.add_middleware(
 
 
 @app.post("/file/upload/")
-async def upload_file(file: UploadFile):
+async def upload_file(file: UploadFile, usuario: str, campos: List[Campo]):
     if file and allowedFile(file.filename):
+        # df = dataframeCampos(campos)
         with open(file.filename, "wb") as f:
             f.write(file.file.read())
-        return {"filename": file.filename}
+        return {"filename": file.filename, "usuario": usuario, "campos": campos}
     else:
         return {"status": "error", "message": "Arquivo não enviado ou formato não permitido"}
 
@@ -55,35 +52,28 @@ async def generatefile(data: GenerateFileRequest):
             "message": "Tipo de arquivo não suportado. Use um formato autorizado.",
         })
     
-    df_data = []
-    for campo in campos:
-        df_data.append({
-            "nome": campo.nome,
-            "tipo": campo.tipo,
-            "nulo": campo.nulo
-        })
-    df = pd.DataFrame(df_data)
+    df = dataframeCampos(campos)
     
-    if formato == "csv":
-        # Gere o DataFrame no formato CSV
-        csv_data = df.to_csv(index=False)
-        return FileResponse(io.BytesIO(csv_data), filename="template.csv")
+    # if formato == "csv":
+    #     # Gere o DataFrame no formato CSV
+    #     csv_data = df.to_csv(index=False)
+    #     return FileResponse(io.BytesIO(csv_data), filename="template.csv")
 
-    elif formato == "xlsx" or formato == "xls":
-        # Gere o DataFrame no formato XLSX ou XLS
-        io_buffer = BytesIO()
-        writer = pd.ExcelWriter(io_buffer, engine='openpyxl')
-        df.to_excel(writer, index=False, sheet_name='Sheet1')
-        writer.save()
-        io_buffer.seek(0)
-        extension = "xlsx" if formato == "xlsx" else "xls"
-        return FileResponse(io_buffer, filename=f"template.{extension}")
+    # elif formato == "xlsx" or formato == "xls":
+    #     # Gere o DataFrame no formato XLSX ou XLS
+    #     io_buffer = BytesIO()
+    #     writer = pd.ExcelWriter(io_buffer, engine='openpyxl')
+    #     df.to_excel(writer, index=False, sheet_name='Sheet1')
+    #     writer.save()
+    #     io_buffer.seek(0)
+    #     extension = "xlsx" if formato == "xlsx" else "xls"
+    #     return FileResponse(io_buffer, filename=f"template.{extension}")
 
 
     return {
         "status": "success",
         "message": "Download do template concluído",
         "tipagem": formato,
-        # "df": df
+        "df": df
         # "df": StreamingResponse(io.StringIO(df.to_csv(index=False)), media_type="text/csv")
     }
