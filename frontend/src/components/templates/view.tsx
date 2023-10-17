@@ -1,4 +1,4 @@
-import { Box, Chip, Grid, IconButton, Typography, styled } from "@mui/material";
+import { Box, Chip, Grid, IconButton, Typography, styled, TextField, Button } from "@mui/material";
 import * as React from 'react';
 import { FundoBackground } from "../background/fundoPrincipal";
 import { AiOutlineUser } from 'react-icons/ai'
@@ -17,6 +17,10 @@ import { getStatusTemplate } from "../../logic/utils/GetStatus";
 import BoxLoading from "../muiComponents/boxLoading";
 import python from "../../logic/api/python";
 import DialogSlide from "../muiComponents/dialog";
+import { AlertSweet } from "../alerts/sweetAlerts";
+import nuvem from '../../assets/icon/nuvem.png'
+import { BoxSpanGray } from "../muiComponents/boxes";
+
 
 const FundoComponente = styled(Grid)({
     minHeight: '90%',
@@ -34,7 +38,7 @@ const ViewTemplate = () => {
     const [nome, setnome] = React.useState("");
     const [loading, setLoading] = React.useState(true);
     const [modal, setModal] = React.useState(false);
-    const [file, setFile] = React.useState<File | null>(null);
+    const [arquivo, setarquivo] = React.useState<File | null>(null);
     const { showFullHD } = useScreenSize();
     const { getUser } = useUsuario();
     const usuario = getUser().result;
@@ -49,9 +53,7 @@ const ViewTemplate = () => {
                     setTemplate(res.data.template)
                     if (res.data.template.arquivos.lenght === undefined) setMessage("Template não possui arquivos")
                 }
-            } else {
-                setMessage(res.data.message)
-            }
+            } else setMessage(res.data.message)
         }).catch((error) => {
             setMessage(error.response.data.message)
         }).finally(() => {
@@ -61,37 +63,39 @@ const ViewTemplate = () => {
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = event.target.files && event.target.files[0];
-        if (selectedFile) {
-            setFile(selectedFile);
-        }
+        if (selectedFile) setarquivo(selectedFile);
     };
 
-    const handleUpload = async (event: any) => {
-        event.preventDefault()
-        if (file && template) {
-            // const formData = {
-            //     file: file,
-            //     usuario: usuario.matricula
-            //     'campos': JSON.stringify(template.campos),
-            // }
-            const formData = new FormData()
-            formData.append('file', file);
-            // formData.append('usuario', usuario.matricula);
-            // formData.append('campos', JSON.stringify(template.campos));
-            console.log(formData);
-            
+    async function handleUpload() {
+        if (arquivo && template) {
+            try {
+                const formData = new FormData();
+                formData.append('campos', JSON.stringify(template.campos));
+                formData.append('usuario', usuario.matricula);
+                formData.append('file', arquivo);
 
-            python.post(`/file/upload/?usuario=${usuario.matricula}`, formData)
-                .then((data) => {
-                    console.log('Arquivo enviado com sucesso:', data);
-                })
-                .catch((error) => {
-                    console.log('Erro ao enviar arquivo:', error);
+                const response = await python.post('/file/upload/', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    }
                 });
-        } else {
-            console.log('Nenhum arquivo selecionado');
+
+                if (response.data.status === 'error') {
+                    setModal(false)
+                    AlertSweet('Houve um erro com o arquivo', 'error', response.data.message)
+                    console.error('Erro:', response.data.message);
+                } else {
+                    setModal(false)
+                    AlertSweet('Upload realizado', 'success', response.data.message)
+                    console.log('Upload bem-sucedido:', response.data.message);
+                }
+            } catch (error) {
+                console.error('Erro ao fazer o upload:', error);
+                AlertSweet('Houve um erro ao tentar enviar', 'error')
+            }
         }
-    };
+    }
+
 
 
     return (
@@ -142,11 +146,30 @@ const ViewTemplate = () => {
                                                 <Grid container bgcolor='#fff' display='block' justifyContent={'center'} textAlign={'center'} spacing={3} px={6} py={3}>
                                                     <Typography mt={3} variant="h5" color="inherit" align="left">Upload de Arquivo</Typography>
 
-                                                    <input
-                                                        type="file"
-                                                        onChange={handleFileChange}
-                                                    />
-                                                    <button onClick={handleUpload}>Enviar Arquivo</button>
+                                                    <Typography mt={1} variant="body1" color="inherit" align="left">Template: <BoxSpanGray>{template.titulo}</BoxSpanGray></Typography>
+                                                    <Typography variant="body1" color="inherit" align="left">Formato: <BoxSpanGray>{template.formato}</BoxSpanGray></Typography>
+
+                                                    <TextField sx={{ mb: 3, mt: 1 }} label="Escreva o nome do arquivo" variant="filled" value={nome} onChange={(e) => setnome(e.target.value)} fullWidth />
+
+                                                    <Box sx={{ border: '2px dashed #ccc', textAlign: 'center', width: '80%', ml: '10%', padding: '7%' }}>
+                                                        <img src={nuvem} alt="Nuvem upload" /><br />
+                                                        <Typography my={1} variant="body1" color="initial">Escolha um arquivo</Typography>
+                                                        <Typography mb={2} variant="body1" color="GrayText">CSV, XLS or XLSX, tamanho menor que 100MB</Typography>
+                                                        <Button variant="outlined" component='label' color="info">
+                                                            {" "}
+                                                            Selecionar arquivo
+                                                            <input hidden accept=".csv,.xls,.xlsx" type="file" onChange={handleFileChange} />
+                                                        </Button>
+                                                    </Box>
+
+                                                    <Box sx={{ display: 'flex', justifyContent: 'center', gap: 6, pt: 3, pb: 1 }}>
+                                                        <Button variant="outlined" color='primary' onClick={() => setModal(false)}>
+                                                            Retornar
+                                                        </Button>
+                                                        <Button variant="contained" color='primary' onClick={handleUpload}>
+                                                            Continue
+                                                        </Button>
+                                                    </Box>
                                                 </Grid>
                                             </DialogSlide>
 

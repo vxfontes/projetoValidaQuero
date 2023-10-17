@@ -7,7 +7,7 @@ from typing import List
 import io
 from file import Campo, dataframeCampos
 from valida import verificar_tipos
-import ast
+import json
 
 class GenerateFileRequest(BaseModel):
     formato: str
@@ -31,13 +31,18 @@ app.add_middleware(
 async def upload_file(data: Request):
     form = await data.form()
 
-    getCampos = form.get("campos")
     usuario = form.get("usuario")
     file = form.get("file")
+    getCampos = form.get("campos")
+    print(getCampos)
 
     formato = formatoFile(file.filename)
-    campos = ast.literal_eval(getCampos)
-    
+    campos = []
+    try:
+        campos = json.loads(getCampos)
+    except json.JSONDecodeError as e:
+        return {"status": "error", "message": "Erro ao analisar campos JSON: " + str(e)}
+
     if file and allowedFile(file.filename):
         arquivo = file.file.read()
         content = io.BytesIO(arquivo)
