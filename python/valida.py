@@ -11,7 +11,10 @@ def verificar_tipos(df, campos):
 
     for campo in campos:
         nome_campo = campo['nome']
+        nulo_esperado = campo['nulo']
         tipo_esperado = campo.get('tipo', None)
+
+        nulos = df[nome_campo].isna().any()
 
         if nome_campo not in campos_df:
             erros.append(f"Coluna '{nome_campo}' não encontrado no arquivo.")
@@ -21,6 +24,14 @@ def verificar_tipos(df, campos):
 
             if tipo_real != tipo_esperado:
                 erros.append(f"Coluna '{nome_campo}' possui itens do tipo incorreto")
+
+        if nulo_esperado and not nulos:
+            erros.append(f"Campo '{nome_campo}' deve permitir valores nulos, mas não permite.")
+
+        if not nulo_esperado and nulos:
+            erros.append(f"Campo '{nome_campo}' não deve permitir valores nulos, mas permite.")
+
+
 
     if erros:
         return erros
