@@ -1,27 +1,25 @@
-from utils import allowedFile, ALLOWED_EXTENSIONS
-from fastapi import FastAPI, UploadFile, HTTPException
+from utils import allowedFile, ALLOWED_EXTENSIONS, formatoFile
+from fastapi import FastAPI, UploadFile, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
 import pandas as pd
 from pydantic import BaseModel
 from typing import List
 import io
-from io import BytesIO
 from file import Campo, dataframeCampos
+from valida import verificar_tipos
+import ast
 
 class GenerateFileRequest(BaseModel):
     formato: str
     campos: List[Campo]
 
+
 app = FastAPI()
 
-origins = [
-    "*"
-]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -30,12 +28,34 @@ app.add_middleware(
 
 
 @app.post("/file/upload/")
-async def upload_file(file: UploadFile, usuario: str, campos: List[Campo]):
+async def upload_file(data: Request):
+    form = await data.form()
+
+    getCampos = form.get("campos")
+    usuario = form.get("usuario")
+    file = form.get("file")
+
+    formato = formatoFile(file.filename)
+    campos = ast.literal_eval(getCampos)
+    
     if file and allowedFile(file.filename):
-        # df = dataframeCampos(campos)
-        with open(file.filename, "wb") as f:
-            f.write(file.file.read())
-        return {"filename": file.filename, "usuario": usuario, "campos": campos}
+        arquivo = file.file.read()
+        content = io.BytesIO(arquivo)
+
+        df = ""
+        if formato == 'csv':
+            df = pd.read_csv(content)
+        if formato == 'xlsx' or formato == 'xls':
+            df = pd.read_excel(content)
+
+        print(df)
+        
+        erro = verificar_tipos(df, campos)
+
+        if erro:
+            return {"status": "error", "message": erro}
+        else:
+            return {"usuario": usuario, "message": "passou com sucesso"}
     else:
         return {"status": "error", "message": "Arquivo não enviado ou formato não permitido"}
 
@@ -53,6 +73,7 @@ async def generatefile(data: GenerateFileRequest):
         })
     
     df = dataframeCampos(campos)
+    print(df)
     
     # if formato == "csv":
     #     # Gere o DataFrame no formato CSV
@@ -74,6 +95,6 @@ async def generatefile(data: GenerateFileRequest):
         "status": "success",
         "message": "Download do template concluído",
         "tipagem": formato,
-        "df": df
+        # "df": df
         # "df": StreamingResponse(io.StringIO(df.to_csv(index=False)), media_type="text/csv")
     }
