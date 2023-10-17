@@ -13,6 +13,7 @@ interface Props {
 }
 
 const FileContainer = ({ arquivos, itemsPerPage, formato, message }: Props) => {
+    arquivos = arquivos.filter((arquivo) => arquivo.aprovado === true);
     const getitemsPerPage = itemsPerPage;
     const newMessage = message === undefined ? 'Arquivos não foram encontrados' : message
     const [currentPage, setCurrentPage] = React.useState(1);

@@ -32,8 +32,8 @@ export class ArquivoController {
             if (!templateExistente) throw new Error('Template não encontrado no banco de dados');
             if (templateExistente.status === StatusEnum.Pendente) throw new Error("Templates pendentes não podem receber arquivos");
 
-            if (aprovado && !url) throw new Error('Arquivo aprovado precisa possuir URL válida');
-            if (!aprovado) newURL = null;
+            if (aprovado === true && !url) throw new Error('Arquivo aprovado precisa possuir URL válida');
+            if (aprovado === false) newURL = null;
 
             console.log(newURL);
 

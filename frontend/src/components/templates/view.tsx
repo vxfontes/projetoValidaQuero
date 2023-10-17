@@ -1,14 +1,15 @@
-import { Box, Chip, Grid, IconButton, Typography, styled, TextField, Button } from "@mui/material";
 import * as React from 'react';
-import { FundoBackground } from "../background/fundoPrincipal";
+import { Box, Chip, Grid, IconButton, Typography, styled, TextField, Button } from "@mui/material";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { AiOutlineUser } from 'react-icons/ai'
 import { FiDownload, FiUpload } from 'react-icons/fi'
+import { useParams } from "react-router-dom";
 import theme from "../../theme";
+import { FundoBackground } from "../background/fundoPrincipal";
 import { formatarData } from "../../logic/utils/data";
 import GridContainers from "../muiComponents/gridContainers";
 import FileContainer from "../files/container";
 import TableCampos from "./tableCampos";
-import { useParams } from "react-router-dom";
 import { useScreenSize } from "../muiComponents/breakpoints";
 import useUsuario from "../../logic/core/functions/user";
 import { GetTemplateProps } from "../../logic/interfaces/template";
@@ -20,7 +21,7 @@ import DialogSlide from "../muiComponents/dialog";
 import { AlertSweet } from "../alerts/sweetAlerts";
 import nuvem from '../../assets/icon/nuvem.png'
 import { BoxSpanGray } from "../muiComponents/boxes";
-
+import { storage } from "../../logic/api/firebase";
 
 const FundoComponente = styled(Grid)({
     minHeight: '90%',
@@ -30,6 +31,7 @@ const FundoComponente = styled(Grid)({
     border: 'none',
     borderRadius: '14px'
 });
+
 
 const ViewTemplate = () => {
     const { id } = useParams();
@@ -54,11 +56,8 @@ const ViewTemplate = () => {
                     if (res.data.template.arquivos.lenght === undefined) setMessage("Template não possui arquivos")
                 }
             } else setMessage(res.data.message)
-        }).catch((error) => {
-            setMessage(error.response.data.message)
-        }).finally(() => {
-            setLoading(false)
-        });
+        }).catch((error) => setMessage(error.response.data.message)
+        ).finally(() => setLoading(false));
     }, []);
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,7 +70,6 @@ const ViewTemplate = () => {
             try {
                 const formData = new FormData();
                 formData.append('campos', JSON.stringify(template.campos));
-                formData.append('usuario', usuario.matricula);
                 formData.append('file', arquivo);
 
                 const response = await python.post('/file/upload/', formData, {
@@ -80,22 +78,56 @@ const ViewTemplate = () => {
                     }
                 });
 
-                if (response.data.status === 'error') {
-                    setModal(false)
-                    AlertSweet('Houve um erro com o arquivo', 'error', response.data.message)
-                    console.error('Erro:', response.data.message);
+                if (response.data.status == 'error') {
+                    const envio = {
+                        titulo: nome,
+                        linhas: response.data.linhas,
+                        aprovado: false,
+                        url: '',
+                        usuario: usuario.matricula,
+                        template: template.id
+                    }
+
+                    api.post('/arquivo', envio).then((_res) => {
+                        setModal(false)
+                        console.log('Upload deu errado: ', response.data);
+                        AlertSweet(response.data.message, 'error')
+                    }).catch(err => AlertSweet(err.response.data.message, 'error'))
                 } else {
-                    setModal(false)
-                    AlertSweet('Upload realizado', 'success', response.data.message)
-                    console.log('Upload bem-sucedido:', response.data.message);
+                    const storageRef = ref(storage, `arquivos/aprovados/template${template.id}/${nome}/${crypto.randomUUID().slice(0, 10)}`);
+                    const uploadTask = uploadBytesResumable(storageRef, arquivo);
+
+                    uploadTask.on('state_changed',
+                        _error => AlertSweet('Houve um erro ao enviar arquivo', 'error'),
+                        () => getDownloadURL(uploadTask.snapshot.ref).then(url => {
+                            const envio = {
+                                titulo: nome,
+                                linhas: response.data.linhas,
+                                aprovado: true,
+                                url: url,
+                                usuario: usuario.matricula,
+                                template: template.id
+                            }
+
+                            api.post('/arquivo', envio).then((res) => {
+                                setModal(false)
+                                console.log('Upload bem-sucedido:', response.data.message);
+                                AlertSweet(res.data.message, 'success')
+                            }).catch(err => {
+                                AlertSweet(err.response.data.message, 'error');
+                                console.log(err);
+                            })
+                        }).catch(err => {
+                            console.log(err);
+                            AlertSweet('Houve um erro ao tentar enviar', 'error')
+                        }))
                 }
             } catch (error) {
-                console.error('Erro ao fazer o upload:', error);
+                console.log('Erro ao fazer o upload:', error);
                 AlertSweet('Houve um erro ao tentar enviar', 'error')
             }
         }
     }
-
 
 
     return (
