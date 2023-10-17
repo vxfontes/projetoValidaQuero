@@ -5,6 +5,7 @@ import theme from "../../theme";
 import api from "../../logic/api/api";
 import Swal from "sweetalert2";
 import * as React from 'react';
+import { AlertSweet } from "../alerts/sweetAlerts";
 
 const TableUsers = ({ users }: { users: UserPerfilProps[] }) => {
 
@@ -36,23 +37,14 @@ const TableUsers = ({ users }: { users: UserPerfilProps[] }) => {
                     });
                 }).catch((error) => {
                     console.log(error);
-
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Houve um erro',
-                        confirmButtonColor: theme.palette.primary.main,
-                        confirmButtonText: 'Continue',
-                        text: error.response.data.message
-                    });
+                    AlertSweet('Houve um erro', 'error', error.response.data.message)
                 });
             }
         });
     };
 
 
-    const handleChangePage = (_event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
-        setPage(newPage);
-    };
+    const handleChangePage = (_event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => setPage(newPage);
 
     const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
         setRowsPerPage(parseInt(event.target.value, 10));
@@ -60,7 +52,6 @@ const TableUsers = ({ users }: { users: UserPerfilProps[] }) => {
     };
 
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, users.length - page * rowsPerPage);
-
 
     return (
         <Container maxWidth="lg">

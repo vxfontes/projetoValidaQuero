@@ -11,7 +11,7 @@ import { FundoBackground } from './components/background/fundoPrincipal';
 import theme from './theme';
 import { Box, Typography } from '@mui/material';
 import UsersPage from './pages/user';
-import Swal from 'sweetalert2';
+import { AlertSweet } from './components/alerts/sweetAlerts';
 
 const Rotas = () => {
     const location = useLocation();
@@ -41,13 +41,7 @@ const Rotas = () => {
 
         if (!isGestor) {
             if (location.pathname === '/dashboard' || location.pathname === '/users') {
-                Swal.fire({
-                    icon: "error",
-                    iconColor: theme.palette.secondary.main,
-                    title: "Você não está autorizado a entrar nessa rota",
-                    confirmButtonColor: theme.palette.secondary.main,
-                    confirmButtonText: 'Retornar',
-                })
+                AlertSweet("Você não está autorizado a entrar nessa rota", 'error')
                 navigate("/");
             }
         }

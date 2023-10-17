@@ -4,18 +4,16 @@ import { Box, Step, StepLabel, Stepper, styled, Typography } from '@mui/material
 import { QontoConnector, QontoStepIcon } from './stepperProvider';
 import Step1 from './steps/step1';
 import api from '../../logic/api/api';
-import Swal from 'sweetalert2';
-import theme from '../../theme';
 import { FormatoProps } from '../../logic/interfaces/formato';
 import Step2 from './steps/step2';
 import Step3 from './steps/step3';
 import Step4 from './steps/step4';
+import { AlertSweet } from '../alerts/sweetAlerts';
 
 interface DialogProps {
     open: boolean;
     handleClose: () => void;
 }
-
 
 const Container = styled(Box)({
     background: '#FFFFFF',
@@ -32,28 +30,16 @@ const CriarTemplate = ({ handleClose, open }: DialogProps) => {
     React.useEffect(() => {
         api.get('/formato').then(res => {
             console.log('resposta', res.data);
-            if (res.data.status === 'success') {
-                setFormatos(res.data.formatos)
-            }
+            if (res.data.status === 'success') setFormatos(res.data.formatos)
         }).catch((error) => {
             console.log('erro', error);
-            Swal.fire({
-                icon: error.response.data.status,
-                iconColor: theme.palette.secondary.main,
-                title: error.response.data.message,
-                confirmButtonColor: theme.palette.secondary.main,
-                confirmButtonText: 'Retornar',
-            })
+            AlertSweet(error.response.data.message, error.response.data.status)
         })
     }, [])
 
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    };
+    const handleNext = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
 
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
+    const handleBack = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
 
     const handleCloseModal = () => {
         handleClose();
@@ -64,7 +50,6 @@ const CriarTemplate = ({ handleClose, open }: DialogProps) => {
     return (
         <DialogSlide open={open} handleClose={handleClose}>
             <Container px={6} py={3}>
-
                 <Typography variant="h5" color="initial" fontWeight='light' mb={1} align='left'>Criação de template</Typography>
 
                 <Stepper sx={{ mb: 3 }} alternativeLabel activeStep={activeStep} connector={<QontoConnector />}>
@@ -86,18 +71,11 @@ const CriarTemplate = ({ handleClose, open }: DialogProps) => {
                     <Step4 handleNext={handleCloseModal} handleBack={handleBack} />
                 ) : (
                     <>
-                        {activeStep === 0 && (
-                            <Step1 numberPage={0} advanceClick={() => handleNext()} returnClick={() => handleBack()} formatos={formatos} />
-                        )}
-                        {activeStep === 1 && (
-                            <Step2 numberPage={1} advanceClick={() => handleNext()} returnClick={() => handleBack()} />
-                        )}
-                        {activeStep === 2 && (
-                            <Step3 handleNext={handleNext} handleBack={handleBack} />
-                        )}
+                        {activeStep === 0 && <Step1 numberPage={0} advanceClick={() => handleNext()} returnClick={() => handleBack()} formatos={formatos} />}
+                        {activeStep === 1 && <Step2 numberPage={1} advanceClick={() => handleNext()} returnClick={() => handleBack()} />}
+                        {activeStep === 2 && <Step3 handleNext={handleNext} handleBack={handleBack} />}
                     </>
                 )}
-
             </Container>
         </DialogSlide>
     );

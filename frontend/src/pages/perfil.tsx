@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { FundoBackground } from "../components/background/fundoPrincipal";
 import { Box, Grid, Typography } from "@mui/material";
 import useUsuario from "../logic/core/functions/user";
@@ -7,14 +8,12 @@ import CardDataInfo from "../components/dashboard/CardData";
 import GridContainers from "../components/muiComponents/gridContainers";
 import TemplateContainer from "../components/templates/container";
 import FileContainer from "../components/files/container";
-import theme from "../theme";
-import * as React from 'react';
 import { GetTemplateProps } from "../logic/interfaces/template";
 import api from "../logic/api/api";
-import Swal from "sweetalert2";
 import { FileProps } from "../logic/interfaces/file";
 import BoxLoading from "../components/muiComponents/boxLoading";
 import { UserPerfilProps } from "../logic/interfaces/user";
+import { AlertSweet } from "../components/alerts/sweetAlerts";
 
 
 const MeuPerfil = () => {
@@ -34,35 +33,14 @@ const MeuPerfil = () => {
 
         // get formatos
         api.get('/formato').then(res => {
-            if (res.data.status === 'success') {
-                setFormatos(res.data.formatos)
-            }
-        }).catch((error) => {
-            Swal.fire({
-                icon: error.response.data.status,
-                iconColor: theme.palette.secondary.main,
-                title: error.response.data.message,
-                confirmButtonColor: theme.palette.secondary.main,
-                confirmButtonText: 'Retornar',
-            })
-        })
+            if (res.data.status === 'success') setFormatos(res.data.formatos)
+        }).catch((error) => AlertSweet(error.response.data.message, 'error'));
 
         // get user infos
         api.get(`/users/${perfil.matricula}`).then(res => {
-            if (res.data.status === 'success') {
-                setUser(res.data.usuario);
-            }
-        }).catch((error) => {
-            Swal.fire({
-                icon: error.response.data.status,
-                iconColor: theme.palette.secondary.main,
-                title: error.response.data.message,
-                confirmButtonColor: theme.palette.secondary.main,
-                confirmButtonText: 'Retornar',
-            });
-        }).finally(() => {
-            setLoadingPerfil(true)
-        });
+            if (res.data.status === 'success') setUser(res.data.usuario)
+        }).catch((error) => AlertSweet(error.response.data.message, 'error')
+        ).finally(() => setLoadingPerfil(true));
 
 
         // get templates
@@ -71,11 +49,8 @@ const MeuPerfil = () => {
                 if (res.data.templates.lenght === 0) setMessageTemplate("Não existem templates cadastrados pelo usuário")
                 else setTemplates(res.data.templates)
             }
-        }).catch((error) => {
-            setMessageTemplate(error.response.data.message)
-        }).finally(() => {
-            setLoading(false)
-        })
+        }).catch((error) => setMessageTemplate(error.response.data.message)
+        ).finally(() => setLoading(false))
 
 
         // get arquivos

@@ -8,6 +8,7 @@ import { UserLoginProps } from '../../logic/interfaces/user';
 import useUsuario from '../../logic/core/functions/user';
 import Swal from 'sweetalert2';
 import api from '../../logic/api/api';
+import { AlertSweet } from '../../components/alerts/sweetAlerts';
 
 const FormContainer = styled(Box)({
     display: 'block',
@@ -45,13 +46,7 @@ export const FormLogin = () => {
                 });
             }
         }).catch(error => {
-            Swal.fire({
-                icon: error.response.data.status,
-                iconColor: theme.palette.secondary.main,
-                title: error.response.data.message,
-                confirmButtonColor: theme.palette.secondary.main,
-                confirmButtonText: 'Retornar',
-            })
+            AlertSweet(error.response.data.message, 'error')
             setStatus(error.response.data.message);
             setSubmitting(false);
         })

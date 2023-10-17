@@ -1,4 +1,3 @@
-import Swal from "sweetalert2";
 import { FundoBackground } from "../components/background/fundoPrincipal";
 import api from "../logic/api/api";
 import useUsuario from "../logic/core/functions/user";
@@ -7,7 +6,7 @@ import InicioCadastro from "../templates/inicio/inicioCadastro";
 import InicioUpload from "../templates/inicio/inicioUpload";
 import InicioVisitante from "../templates/inicio/inicioVisitante";
 import * as React from 'react';
-import theme from "../theme";
+import { AlertSweet } from "../components/alerts/sweetAlerts";
 
 const Inicio = () => {
     const { getUser } = useUsuario();
@@ -22,18 +21,8 @@ const Inicio = () => {
 
         // get formatos
         api.get('/formato').then(res => {
-            if (res.data.status === 'success') {
-                setFormatos(res.data.formatos)
-            }
-        }).catch((error) => {
-            Swal.fire({
-                icon: error.response.data.status,
-                iconColor: theme.palette.secondary.main,
-                title: error.response.data.message,
-                confirmButtonColor: theme.palette.secondary.main,
-                confirmButtonText: 'Retornar',
-            })
-        })
+            if (res.data.status === 'success') setFormatos(res.data.formatos)
+        }).catch((error) => AlertSweet(error.response.data.message, 'error'))
         
         // get templates
         api.get('/template').then(res => {
@@ -41,11 +30,8 @@ const Inicio = () => {
                 if(res.data.templates.lenght === 0) setMessage("Não existem templates cadastrados")
                 else setTemplates(res.data.templates)
             }
-        }).catch((error) => {
-            setMessage(error.response.data.message)
-        }).finally(() => {
-            setLoading(false)
-        })
+        }).catch((error) => setMessage(error.response.data.message)
+        ).finally(() => setLoading(false))
     }, []);
 
     return (

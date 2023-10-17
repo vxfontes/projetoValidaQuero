@@ -9,6 +9,7 @@ import useUsuario from '../../logic/core/functions/user';
 import { perfilArray } from '../../data/perfil';
 import Swal from 'sweetalert2';
 import api from '../../logic/api/api';
+import { AlertSweet } from '../../components/alerts/sweetAlerts';
 
 export const FormContainer = styled(Grid)({
     width: '80%',
@@ -39,7 +40,6 @@ export const FormCadastro = () => {
     const { login } = useUsuario()
 
     async function onSubmit(values: UserFormProps) {
-
         api.post('/users', values).then((res) => {
             if (res.data.status === 'success') {
                 login(res.data.usuario)
@@ -55,15 +55,7 @@ export const FormCadastro = () => {
                     }
                 });
             }
-        }).catch(error => {
-            Swal.fire({
-                icon: error.response.data.status,
-                iconColor: theme.palette.secondary.main,
-                title: error.response.data.message,
-                confirmButtonColor: theme.palette.secondary.main,
-                confirmButtonText: 'Retornar',
-            })
-        })
+        }).catch(error => AlertSweet(error.response.data.message, 'error'))
     }
 
     return (
@@ -90,9 +82,7 @@ export const FormCadastro = () => {
                         </Grid>
                         <Grid sx={fieldpl} item xl={6} lg={6} md={6} sm={12} xs={12}>
                             <Field sx={field100} name='perfil' label='Perfil' component={FieldSelectOutlined}>
-                                {perfilArray.map(perfil => (
-                                    <MenuItem key={perfil} value={perfil}>{perfil}</MenuItem>
-                                ))}
+                                {perfilArray.map(perfil => <MenuItem key={perfil} value={perfil}>{perfil}</MenuItem>)}
                             </Field>
                         </Grid>
 

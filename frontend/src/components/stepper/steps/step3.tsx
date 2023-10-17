@@ -2,24 +2,15 @@ import Typography from '@mui/material/Typography'
 import { StepperButtonsProps } from '../stepperProvider';
 import { Box, Button } from '@mui/material';
 import api from '../../../logic/api/api';
-import Swal from 'sweetalert2';
-import theme from '../../../theme';
 import { TemplateState } from '../../../data/templateState';
+import { AlertSweet } from '../../alerts/sweetAlerts';
 
 const Step3: React.FC<StepperButtonsProps> = ({ handleNext, handleBack }) => {
 
     function click() {
         api.post('/template', TemplateState).then((res) => {
             if (res.data.status === 'success') handleNext()
-        }).catch(error => {
-            Swal.fire({
-                icon: error.response.data.status,
-                iconColor: theme.palette.secondary.main,
-                title: error.response.data.message,
-                confirmButtonColor: theme.palette.secondary.main,
-                confirmButtonText: 'Retornar',
-            })
-        })
+        }).catch(error => AlertSweet(error.response.data.message, error.response.data.status))
     }
 
     return (
