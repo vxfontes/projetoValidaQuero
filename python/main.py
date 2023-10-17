@@ -31,10 +31,8 @@ app.add_middleware(
 async def upload_file(data: Request):
     form = await data.form()
 
-    usuario = form.get("usuario")
     file = form.get("file")
     getCampos = form.get("campos")
-    print(getCampos)
 
     formato = formatoFile(file.filename)
     campos = []
@@ -52,17 +50,17 @@ async def upload_file(data: Request):
             df = pd.read_csv(content)
         if formato == 'xlsx' or formato == 'xls':
             df = pd.read_excel(content)
-
-        print(df)
         
+        linhas = df.shape[0]
+
         erro = verificar_tipos(df, campos)
 
         if erro:
-            return {"status": "error", "message": erro}
+            return {"status": "error", "message": erro, "linhas": linhas}
         else:
-            return {"usuario": usuario, "message": "passou com sucesso"}
+            return {"status": "success", "message": "Arquivo aceito com sucesso", "linhas": linhas}
     else:
-        return {"status": "error", "message": "Arquivo não enviado ou formato não permitido"}
+        return {"status": "error", "message": "Arquivo não enviado ou formato não permitido", "linhas": 0}
 
 
 
