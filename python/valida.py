@@ -25,12 +25,8 @@ def verificar_tipos(df, campos):
             if tipo_real != tipo_esperado:
                 erros.append(f"Coluna '{nome_campo}' possui itens do tipo incorreto")
 
-        if nulo_esperado and not nulos:
-            erros.append(f"Campo '{nome_campo}' deve permitir valores nulos, mas não permite.")
-
         if not nulo_esperado and nulos:
-            erros.append(f"Campo '{nome_campo}' não deve permitir valores nulos, mas permite.")
-
+            erros.append(f"Campo '{nome_campo}' não deveria possuir valores nulos, mas possui.")
 
 
     if erros:
