@@ -65,12 +65,19 @@ const ViewTemplate = () => {
         if (selectedFile) setarquivo(selectedFile);
     };
 
+    const getError = (error: any, message: string) => {
+        setModal(false)
+        console.log('Upload deu errado: ', error);
+        AlertSweet(message, 'error', true)
+    }
+
     async function handleUpload() {
         if (arquivo && template) {
             try {
                 const formData = new FormData();
                 formData.append('campos', JSON.stringify(template.campos));
                 formData.append('file', arquivo);
+                formData.append('formato', template.formato.toLowerCase());
 
                 const response = await python.post('/file/upload/', formData, {
                     headers: {
@@ -88,17 +95,13 @@ const ViewTemplate = () => {
                         template: template.id
                     }
 
-                    api.post('/arquivo', envio).then((_res) => {
-                        setModal(false)
-                        console.log('Upload deu errado: ', response.data);
-                        AlertSweet(response.data.message, 'error')
-                    }).catch(err => AlertSweet(err.response.data.message, 'error'))
+                    api.post('/arquivo', envio).then((_res) => getError(response.data, response.data.message)
+                    ).catch(err => AlertSweet(err.response.data.message, 'error', true))
                 } else {
                     const storageRef = ref(storage, `arquivos/aprovados/template${template.id}/${nome}/${crypto.randomUUID().slice(0, 10)}`);
                     const uploadTask = uploadBytesResumable(storageRef, arquivo);
 
                     uploadTask.on('state_changed',
-                        _error => AlertSweet('Houve um erro ao enviar arquivo', 'error'),
                         () => getDownloadURL(uploadTask.snapshot.ref).then(url => {
                             const envio = {
                                 titulo: nome,
@@ -112,20 +115,12 @@ const ViewTemplate = () => {
                             api.post('/arquivo', envio).then((res) => {
                                 setModal(false)
                                 console.log('Upload bem-sucedido:', response.data.message);
-                                AlertSweet(res.data.message, 'success')
-                            }).catch(err => {
-                                AlertSweet(err.response.data.message, 'error');
-                                console.log(err);
-                            })
-                        }).catch(err => {
-                            console.log(err);
-                            AlertSweet('Houve um erro ao tentar enviar', 'error')
-                        }))
+                                AlertSweet(res.data.message, 'success', true)
+                            }).catch(err => getError(err, err.response.data.message))
+                        }).catch(err => getError(err, 'Houve um erro ao tentar enviar')),
+                        error => getError(error, 'Houve um erro ao enviar arquivo'))
                 }
-            } catch (error) {
-                console.log('Erro ao fazer o upload:', error);
-                AlertSweet('Houve um erro ao tentar enviar', 'error')
-            }
+            } catch (error) { getError(error, 'Houve um erro ao tentar enviar') }
         }
     }
 
@@ -187,7 +182,7 @@ const ViewTemplate = () => {
                                                         <img src={nuvem} alt="Nuvem upload" /><br />
                                                         <Typography my={1} variant="body1" color="initial">Escolha um arquivo</Typography>
                                                         <Typography mb={2} variant="body1" color="GrayText">CSV, XLS or XLSX, tamanho menor que 100MB</Typography>
-                                                        <Button variant="outlined" component='label' color="info">
+                                                        <Button variant="outlined" component='label' color="info" disabled={arquivo ? true : false}>
                                                             {" "}
                                                             Selecionar arquivo
                                                             <input hidden accept=".csv,.xls,.xlsx" type="file" onChange={handleFileChange} />

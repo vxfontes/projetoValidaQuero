@@ -15,11 +15,10 @@ export class ArquivoController {
         try {
             const { titulo, linhas, aprovado, url, usuario, template } = request.body;
             let newURL = url;
-            console.log(newURL);
-
+            let newLinhas = !linhas ? 0 : linhas
 
             // Verifique se todos os campos obrigatórios estão presentes
-            if (!titulo || !linhas || (aprovado === undefined || aprovado === null) || !usuario || !template) {
+            if (!titulo || (aprovado === undefined || aprovado === null) || !usuario || !template) {
                 throw new Error("Campos obrigatórios faltando");
             }
 
@@ -38,7 +37,7 @@ export class ArquivoController {
             console.log(newURL);
 
             const arquivo = Object.assign(new Arquivo(), {
-                titulo, linhas, aprovado, url: newURL, usuario, template
+                titulo, linhas: newLinhas, aprovado, url: newURL, usuario, template
             });
 
             await arquivoRepository.save(arquivo);

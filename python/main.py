@@ -32,6 +32,7 @@ async def upload_file(data: Request):
     form = await data.form()
 
     file = form.get("file")
+    formato_esperado = form.get("formato")
     getCampos = form.get("campos")
 
     formato = formatoFile(file.filename)
@@ -41,7 +42,7 @@ async def upload_file(data: Request):
     except json.JSONDecodeError as e:
         return {"status": "error", "message": "Erro ao analisar campos JSON: " + str(e)}
 
-    if file and allowedFile(file.filename):
+    if file and formato_esperado == formato:
         arquivo = file.file.read()
         content = io.BytesIO(arquivo)
 
