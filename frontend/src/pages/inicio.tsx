@@ -22,7 +22,7 @@ const Inicio = () => {
         // get formatos
         api.get('/formato').then(res => {
             if (res.data.status === 'success') setFormatos(res.data.formatos)
-        }).catch((error) => AlertSweet(error.response.data.message, 'error'))
+        }).catch((error) => AlertSweet(error.response.data.message, 'error', false))
         
         // get templates
         api.get('/template').then(res => {

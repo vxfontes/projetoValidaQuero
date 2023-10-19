@@ -37,7 +37,7 @@ const TableUsers = ({ users }: { users: UserPerfilProps[] }) => {
                     });
                 }).catch((error) => {
                     console.log(error);
-                    AlertSweet('Houve um erro', 'error', error.response.data.message)
+                    AlertSweet('Houve um erro', 'error', false, error.response.data.message)
                 });
             }
         });

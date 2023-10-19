@@ -33,7 +33,7 @@ const CriarTemplate = ({ handleClose, open }: DialogProps) => {
             if (res.data.status === 'success') setFormatos(res.data.formatos)
         }).catch((error) => {
             console.log('erro', error);
-            AlertSweet(error.response.data.message, error.response.data.status)
+            AlertSweet(error.response.data.message, error.response.data.status, false)
         })
     }, [])
 

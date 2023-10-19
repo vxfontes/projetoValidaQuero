@@ -55,7 +55,7 @@ export const FormCadastro = () => {
                     }
                 });
             }
-        }).catch(error => AlertSweet(error.response.data.message, 'error'))
+        }).catch(error => AlertSweet(error.response.data.message, 'error', false))
     }
 
     return (

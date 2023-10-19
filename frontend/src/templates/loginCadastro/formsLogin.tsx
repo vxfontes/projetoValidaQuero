@@ -46,7 +46,7 @@ export const FormLogin = () => {
                 });
             }
         }).catch(error => {
-            AlertSweet(error.response.data.message, 'error')
+            AlertSweet(error.response.data.message, 'error', false)
             setStatus(error.response.data.message);
             setSubmitting(false);
         })

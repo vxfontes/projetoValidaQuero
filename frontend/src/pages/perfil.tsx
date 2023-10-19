@@ -34,12 +34,12 @@ const MeuPerfil = () => {
         // get formatos
         api.get('/formato').then(res => {
             if (res.data.status === 'success') setFormatos(res.data.formatos)
-        }).catch((error) => AlertSweet(error.response.data.message, 'error'));
+        }).catch((error) => AlertSweet(error.response.data.message, 'error', false));
 
         // get user infos
         api.get(`/users/${perfil.matricula}`).then(res => {
             if (res.data.status === 'success') setUser(res.data.usuario)
-        }).catch((error) => AlertSweet(error.response.data.message, 'error')
+        }).catch((error) => AlertSweet(error.response.data.message, 'error', false)
         ).finally(() => setLoadingPerfil(true));
 
 

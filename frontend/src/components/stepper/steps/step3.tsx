@@ -10,7 +10,7 @@ const Step3: React.FC<StepperButtonsProps> = ({ handleNext, handleBack }) => {
     function click() {
         api.post('/template', TemplateState).then((res) => {
             if (res.data.status === 'success') handleNext()
-        }).catch(error => AlertSweet(error.response.data.message, error.response.data.status))
+        }).catch(error => AlertSweet(error.response.data.message, error.response.data.status, false))
     }
 
     return (

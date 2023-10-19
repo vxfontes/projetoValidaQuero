@@ -41,7 +41,7 @@ const Rotas = () => {
 
         if (!isGestor) {
             if (location.pathname === '/dashboard' || location.pathname === '/users') {
-                AlertSweet("Você não está autorizado a entrar nessa rota", 'error')
+                AlertSweet("Você não está autorizado a entrar nessa rota", 'error', false)
                 navigate("/");
             }
         }
