@@ -78,20 +78,24 @@ export class TemplateController {
      * @param request id 
      * @param response resposta se foi desativado ou não
      */
-    async desativar(request: Request, response: Response) {
+    async mudarStatus(request: Request, response: Response) {
         try {
-            const id = parseInt(request.params.id)
+            const { id, status } = request.body;
 
             // Verifique se todos os campos obrigatórios estão presentes
-            if (!id) throw new Error("ID é obrigatório.");
+            if (!id || !status) {
+                throw new Error("Todos os campos são obrigatórios.");
+            }
+
+            if (!Object.values(StatusEnum).includes(status)) throw new Error('Status inválido');
 
             const template = await templateRepository.findOneBy({ id })
 
             if (template) {
-                template.status = StatusEnum.Desativado
+                template.status = status
 
                 await templateRepository.save(template);
-                response.status(201).json({ status: "success", message: "Template desativado com sucesso", template: template });
+                response.status(201).json({ status: "success", message: "Status mudado com sucesso com sucesso", template: template });
             } else {
                 throw new Error('Template não encontrado');
             }

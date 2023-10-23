@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Box, Chip, Grid, IconButton, Typography, styled, TextField, Button } from "@mui/material";
+import { Box, Chip, Grid, IconButton, Typography, styled, TextField, Button, Switch } from "@mui/material";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { AiOutlineUser } from 'react-icons/ai'
-import { FiDownload, FiUpload } from 'react-icons/fi'
+import { AiOutlineUser } from 'react-icons/ai';
+import { FiDownload, FiUpload } from 'react-icons/fi';
 import { useParams } from "react-router-dom";
 import theme from "../../theme";
 import { FundoBackground } from "../background/fundoPrincipal";
@@ -40,6 +40,8 @@ const ViewTemplate = () => {
     const [nome, setnome] = React.useState("");
     const [loading, setLoading] = React.useState(true);
     const [modal, setModal] = React.useState(false);
+    const [flag, setFlag] = React.useState("");
+    const [checked, setChecked] = React.useState<boolean>(false);
     const [arquivo, setarquivo] = React.useState<File | null>(null);
     const { showFullHD } = useScreenSize();
     const { getUser } = useUsuario();
@@ -53,12 +55,24 @@ const ViewTemplate = () => {
                 if (res.data.template === undefined) setMessage("Não existem templates cadastrados")
                 else {
                     setTemplate(res.data.template)
+                    setFlag(res.data.template.status)
                     if (res.data.template.arquivos.lenght === undefined) setMessage("Template não possui arquivos")
                 }
             } else setMessage(res.data.message)
         }).catch((error) => setMessage(error.response.data.message)
         ).finally(() => setLoading(false));
     }, []);
+
+    React.useMemo(() => {
+        const value = checked ? 'Ativo' : 'Desativado';
+
+        api.post('/template/status', { id: template?.id, status: value }).then((res) => {
+            if (res.data.status === 'success') setFlag(value)
+        }).catch(error => {
+            AlertSweet(error.response.data.message, error.response.data.status, false)
+            setChecked(!checked)
+        })
+    }, [checked]);
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = event.target.files && event.target.files[0];
@@ -124,7 +138,6 @@ const ViewTemplate = () => {
         }
     }
 
-
     return (
         <FundoBackground container>
             <FundoComponente container m={5} p={4}>
@@ -161,7 +174,7 @@ const ViewTemplate = () => {
                                         <Box display='flex' gap={5} alignItems='center'>
                                             <Box display='flex' gap={1} alignItems='center'>
                                                 <Chip label={template.formato} color="secondary" />
-                                                <Chip label={getStatusTemplate(template.status).titulo} color={getStatusTemplate(template.status).color} />
+                                                <Chip label={getStatusTemplate(flag).titulo} color={getStatusTemplate(flag).color} />
                                                 {usuario.verificado && (
                                                     <IconButton>
                                                         <FiDownload size={24} color={theme.palette.azulClaro?.main} />
@@ -201,6 +214,13 @@ const ViewTemplate = () => {
                                             </DialogSlide>
 
                                             <Box display='flex' gap={1} alignItems='center'>
+                                                {(usuario.verificado && usuario.perfil === 'Gestor') && (
+                                                    <Switch color="primary"
+                                                        value={checked}
+                                                        onChange={(e: any) => setChecked(e.target.checked)}
+                                                    />
+                                                )}
+
                                                 {(usuario.verificado && usuario.perfil !== 'Gerente') && (
                                                     <Chip
                                                         label='Upload de arquivo'
