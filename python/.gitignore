@@ -8,3 +8,5 @@ __pycache__/
 # Ignorar arquivos de registro e saída
 *.log
 *.log.*
+
+key/

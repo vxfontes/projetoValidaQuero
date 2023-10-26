@@ -1,12 +1,13 @@
-from utils import allowedFile, ALLOWED_EXTENSIONS, formatoFile
-from fastapi import FastAPI, UploadFile, HTTPException, Request
+from database import SessionLocal
+from utils import ALLOWED_EXTENSIONS, formatoFile, load_file_data
+from file import Campo, dataframeCampos, requisicao, upload_file
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-import pandas as pd
 from pydantic import BaseModel
 from typing import List
-import io
-from file import Campo, dataframeCampos
+from sqlalchemy import text
 from valida import verificar_tipos
+import pandas as pd
 import json
 
 class GenerateFileRequest(BaseModel):
@@ -15,7 +16,7 @@ class GenerateFileRequest(BaseModel):
 
 
 app = FastAPI()
-
+db = SessionLocal()
 
 app.add_middleware(
     CORSMiddleware,
@@ -26,43 +27,54 @@ app.add_middleware(
 )
 
 
+@app.get("/teste/")
+async def teste():
+    result = db.execute(text('''SELECT * FROM "ValidaQuero"."formato"''')).fetchall()
+    # print(result[0])
+    return {"Teste": "indo"}
+
 
 @app.post("/file/upload/")
-async def upload_file(data: Request):
+async def verify_file(data: Request):
     form = await data.form()
 
     file = form.get("file")
+    usuario = form.get("usuario")
+    template = form.get("template")
     formato_esperado = form.get("formato")
     getCampos = form.get("campos")
 
     formato = formatoFile(file.filename)
+    
     campos = []
     try:
         campos = json.loads(getCampos)
     except json.JSONDecodeError as e:
         return {"status": "error", "message": "Erro ao analisar campos JSON: " + str(e)}
 
-    if file and formato_esperado == formato:
-        arquivo = file.file.read()
-        content = io.BytesIO(arquivo)
-
-        df = ""
-        if formato == 'csv':
-            df = pd.read_csv(content)
-        if formato == 'xlsx' or formato == 'xls':
-            df = pd.read_excel(content)
-        
-        linhas = df.shape[0]
-
-        erro = verificar_tipos(df, campos)
-
-        if erro:
-            return {"status": "error", "message": erro, "linhas": linhas}
-        else:
-            return {"status": "success", "message": "Arquivo aceito com sucesso", "linhas": linhas}
-    else:
+    if not file or formato_esperado != formato:
         return {"status": "error", "message": "Arquivo não enviado ou formato não permitido", "linhas": 0}
 
+    content = load_file_data(file)
+    df = pd.DataFrame()
+    
+    if formato == 'csv':
+        df = pd.read_csv(content)
+    elif formato in ['xlsx', 'xls']:
+        df = pd.read_excel(content)
+
+    linhas = df.shape[0]
+    erro = verificar_tipos(df, campos)
+
+    if erro:
+        return requisicao(file.filename[:file.filename.rfind('.')], linhas, False, "", usuario, template)
+    else:
+        upload_result = upload_file(file)
+        if upload_result and upload_result["status"] == "success":
+            url = upload_result["message"]
+            return requisicao(file.filename[:file.filename.rfind('.')], linhas, True, url, usuario, template)
+        else:
+            return upload_result
 
 
 @app.post("/file/generate/")
