@@ -82,11 +82,6 @@ export class TemplateController {
         try {
             const { id, status } = request.body;
 
-            // Verifique se todos os campos obrigatórios estão presentes
-            if (!id || !status) {
-                throw new Error("Todos os campos são obrigatórios.");
-            }
-
             if (!Object.values(StatusEnum).includes(status)) throw new Error('Status inválido');
 
             const template = await templateRepository.findOneBy({ id })
