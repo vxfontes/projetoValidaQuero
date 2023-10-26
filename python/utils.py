@@ -1,6 +1,5 @@
 import io
 
-ALLOWED_EXTENSIONS = {"csv", "xlsx", "xls"}
 
 def formatoFile(filename):
     return filename.rsplit('.', 1)[1].lower()

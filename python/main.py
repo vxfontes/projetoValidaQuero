@@ -1,7 +1,7 @@
 from database import SessionLocal
-from utils import ALLOWED_EXTENSIONS, formatoFile, load_file_data
-from file import Campo, dataframeCampos, requisicao, upload_file
-from fastapi import FastAPI, HTTPException, Request
+from utils import formatoFile, load_file_data
+from file import Campo, requisicao, upload_file
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
@@ -76,42 +76,3 @@ async def verify_file(data: Request):
             return requisicao(titulo, linhas, True, url, usuario, template)
         else:
             return upload_result
-
-
-@app.post("/file/generate/")
-async def generatefile(data: GenerateFileRequest):
-    formato = data.formato
-    campos = data.campos
-
-    if formato not in ALLOWED_EXTENSIONS:
-        raise HTTPException(status_code=400, detail={
-            "status": "error",
-            "message": "Tipo de arquivo não suportado. Use um formato autorizado.",
-        })
-    
-    df = dataframeCampos(campos)
-    print(df)
-    
-    # if formato == "csv":
-    #     # Gere o DataFrame no formato CSV
-    #     csv_data = df.to_csv(index=False)
-    #     return FileResponse(io.BytesIO(csv_data), filename="template.csv")
-
-    # elif formato == "xlsx" or formato == "xls":
-    #     # Gere o DataFrame no formato XLSX ou XLS
-    #     io_buffer = BytesIO()
-    #     writer = pd.ExcelWriter(io_buffer, engine='openpyxl')
-    #     df.to_excel(writer, index=False, sheet_name='Sheet1')
-    #     writer.save()
-    #     io_buffer.seek(0)
-    #     extension = "xlsx" if formato == "xlsx" else "xls"
-    #     return FileResponse(io_buffer, filename=f"template.{extension}")
-
-
-    return {
-        "status": "success",
-        "message": "Download do template concluído",
-        "tipagem": formato,
-        # "df": df
-        # "df": StreamingResponse(io.StringIO(df.to_csv(index=False)), media_type="text/csv")
-    }
