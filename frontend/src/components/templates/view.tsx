@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Box, Chip, Grid, IconButton, Typography, styled, TextField, Button, Switch } from "@mui/material";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { AiOutlineUser } from 'react-icons/ai';
 import { FiDownload, FiUpload } from 'react-icons/fi';
 import { useParams } from "react-router-dom";
@@ -21,7 +20,6 @@ import DialogSlide from "../muiComponents/dialog";
 import { AlertSweet } from "../alerts/sweetAlerts";
 import nuvem from '../../assets/icon/nuvem.png'
 import { BoxSpanGray } from "../muiComponents/boxes";
-import { storage } from "../../logic/api/firebase";
 
 const FundoComponente = styled(Grid)({
     minHeight: '90%',
@@ -41,7 +39,7 @@ const ViewTemplate = () => {
     const [loading, setLoading] = React.useState(true);
     const [modal, setModal] = React.useState(false);
     const [flag, setFlag] = React.useState("");
-    const [checked, setChecked] = React.useState<boolean>(false);
+    const [checked, setChecked] = React.useState<boolean>(true);
     const [arquivo, setarquivo] = React.useState<File | null>(null);
     const { showFullHD } = useScreenSize();
     const { getUser } = useUsuario();
@@ -54,6 +52,7 @@ const ViewTemplate = () => {
             if (res.data.status === 'success') {
                 if (res.data.template === undefined) setMessage("Não existem templates cadastrados")
                 else {
+                    setChecked(res.data.template.status == 'Ativo' ? true : false)
                     setTemplate(res.data.template)
                     setFlag(res.data.template.status)
                     if (res.data.template.arquivos.lenght === undefined) setMessage("Template não possui arquivos")
@@ -63,7 +62,7 @@ const ViewTemplate = () => {
         ).finally(() => setLoading(false));
     }, []);
 
-    React.useMemo(() => {
+    React.useEffect(() => {
         const value = checked ? 'Ativo' : 'Desativado';
 
         api.post('/template/status', { id: template?.id, status: value }).then((res) => {
@@ -89,9 +88,12 @@ const ViewTemplate = () => {
         if (arquivo && template) {
             try {
                 const formData = new FormData();
+                formData.append('titulo', nome);
                 formData.append('campos', JSON.stringify(template.campos));
+                formData.append('template', template.id.toString());
                 formData.append('file', arquivo);
                 formData.append('formato', template.formato.toLowerCase());
+                formData.append('usuario', usuario.matricula);
 
                 const response = await python.post('/file/upload/', formData, {
                     headers: {
@@ -99,40 +101,11 @@ const ViewTemplate = () => {
                     }
                 });
 
-                if (response.data.status == 'error') {
-                    const envio = {
-                        titulo: nome,
-                        linhas: response.data.linhas,
-                        aprovado: false,
-                        url: '',
-                        usuario: usuario.matricula,
-                        template: template.id
-                    }
-
-                    api.post('/arquivo', envio).then((_res) => getError(response.data, response.data.message)
-                    ).catch(err => AlertSweet(err.response.data.message, 'error', true))
-                } else {
-                    const storageRef = ref(storage, `arquivos/aprovados/template${template.id}/${nome}/${crypto.randomUUID().slice(0, 10)}`);
-                    const uploadTask = uploadBytesResumable(storageRef, arquivo);
-
-                    uploadTask.on('state_changed',
-                        () => getDownloadURL(uploadTask.snapshot.ref).then(url => {
-                            const envio = {
-                                titulo: nome,
-                                linhas: response.data.linhas,
-                                aprovado: true,
-                                url: url,
-                                usuario: usuario.matricula,
-                                template: template.id
-                            }
-
-                            api.post('/arquivo', envio).then((res) => {
-                                setModal(false)
-                                console.log('Upload bem-sucedido:', response.data.message);
-                                AlertSweet(res.data.message, 'success', true)
-                            }).catch(err => getError(err, err.response.data.message))
-                        }).catch(err => getError(err, 'Houve um erro ao tentar enviar')),
-                        error => getError(error, 'Houve um erro ao enviar arquivo'))
+                if (response.data.status == 'error') getError(response.data, response.data.message)
+                else {
+                    setModal(false)
+                    console.log('Upload bem-sucedido:', response.data.message);
+                    AlertSweet(response.data.message, 'success', true)
                 }
             } catch (error) { getError(error, 'Houve um erro ao tentar enviar') }
         }
@@ -217,6 +190,7 @@ const ViewTemplate = () => {
                                                 {(usuario.verificado && usuario.perfil === 'Gestor') && (
                                                     <Switch color="primary"
                                                         value={checked}
+                                                        checked={checked}
                                                         onChange={(e: any) => setChecked(e.target.checked)}
                                                     />
                                                 )}
