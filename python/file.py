@@ -28,7 +28,8 @@ def dataframeCampos(campos: List[Campo]):
 def upload_file(file):
     try:
         myID = uuid.uuid4()
-        objeto_nome = f'arquivos/{file.filename}/{myID}'
+        nome = file.filename[:file.filename.rfind('.')]
+        objeto_nome = f'arquivos/{nome}/{myID}'
         blob = bucket.blob(objeto_nome)
         
         file_data = BytesIO(file.file.read())
@@ -42,7 +43,7 @@ def upload_file(file):
         return {"status": "error", "message": "Arquivo não armazenado", "linhas": 0, "erro": str(e)}
 
 
-def requisicao(titulo, linhas, aprovado, url, usuario, template, erro_message=None):
+def requisicao(titulo, linhas, aprovado, url, usuario, template, erro_message="Arquivo aceito com sucesso"):
     query = text('''INSERT INTO "ValidaQuero".arquivo
                 (titulo, linhas, aprovado, url, usuario, "template")
                 VALUES(:titulo, :linhas, :aprovado, :url, :usuario, :template)''')
@@ -58,7 +59,7 @@ def requisicao(titulo, linhas, aprovado, url, usuario, template, erro_message=No
         db.commit()
 
         if aprovado:
-            return {"status": "success", "message": "Arquivo aceito com sucesso", "linhas": linhas}
+            return {"status": "success", "message": erro_message, "linhas": linhas}
         else:
             return {"status": "error", "message": erro_message, "linhas": 0}
     except Exception as e:

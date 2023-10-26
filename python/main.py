@@ -39,6 +39,7 @@ async def verify_file(data: Request):
     form = await data.form()
 
     file = form.get("file")
+    titulo = form.get("titulo")
     usuario = form.get("usuario")
     template = form.get("template")
     formato_esperado = form.get("formato")
@@ -67,12 +68,12 @@ async def verify_file(data: Request):
     erro = verificar_tipos(df, campos)
 
     if erro:
-        return requisicao(file.filename[:file.filename.rfind('.')], linhas, False, "", usuario, template)
+        return requisicao(titulo, linhas, False, "", usuario, template, erro)
     else:
         upload_result = upload_file(file)
         if upload_result and upload_result["status"] == "success":
             url = upload_result["message"]
-            return requisicao(file.filename[:file.filename.rfind('.')], linhas, True, url, usuario, template)
+            return requisicao(titulo, linhas, True, url, usuario, template)
         else:
             return upload_result
 
