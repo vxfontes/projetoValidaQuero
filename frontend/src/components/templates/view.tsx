@@ -20,6 +20,7 @@ import DialogSlide from "../muiComponents/dialog";
 import { AlertSweet } from "../alerts/sweetAlerts";
 import nuvem from '../../assets/icon/nuvem.png'
 import { BoxSpanGray } from "../muiComponents/boxes";
+import { exportFile } from '../../logic/utils/generateFile';
 
 const FundoComponente = styled(Grid)({
     minHeight: '90%',
@@ -148,8 +149,8 @@ const ViewTemplate = () => {
                                             <Box display='flex' gap={1} alignItems='center'>
                                                 <Chip label={template.formato} color="secondary" />
                                                 <Chip label={getStatusTemplate(flag).titulo} color={getStatusTemplate(flag).color} />
-                                                {usuario.verificado && (
-                                                    <IconButton>
+                                                {(usuario.verificado && checked) && (
+                                                    <IconButton onClick={() => exportFile(template.titulo, template.campos, template.formato.toLowerCase())}>
                                                         <FiDownload size={24} color={theme.palette.azulClaro?.main} />
                                                     </IconButton>
                                                 )}
