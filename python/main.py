@@ -1,19 +1,12 @@
 from database import SessionLocal
 from utils import formatoFile, load_file_data
-from file import Campo, requisicao, upload_file
+from file import requisicao, upload_file
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-from typing import List
 from sqlalchemy import text
 from valida import verificar_tipos
 import pandas as pd
 import json
-
-class GenerateFileRequest(BaseModel):
-    formato: str
-    campos: List[Campo]
-
 
 app = FastAPI()
 db = SessionLocal()
