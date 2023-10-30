@@ -50,7 +50,7 @@ const InicioUpload = ({formatos, message, templates, loading}: TemplateContainer
 
                 <GridContainers align='center' direction='row'>
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
-                        <TemplateCharts />
+                        <h1>grafico arqui </h1>
                     </Grid>
                     <Grid mt={3} display='flex' justifyContent='center' item xl={6} lg={6} md={6} sm={12} xs={12}>
                         <img src={img2} alt="imagem 2" height='100%' />

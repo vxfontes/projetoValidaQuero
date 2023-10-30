@@ -23,7 +23,7 @@ const InicioVisitante = ({ usuario, formatos, message, templates, loading }: Use
             {!showTablet && (
                 <Grid p={5} display='block' textAlign={'center'} item xl={4} lg={4} md={4} sm={12} xs={12}>
                     <img src={img1} alt="imagem 1" height='100%' />
-                    <TemplateCharts />
+                    <h1>grafico arqui </h1>
                     <img src={img3} alt="imagem 3" height='100%' />
                 </Grid>
             )}

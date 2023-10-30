@@ -51,7 +51,7 @@ const InicioCadastro = ({ formatos, message, templates, loading }: TemplateConta
 
                 <GridContainers align='center' direction='row'>
                     <Grid item xl={7} lg={7} md={7} sm={12} xs={12}>
-                        <TemplateCharts />
+                        <h1>grafico arqui </h1>
                     </Grid>
 
                     <Grid mt={3} display='flex' justifyContent='center' item xl={5} lg={5} md={5} sm={12} xs={12}>
