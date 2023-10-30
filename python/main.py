@@ -106,8 +106,8 @@ async def data():
 
     if result_arquivos:
         aprovados, reprovados = result_arquivos
-        dashboard_data["arquivo"]["Aprovados"] = aprovados
-        dashboard_data["arquivo"]["Reprovados"] = reprovados
+        dashboard_data["arquivo"]["aprovado"] = aprovados
+        dashboard_data["arquivo"]["recusado"] = reprovados
 
     arquivoData = {}
     total = 0

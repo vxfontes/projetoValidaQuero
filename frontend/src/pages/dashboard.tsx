@@ -1,75 +1,75 @@
+import { Box, CircularProgress } from "@mui/material";
+import { AlertSweet } from "../components/alerts/sweetAlerts";
 import { FundoBackground } from "../components/background/fundoPrincipal";
-import { FakeTemplatePendente } from '../data/fakeTemplatePendente';
+import python from "../logic/api/python";
 import MainPageDashboard from '../templates/dashboard/dashboard';
+import * as React from 'react';
+import api from "../logic/api/api";
+import { GetTemplatePuroProps } from "../logic/interfaces/template";
+
+interface SubProps {
+    value: number;
+    total: number;
+}
+interface Props {
+    arquivo: {
+        aprovado: number;
+        recusado: number;
+    },
+    arquivoData: {
+        Ativo: SubProps;
+        Pendente: SubProps;
+        Desativado: SubProps;
+    },
+    templateData: {
+        month: string;
+        ativos: number;
+        inativos: number;
+    }[]
+}
 
 const Dashboard = () => {
 
-    const data = [
-        {
-            month: '123',
-            ativos: 50,
-            inativos: 20,
-        },
-        {
-            month: 'asd',
-            ativos: 50,
-            inativos: 20,
-        },
-        {
-            month: 'asld',
-            ativos: 50,
-            inativos: 20,
-        },
-        {
-            month: 'Janeiro',
-            ativos: 50,
-            inativos: 20,
-        },
-        {
-            month: 'Fevereiro',
-            ativos: 60,
-            inativos: 25,
-        },
-        {
-            month: 'Março',
-            ativos: 50,
-            inativos: 20,
-        },
-        {
-            month: 'Abril',
-            ativos: 60,
-            inativos: 25,
-        },
-        {
-            month: 'Maio',
-            ativos: 50,
-            inativos: 20,
-        },
-        {
-            month: 'Junho',
-            ativos: 60,
-            inativos: 25,
-        },
-    ];
-    const arquivo = {
-        aprovado: 40,
-        recusado: 20
+    const [allData, setData] = React.useState<Props>();
+    const [templates, setTemplates] = React.useState<GetTemplatePuroProps[]>([]);
+
+    async function connect() {
+        try {
+            const response = await python.get('/dashboard/', {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                }
+            });
+            if (response.data) setData(response.data)
+            else AlertSweet('Houve um erro ao tentar obter as requisições', 'error', false)
+        } catch (error) {
+            console.log(error);
+            AlertSweet('Houve um erro ao tentar obter as requisições', 'error', false)
+        }
     }
 
-    const ativo = {
-        total: 130,
-        value: 102
-    }
+    React.useEffect(() => {
+        connect();
 
-    const pendente = {
-        total: 130,
-        value: 18
-    }
-
+        api.get(`/template/pendente`).then(res => {
+            if (res.data.status === 'success') {
+                if (res.data.templates === undefined) AlertSweet("Não existem templates pendentes", 'error', false)
+                else {
+                    setTemplates(res.data.templates)
+                }
+            } else AlertSweet(res.data.message, 'error', false)
+        }).catch((error) => AlertSweet(error.response.data.message, 'error', false))
+    }, []);
 
     return (
         <FundoBackground container>
-            <MainPageDashboard arquivo={arquivo} templates={FakeTemplatePendente} cardAtivo={ativo} cardPendente={pendente} templateData={data} />
+            {allData ? (
+                <MainPageDashboard arquivo={allData.arquivo} templates={templates} cardAtivo={allData.arquivoData.Ativo} cardPendente={allData.arquivoData.Pendente} templateData={allData.templateData} />
+            ) : (
+                <Box sx={{ width: '100%' }} display='flex' alignItems='center' justifyContent='center'>
+                    <CircularProgress />
+                </Box>
+            )}
         </FundoBackground >
     );
 }
