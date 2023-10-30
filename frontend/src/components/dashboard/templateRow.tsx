@@ -4,14 +4,14 @@ import { BiPlus } from 'react-icons/bi';
 import { AiOutlineClose, AiOutlineUser } from 'react-icons/ai';
 import * as React from 'react';
 import { formatarData } from "../../logic/utils/data";
-import GridContainers from "../../components/muiComponents/gridContainers";
-import { Transition } from "../../components/muiComponents/dialog";
-import TableCampos from "../../components/templates/tableCampos";
-import { BoxSpanGray } from "../../components/muiComponents/boxes";
+import GridContainers from "../muiComponents/gridContainers";
+import { Transition } from "../muiComponents/dialog";
+import TableCampos from "../templates/tableCampos";
+import { BoxSpanGray } from "../muiComponents/boxes";
 import api from "../../logic/api/api";
 import Swal from "sweetalert2";
 import theme from "../../theme";
-import { AlertSweet } from "../../components/alerts/sweetAlerts";
+import { AlertSweet } from "../alerts/sweetAlerts";
 
 const TemplateRow = ({ template }: { template: GetTemplatePuroProps }) => {
     const [open, setOpen] = React.useState(false);

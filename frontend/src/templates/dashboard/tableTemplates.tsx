@@ -2,7 +2,7 @@ import { GetTemplatePuroProps } from "../../logic/interfaces/template";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, TablePagination, Container } from "@mui/material";
 import * as React from 'react';
 import { TemplateContainerGrid } from "../../styles/gridStyle";
-import TemplateRow from "./templateRow";
+import TemplateRow from "../../components/dashboard/templateRow";
 
 const TableTemplates = ({ data }: { data: GetTemplatePuroProps[] }) => {
 
