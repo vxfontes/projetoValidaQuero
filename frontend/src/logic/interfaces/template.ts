@@ -13,19 +13,21 @@ export interface TemplateMainProps {
     descricao: string;
 }
 
-export interface GetTemplateProps {
+export interface GetTemplatePuroProps {
     id: number;
     titulo: string;
     descricao: string;
     dataCriacao: string;
     quantidadeCampos: number;
     campos: CamposProps[];
-    status: string;
     usuario: UserMainProps;
     formato: string;
-    arquivos: FileProps[]
+    status: string;
 }
 
+export interface GetTemplateProps extends GetTemplatePuroProps {
+    arquivos: FileProps[]
+}
 export interface TemplateProps extends TemplateCreateProps {
     id: number;
     dataCriacao: string;
