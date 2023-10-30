@@ -13,12 +13,12 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
     const customColors = ['#EA5455', '#213555'];
 
     return (
-        <div style={{ height: '300px', width: '90%' }}>
+        <div style={{ height: 260, width: '90%', marginTop: -30 }}>
             <ResponsiveBar
                 data={data}
                 keys={['ativos', 'inativos']}
                 indexBy="month"
-                margin={{ top: 50, right: 60, bottom: 50, left: 60 }}
+                margin={{ top: 60, right: 60, bottom: 50, left: 35 }}
                 padding={0.3}
                 layout="vertical"
                 colors={customColors}
@@ -46,7 +46,7 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
                         translateX: 120,
                         translateY: 0,
                         itemsSpacing: 2,
-                        itemWidth: 100,
+                        itemWidth: 120,
                         itemHeight: 20,
                         itemDirection: 'left-to-right',
                         itemOpacity: 0.85,
