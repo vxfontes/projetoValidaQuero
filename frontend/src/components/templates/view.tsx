@@ -127,8 +127,8 @@ const ViewTemplate = () => {
 
 
                                     <Grid item xl={4} lg={4} md={4} sm={12} xs={12} display='flex' justifyContent='space-around' alignItems='center'>
-                                        <Typography variant="body1" color="initial">
-                                            <AiOutlineUser style={{ border: '1px solid #0000005a', borderRadius: '4px', marginRight: '2px' }} />
+                                        <Typography variant="body1" color="initial" sx={{ display: 'flex', alignItems: 'center' }}>
+                                            <AiOutlineUser style={{ border: '1px solid #0000005a', borderRadius: '4px', marginRight: '5px' }} />
                                             {template.usuario.nome}
                                         </Typography>
 
@@ -218,8 +218,8 @@ const ViewTemplate = () => {
                                             </Box>
                                         </Box>
 
-                                        <Box>
-                                            <TableCampos template={template} />
+                                        <Box maxWidth='88%'>
+                                            <TableCampos campos={template.campos} />
                                         </Box>
                                     </Grid>
 
