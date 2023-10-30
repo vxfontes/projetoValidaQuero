@@ -1,10 +1,10 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
-import { TemplateAllProps } from "../../logic/interfaces/template";
+import { CamposProps } from "../../logic/interfaces/template";
 
-const TableCampos = ({ template }: TemplateAllProps) => {
+const TableCampos = ({ campos }: {campos: CamposProps[]}) => {
     return (
         <TableContainer>
-            <Table size="small" sx={{ maxWidth: '80%' }}>
+            <Table size="small">
                 <TableHead>
                     <TableRow>
                         <TableCell></TableCell>
@@ -14,7 +14,7 @@ const TableCampos = ({ template }: TemplateAllProps) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {template.campos.map((campo, index) => (
+                    {campos.map((campo, index) => (
                         <TableRow
                             key={campo.nome}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
