@@ -88,8 +88,19 @@ async def data():
         GROUP BY "status";
     '''
 
+    query_templates_mes = '''
+        SELECT
+            CONCAT(LPAD(EXTRACT(MONTH FROM "dataCriacao")::text, 2, '0'), '/', EXTRACT(YEAR FROM "dataCriacao")) AS "month",
+            SUM(CASE WHEN "status" = 'Ativo' THEN 1 ELSE 0 END) AS "ativos",
+            SUM(CASE WHEN "status" = 'Desativado' THEN 1 ELSE 0 END) AS "inativos"
+        FROM "ValidaQuero"."template"
+        GROUP BY "month"
+        ORDER BY "month";
+    '''
+
     result_arquivos = db.execute(text(query_arquivos)).fetchone()
     result_templates = db.execute(text(query_templates)).fetchall()
+    result_templates_mes = db.execute(text(query_templates_mes)).fetchall()
 
     dashboard_data = {"arquivo": {}}
 
@@ -110,5 +121,15 @@ async def data():
         }
     
     dashboard_data["arquivoData"] = arquivoData
+
+    templates_mes = []
+    for month, ativos, inativos in result_templates_mes:
+        templates_mes.append({
+            "month": month,
+            "ativos": ativos,
+            "inativos": inativos
+        })
+
+    dashboard_data["templateData"] = templates_mes
 
     return dashboard_data
