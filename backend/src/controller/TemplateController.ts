@@ -178,7 +178,7 @@ export class TemplateController {
                 .leftJoinAndSelect("template.usuario", "usuario")
                 .leftJoinAndSelect("template.formato", "formato")
                 .leftJoinAndSelect("template.arquivos", "arquivos")
-                .leftJoinAndSelect("arquivos.usuario", "arquivo_usuario") 
+                .leftJoinAndSelect("arquivos.usuario", "arquivo_usuario")
                 .leftJoinAndSelect("arquivos.template", "arquivo_template")
                 .where("template.id = :id", { id: templateId })
                 .select([
@@ -205,6 +205,37 @@ export class TemplateController {
             response.status(200).json({ status: 'success', message: 'Template encontrado com sucesso', template: formattedTemplate });
         } catch (error) {
             response.status(500).json({ status: 'error', message: 'Erro ao obter o template', error: error });
+        }
+    }
+
+
+    /**
+     * 
+     * @param response todos os templates do banco de dados
+     */
+    async pendentes(request: Request, response: Response) {
+        try {
+            const templates = await templateRepository
+                .createQueryBuilder("template")
+                .leftJoinAndSelect("template.usuario", "usuario")
+                .leftJoinAndSelect("template.formato", "formato")
+                .where('template.status = :status', { status: StatusEnum.Pendente })
+                .select([
+                    "template",
+                    "usuario.nome",
+                    "usuario.matricula",
+                    "formato.titulo",
+                ])
+                .getMany();
+
+            const formattedTemplates = templates.map(template => ({
+                ...template,
+                formato: template.formato.titulo
+            }));
+
+            response.status(201).json({ status: 'success', message: 'Templates encontrados com sucesso', templates: formattedTemplates });
+        } catch (error) {
+            response.status(500).json({ status: 'error', message: 'Erro ao obter template', error: error });
         }
     }
 
