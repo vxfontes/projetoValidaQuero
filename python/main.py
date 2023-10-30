@@ -69,3 +69,46 @@ async def verify_file(data: Request):
             return requisicao(titulo, linhas, True, url, usuario, template)
         else:
             return upload_result
+
+
+@app.get("/dashboard")
+async def data():
+    query_arquivos = '''
+        SELECT
+            SUM(CASE WHEN "aprovado" = TRUE THEN 1 ELSE 0 END) AS "Aprovados",
+            SUM(CASE WHEN "aprovado" = FALSE THEN 1 ELSE 0 END) AS "Reprovados"
+        FROM "ValidaQuero"."arquivo"
+    '''
+
+    query_templates = '''
+        SELECT
+            "status",
+            COUNT(*) AS "Quantidade de Templates"
+        FROM "ValidaQuero"."template"
+        GROUP BY "status";
+    '''
+
+    result_arquivos = db.execute(text(query_arquivos)).fetchone()
+    result_templates = db.execute(text(query_templates)).fetchall()
+
+    dashboard_data = {"arquivo": {}}
+
+    if result_arquivos:
+        aprovados, reprovados = result_arquivos
+        dashboard_data["arquivo"]["Aprovados"] = aprovados
+        dashboard_data["arquivo"]["Reprovados"] = reprovados
+
+    arquivoData = {}
+    total = 0
+    for status, quantidade in result_templates:
+        total = total + quantidade
+
+    for status, quantidade in result_templates:
+        arquivoData[status] = {
+            "value": quantidade,
+            "total": total
+        }
+    
+    dashboard_data["arquivoData"] = arquivoData
+
+    return dashboard_data
