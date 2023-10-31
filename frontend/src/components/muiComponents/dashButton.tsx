@@ -6,11 +6,14 @@ interface CustomButtonProps {
     icon: React.ReactNode;
     text: string;
     onClick: (event: React.MouseEvent) => void;
+    disabled?:boolean;
 }
 
-const DashButton: React.FC<CustomButtonProps> = ({ icon, text, onClick }) => {
+const DashButton: React.FC<CustomButtonProps> = ({ icon, text, onClick, disabled }) => {
+    const disabledValue = disabled === undefined ? false : disabled
     return (
         <Button
+            disabled={disabledValue}
             onClick={onClick}
             sx={{
                 backgroundColor: theme.palette.fundoComponente?.main,
@@ -28,6 +31,9 @@ const DashButton: React.FC<CustomButtonProps> = ({ icon, text, onClick }) => {
                     backgroundColor: theme.palette.fundoComponente?.dark,
                     transform: 'scale(1.10)',
                     transition: 'transform 0.4s ease'
+                },
+                '&[disabled]': { 
+                    backgroundColor: theme.palette.fundoComponente?.dark,
                 },
                 [theme.breakpoints.down('md')]: { ml: '10%' }
             }}

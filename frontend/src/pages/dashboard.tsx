@@ -6,6 +6,7 @@ import MainPageDashboard from '../templates/dashboard/dashboard';
 import * as React from 'react';
 import api from "../logic/api/api";
 import { GetTemplatePuroProps } from "../logic/interfaces/template";
+import { UserVerifyProps } from "../logic/interfaces/user";
 
 interface SubProps {
     value: number;
@@ -31,7 +32,9 @@ interface Props {
 const Dashboard = () => {
 
     const [allData, setData] = React.useState<Props>();
+    const [disabled, setDisabled] = React.useState(false);
     const [templates, setTemplates] = React.useState<GetTemplatePuroProps[]>([]);
+    const [users, setUsers] = React.useState<UserVerifyProps[]>([]);
 
     async function connect() {
         try {
@@ -59,12 +62,28 @@ const Dashboard = () => {
                 }
             } else AlertSweet(res.data.message, 'error', false)
         }).catch((error) => AlertSweet(error.response.data.message, 'error', false))
+
+        api.get(`/users/pendente`).then(res => {
+            if (res.data.status === 'success') {
+                if (res.data.usuarios === undefined) {
+                    setDisabled(true)
+                    AlertSweet("Não existem usuários não verificados", 'error', false)
+                }
+                else setUsers(res.data.usuarios)
+            } else {
+                setDisabled(true)
+                AlertSweet(res.data.message, 'error', false)
+            }
+        }).catch((error) => {
+            setDisabled(true)
+            AlertSweet(error.response.data.message, 'error', false)
+        })
     }, []);
 
     return (
         <FundoBackground container>
             {allData ? (
-                <MainPageDashboard arquivo={allData.arquivo} templates={templates} cardAtivo={allData.arquivoData.Ativo} cardPendente={allData.arquivoData.Pendente} templateData={allData.templateData} />
+                <MainPageDashboard disabled={disabled} users={users} arquivo={allData.arquivo} templates={templates} cardAtivo={allData.arquivoData.Ativo} cardPendente={allData.arquivoData.Pendente} templateData={allData.templateData} />
             ) : (
                 <Box sx={{ width: '100%' }} display='flex' alignItems='center' justifyContent='center'>
                     <CircularProgress />

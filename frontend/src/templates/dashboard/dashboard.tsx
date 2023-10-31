@@ -10,6 +10,8 @@ import img from '../../assets/drawkit/dashTable.svg';
 import TableTemplates from './tableTemplates';
 import { GetTemplatePuroProps } from '../../logic/interfaces/template';
 import { TemplateChartProps, ArquivoCharts } from '../../components/charts/mine/ArquivoRelatio';
+import { UserVerifyProps } from '../../logic/interfaces/user';
+import ModalUsers from '../../components/dashboard/modalUserts';
 
 
 export interface DashMainProps {
@@ -20,14 +22,16 @@ export interface DashMainProps {
     arquivo: {
         aprovado: number;
         recusado: number;
-    }
+    },
+    users: UserVerifyProps[];
+    disabled: boolean
 }
 
-const MainPageDashboard = ({templateData, cardAtivo, cardPendente, templates, arquivo}: DashMainProps) => {
-    
+const MainPageDashboard = ({ disabled, users, templateData, cardAtivo, cardPendente, templates, arquivo }: DashMainProps) => {
+
     const [open, setOpen] = React.useState(false);
-    const {showTablet} = useScreenSize()
-    
+    const { showTablet } = useScreenSize()
+
     return (
         <GridContainers sx={{ mt: 5, mx: 2, alignItems: 'center', justifyContent: 'center' }} align='center' direction='row' spacing={2}>
 
@@ -44,13 +48,16 @@ const MainPageDashboard = ({templateData, cardAtivo, cardPendente, templates, ar
             <Grid mx={2} item xl={2} lg={2} md={2} sm={11} xs={11}>
                 <DashButton icon={<AiOutlineFilePdf size={32} color='black' />}
                     text="Exportar"
-                    onClick={() => setOpen(true)}
+                    onClick={() => console.log('exportando')}
                 />
                 <DashButton icon={<AiOutlineUsergroupAdd size={32} color='black' />}
+                    disabled={disabled}
                     text="Usuários"
                     onClick={() => setOpen(true)}
                 />
             </Grid>
+
+            <ModalUsers open={open} handleClose={() => setOpen(false)} users={users} />
 
             {!showTablet && (
                 <Grid sx={{ ml: -4 }} mx={2} item xl={2} lg={2} md={2} sm={11} xs={11}>
