@@ -195,12 +195,12 @@ export class UserController {
     /**
      * 
      * @param request matricula e senha
-     * @param response login efetuado ou não
+     * @param response verificação efetuada ou não
     */
     async verify(request: Request, response: Response) {
 
         try {
-            const { matricula } = request.body;
+            const matricula = request.params.matricula;
 
             if (!matricula) {
                 throw new Error("Matrícula é obrigatória");
@@ -218,6 +218,26 @@ export class UserController {
             }
         } catch (error) {
             response.status(500).json({ status: 'error', message: error.message, error: error });
+        }
+    }
+
+
+    /**
+     * 
+     * @param request 
+     * @param response todos os usuarios pendentes do sistema
+     */
+    async pendente(request: Request, response: Response) {
+        try {
+
+            const usuarios = await userRepository.find({
+                select: ["nome", "matricula", "perfil", "verificado"],
+                where: { verificado: false }
+            });
+
+            response.status(201).json({ status: 'success', message: 'Usuários encontrados com sucesso', usuarios: usuarios });
+        } catch (error) {
+            response.status(500).json({ status: 'error', message: 'Erro ao obter usuários', error: error });
         }
     }
 }

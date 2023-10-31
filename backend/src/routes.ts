@@ -15,6 +15,7 @@ const PerfilController = new UserPerfilController();
 
 // usuarios
 routes.get("/users", UsuarioController.all);
+routes.get("/users/pendente", UsuarioController.pendente);
 routes.get("/users/:matricula", UsuarioController.one);
 routes.post("/users", UsuarioController.create);
 routes.get("/users/verify/:matricula", UsuarioController.verify);
