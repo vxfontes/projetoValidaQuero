@@ -37,7 +37,7 @@ const TableTemplates = ({ data }: { data: GetTemplatePuroProps[] }) => {
                                 ? templates.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 : templates
                             ).map((template) => (
-                                <TemplateRow template={template} />
+                                <TemplateRow key={template.id} template={template} />
                             ))}
                         </TableBody>
                     </Table>
