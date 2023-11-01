@@ -197,23 +197,36 @@ const ViewTemplate = () => {
                                                 )}
 
                                                 {(usuario.verificado && usuario.perfil !== 'Gerente') && (
-                                                    <Chip
-                                                        label='Upload de arquivo'
-                                                        sx={{
-                                                            cursor: 'pointer',
-                                                            backgroundColor: theme.palette.azulClaro?.main,
-                                                            color: 'white',
-                                                            transition: 'background-color 0.3s, transform 0.3s',
+                                                    <>
+                                                        {checked ? (
+                                                            <Chip
+                                                                label='Upload de arquivo'
+                                                                sx={{
+                                                                    cursor: 'pointer',
+                                                                    backgroundColor: theme.palette.azulClaro?.main,
+                                                                    color: 'white',
+                                                                    transition: 'background-color 0.3s, transform 0.3s',
 
-                                                            '&:hover': {
-                                                                cursor: 'pointer',
-                                                                backgroundColor: theme.palette.azulClaro?.dark,
-                                                                transform: 'scale(1.06)',
-                                                            },
-                                                        }}
-                                                        onClick={() => setModal(true)}
-                                                        icon={<FiUpload color="white" size={20} style={{ marginLeft: 10 }} />}
-                                                    />
+                                                                    '&:hover': {
+                                                                        cursor: 'pointer',
+                                                                        backgroundColor: theme.palette.azulClaro?.dark,
+                                                                        transform: 'scale(1.06)',
+                                                                    },
+                                                                }}
+                                                                onClick={() => setModal(true)}
+                                                                icon={<FiUpload color="white" size={20} style={{ marginLeft: 10 }} />}
+                                                            />
+                                                        ) : (
+                                                            <Chip
+                                                                label='Upload de arquivo'
+                                                                sx={{
+                                                                    backgroundColor: 'gray',
+                                                                    color: 'white',
+                                                                }}
+                                                                icon={<FiUpload color="white" size={20} style={{ marginLeft: 10 }} />}
+                                                            />
+                                                        )}
+                                                    </>
                                                 )}
                                             </Box>
                                         </Box>
