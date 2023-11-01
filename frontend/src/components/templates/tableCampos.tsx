@@ -1,5 +1,6 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { CamposProps } from "../../logic/interfaces/template";
+import { pandasToHuman } from "../../logic/utils/pandasHuman";
 
 const TableCampos = ({ campos }: {campos: CamposProps[]}) => {
     return (
@@ -24,7 +25,7 @@ const TableCampos = ({ campos }: {campos: CamposProps[]}) => {
                             </TableCell>
                             <TableCell align="left">{campo.nome}</TableCell>
                             <TableCell align="right">{campo.nulo ? "Sim" : "Não"}</TableCell>
-                            <TableCell align="right">{campo.tipo}</TableCell>
+                            <TableCell align="right">{pandasToHuman(campo.tipo)}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

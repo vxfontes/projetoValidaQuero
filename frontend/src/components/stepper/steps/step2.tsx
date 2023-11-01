@@ -7,10 +7,10 @@ import useTemplate from "../../../logic/core/functions/template";
 import { PropsButtons } from "../../../logic/interfaces/stepper";
 import { FieldSelectFilledCampos, TextFieldFilled } from "../../muiComponents/textFields";
 import { fieldFormik } from "../../../styles/fieldStyle";
-import { tipagem } from "../../../data/tipagem";
 import { FieldCampo } from "../../muiComponents/fieldArrayError";
 import { transformaNulos } from "../../../logic/utils/transformaBoolean";
 import { CamposFirstProps } from "../../../logic/interfaces/template";
+import { tiposCampos } from "../../../logic/utils/pandasHuman";
 
 interface CamposArrayProps {
     campos: CamposFirstProps[]
@@ -60,7 +60,7 @@ const Step2 = ({ advanceClick, returnClick, numberPage }: PropsButtons) => {
 
                                                         <FieldCampo errors={errors} campo="tipo" index={index}>
                                                             <Field sx={fieldFormik} name={`campos.${index}.tipo`} label='Tipo do campo' component={FieldSelectFilledCampos}>
-                                                                {tipagem.map(tipo => <MenuItem key={tipo} value={tipo}>{tipo}</MenuItem>)}
+                                                                {tiposCampos.map(tipo => <MenuItem key={tipo.pandas} value={tipo.pandas}>{tipo.human}</MenuItem>)}
                                                             </Field>
                                                         </FieldCampo>
 
