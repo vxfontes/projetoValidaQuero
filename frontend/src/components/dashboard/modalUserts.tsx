@@ -85,7 +85,7 @@ const ModalUsers = ({ open, handleClose, users }: Props) => {
 
                 <GridContainers align='center' direction='row' justify="space-around">
                     {usersToDisplay.map(user => (
-                        <UserComponent item my={1} xl={5} lg={5} md={5} sm={12} xs={12} px={2}>
+                        <UserComponent key={user.matricula} item my={1} xl={5} lg={5} md={5} sm={12} xs={12} px={2}>
                             <GridContainers align='center' direction='row' justify="space-evenly">
                                 <Grid py={2} item xl={9} lg={9} md={9} sm={9} xs={9}>
                                     <Typography variant="h6" color="initial">{user.nome}</Typography>

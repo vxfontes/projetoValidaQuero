@@ -80,14 +80,14 @@ const TemplateRow = ({ template }: { template: GetTemplatePuroProps }) => {
                 keepMounted
                 open={open} onClose={handleClose}>
                 <GridContainers sx={{ width: '380px', px: '5%' }} align="center" direction="row">
-                    <Grid xs={12} sx={{ display: "flex", justifyContent: 'space-between', alignItems: 'center', my: 2 }}>
+                    <Grid item xs={12} sx={{ display: "flex", justifyContent: 'space-between', alignItems: 'center', my: 2 }}>
                         <Box gap={1} display='flex'>
                             <Button variant="contained" color="primary" onClick={handleAprovar}>Validar</Button>
                             <Button variant="contained" color="secondary" onClick={handleDeletar}>Deletar</Button>
                         </Box>
                         <Box><IconButton onClick={handleClose}><AiOutlineClose size={25} color="black" /></IconButton></Box>
                     </Grid>
-                    <Grid xs={12}>
+                    <Grid item xs={12}>
                         <Typography variant="h6" color="initial">{template.titulo}</Typography>
                         <Typography variant="body1" color="initial">{template.descricao}</Typography>
                         <Box my={2}>
@@ -97,16 +97,16 @@ const TemplateRow = ({ template }: { template: GetTemplatePuroProps }) => {
                         </Box>
                     </Grid>
 
-                    <Grid xs={12}>
+                    <Grid item xs={12}>
                         <Typography variant="caption" color="initial"><BoxSpanGray>Autor do template</BoxSpanGray></Typography>
                     </Grid>
-                    <Grid xs={8} mb={1}>
+                    <Grid item xs={8} mb={1}>
                         <Typography variant="body1" color="initial" sx={{ display: 'flex', alignItems: 'center' }}>
                             <AiOutlineUser style={{ border: '1px solid #0000005a', borderRadius: '4px', marginRight: '5px' }} />
                             {template.usuario.nome}
                         </Typography>
                     </Grid>
-                    <Grid xs={4} mb={1} textAlign='end'>
+                    <Grid item xs={4} mb={1} textAlign='end'>
                         <Typography variant="caption" color="initial"><BoxSpanGray>Data: </BoxSpanGray></Typography>
                         <Typography variant="caption" color="initial">{formatarData(template.dataCriacao)}</Typography>
                     </Grid>
