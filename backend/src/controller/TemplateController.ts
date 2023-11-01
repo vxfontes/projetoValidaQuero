@@ -13,10 +13,11 @@ export class TemplateController {
      */
     async create(request: Request, response: Response) {
         try {
-            const { titulo, descricao, quantidadeCampos, status, campos, formato, usuario } = request.body;
+            const { titulo, descricao, status, campos, formato, usuario } = request.body;
+            const quantidadeCampos = campos.length
 
             // Verifique se todos os campos obrigatórios estão presentes
-            if (!titulo || !descricao || !quantidadeCampos || !status || !campos || !formato || !usuario) {
+            if (!titulo || !descricao || !status || !campos || !formato || !usuario) {
                 throw new Error("Todos os campos são obrigatórios.");
             }
 
