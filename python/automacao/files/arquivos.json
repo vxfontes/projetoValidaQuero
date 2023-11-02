@@ -1,0 +1,4802 @@
+[
+    {
+        "titulo": "mercado com\u00e9rcio",
+        "linhas": 76,
+        "aprovado": false,
+        "url": "",
+        "usuario": "32032",
+        "template": 8
+    },
+    {
+        "titulo": "opera\u00e7\u00e3o log\u00edstica",
+        "linhas": 56,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "120",
+        "template": 34
+    },
+    {
+        "titulo": "concorr\u00eancia mercado",
+        "linhas": 73,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "34034",
+        "template": 3
+    },
+    {
+        "titulo": "log\u00edstica estrat\u00e9gia",
+        "linhas": 25,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "16016",
+        "template": 183
+    },
+    {
+        "titulo": "produto receita",
+        "linhas": 39,
+        "aprovado": false,
+        "url": "",
+        "usuario": "10010",
+        "template": 76
+    },
+    {
+        "titulo": "concorr\u00eancia gerenciamento",
+        "linhas": 39,
+        "aprovado": false,
+        "url": "",
+        "usuario": "9009",
+        "template": 125
+    },
+    {
+        "titulo": "franquia competi\u00e7\u00e3o",
+        "linhas": 32,
+        "aprovado": false,
+        "url": "",
+        "usuario": "28028",
+        "template": 44
+    },
+    {
+        "titulo": "parceria estrutura",
+        "linhas": 38,
+        "aprovado": false,
+        "url": "",
+        "usuario": "9009",
+        "template": 8
+    },
+    {
+        "titulo": "publicidade lucratividade",
+        "linhas": 49,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "17017",
+        "template": 36
+    },
+    {
+        "titulo": "gerenciamento concorr\u00eancia",
+        "linhas": 81,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "14014",
+        "template": 127
+    },
+    {
+        "titulo": "fideliza\u00e7\u00e3o concorr\u00eancia",
+        "linhas": 94,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "21021",
+        "template": 12
+    },
+    {
+        "titulo": "fornecimento lideran\u00e7a",
+        "linhas": 43,
+        "aprovado": false,
+        "url": "",
+        "usuario": "2002",
+        "template": 22
+    },
+    {
+        "titulo": "estrat\u00e9gia internacionaliza\u00e7\u00e3o",
+        "linhas": 86,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "10010",
+        "template": 77
+    },
+    {
+        "titulo": "atendimento parceria",
+        "linhas": 50,
+        "aprovado": false,
+        "url": "",
+        "usuario": "17017",
+        "template": 95
+    },
+    {
+        "titulo": "varejo publicidade",
+        "linhas": 54,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "1001",
+        "template": 157
+    },
+    {
+        "titulo": "parceria feedback",
+        "linhas": 49,
+        "aprovado": false,
+        "url": "",
+        "usuario": "5005",
+        "template": 145
+    },
+    {
+        "titulo": "produ\u00e7\u00e3o internacionaliza\u00e7\u00e3o",
+        "linhas": 15,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "20020",
+        "template": 8
+    },
+    {
+        "titulo": "e-commerce expans\u00e3o",
+        "linhas": 18,
+        "aprovado": false,
+        "url": "",
+        "usuario": "17017",
+        "template": 130
+    },
+    {
+        "titulo": "capital segmenta\u00e7\u00e3o",
+        "linhas": 78,
+        "aprovado": false,
+        "url": "",
+        "usuario": "980192",
+        "template": 128
+    },
+    {
+        "titulo": "gerenciamento visibilidade",
+        "linhas": 24,
+        "aprovado": false,
+        "url": "",
+        "usuario": "29029",
+        "template": 151
+    },
+    {
+        "titulo": "estrat\u00e9gia opera\u00e7\u00e3o",
+        "linhas": 10,
+        "aprovado": false,
+        "url": "",
+        "usuario": "14014",
+        "template": 155
+    },
+    {
+        "titulo": "opera\u00e7\u00e3o marketing",
+        "linhas": 67,
+        "aprovado": false,
+        "url": "",
+        "usuario": "22022",
+        "template": 79
+    },
+    {
+        "titulo": "log\u00edstica estoques",
+        "linhas": 39,
+        "aprovado": false,
+        "url": "",
+        "usuario": "42042",
+        "template": 38
+    },
+    {
+        "titulo": "concorr\u00eancia despesas",
+        "linhas": 99,
+        "aprovado": false,
+        "url": "",
+        "usuario": "2002",
+        "template": 131
+    },
+    {
+        "titulo": "compras benchmark",
+        "linhas": 71,
+        "aprovado": false,
+        "url": "",
+        "usuario": "29029",
+        "template": 26
+    },
+    {
+        "titulo": "gerenciamento promo\u00e7\u00e3o",
+        "linhas": 60,
+        "aprovado": false,
+        "url": "",
+        "usuario": "1001",
+        "template": 62
+    },
+    {
+        "titulo": "gerenciamento log\u00edstica",
+        "linhas": 22,
+        "aprovado": false,
+        "url": "",
+        "usuario": "8008",
+        "template": 200
+    },
+    {
+        "titulo": "gerenciamento lideran\u00e7a",
+        "linhas": 46,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "23023",
+        "template": 159
+    },
+    {
+        "titulo": "lucratividade feedback",
+        "linhas": 87,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "8008",
+        "template": 82
+    },
+    {
+        "titulo": "empregados estrat\u00e9gia",
+        "linhas": 41,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "21021",
+        "template": 8
+    },
+    {
+        "titulo": "tend\u00eancia tend\u00eancia",
+        "linhas": 19,
+        "aprovado": false,
+        "url": "",
+        "usuario": "23023",
+        "template": 94
+    },
+    {
+        "titulo": "capital demografia",
+        "linhas": 38,
+        "aprovado": false,
+        "url": "",
+        "usuario": "19019",
+        "template": 64
+    },
+    {
+        "titulo": "marketing franquia",
+        "linhas": 29,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "5005",
+        "template": 89
+    },
+    {
+        "titulo": "vendas fideliza\u00e7\u00e3o",
+        "linhas": 40,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "4004",
+        "template": 156
+    },
+    {
+        "titulo": "log\u00edstica competi\u00e7\u00e3o",
+        "linhas": 90,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "5005",
+        "template": 94
+    },
+    {
+        "titulo": "estudo inova\u00e7\u00e3o",
+        "linhas": 75,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "7007",
+        "template": 152
+    },
+    {
+        "titulo": "log\u00edstica neg\u00f3cios",
+        "linhas": 10,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "38038",
+        "template": 71
+    },
+    {
+        "titulo": "marketing mercado",
+        "linhas": 95,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "9009",
+        "template": 61
+    },
+    {
+        "titulo": "log\u00edstica mercado",
+        "linhas": 89,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "36036",
+        "template": 116
+    },
+    {
+        "titulo": "estudo risco",
+        "linhas": 67,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "120",
+        "template": 80
+    },
+    {
+        "titulo": "atendimento atendimento",
+        "linhas": 19,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "15015",
+        "template": 105
+    },
+    {
+        "titulo": "vendas log\u00edstica",
+        "linhas": 95,
+        "aprovado": false,
+        "url": "",
+        "usuario": "4004",
+        "template": 18
+    },
+    {
+        "titulo": "satisfa\u00e7\u00e3o produ\u00e7\u00e3o",
+        "linhas": 66,
+        "aprovado": false,
+        "url": "",
+        "usuario": "34034",
+        "template": 122
+    },
+    {
+        "titulo": "lucro com\u00e9rcio",
+        "linhas": 19,
+        "aprovado": false,
+        "url": "",
+        "usuario": "36036",
+        "template": 102
+    },
+    {
+        "titulo": "varejo vendas",
+        "linhas": 71,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "2002",
+        "template": 10
+    },
+    {
+        "titulo": "gerenciamento estrat\u00e9gia",
+        "linhas": 23,
+        "aprovado": false,
+        "url": "",
+        "usuario": "14014",
+        "template": 25
+    },
+    {
+        "titulo": "satisfa\u00e7\u00e3o capital",
+        "linhas": 72,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "15015",
+        "template": 45
+    },
+    {
+        "titulo": "log\u00edstica lideran\u00e7a",
+        "linhas": 78,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "34034",
+        "template": 109
+    },
+    {
+        "titulo": "despesas empregados",
+        "linhas": 93,
+        "aprovado": false,
+        "url": "",
+        "usuario": "5005",
+        "template": 57
+    },
+    {
+        "titulo": "publicidade estrutura",
+        "linhas": 75,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "36036",
+        "template": 18
+    },
+    {
+        "titulo": "benchmark fornecimento",
+        "linhas": 39,
+        "aprovado": false,
+        "url": "",
+        "usuario": "27027",
+        "template": 40
+    },
+    {
+        "titulo": "estudo demografia",
+        "linhas": 14,
+        "aprovado": false,
+        "url": "",
+        "usuario": "3003",
+        "template": 186
+    },
+    {
+        "titulo": "estrat\u00e9gia estoques",
+        "linhas": 92,
+        "aprovado": false,
+        "url": "",
+        "usuario": "1001",
+        "template": 146
+    },
+    {
+        "titulo": "e-commerce gerenciamento",
+        "linhas": 36,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "21021",
+        "template": 97
+    },
+    {
+        "titulo": "satisfa\u00e7\u00e3o parceria",
+        "linhas": 24,
+        "aprovado": false,
+        "url": "",
+        "usuario": "36036",
+        "template": 45
+    },
+    {
+        "titulo": "capital concilia\u00e7\u00e3o",
+        "linhas": 75,
+        "aprovado": false,
+        "url": "",
+        "usuario": "1001",
+        "template": 26
+    },
+    {
+        "titulo": "treinamento lucratividade",
+        "linhas": 24,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "15015",
+        "template": 142
+    },
+    {
+        "titulo": "estoques expans\u00e3o",
+        "linhas": 49,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "15015",
+        "template": 89
+    },
+    {
+        "titulo": "com\u00e9rcio capital",
+        "linhas": 73,
+        "aprovado": false,
+        "url": "",
+        "usuario": "32032",
+        "template": 83
+    },
+    {
+        "titulo": "vis\u00e3o competi\u00e7\u00e3o",
+        "linhas": 37,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "9009",
+        "template": 8
+    },
+    {
+        "titulo": "promo\u00e7\u00e3o parceria",
+        "linhas": 21,
+        "aprovado": false,
+        "url": "",
+        "usuario": "3003",
+        "template": 111
+    },
+    {
+        "titulo": "receita log\u00edstica",
+        "linhas": 78,
+        "aprovado": false,
+        "url": "",
+        "usuario": "28028",
+        "template": 179
+    },
+    {
+        "titulo": "fus\u00e3o compras",
+        "linhas": 55,
+        "aprovado": false,
+        "url": "",
+        "usuario": "22022",
+        "template": 184
+    },
+    {
+        "titulo": "publicidade fornecedores",
+        "linhas": 87,
+        "aprovado": false,
+        "url": "",
+        "usuario": "32032",
+        "template": 5
+    },
+    {
+        "titulo": "treinamento risco",
+        "linhas": 88,
+        "aprovado": false,
+        "url": "",
+        "usuario": "7007",
+        "template": 141
+    },
+    {
+        "titulo": "concilia\u00e7\u00e3o benchmark",
+        "linhas": 90,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "14014",
+        "template": 122
+    },
+    {
+        "titulo": "concorr\u00eancia produto",
+        "linhas": 69,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "19019",
+        "template": 80
+    },
+    {
+        "titulo": "franquia fus\u00e3o",
+        "linhas": 98,
+        "aprovado": false,
+        "url": "",
+        "usuario": "34034",
+        "template": 122
+    },
+    {
+        "titulo": "pagamento finan\u00e7as",
+        "linhas": 100,
+        "aprovado": false,
+        "url": "",
+        "usuario": "23023",
+        "template": 164
+    },
+    {
+        "titulo": "fus\u00e3o crescimento",
+        "linhas": 64,
+        "aprovado": false,
+        "url": "",
+        "usuario": "48048",
+        "template": 145
+    },
+    {
+        "titulo": "estoque vis\u00e3o",
+        "linhas": 98,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "36036",
+        "template": 159
+    },
+    {
+        "titulo": "estrat\u00e9gia vis\u00e3o",
+        "linhas": 67,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "17017",
+        "template": 1
+    },
+    {
+        "titulo": "crescimento despesas",
+        "linhas": 28,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "27027",
+        "template": 13
+    },
+    {
+        "titulo": "log\u00edstica inova\u00e7\u00e3o",
+        "linhas": 94,
+        "aprovado": false,
+        "url": "",
+        "usuario": "36036",
+        "template": 178
+    },
+    {
+        "titulo": "or\u00e7amento investimento",
+        "linhas": 43,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "7007",
+        "template": 114
+    },
+    {
+        "titulo": "qualidade publicidade",
+        "linhas": 11,
+        "aprovado": false,
+        "url": "",
+        "usuario": "28028",
+        "template": 154
+    },
+    {
+        "titulo": "fideliza\u00e7\u00e3o concilia\u00e7\u00e3o",
+        "linhas": 30,
+        "aprovado": false,
+        "url": "",
+        "usuario": "29029",
+        "template": 168
+    },
+    {
+        "titulo": "estrutura investimento",
+        "linhas": 97,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "35035",
+        "template": 156
+    },
+    {
+        "titulo": "gerenciamento estrat\u00e9gia",
+        "linhas": 67,
+        "aprovado": false,
+        "url": "",
+        "usuario": "12012",
+        "template": 168
+    },
+    {
+        "titulo": "estrutura crescimento",
+        "linhas": 94,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "48048",
+        "template": 79
+    },
+    {
+        "titulo": "servi\u00e7o segmenta\u00e7\u00e3o",
+        "linhas": 32,
+        "aprovado": false,
+        "url": "",
+        "usuario": "8008",
+        "template": 107
+    },
+    {
+        "titulo": "estoque benchmark",
+        "linhas": 70,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "14014",
+        "template": 81
+    },
+    {
+        "titulo": "gerenciamento e-commerce",
+        "linhas": 76,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "12012",
+        "template": 39
+    },
+    {
+        "titulo": "estudo demografia",
+        "linhas": 82,
+        "aprovado": false,
+        "url": "",
+        "usuario": "3003",
+        "template": 128
+    },
+    {
+        "titulo": "parceria estrat\u00e9gia",
+        "linhas": 27,
+        "aprovado": false,
+        "url": "",
+        "usuario": "22022",
+        "template": 87
+    },
+    {
+        "titulo": "risco competi\u00e7\u00e3o",
+        "linhas": 98,
+        "aprovado": false,
+        "url": "",
+        "usuario": "28028",
+        "template": 24
+    },
+    {
+        "titulo": "e-commerce lucro",
+        "linhas": 97,
+        "aprovado": false,
+        "url": "",
+        "usuario": "120",
+        "template": 28
+    },
+    {
+        "titulo": "lideran\u00e7a franquia",
+        "linhas": 31,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "9009",
+        "template": 81
+    },
+    {
+        "titulo": "feedback parceria",
+        "linhas": 77,
+        "aprovado": false,
+        "url": "",
+        "usuario": "23023",
+        "template": 54
+    },
+    {
+        "titulo": "log\u00edstica log\u00edstica",
+        "linhas": 10,
+        "aprovado": false,
+        "url": "",
+        "usuario": "19019",
+        "template": 81
+    },
+    {
+        "titulo": "produto opera\u00e7\u00e3o",
+        "linhas": 76,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "32032",
+        "template": 190
+    },
+    {
+        "titulo": "capital lucratividade",
+        "linhas": 44,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "4004",
+        "template": 131
+    },
+    {
+        "titulo": "servi\u00e7o despesas",
+        "linhas": 73,
+        "aprovado": false,
+        "url": "",
+        "usuario": "34034",
+        "template": 94
+    },
+    {
+        "titulo": "produto competi\u00e7\u00e3o",
+        "linhas": 98,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "8008",
+        "template": 93
+    },
+    {
+        "titulo": "servi\u00e7o concorr\u00eancia",
+        "linhas": 77,
+        "aprovado": false,
+        "url": "",
+        "usuario": "29029",
+        "template": 102
+    },
+    {
+        "titulo": "com\u00e9rcio risco",
+        "linhas": 41,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "23023",
+        "template": 61
+    },
+    {
+        "titulo": "vendas lideran\u00e7a",
+        "linhas": 49,
+        "aprovado": false,
+        "url": "",
+        "usuario": "20020",
+        "template": 88
+    },
+    {
+        "titulo": "retorno feedback",
+        "linhas": 95,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "12012",
+        "template": 13
+    },
+    {
+        "titulo": "marketing feedback",
+        "linhas": 36,
+        "aprovado": false,
+        "url": "",
+        "usuario": "27027",
+        "template": 187
+    },
+    {
+        "titulo": "tend\u00eancia mercado",
+        "linhas": 74,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "32032",
+        "template": 35
+    },
+    {
+        "titulo": "investimento visibilidade",
+        "linhas": 57,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "8008",
+        "template": 35
+    },
+    {
+        "titulo": "gerenciamento pre\u00e7o",
+        "linhas": 77,
+        "aprovado": false,
+        "url": "",
+        "usuario": "5005",
+        "template": 58
+    },
+    {
+        "titulo": "planejamento concorr\u00eancia",
+        "linhas": 77,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "36036",
+        "template": 104
+    },
+    {
+        "titulo": "concilia\u00e7\u00e3o fornecedores",
+        "linhas": 28,
+        "aprovado": false,
+        "url": "",
+        "usuario": "36036",
+        "template": 146
+    },
+    {
+        "titulo": "gerenciamento parceria",
+        "linhas": 97,
+        "aprovado": false,
+        "url": "",
+        "usuario": "12012",
+        "template": 34
+    },
+    {
+        "titulo": "estrutura estoque",
+        "linhas": 35,
+        "aprovado": false,
+        "url": "",
+        "usuario": "8008",
+        "template": 179
+    },
+    {
+        "titulo": "qualidade empregados",
+        "linhas": 24,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "15015",
+        "template": 178
+    },
+    {
+        "titulo": "vis\u00e3o visibilidade",
+        "linhas": 18,
+        "aprovado": false,
+        "url": "",
+        "usuario": "48048",
+        "template": 102
+    },
+    {
+        "titulo": "inova\u00e7\u00e3o servi\u00e7o",
+        "linhas": 77,
+        "aprovado": false,
+        "url": "",
+        "usuario": "27027",
+        "template": 39
+    },
+    {
+        "titulo": "investimento mercado",
+        "linhas": 14,
+        "aprovado": false,
+        "url": "",
+        "usuario": "27027",
+        "template": 105
+    },
+    {
+        "titulo": "gerenciamento atendimento",
+        "linhas": 68,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "5005",
+        "template": 154
+    },
+    {
+        "titulo": "parceria fus\u00e3o",
+        "linhas": 78,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "38038",
+        "template": 81
+    },
+    {
+        "titulo": "procedimento varejo",
+        "linhas": 71,
+        "aprovado": false,
+        "url": "",
+        "usuario": "19019",
+        "template": 76
+    },
+    {
+        "titulo": "loja gerenciamento",
+        "linhas": 20,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "12012",
+        "template": 114
+    },
+    {
+        "titulo": "procedimento lucratividade",
+        "linhas": 70,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "20020",
+        "template": 101
+    },
+    {
+        "titulo": "empregados estrat\u00e9gia",
+        "linhas": 59,
+        "aprovado": false,
+        "url": "",
+        "usuario": "980192",
+        "template": 27
+    },
+    {
+        "titulo": "gerenciamento benchmark",
+        "linhas": 75,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "9009",
+        "template": 130
+    },
+    {
+        "titulo": "concilia\u00e7\u00e3o marketing",
+        "linhas": 32,
+        "aprovado": false,
+        "url": "",
+        "usuario": "22022",
+        "template": 193
+    },
+    {
+        "titulo": "demografia log\u00edstica",
+        "linhas": 84,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "120",
+        "template": 200
+    },
+    {
+        "titulo": "feedback lucratividade",
+        "linhas": 89,
+        "aprovado": false,
+        "url": "",
+        "usuario": "10010",
+        "template": 79
+    },
+    {
+        "titulo": "procedimento concorr\u00eancia",
+        "linhas": 49,
+        "aprovado": false,
+        "url": "",
+        "usuario": "16016",
+        "template": 173
+    },
+    {
+        "titulo": "varejo franquia",
+        "linhas": 13,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "7007",
+        "template": 29
+    },
+    {
+        "titulo": "empreendedor parceria",
+        "linhas": 16,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "31031",
+        "template": 178
+    },
+    {
+        "titulo": "desempenho compras",
+        "linhas": 91,
+        "aprovado": false,
+        "url": "",
+        "usuario": "21021",
+        "template": 197
+    },
+    {
+        "titulo": "treinamento crescimento",
+        "linhas": 80,
+        "aprovado": false,
+        "url": "",
+        "usuario": "7007",
+        "template": 164
+    },
+    {
+        "titulo": "fornecedores com\u00e9rcio",
+        "linhas": 62,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "5005",
+        "template": 32
+    },
+    {
+        "titulo": "feedback treinamento",
+        "linhas": 90,
+        "aprovado": false,
+        "url": "",
+        "usuario": "38038",
+        "template": 184
+    },
+    {
+        "titulo": "varejo lucro",
+        "linhas": 75,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "17017",
+        "template": 117
+    },
+    {
+        "titulo": "compras atendimento",
+        "linhas": 81,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "2002",
+        "template": 82
+    },
+    {
+        "titulo": "gerenciamento risco",
+        "linhas": 87,
+        "aprovado": false,
+        "url": "",
+        "usuario": "23023",
+        "template": 132
+    },
+    {
+        "titulo": "gerenciamento vis\u00e3o",
+        "linhas": 86,
+        "aprovado": false,
+        "url": "",
+        "usuario": "9009",
+        "template": 83
+    },
+    {
+        "titulo": "franquia estudo",
+        "linhas": 63,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "17017",
+        "template": 23
+    },
+    {
+        "titulo": "gerenciamento pesquisa",
+        "linhas": 18,
+        "aprovado": false,
+        "url": "",
+        "usuario": "28028",
+        "template": 94
+    },
+    {
+        "titulo": "opera\u00e7\u00e3o despesas",
+        "linhas": 19,
+        "aprovado": false,
+        "url": "",
+        "usuario": "31031",
+        "template": 180
+    },
+    {
+        "titulo": "risco atendimento",
+        "linhas": 56,
+        "aprovado": false,
+        "url": "",
+        "usuario": "35035",
+        "template": 88
+    },
+    {
+        "titulo": "inova\u00e7\u00e3o estoques",
+        "linhas": 83,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "32032",
+        "template": 56
+    },
+    {
+        "titulo": "fornecimento planejamento",
+        "linhas": 52,
+        "aprovado": false,
+        "url": "",
+        "usuario": "32032",
+        "template": 145
+    },
+    {
+        "titulo": "concorr\u00eancia varejo",
+        "linhas": 39,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "31031",
+        "template": 101
+    },
+    {
+        "titulo": "estoque planejamento",
+        "linhas": 57,
+        "aprovado": false,
+        "url": "",
+        "usuario": "9009",
+        "template": 125
+    },
+    {
+        "titulo": "pagamento estoque",
+        "linhas": 33,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "14014",
+        "template": 57
+    },
+    {
+        "titulo": "log\u00edstica visibilidade",
+        "linhas": 72,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "10010",
+        "template": 173
+    },
+    {
+        "titulo": "risco estrat\u00e9gia",
+        "linhas": 71,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "31031",
+        "template": 144
+    },
+    {
+        "titulo": "promo\u00e7\u00e3o log\u00edstica",
+        "linhas": 14,
+        "aprovado": false,
+        "url": "",
+        "usuario": "22022",
+        "template": 186
+    },
+    {
+        "titulo": "empregados marketing",
+        "linhas": 28,
+        "aprovado": false,
+        "url": "",
+        "usuario": "14014",
+        "template": 190
+    },
+    {
+        "titulo": "parceria empreendedor",
+        "linhas": 38,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "32032",
+        "template": 163
+    },
+    {
+        "titulo": "concorr\u00eancia marketing",
+        "linhas": 100,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "5005",
+        "template": 117
+    },
+    {
+        "titulo": "log\u00edstica procedimento",
+        "linhas": 24,
+        "aprovado": false,
+        "url": "",
+        "usuario": "1001",
+        "template": 54
+    },
+    {
+        "titulo": "log\u00edstica neg\u00f3cios",
+        "linhas": 39,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "4004",
+        "template": 127
+    },
+    {
+        "titulo": "fornecedores liquida\u00e7\u00e3o",
+        "linhas": 15,
+        "aprovado": false,
+        "url": "",
+        "usuario": "8008",
+        "template": 22
+    },
+    {
+        "titulo": "log\u00edstica produ\u00e7\u00e3o",
+        "linhas": 41,
+        "aprovado": false,
+        "url": "",
+        "usuario": "29029",
+        "template": 19
+    },
+    {
+        "titulo": "estoque lucro",
+        "linhas": 86,
+        "aprovado": false,
+        "url": "",
+        "usuario": "15015",
+        "template": 186
+    },
+    {
+        "titulo": "opera\u00e7\u00e3o concorr\u00eancia",
+        "linhas": 40,
+        "aprovado": false,
+        "url": "",
+        "usuario": "8008",
+        "template": 74
+    },
+    {
+        "titulo": "an\u00e1lise fideliza\u00e7\u00e3o",
+        "linhas": 87,
+        "aprovado": false,
+        "url": "",
+        "usuario": "16016",
+        "template": 48
+    },
+    {
+        "titulo": "parceria franquia",
+        "linhas": 44,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "5005",
+        "template": 71
+    },
+    {
+        "titulo": "estoque lideran\u00e7a",
+        "linhas": 16,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "2002",
+        "template": 111
+    },
+    {
+        "titulo": "estrat\u00e9gia lideran\u00e7a",
+        "linhas": 41,
+        "aprovado": false,
+        "url": "",
+        "usuario": "48048",
+        "template": 34
+    },
+    {
+        "titulo": "gerenciamento qualidade",
+        "linhas": 35,
+        "aprovado": false,
+        "url": "",
+        "usuario": "7007",
+        "template": 41
+    },
+    {
+        "titulo": "estoque neg\u00f3cios",
+        "linhas": 78,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "14014",
+        "template": 75
+    },
+    {
+        "titulo": "mercado fus\u00e3o",
+        "linhas": 58,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "17017",
+        "template": 56
+    },
+    {
+        "titulo": "investimento parceria",
+        "linhas": 68,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "38038",
+        "template": 33
+    },
+    {
+        "titulo": "inova\u00e7\u00e3o benchmark",
+        "linhas": 95,
+        "aprovado": false,
+        "url": "",
+        "usuario": "3003",
+        "template": 157
+    },
+    {
+        "titulo": "lucratividade empregados",
+        "linhas": 39,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "10010",
+        "template": 17
+    },
+    {
+        "titulo": "satisfa\u00e7\u00e3o estrutura",
+        "linhas": 62,
+        "aprovado": false,
+        "url": "",
+        "usuario": "19019",
+        "template": 128
+    },
+    {
+        "titulo": "estoque lucratividade",
+        "linhas": 40,
+        "aprovado": false,
+        "url": "",
+        "usuario": "36036",
+        "template": 111
+    },
+    {
+        "titulo": "franquia fornecimento",
+        "linhas": 54,
+        "aprovado": false,
+        "url": "",
+        "usuario": "38038",
+        "template": 159
+    },
+    {
+        "titulo": "fus\u00e3o an\u00e1lise",
+        "linhas": 45,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "23023",
+        "template": 77
+    },
+    {
+        "titulo": "neg\u00f3cios planejamento",
+        "linhas": 54,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "21021",
+        "template": 8
+    },
+    {
+        "titulo": "estoques satisfa\u00e7\u00e3o",
+        "linhas": 100,
+        "aprovado": false,
+        "url": "",
+        "usuario": "2002",
+        "template": 186
+    },
+    {
+        "titulo": "pre\u00e7o parceria",
+        "linhas": 57,
+        "aprovado": false,
+        "url": "",
+        "usuario": "8008",
+        "template": 43
+    },
+    {
+        "titulo": "lucro demografia",
+        "linhas": 80,
+        "aprovado": false,
+        "url": "",
+        "usuario": "31031",
+        "template": 180
+    },
+    {
+        "titulo": "despesas estudo",
+        "linhas": 87,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "1001",
+        "template": 131
+    },
+    {
+        "titulo": "feedback e-commerce",
+        "linhas": 71,
+        "aprovado": false,
+        "url": "",
+        "usuario": "980192",
+        "template": 94
+    },
+    {
+        "titulo": "concorr\u00eancia fideliza\u00e7\u00e3o",
+        "linhas": 15,
+        "aprovado": false,
+        "url": "",
+        "usuario": "27027",
+        "template": 28
+    },
+    {
+        "titulo": "vendas concorr\u00eancia",
+        "linhas": 25,
+        "aprovado": false,
+        "url": "",
+        "usuario": "12012",
+        "template": 136
+    },
+    {
+        "titulo": "estrat\u00e9gia desempenho",
+        "linhas": 57,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "12012",
+        "template": 176
+    },
+    {
+        "titulo": "fus\u00e3o produto",
+        "linhas": 40,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "21021",
+        "template": 148
+    },
+    {
+        "titulo": "mercado cliente",
+        "linhas": 49,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "48048",
+        "template": 134
+    },
+    {
+        "titulo": "qualidade mercado",
+        "linhas": 83,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "27027",
+        "template": 157
+    },
+    {
+        "titulo": "qualidade estoques",
+        "linhas": 81,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "120",
+        "template": 72
+    },
+    {
+        "titulo": "crescimento crescimento",
+        "linhas": 76,
+        "aprovado": false,
+        "url": "",
+        "usuario": "28028",
+        "template": 8
+    },
+    {
+        "titulo": "atendimento retorno",
+        "linhas": 96,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "16016",
+        "template": 109
+    },
+    {
+        "titulo": "demografia lucratividade",
+        "linhas": 23,
+        "aprovado": false,
+        "url": "",
+        "usuario": "120",
+        "template": 57
+    },
+    {
+        "titulo": "competi\u00e7\u00e3o compras",
+        "linhas": 59,
+        "aprovado": false,
+        "url": "",
+        "usuario": "20020",
+        "template": 52
+    },
+    {
+        "titulo": "servi\u00e7o qualidade",
+        "linhas": 56,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "3003",
+        "template": 161
+    },
+    {
+        "titulo": "estudo estrat\u00e9gia",
+        "linhas": 45,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "38038",
+        "template": 119
+    },
+    {
+        "titulo": "estrat\u00e9gia treinamento",
+        "linhas": 88,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "5005",
+        "template": 121
+    },
+    {
+        "titulo": "parceria empreendedor",
+        "linhas": 96,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "42042",
+        "template": 3
+    },
+    {
+        "titulo": "vendas estoques",
+        "linhas": 26,
+        "aprovado": false,
+        "url": "",
+        "usuario": "19019",
+        "template": 130
+    },
+    {
+        "titulo": "com\u00e9rcio empregados",
+        "linhas": 89,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "21021",
+        "template": 47
+    },
+    {
+        "titulo": "despesas log\u00edstica",
+        "linhas": 77,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "4004",
+        "template": 80
+    },
+    {
+        "titulo": "lucro lucratividade",
+        "linhas": 46,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "12012",
+        "template": 134
+    },
+    {
+        "titulo": "marketing gerenciamento",
+        "linhas": 20,
+        "aprovado": false,
+        "url": "",
+        "usuario": "5005",
+        "template": 56
+    },
+    {
+        "titulo": "demografia treinamento",
+        "linhas": 25,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "9009",
+        "template": 132
+    },
+    {
+        "titulo": "vendas estoque",
+        "linhas": 45,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "34034",
+        "template": 5
+    },
+    {
+        "titulo": "crescimento estrat\u00e9gia",
+        "linhas": 32,
+        "aprovado": false,
+        "url": "",
+        "usuario": "32032",
+        "template": 125
+    },
+    {
+        "titulo": "estudo feedback",
+        "linhas": 80,
+        "aprovado": false,
+        "url": "",
+        "usuario": "4004",
+        "template": 54
+    },
+    {
+        "titulo": "or\u00e7amento desempenho",
+        "linhas": 68,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "34034",
+        "template": 81
+    },
+    {
+        "titulo": "estrutura log\u00edstica",
+        "linhas": 24,
+        "aprovado": false,
+        "url": "",
+        "usuario": "16016",
+        "template": 2
+    },
+    {
+        "titulo": "lucratividade log\u00edstica",
+        "linhas": 58,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "38038",
+        "template": 35
+    },
+    {
+        "titulo": "planejamento estrat\u00e9gia",
+        "linhas": 88,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "3003",
+        "template": 125
+    },
+    {
+        "titulo": "estoques estrat\u00e9gia",
+        "linhas": 59,
+        "aprovado": false,
+        "url": "",
+        "usuario": "9009",
+        "template": 41
+    },
+    {
+        "titulo": "competi\u00e7\u00e3o log\u00edstica",
+        "linhas": 85,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "2002",
+        "template": 104
+    },
+    {
+        "titulo": "produ\u00e7\u00e3o varejo",
+        "linhas": 89,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "3003",
+        "template": 27
+    },
+    {
+        "titulo": "gerenciamento pesquisa",
+        "linhas": 90,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "1001",
+        "template": 83
+    },
+    {
+        "titulo": "expans\u00e3o estoque",
+        "linhas": 81,
+        "aprovado": false,
+        "url": "",
+        "usuario": "120",
+        "template": 39
+    },
+    {
+        "titulo": "fornecedores servi\u00e7o",
+        "linhas": 43,
+        "aprovado": false,
+        "url": "",
+        "usuario": "28028",
+        "template": 164
+    },
+    {
+        "titulo": "estoques liquida\u00e7\u00e3o",
+        "linhas": 47,
+        "aprovado": false,
+        "url": "",
+        "usuario": "4004",
+        "template": 3
+    },
+    {
+        "titulo": "marketing capital",
+        "linhas": 55,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "20020",
+        "template": 41
+    },
+    {
+        "titulo": "log\u00edstica procedimento",
+        "linhas": 56,
+        "aprovado": false,
+        "url": "",
+        "usuario": "9009",
+        "template": 40
+    },
+    {
+        "titulo": "tend\u00eancia estoque",
+        "linhas": 40,
+        "aprovado": false,
+        "url": "",
+        "usuario": "1001",
+        "template": 17
+    },
+    {
+        "titulo": "vendas loja",
+        "linhas": 21,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "23023",
+        "template": 87
+    },
+    {
+        "titulo": "receita estrat\u00e9gia",
+        "linhas": 29,
+        "aprovado": false,
+        "url": "",
+        "usuario": "27027",
+        "template": 114
+    },
+    {
+        "titulo": "estoques crescimento",
+        "linhas": 35,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "120",
+        "template": 92
+    },
+    {
+        "titulo": "pesquisa fideliza\u00e7\u00e3o",
+        "linhas": 29,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "48048",
+        "template": 185
+    },
+    {
+        "titulo": "procedimento compras",
+        "linhas": 85,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "36036",
+        "template": 193
+    },
+    {
+        "titulo": "desempenho compras",
+        "linhas": 54,
+        "aprovado": false,
+        "url": "",
+        "usuario": "4004",
+        "template": 125
+    },
+    {
+        "titulo": "estoque retorno",
+        "linhas": 84,
+        "aprovado": false,
+        "url": "",
+        "usuario": "2002",
+        "template": 180
+    },
+    {
+        "titulo": "capital cliente",
+        "linhas": 41,
+        "aprovado": false,
+        "url": "",
+        "usuario": "7007",
+        "template": 193
+    },
+    {
+        "titulo": "com\u00e9rcio satisfa\u00e7\u00e3o",
+        "linhas": 63,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "4004",
+        "template": 45
+    },
+    {
+        "titulo": "log\u00edstica internacionaliza\u00e7\u00e3o",
+        "linhas": 86,
+        "aprovado": false,
+        "url": "",
+        "usuario": "5005",
+        "template": 48
+    },
+    {
+        "titulo": "or\u00e7amento concorr\u00eancia",
+        "linhas": 79,
+        "aprovado": false,
+        "url": "",
+        "usuario": "22022",
+        "template": 157
+    },
+    {
+        "titulo": "log\u00edstica empregados",
+        "linhas": 55,
+        "aprovado": false,
+        "url": "",
+        "usuario": "22022",
+        "template": 48
+    },
+    {
+        "titulo": "tend\u00eancia competi\u00e7\u00e3o",
+        "linhas": 89,
+        "aprovado": false,
+        "url": "",
+        "usuario": "22022",
+        "template": 64
+    },
+    {
+        "titulo": "tend\u00eancia empregados",
+        "linhas": 19,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "120",
+        "template": 29
+    },
+    {
+        "titulo": "opera\u00e7\u00e3o franquia",
+        "linhas": 17,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "35035",
+        "template": 113
+    },
+    {
+        "titulo": "investimento gerenciamento",
+        "linhas": 100,
+        "aprovado": false,
+        "url": "",
+        "usuario": "35035",
+        "template": 88
+    },
+    {
+        "titulo": "qualidade lucro",
+        "linhas": 80,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "22022",
+        "template": 187
+    },
+    {
+        "titulo": "estoque servi\u00e7o",
+        "linhas": 28,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "980192",
+        "template": 151
+    },
+    {
+        "titulo": "franquia gerenciamento",
+        "linhas": 91,
+        "aprovado": false,
+        "url": "",
+        "usuario": "19019",
+        "template": 100
+    },
+    {
+        "titulo": "loja estrutura",
+        "linhas": 58,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "15015",
+        "template": 163
+    },
+    {
+        "titulo": "lucratividade franquia",
+        "linhas": 22,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "17017",
+        "template": 32
+    },
+    {
+        "titulo": "liquida\u00e7\u00e3o receita",
+        "linhas": 74,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "8008",
+        "template": 117
+    },
+    {
+        "titulo": "cliente pre\u00e7o",
+        "linhas": 66,
+        "aprovado": false,
+        "url": "",
+        "usuario": "16016",
+        "template": 175
+    },
+    {
+        "titulo": "regulamenta\u00e7\u00e3o cliente",
+        "linhas": 89,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "980192",
+        "template": 190
+    },
+    {
+        "titulo": "fus\u00e3o procedimento",
+        "linhas": 74,
+        "aprovado": false,
+        "url": "",
+        "usuario": "29029",
+        "template": 27
+    },
+    {
+        "titulo": "feedback vis\u00e3o",
+        "linhas": 71,
+        "aprovado": false,
+        "url": "",
+        "usuario": "38038",
+        "template": 54
+    },
+    {
+        "titulo": "crescimento fus\u00e3o",
+        "linhas": 28,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "16016",
+        "template": 178
+    },
+    {
+        "titulo": "estrutura satisfa\u00e7\u00e3o",
+        "linhas": 77,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "19019",
+        "template": 169
+    },
+    {
+        "titulo": "empreendedor mercado",
+        "linhas": 82,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "10010",
+        "template": 41
+    },
+    {
+        "titulo": "varejo opera\u00e7\u00e3o",
+        "linhas": 89,
+        "aprovado": false,
+        "url": "",
+        "usuario": "36036",
+        "template": 52
+    },
+    {
+        "titulo": "valor segmenta\u00e7\u00e3o",
+        "linhas": 21,
+        "aprovado": false,
+        "url": "",
+        "usuario": "9009",
+        "template": 71
+    },
+    {
+        "titulo": "opera\u00e7\u00e3o pagamento",
+        "linhas": 23,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "29029",
+        "template": 47
+    },
+    {
+        "titulo": "retorno liquida\u00e7\u00e3o",
+        "linhas": 42,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "9009",
+        "template": 89
+    },
+    {
+        "titulo": "estrat\u00e9gia empreendedor",
+        "linhas": 23,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "32032",
+        "template": 100
+    },
+    {
+        "titulo": "an\u00e1lise tend\u00eancia",
+        "linhas": 37,
+        "aprovado": false,
+        "url": "",
+        "usuario": "1001",
+        "template": 156
+    },
+    {
+        "titulo": "feedback empreendedor",
+        "linhas": 88,
+        "aprovado": false,
+        "url": "",
+        "usuario": "17017",
+        "template": 142
+    },
+    {
+        "titulo": "mercado fideliza\u00e7\u00e3o",
+        "linhas": 87,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "8008",
+        "template": 152
+    },
+    {
+        "titulo": "valor compras",
+        "linhas": 18,
+        "aprovado": false,
+        "url": "",
+        "usuario": "8008",
+        "template": 127
+    },
+    {
+        "titulo": "log\u00edstica fideliza\u00e7\u00e3o",
+        "linhas": 37,
+        "aprovado": false,
+        "url": "",
+        "usuario": "3003",
+        "template": 109
+    },
+    {
+        "titulo": "log\u00edstica vis\u00e3o",
+        "linhas": 46,
+        "aprovado": false,
+        "url": "",
+        "usuario": "29029",
+        "template": 134
+    },
+    {
+        "titulo": "produ\u00e7\u00e3o estudo",
+        "linhas": 91,
+        "aprovado": false,
+        "url": "",
+        "usuario": "19019",
+        "template": 83
+    },
+    {
+        "titulo": "estoque estrutura",
+        "linhas": 29,
+        "aprovado": false,
+        "url": "",
+        "usuario": "42042",
+        "template": 57
+    },
+    {
+        "titulo": "feedback servi\u00e7o",
+        "linhas": 58,
+        "aprovado": false,
+        "url": "",
+        "usuario": "120",
+        "template": 200
+    },
+    {
+        "titulo": "desempenho mercado",
+        "linhas": 16,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "21021",
+        "template": 45
+    },
+    {
+        "titulo": "franquia concorr\u00eancia",
+        "linhas": 74,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "12012",
+        "template": 196
+    },
+    {
+        "titulo": "risco produto",
+        "linhas": 92,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "34034",
+        "template": 198
+    },
+    {
+        "titulo": "visibilidade regulamenta\u00e7\u00e3o",
+        "linhas": 81,
+        "aprovado": false,
+        "url": "",
+        "usuario": "35035",
+        "template": 179
+    },
+    {
+        "titulo": "an\u00e1lise gerenciamento",
+        "linhas": 71,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "1001",
+        "template": 158
+    },
+    {
+        "titulo": "atendimento regulamenta\u00e7\u00e3o",
+        "linhas": 61,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "12012",
+        "template": 36
+    },
+    {
+        "titulo": "estudo treinamento",
+        "linhas": 36,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "14014",
+        "template": 79
+    },
+    {
+        "titulo": "compras an\u00e1lise",
+        "linhas": 11,
+        "aprovado": false,
+        "url": "",
+        "usuario": "8008",
+        "template": 113
+    },
+    {
+        "titulo": "estrat\u00e9gia estudo",
+        "linhas": 68,
+        "aprovado": false,
+        "url": "",
+        "usuario": "27027",
+        "template": 38
+    },
+    {
+        "titulo": "qualidade inova\u00e7\u00e3o",
+        "linhas": 40,
+        "aprovado": false,
+        "url": "",
+        "usuario": "20020",
+        "template": 200
+    },
+    {
+        "titulo": "mercado estrat\u00e9gia",
+        "linhas": 73,
+        "aprovado": false,
+        "url": "",
+        "usuario": "1001",
+        "template": 122
+    },
+    {
+        "titulo": "liquida\u00e7\u00e3o an\u00e1lise",
+        "linhas": 10,
+        "aprovado": false,
+        "url": "",
+        "usuario": "16016",
+        "template": 36
+    },
+    {
+        "titulo": "treinamento parceria",
+        "linhas": 20,
+        "aprovado": false,
+        "url": "",
+        "usuario": "10010",
+        "template": 197
+    },
+    {
+        "titulo": "servi\u00e7o estoques",
+        "linhas": 86,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "28028",
+        "template": 126
+    },
+    {
+        "titulo": "log\u00edstica empreendedor",
+        "linhas": 82,
+        "aprovado": false,
+        "url": "",
+        "usuario": "10010",
+        "template": 22
+    },
+    {
+        "titulo": "lideran\u00e7a estoques",
+        "linhas": 24,
+        "aprovado": false,
+        "url": "",
+        "usuario": "120",
+        "template": 27
+    },
+    {
+        "titulo": "procedimento empreendedor",
+        "linhas": 46,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "10010",
+        "template": 125
+    },
+    {
+        "titulo": "treinamento parceria",
+        "linhas": 26,
+        "aprovado": false,
+        "url": "",
+        "usuario": "29029",
+        "template": 49
+    },
+    {
+        "titulo": "produ\u00e7\u00e3o estrat\u00e9gia",
+        "linhas": 61,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "8008",
+        "template": 117
+    },
+    {
+        "titulo": "an\u00e1lise concorr\u00eancia",
+        "linhas": 52,
+        "aprovado": false,
+        "url": "",
+        "usuario": "21021",
+        "template": 122
+    },
+    {
+        "titulo": "produ\u00e7\u00e3o atendimento",
+        "linhas": 56,
+        "aprovado": false,
+        "url": "",
+        "usuario": "17017",
+        "template": 11
+    },
+    {
+        "titulo": "log\u00edstica risco",
+        "linhas": 57,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "31031",
+        "template": 129
+    },
+    {
+        "titulo": "lucro feedback",
+        "linhas": 26,
+        "aprovado": false,
+        "url": "",
+        "usuario": "29029",
+        "template": 178
+    },
+    {
+        "titulo": "varejo estrat\u00e9gia",
+        "linhas": 63,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "32032",
+        "template": 2
+    },
+    {
+        "titulo": "despesas neg\u00f3cios",
+        "linhas": 46,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "27027",
+        "template": 45
+    },
+    {
+        "titulo": "estoque servi\u00e7o",
+        "linhas": 91,
+        "aprovado": false,
+        "url": "",
+        "usuario": "38038",
+        "template": 107
+    },
+    {
+        "titulo": "receita investimento",
+        "linhas": 73,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "3003",
+        "template": 22
+    },
+    {
+        "titulo": "log\u00edstica mercado",
+        "linhas": 99,
+        "aprovado": false,
+        "url": "",
+        "usuario": "27027",
+        "template": 49
+    },
+    {
+        "titulo": "loja expans\u00e3o",
+        "linhas": 83,
+        "aprovado": false,
+        "url": "",
+        "usuario": "10010",
+        "template": 32
+    },
+    {
+        "titulo": "valor feedback",
+        "linhas": 38,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "22022",
+        "template": 49
+    },
+    {
+        "titulo": "estrat\u00e9gia lucratividade",
+        "linhas": 83,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "4004",
+        "template": 25
+    },
+    {
+        "titulo": "produ\u00e7\u00e3o feedback",
+        "linhas": 51,
+        "aprovado": false,
+        "url": "",
+        "usuario": "32032",
+        "template": 54
+    },
+    {
+        "titulo": "expans\u00e3o gerenciamento",
+        "linhas": 32,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "29029",
+        "template": 145
+    },
+    {
+        "titulo": "capital inova\u00e7\u00e3o",
+        "linhas": 52,
+        "aprovado": false,
+        "url": "",
+        "usuario": "12012",
+        "template": 12
+    },
+    {
+        "titulo": "estoque log\u00edstica",
+        "linhas": 83,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "8008",
+        "template": 49
+    },
+    {
+        "titulo": "produto liquida\u00e7\u00e3o",
+        "linhas": 49,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "7007",
+        "template": 34
+    },
+    {
+        "titulo": "planejamento vis\u00e3o",
+        "linhas": 43,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "48048",
+        "template": 18
+    },
+    {
+        "titulo": "fus\u00e3o compras",
+        "linhas": 61,
+        "aprovado": false,
+        "url": "",
+        "usuario": "23023",
+        "template": 92
+    },
+    {
+        "titulo": "atendimento satisfa\u00e7\u00e3o",
+        "linhas": 90,
+        "aprovado": false,
+        "url": "",
+        "usuario": "1001",
+        "template": 75
+    },
+    {
+        "titulo": "fornecimento lucratividade",
+        "linhas": 33,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "3003",
+        "template": 35
+    },
+    {
+        "titulo": "feedback estoque",
+        "linhas": 78,
+        "aprovado": false,
+        "url": "",
+        "usuario": "120",
+        "template": 43
+    },
+    {
+        "titulo": "capital estrat\u00e9gia",
+        "linhas": 62,
+        "aprovado": false,
+        "url": "",
+        "usuario": "9009",
+        "template": 127
+    },
+    {
+        "titulo": "estrutura estrat\u00e9gia",
+        "linhas": 38,
+        "aprovado": false,
+        "url": "",
+        "usuario": "15015",
+        "template": 75
+    },
+    {
+        "titulo": "capital lideran\u00e7a",
+        "linhas": 60,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "5005",
+        "template": 122
+    },
+    {
+        "titulo": "retorno retorno",
+        "linhas": 86,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "17017",
+        "template": 97
+    },
+    {
+        "titulo": "fornecimento competi\u00e7\u00e3o",
+        "linhas": 67,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "2002",
+        "template": 29
+    },
+    {
+        "titulo": "pesquisa qualidade",
+        "linhas": 82,
+        "aprovado": false,
+        "url": "",
+        "usuario": "38038",
+        "template": 178
+    },
+    {
+        "titulo": "gerenciamento cliente",
+        "linhas": 100,
+        "aprovado": false,
+        "url": "",
+        "usuario": "38038",
+        "template": 63
+    },
+    {
+        "titulo": "vis\u00e3o segmenta\u00e7\u00e3o",
+        "linhas": 66,
+        "aprovado": false,
+        "url": "",
+        "usuario": "32032",
+        "template": 95
+    },
+    {
+        "titulo": "fus\u00e3o fus\u00e3o",
+        "linhas": 68,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "36036",
+        "template": 193
+    },
+    {
+        "titulo": "parceria estrutura",
+        "linhas": 38,
+        "aprovado": false,
+        "url": "",
+        "usuario": "48048",
+        "template": 89
+    },
+    {
+        "titulo": "estrat\u00e9gia cliente",
+        "linhas": 36,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "20020",
+        "template": 126
+    },
+    {
+        "titulo": "estudo franquia",
+        "linhas": 66,
+        "aprovado": false,
+        "url": "",
+        "usuario": "38038",
+        "template": 136
+    },
+    {
+        "titulo": "investimento neg\u00f3cios",
+        "linhas": 26,
+        "aprovado": false,
+        "url": "",
+        "usuario": "5005",
+        "template": 142
+    },
+    {
+        "titulo": "loja franquia",
+        "linhas": 48,
+        "aprovado": false,
+        "url": "",
+        "usuario": "23023",
+        "template": 29
+    },
+    {
+        "titulo": "fideliza\u00e7\u00e3o varejo",
+        "linhas": 90,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "1001",
+        "template": 97
+    },
+    {
+        "titulo": "log\u00edstica capital",
+        "linhas": 87,
+        "aprovado": false,
+        "url": "",
+        "usuario": "9009",
+        "template": 36
+    },
+    {
+        "titulo": "franquia gerenciamento",
+        "linhas": 87,
+        "aprovado": false,
+        "url": "",
+        "usuario": "34034",
+        "template": 146
+    },
+    {
+        "titulo": "com\u00e9rcio estoque",
+        "linhas": 86,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "10010",
+        "template": 176
+    },
+    {
+        "titulo": "competi\u00e7\u00e3o estrat\u00e9gia",
+        "linhas": 26,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "38038",
+        "template": 168
+    },
+    {
+        "titulo": "fornecimento internacionaliza\u00e7\u00e3o",
+        "linhas": 83,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "36036",
+        "template": 129
+    },
+    {
+        "titulo": "visibilidade liquida\u00e7\u00e3o",
+        "linhas": 37,
+        "aprovado": false,
+        "url": "",
+        "usuario": "4004",
+        "template": 176
+    },
+    {
+        "titulo": "produ\u00e7\u00e3o log\u00edstica",
+        "linhas": 30,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "9009",
+        "template": 8
+    },
+    {
+        "titulo": "demografia e-commerce",
+        "linhas": 20,
+        "aprovado": false,
+        "url": "",
+        "usuario": "12012",
+        "template": 157
+    },
+    {
+        "titulo": "compras com\u00e9rcio",
+        "linhas": 44,
+        "aprovado": false,
+        "url": "",
+        "usuario": "31031",
+        "template": 57
+    },
+    {
+        "titulo": "segmenta\u00e7\u00e3o liquida\u00e7\u00e3o",
+        "linhas": 62,
+        "aprovado": false,
+        "url": "",
+        "usuario": "22022",
+        "template": 127
+    },
+    {
+        "titulo": "feedback feedback",
+        "linhas": 26,
+        "aprovado": false,
+        "url": "",
+        "usuario": "4004",
+        "template": 2
+    },
+    {
+        "titulo": "benchmark visibilidade",
+        "linhas": 28,
+        "aprovado": false,
+        "url": "",
+        "usuario": "16016",
+        "template": 184
+    },
+    {
+        "titulo": "fideliza\u00e7\u00e3o neg\u00f3cios",
+        "linhas": 47,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "17017",
+        "template": 8
+    },
+    {
+        "titulo": "estrat\u00e9gia capital",
+        "linhas": 12,
+        "aprovado": false,
+        "url": "",
+        "usuario": "28028",
+        "template": 185
+    },
+    {
+        "titulo": "estudo fornecedores",
+        "linhas": 86,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "4004",
+        "template": 157
+    },
+    {
+        "titulo": "gerenciamento qualidade",
+        "linhas": 40,
+        "aprovado": false,
+        "url": "",
+        "usuario": "9009",
+        "template": 81
+    },
+    {
+        "titulo": "fus\u00e3o marketing",
+        "linhas": 20,
+        "aprovado": false,
+        "url": "",
+        "usuario": "35035",
+        "template": 38
+    },
+    {
+        "titulo": "marketing franquia",
+        "linhas": 86,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "22022",
+        "template": 8
+    },
+    {
+        "titulo": "log\u00edstica pre\u00e7o",
+        "linhas": 21,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "32032",
+        "template": 10
+    },
+    {
+        "titulo": "varejo parceria",
+        "linhas": 30,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "19019",
+        "template": 87
+    },
+    {
+        "titulo": "competi\u00e7\u00e3o despesas",
+        "linhas": 90,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "38038",
+        "template": 173
+    },
+    {
+        "titulo": "or\u00e7amento log\u00edstica",
+        "linhas": 51,
+        "aprovado": false,
+        "url": "",
+        "usuario": "5005",
+        "template": 200
+    },
+    {
+        "titulo": "concorr\u00eancia valor",
+        "linhas": 67,
+        "aprovado": false,
+        "url": "",
+        "usuario": "4004",
+        "template": 154
+    },
+    {
+        "titulo": "vendas fus\u00e3o",
+        "linhas": 84,
+        "aprovado": false,
+        "url": "",
+        "usuario": "38038",
+        "template": 35
+    },
+    {
+        "titulo": "internacionaliza\u00e7\u00e3o concorr\u00eancia",
+        "linhas": 71,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "32032",
+        "template": 193
+    },
+    {
+        "titulo": "crescimento marketing",
+        "linhas": 41,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "4004",
+        "template": 44
+    },
+    {
+        "titulo": "estoque concorr\u00eancia",
+        "linhas": 90,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "120",
+        "template": 54
+    },
+    {
+        "titulo": "pesquisa parceria",
+        "linhas": 72,
+        "aprovado": false,
+        "url": "",
+        "usuario": "22022",
+        "template": 166
+    },
+    {
+        "titulo": "franquia estudo",
+        "linhas": 14,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "15015",
+        "template": 49
+    },
+    {
+        "titulo": "lucratividade com\u00e9rcio",
+        "linhas": 45,
+        "aprovado": false,
+        "url": "",
+        "usuario": "120",
+        "template": 125
+    },
+    {
+        "titulo": "opera\u00e7\u00e3o fideliza\u00e7\u00e3o",
+        "linhas": 91,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "14014",
+        "template": 41
+    },
+    {
+        "titulo": "mercado tend\u00eancia",
+        "linhas": 49,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "31031",
+        "template": 24
+    },
+    {
+        "titulo": "risco internacionaliza\u00e7\u00e3o",
+        "linhas": 99,
+        "aprovado": false,
+        "url": "",
+        "usuario": "9009",
+        "template": 25
+    },
+    {
+        "titulo": "empregados estrat\u00e9gia",
+        "linhas": 20,
+        "aprovado": false,
+        "url": "",
+        "usuario": "27027",
+        "template": 54
+    },
+    {
+        "titulo": "concorr\u00eancia demografia",
+        "linhas": 30,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "15015",
+        "template": 200
+    },
+    {
+        "titulo": "mercado fornecedores",
+        "linhas": 12,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "38038",
+        "template": 87
+    },
+    {
+        "titulo": "estrutura estrutura",
+        "linhas": 51,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "28028",
+        "template": 148
+    },
+    {
+        "titulo": "franquia estrutura",
+        "linhas": 55,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "120",
+        "template": 21
+    },
+    {
+        "titulo": "opera\u00e7\u00e3o demografia",
+        "linhas": 19,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "14014",
+        "template": 102
+    },
+    {
+        "titulo": "parceria estrat\u00e9gia",
+        "linhas": 91,
+        "aprovado": false,
+        "url": "",
+        "usuario": "14014",
+        "template": 161
+    },
+    {
+        "titulo": "regulamenta\u00e7\u00e3o estudo",
+        "linhas": 81,
+        "aprovado": false,
+        "url": "",
+        "usuario": "28028",
+        "template": 61
+    },
+    {
+        "titulo": "gerenciamento estrutura",
+        "linhas": 81,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "22022",
+        "template": 79
+    },
+    {
+        "titulo": "investimento empregados",
+        "linhas": 81,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "7007",
+        "template": 101
+    },
+    {
+        "titulo": "procedimento atendimento",
+        "linhas": 60,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "19019",
+        "template": 104
+    },
+    {
+        "titulo": "mercado despesas",
+        "linhas": 64,
+        "aprovado": false,
+        "url": "",
+        "usuario": "15015",
+        "template": 79
+    },
+    {
+        "titulo": "concorr\u00eancia internacionaliza\u00e7\u00e3o",
+        "linhas": 23,
+        "aprovado": false,
+        "url": "",
+        "usuario": "48048",
+        "template": 134
+    },
+    {
+        "titulo": "publicidade risco",
+        "linhas": 16,
+        "aprovado": false,
+        "url": "",
+        "usuario": "5005",
+        "template": 128
+    },
+    {
+        "titulo": "desempenho competi\u00e7\u00e3o",
+        "linhas": 40,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "4004",
+        "template": 87
+    },
+    {
+        "titulo": "feedback servi\u00e7o",
+        "linhas": 80,
+        "aprovado": false,
+        "url": "",
+        "usuario": "27027",
+        "template": 200
+    },
+    {
+        "titulo": "franquia capital",
+        "linhas": 10,
+        "aprovado": false,
+        "url": "",
+        "usuario": "27027",
+        "template": 40
+    },
+    {
+        "titulo": "qualidade pagamento",
+        "linhas": 55,
+        "aprovado": false,
+        "url": "",
+        "usuario": "34034",
+        "template": 166
+    },
+    {
+        "titulo": "log\u00edstica concorr\u00eancia",
+        "linhas": 88,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "36036",
+        "template": 175
+    },
+    {
+        "titulo": "estoques lucro",
+        "linhas": 79,
+        "aprovado": false,
+        "url": "",
+        "usuario": "31031",
+        "template": 113
+    },
+    {
+        "titulo": "lideran\u00e7a lideran\u00e7a",
+        "linhas": 80,
+        "aprovado": false,
+        "url": "",
+        "usuario": "8008",
+        "template": 28
+    },
+    {
+        "titulo": "compras treinamento",
+        "linhas": 46,
+        "aprovado": false,
+        "url": "",
+        "usuario": "20020",
+        "template": 56
+    },
+    {
+        "titulo": "demografia fideliza\u00e7\u00e3o",
+        "linhas": 35,
+        "aprovado": false,
+        "url": "",
+        "usuario": "42042",
+        "template": 88
+    },
+    {
+        "titulo": "retorno fus\u00e3o",
+        "linhas": 40,
+        "aprovado": false,
+        "url": "",
+        "usuario": "5005",
+        "template": 113
+    },
+    {
+        "titulo": "parceria investimento",
+        "linhas": 56,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "28028",
+        "template": 122
+    },
+    {
+        "titulo": "fornecimento procedimento",
+        "linhas": 88,
+        "aprovado": false,
+        "url": "",
+        "usuario": "42042",
+        "template": 161
+    },
+    {
+        "titulo": "demografia mercado",
+        "linhas": 31,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "29029",
+        "template": 28
+    },
+    {
+        "titulo": "pagamento vis\u00e3o",
+        "linhas": 68,
+        "aprovado": false,
+        "url": "",
+        "usuario": "15015",
+        "template": 63
+    },
+    {
+        "titulo": "estrat\u00e9gia parceria",
+        "linhas": 69,
+        "aprovado": false,
+        "url": "",
+        "usuario": "2002",
+        "template": 21
+    },
+    {
+        "titulo": "lucro fornecedores",
+        "linhas": 11,
+        "aprovado": false,
+        "url": "",
+        "usuario": "36036",
+        "template": 25
+    },
+    {
+        "titulo": "qualidade estudo",
+        "linhas": 47,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "7007",
+        "template": 180
+    },
+    {
+        "titulo": "pesquisa servi\u00e7o",
+        "linhas": 11,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "15015",
+        "template": 191
+    },
+    {
+        "titulo": "an\u00e1lise franquia",
+        "linhas": 54,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "19019",
+        "template": 56
+    },
+    {
+        "titulo": "concilia\u00e7\u00e3o estoques",
+        "linhas": 73,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "2002",
+        "template": 129
+    },
+    {
+        "titulo": "produ\u00e7\u00e3o franquia",
+        "linhas": 27,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "4004",
+        "template": 92
+    },
+    {
+        "titulo": "fornecedores lideran\u00e7a",
+        "linhas": 85,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "27027",
+        "template": 40
+    },
+    {
+        "titulo": "gerenciamento procedimento",
+        "linhas": 33,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "31031",
+        "template": 38
+    },
+    {
+        "titulo": "vis\u00e3o produ\u00e7\u00e3o",
+        "linhas": 44,
+        "aprovado": false,
+        "url": "",
+        "usuario": "21021",
+        "template": 179
+    },
+    {
+        "titulo": "expans\u00e3o mercado",
+        "linhas": 86,
+        "aprovado": false,
+        "url": "",
+        "usuario": "15015",
+        "template": 64
+    },
+    {
+        "titulo": "pesquisa finan\u00e7as",
+        "linhas": 39,
+        "aprovado": false,
+        "url": "",
+        "usuario": "4004",
+        "template": 41
+    },
+    {
+        "titulo": "lucro parceria",
+        "linhas": 96,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "980192",
+        "template": 197
+    },
+    {
+        "titulo": "investimento estrat\u00e9gia",
+        "linhas": 27,
+        "aprovado": false,
+        "url": "",
+        "usuario": "19019",
+        "template": 114
+    },
+    {
+        "titulo": "gerenciamento lucratividade",
+        "linhas": 99,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "21021",
+        "template": 96
+    },
+    {
+        "titulo": "regulamenta\u00e7\u00e3o lucratividade",
+        "linhas": 66,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "19019",
+        "template": 180
+    },
+    {
+        "titulo": "liquida\u00e7\u00e3o varejo",
+        "linhas": 82,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "23023",
+        "template": 81
+    },
+    {
+        "titulo": "regulamenta\u00e7\u00e3o atendimento",
+        "linhas": 85,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "31031",
+        "template": 148
+    },
+    {
+        "titulo": "or\u00e7amento treinamento",
+        "linhas": 39,
+        "aprovado": false,
+        "url": "",
+        "usuario": "9009",
+        "template": 148
+    },
+    {
+        "titulo": "estoque pesquisa",
+        "linhas": 78,
+        "aprovado": false,
+        "url": "",
+        "usuario": "15015",
+        "template": 148
+    },
+    {
+        "titulo": "estoques inova\u00e7\u00e3o",
+        "linhas": 100,
+        "aprovado": false,
+        "url": "",
+        "usuario": "32032",
+        "template": 125
+    },
+    {
+        "titulo": "fus\u00e3o cliente",
+        "linhas": 96,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "42042",
+        "template": 131
+    },
+    {
+        "titulo": "valor competi\u00e7\u00e3o",
+        "linhas": 82,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "32032",
+        "template": 88
+    },
+    {
+        "titulo": "risco fus\u00e3o",
+        "linhas": 47,
+        "aprovado": false,
+        "url": "",
+        "usuario": "32032",
+        "template": 179
+    },
+    {
+        "titulo": "concorr\u00eancia parceria",
+        "linhas": 59,
+        "aprovado": false,
+        "url": "",
+        "usuario": "7007",
+        "template": 93
+    },
+    {
+        "titulo": "neg\u00f3cios receita",
+        "linhas": 33,
+        "aprovado": false,
+        "url": "",
+        "usuario": "4004",
+        "template": 27
+    },
+    {
+        "titulo": "publicidade feedback",
+        "linhas": 78,
+        "aprovado": false,
+        "url": "",
+        "usuario": "120",
+        "template": 122
+    },
+    {
+        "titulo": "parceria empregados",
+        "linhas": 20,
+        "aprovado": false,
+        "url": "",
+        "usuario": "16016",
+        "template": 19
+    },
+    {
+        "titulo": "lucro marketing",
+        "linhas": 99,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "9009",
+        "template": 54
+    },
+    {
+        "titulo": "fus\u00e3o neg\u00f3cios",
+        "linhas": 66,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "20020",
+        "template": 177
+    },
+    {
+        "titulo": "liquida\u00e7\u00e3o e-commerce",
+        "linhas": 87,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "32032",
+        "template": 10
+    },
+    {
+        "titulo": "demografia mercado",
+        "linhas": 72,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "23023",
+        "template": 2
+    },
+    {
+        "titulo": "qualidade parceria",
+        "linhas": 36,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "19019",
+        "template": 104
+    },
+    {
+        "titulo": "produto benchmark",
+        "linhas": 55,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "27027",
+        "template": 79
+    },
+    {
+        "titulo": "demografia estrutura",
+        "linhas": 86,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "23023",
+        "template": 98
+    },
+    {
+        "titulo": "segmenta\u00e7\u00e3o estudo",
+        "linhas": 23,
+        "aprovado": false,
+        "url": "",
+        "usuario": "5005",
+        "template": 87
+    },
+    {
+        "titulo": "gerenciamento com\u00e9rcio",
+        "linhas": 100,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "31031",
+        "template": 38
+    },
+    {
+        "titulo": "neg\u00f3cios pagamento",
+        "linhas": 56,
+        "aprovado": false,
+        "url": "",
+        "usuario": "19019",
+        "template": 176
+    },
+    {
+        "titulo": "investimento marketing",
+        "linhas": 90,
+        "aprovado": false,
+        "url": "",
+        "usuario": "20020",
+        "template": 116
+    },
+    {
+        "titulo": "fornecimento planejamento",
+        "linhas": 41,
+        "aprovado": false,
+        "url": "",
+        "usuario": "19019",
+        "template": 76
+    },
+    {
+        "titulo": "empregados produ\u00e7\u00e3o",
+        "linhas": 96,
+        "aprovado": false,
+        "url": "",
+        "usuario": "17017",
+        "template": 62
+    },
+    {
+        "titulo": "mercado fideliza\u00e7\u00e3o",
+        "linhas": 24,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "23023",
+        "template": 102
+    },
+    {
+        "titulo": "concorr\u00eancia risco",
+        "linhas": 75,
+        "aprovado": false,
+        "url": "",
+        "usuario": "9009",
+        "template": 98
+    },
+    {
+        "titulo": "pesquisa retorno",
+        "linhas": 22,
+        "aprovado": false,
+        "url": "",
+        "usuario": "9009",
+        "template": 76
+    },
+    {
+        "titulo": "empregados desempenho",
+        "linhas": 90,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "8008",
+        "template": 151
+    },
+    {
+        "titulo": "atendimento competi\u00e7\u00e3o",
+        "linhas": 46,
+        "aprovado": false,
+        "url": "",
+        "usuario": "34034",
+        "template": 184
+    },
+    {
+        "titulo": "estoque compras",
+        "linhas": 75,
+        "aprovado": false,
+        "url": "",
+        "usuario": "29029",
+        "template": 127
+    },
+    {
+        "titulo": "fus\u00e3o pesquisa",
+        "linhas": 42,
+        "aprovado": false,
+        "url": "",
+        "usuario": "19019",
+        "template": 154
+    },
+    {
+        "titulo": "segmenta\u00e7\u00e3o franquia",
+        "linhas": 79,
+        "aprovado": false,
+        "url": "",
+        "usuario": "36036",
+        "template": 122
+    },
+    {
+        "titulo": "opera\u00e7\u00e3o benchmark",
+        "linhas": 54,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "42042",
+        "template": 143
+    },
+    {
+        "titulo": "pre\u00e7o or\u00e7amento",
+        "linhas": 86,
+        "aprovado": false,
+        "url": "",
+        "usuario": "28028",
+        "template": 111
+    },
+    {
+        "titulo": "loja estrutura",
+        "linhas": 19,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "35035",
+        "template": 184
+    },
+    {
+        "titulo": "loja concilia\u00e7\u00e3o",
+        "linhas": 63,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "34034",
+        "template": 94
+    },
+    {
+        "titulo": "empreendedor visibilidade",
+        "linhas": 52,
+        "aprovado": false,
+        "url": "",
+        "usuario": "8008",
+        "template": 163
+    },
+    {
+        "titulo": "satisfa\u00e7\u00e3o publicidade",
+        "linhas": 56,
+        "aprovado": false,
+        "url": "",
+        "usuario": "29029",
+        "template": 152
+    },
+    {
+        "titulo": "promo\u00e7\u00e3o vis\u00e3o",
+        "linhas": 57,
+        "aprovado": false,
+        "url": "",
+        "usuario": "120",
+        "template": 35
+    },
+    {
+        "titulo": "tend\u00eancia gerenciamento",
+        "linhas": 19,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "17017",
+        "template": 119
+    },
+    {
+        "titulo": "neg\u00f3cios despesas",
+        "linhas": 42,
+        "aprovado": false,
+        "url": "",
+        "usuario": "120",
+        "template": 24
+    },
+    {
+        "titulo": "crescimento estoque",
+        "linhas": 20,
+        "aprovado": false,
+        "url": "",
+        "usuario": "17017",
+        "template": 8
+    },
+    {
+        "titulo": "vis\u00e3o planejamento",
+        "linhas": 78,
+        "aprovado": false,
+        "url": "",
+        "usuario": "29029",
+        "template": 179
+    },
+    {
+        "titulo": "servi\u00e7o regulamenta\u00e7\u00e3o",
+        "linhas": 46,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "4004",
+        "template": 17
+    },
+    {
+        "titulo": "estoques expans\u00e3o",
+        "linhas": 91,
+        "aprovado": false,
+        "url": "",
+        "usuario": "10010",
+        "template": 105
+    },
+    {
+        "titulo": "fus\u00e3o satisfa\u00e7\u00e3o",
+        "linhas": 67,
+        "aprovado": false,
+        "url": "",
+        "usuario": "1001",
+        "template": 101
+    },
+    {
+        "titulo": "estrutura parceria",
+        "linhas": 28,
+        "aprovado": false,
+        "url": "",
+        "usuario": "17017",
+        "template": 82
+    },
+    {
+        "titulo": "an\u00e1lise retorno",
+        "linhas": 76,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "34034",
+        "template": 34
+    },
+    {
+        "titulo": "lucratividade estrat\u00e9gia",
+        "linhas": 88,
+        "aprovado": false,
+        "url": "",
+        "usuario": "980192",
+        "template": 43
+    },
+    {
+        "titulo": "compras valor",
+        "linhas": 21,
+        "aprovado": false,
+        "url": "",
+        "usuario": "14014",
+        "template": 161
+    },
+    {
+        "titulo": "fus\u00e3o fornecedores",
+        "linhas": 94,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "35035",
+        "template": 58
+    },
+    {
+        "titulo": "regulamenta\u00e7\u00e3o estrat\u00e9gia",
+        "linhas": 45,
+        "aprovado": false,
+        "url": "",
+        "usuario": "15015",
+        "template": 125
+    },
+    {
+        "titulo": "feedback benchmark",
+        "linhas": 61,
+        "aprovado": false,
+        "url": "",
+        "usuario": "8008",
+        "template": 198
+    },
+    {
+        "titulo": "vis\u00e3o concorr\u00eancia",
+        "linhas": 54,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "32032",
+        "template": 134
+    },
+    {
+        "titulo": "fus\u00e3o estudo",
+        "linhas": 22,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "12012",
+        "template": 77
+    },
+    {
+        "titulo": "produto qualidade",
+        "linhas": 100,
+        "aprovado": false,
+        "url": "",
+        "usuario": "28028",
+        "template": 176
+    },
+    {
+        "titulo": "mercado lucro",
+        "linhas": 14,
+        "aprovado": false,
+        "url": "",
+        "usuario": "14014",
+        "template": 102
+    },
+    {
+        "titulo": "concilia\u00e7\u00e3o fideliza\u00e7\u00e3o",
+        "linhas": 10,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "8008",
+        "template": 125
+    },
+    {
+        "titulo": "promo\u00e7\u00e3o desempenho",
+        "linhas": 54,
+        "aprovado": false,
+        "url": "",
+        "usuario": "48048",
+        "template": 141
+    },
+    {
+        "titulo": "varejo mercado",
+        "linhas": 15,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "17017",
+        "template": 61
+    },
+    {
+        "titulo": "retorno fus\u00e3o",
+        "linhas": 68,
+        "aprovado": false,
+        "url": "",
+        "usuario": "27027",
+        "template": 18
+    },
+    {
+        "titulo": "mercado regulamenta\u00e7\u00e3o",
+        "linhas": 85,
+        "aprovado": false,
+        "url": "",
+        "usuario": "8008",
+        "template": 151
+    },
+    {
+        "titulo": "parceria finan\u00e7as",
+        "linhas": 64,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "10010",
+        "template": 183
+    },
+    {
+        "titulo": "expans\u00e3o opera\u00e7\u00e3o",
+        "linhas": 44,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "2002",
+        "template": 107
+    },
+    {
+        "titulo": "competi\u00e7\u00e3o tend\u00eancia",
+        "linhas": 22,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "4004",
+        "template": 141
+    },
+    {
+        "titulo": "lucro fus\u00e3o",
+        "linhas": 26,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "980192",
+        "template": 82
+    },
+    {
+        "titulo": "expans\u00e3o produto",
+        "linhas": 45,
+        "aprovado": false,
+        "url": "",
+        "usuario": "8008",
+        "template": 97
+    },
+    {
+        "titulo": "qualidade fus\u00e3o",
+        "linhas": 80,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "16016",
+        "template": 49
+    },
+    {
+        "titulo": "estrat\u00e9gia log\u00edstica",
+        "linhas": 85,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "980192",
+        "template": 96
+    },
+    {
+        "titulo": "investimento capital",
+        "linhas": 81,
+        "aprovado": false,
+        "url": "",
+        "usuario": "32032",
+        "template": 92
+    },
+    {
+        "titulo": "internacionaliza\u00e7\u00e3o qualidade",
+        "linhas": 61,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "2002",
+        "template": 19
+    },
+    {
+        "titulo": "fornecimento estudo",
+        "linhas": 65,
+        "aprovado": false,
+        "url": "",
+        "usuario": "23023",
+        "template": 169
+    },
+    {
+        "titulo": "benchmark concorr\u00eancia",
+        "linhas": 84,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "4004",
+        "template": 89
+    },
+    {
+        "titulo": "estrat\u00e9gia parceria",
+        "linhas": 75,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "42042",
+        "template": 116
+    },
+    {
+        "titulo": "compras log\u00edstica",
+        "linhas": 34,
+        "aprovado": false,
+        "url": "",
+        "usuario": "4004",
+        "template": 72
+    },
+    {
+        "titulo": "pre\u00e7o gerenciamento",
+        "linhas": 18,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "9009",
+        "template": 168
+    },
+    {
+        "titulo": "vis\u00e3o fus\u00e3o",
+        "linhas": 94,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "120",
+        "template": 92
+    },
+    {
+        "titulo": "benchmark demografia",
+        "linhas": 18,
+        "aprovado": false,
+        "url": "",
+        "usuario": "7007",
+        "template": 155
+    },
+    {
+        "titulo": "or\u00e7amento vis\u00e3o",
+        "linhas": 91,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "980192",
+        "template": 141
+    },
+    {
+        "titulo": "empregados fus\u00e3o",
+        "linhas": 12,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "19019",
+        "template": 184
+    },
+    {
+        "titulo": "empregados log\u00edstica",
+        "linhas": 10,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "2002",
+        "template": 19
+    },
+    {
+        "titulo": "marketing varejo",
+        "linhas": 91,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "15015",
+        "template": 40
+    },
+    {
+        "titulo": "valor com\u00e9rcio",
+        "linhas": 14,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "19019",
+        "template": 163
+    },
+    {
+        "titulo": "planejamento receita",
+        "linhas": 10,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "29029",
+        "template": 1
+    },
+    {
+        "titulo": "fus\u00e3o an\u00e1lise",
+        "linhas": 35,
+        "aprovado": false,
+        "url": "",
+        "usuario": "20020",
+        "template": 18
+    },
+    {
+        "titulo": "empreendedor valor",
+        "linhas": 56,
+        "aprovado": false,
+        "url": "",
+        "usuario": "120",
+        "template": 121
+    },
+    {
+        "titulo": "estoque risco",
+        "linhas": 48,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "31031",
+        "template": 19
+    },
+    {
+        "titulo": "planejamento e-commerce",
+        "linhas": 33,
+        "aprovado": false,
+        "url": "",
+        "usuario": "4004",
+        "template": 126
+    },
+    {
+        "titulo": "pagamento competi\u00e7\u00e3o",
+        "linhas": 24,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "120",
+        "template": 184
+    },
+    {
+        "titulo": "estoque internacionaliza\u00e7\u00e3o",
+        "linhas": 42,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "35035",
+        "template": 39
+    },
+    {
+        "titulo": "estudo compras",
+        "linhas": 27,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "23023",
+        "template": 163
+    },
+    {
+        "titulo": "gerenciamento marketing",
+        "linhas": 87,
+        "aprovado": false,
+        "url": "",
+        "usuario": "38038",
+        "template": 21
+    },
+    {
+        "titulo": "empregados concorr\u00eancia",
+        "linhas": 28,
+        "aprovado": false,
+        "url": "",
+        "usuario": "980192",
+        "template": 154
+    },
+    {
+        "titulo": "atendimento visibilidade",
+        "linhas": 44,
+        "aprovado": false,
+        "url": "",
+        "usuario": "12012",
+        "template": 96
+    },
+    {
+        "titulo": "planejamento capital",
+        "linhas": 13,
+        "aprovado": false,
+        "url": "",
+        "usuario": "4004",
+        "template": 76
+    },
+    {
+        "titulo": "parceria liquida\u00e7\u00e3o",
+        "linhas": 25,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "23023",
+        "template": 58
+    },
+    {
+        "titulo": "inova\u00e7\u00e3o internacionaliza\u00e7\u00e3o",
+        "linhas": 50,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "10010",
+        "template": 102
+    },
+    {
+        "titulo": "capital regulamenta\u00e7\u00e3o",
+        "linhas": 64,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "120",
+        "template": 128
+    },
+    {
+        "titulo": "estrat\u00e9gia receita",
+        "linhas": 61,
+        "aprovado": false,
+        "url": "",
+        "usuario": "21021",
+        "template": 176
+    },
+    {
+        "titulo": "desempenho valor",
+        "linhas": 32,
+        "aprovado": false,
+        "url": "",
+        "usuario": "10010",
+        "template": 163
+    },
+    {
+        "titulo": "liquida\u00e7\u00e3o valor",
+        "linhas": 55,
+        "aprovado": false,
+        "url": "",
+        "usuario": "12012",
+        "template": 49
+    },
+    {
+        "titulo": "parceria estoques",
+        "linhas": 18,
+        "aprovado": false,
+        "url": "",
+        "usuario": "12012",
+        "template": 83
+    },
+    {
+        "titulo": "fideliza\u00e7\u00e3o satisfa\u00e7\u00e3o",
+        "linhas": 77,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "21021",
+        "template": 164
+    },
+    {
+        "titulo": "fus\u00e3o loja",
+        "linhas": 82,
+        "aprovado": false,
+        "url": "",
+        "usuario": "42042",
+        "template": 87
+    },
+    {
+        "titulo": "estrat\u00e9gia visibilidade",
+        "linhas": 41,
+        "aprovado": false,
+        "url": "",
+        "usuario": "19019",
+        "template": 185
+    },
+    {
+        "titulo": "benchmark lucratividade",
+        "linhas": 30,
+        "aprovado": false,
+        "url": "",
+        "usuario": "38038",
+        "template": 148
+    },
+    {
+        "titulo": "varejo varejo",
+        "linhas": 94,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "34034",
+        "template": 39
+    },
+    {
+        "titulo": "valor varejo",
+        "linhas": 26,
+        "aprovado": false,
+        "url": "",
+        "usuario": "7007",
+        "template": 22
+    },
+    {
+        "titulo": "expans\u00e3o servi\u00e7o",
+        "linhas": 76,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "10010",
+        "template": 77
+    },
+    {
+        "titulo": "fornecimento pesquisa",
+        "linhas": 23,
+        "aprovado": false,
+        "url": "",
+        "usuario": "5005",
+        "template": 49
+    },
+    {
+        "titulo": "lideran\u00e7a loja",
+        "linhas": 73,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "21021",
+        "template": 102
+    },
+    {
+        "titulo": "concilia\u00e7\u00e3o parceria",
+        "linhas": 83,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "14014",
+        "template": 33
+    },
+    {
+        "titulo": "e-commerce estrutura",
+        "linhas": 38,
+        "aprovado": false,
+        "url": "",
+        "usuario": "28028",
+        "template": 136
+    },
+    {
+        "titulo": "estoques produ\u00e7\u00e3o",
+        "linhas": 91,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "48048",
+        "template": 198
+    },
+    {
+        "titulo": "estoque treinamento",
+        "linhas": 49,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "48048",
+        "template": 126
+    },
+    {
+        "titulo": "competi\u00e7\u00e3o concorr\u00eancia",
+        "linhas": 62,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "34034",
+        "template": 95
+    },
+    {
+        "titulo": "investimento qualidade",
+        "linhas": 60,
+        "aprovado": false,
+        "url": "",
+        "usuario": "31031",
+        "template": 44
+    },
+    {
+        "titulo": "opera\u00e7\u00e3o produto",
+        "linhas": 86,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "34034",
+        "template": 130
+    },
+    {
+        "titulo": "estudo receita",
+        "linhas": 76,
+        "aprovado": false,
+        "url": "",
+        "usuario": "5005",
+        "template": 111
+    },
+    {
+        "titulo": "mercado com\u00e9rcio",
+        "linhas": 64,
+        "aprovado": false,
+        "url": "",
+        "usuario": "9009",
+        "template": 22
+    },
+    {
+        "titulo": "finan\u00e7as produ\u00e7\u00e3o",
+        "linhas": 71,
+        "aprovado": false,
+        "url": "",
+        "usuario": "32032",
+        "template": 19
+    },
+    {
+        "titulo": "parceria servi\u00e7o",
+        "linhas": 23,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "3003",
+        "template": 177
+    },
+    {
+        "titulo": "segmenta\u00e7\u00e3o valor",
+        "linhas": 61,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "19019",
+        "template": 98
+    },
+    {
+        "titulo": "concilia\u00e7\u00e3o fornecimento",
+        "linhas": 10,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "8008",
+        "template": 5
+    },
+    {
+        "titulo": "inova\u00e7\u00e3o e-commerce",
+        "linhas": 85,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "36036",
+        "template": 187
+    },
+    {
+        "titulo": "concorr\u00eancia despesas",
+        "linhas": 13,
+        "aprovado": false,
+        "url": "",
+        "usuario": "15015",
+        "template": 79
+    },
+    {
+        "titulo": "receita desempenho",
+        "linhas": 29,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "19019",
+        "template": 173
+    },
+    {
+        "titulo": "loja estoque",
+        "linhas": 35,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "5005",
+        "template": 176
+    },
+    {
+        "titulo": "fus\u00e3o parceria",
+        "linhas": 18,
+        "aprovado": false,
+        "url": "",
+        "usuario": "7007",
+        "template": 47
+    },
+    {
+        "titulo": "concorr\u00eancia marketing",
+        "linhas": 35,
+        "aprovado": false,
+        "url": "",
+        "usuario": "29029",
+        "template": 11
+    },
+    {
+        "titulo": "valor estrutura",
+        "linhas": 78,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "27027",
+        "template": 130
+    },
+    {
+        "titulo": "publicidade retorno",
+        "linhas": 57,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "36036",
+        "template": 38
+    },
+    {
+        "titulo": "planejamento segmenta\u00e7\u00e3o",
+        "linhas": 74,
+        "aprovado": false,
+        "url": "",
+        "usuario": "38038",
+        "template": 1
+    },
+    {
+        "titulo": "satisfa\u00e7\u00e3o expans\u00e3o",
+        "linhas": 45,
+        "aprovado": false,
+        "url": "",
+        "usuario": "8008",
+        "template": 49
+    },
+    {
+        "titulo": "fornecedores lideran\u00e7a",
+        "linhas": 19,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "15015",
+        "template": 5
+    },
+    {
+        "titulo": "franquia visibilidade",
+        "linhas": 42,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "36036",
+        "template": 139
+    },
+    {
+        "titulo": "expans\u00e3o fornecimento",
+        "linhas": 39,
+        "aprovado": false,
+        "url": "",
+        "usuario": "120",
+        "template": 93
+    },
+    {
+        "titulo": "despesas marketing",
+        "linhas": 94,
+        "aprovado": false,
+        "url": "",
+        "usuario": "27027",
+        "template": 21
+    },
+    {
+        "titulo": "crescimento lucratividade",
+        "linhas": 28,
+        "aprovado": false,
+        "url": "",
+        "usuario": "4004",
+        "template": 131
+    },
+    {
+        "titulo": "estoque e-commerce",
+        "linhas": 22,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "23023",
+        "template": 145
+    },
+    {
+        "titulo": "promo\u00e7\u00e3o fornecimento",
+        "linhas": 94,
+        "aprovado": false,
+        "url": "",
+        "usuario": "28028",
+        "template": 183
+    },
+    {
+        "titulo": "valor estoque",
+        "linhas": 46,
+        "aprovado": false,
+        "url": "",
+        "usuario": "17017",
+        "template": 102
+    },
+    {
+        "titulo": "retorno vendas",
+        "linhas": 21,
+        "aprovado": false,
+        "url": "",
+        "usuario": "12012",
+        "template": 93
+    },
+    {
+        "titulo": "log\u00edstica mercado",
+        "linhas": 73,
+        "aprovado": false,
+        "url": "",
+        "usuario": "9009",
+        "template": 136
+    },
+    {
+        "titulo": "mercado procedimento",
+        "linhas": 58,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "21021",
+        "template": 34
+    },
+    {
+        "titulo": "crescimento feedback",
+        "linhas": 15,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "17017",
+        "template": 18
+    },
+    {
+        "titulo": "produto fideliza\u00e7\u00e3o",
+        "linhas": 95,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "22022",
+        "template": 197
+    },
+    {
+        "titulo": "mercado investimento",
+        "linhas": 96,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "14014",
+        "template": 179
+    },
+    {
+        "titulo": "produ\u00e7\u00e3o visibilidade",
+        "linhas": 52,
+        "aprovado": false,
+        "url": "",
+        "usuario": "36036",
+        "template": 23
+    },
+    {
+        "titulo": "pesquisa mercado",
+        "linhas": 65,
+        "aprovado": false,
+        "url": "",
+        "usuario": "32032",
+        "template": 144
+    },
+    {
+        "titulo": "segmenta\u00e7\u00e3o parceria",
+        "linhas": 30,
+        "aprovado": false,
+        "url": "",
+        "usuario": "980192",
+        "template": 145
+    },
+    {
+        "titulo": "or\u00e7amento estrutura",
+        "linhas": 81,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "21021",
+        "template": 186
+    },
+    {
+        "titulo": "procedimento qualidade",
+        "linhas": 41,
+        "aprovado": false,
+        "url": "",
+        "usuario": "22022",
+        "template": 64
+    },
+    {
+        "titulo": "lideran\u00e7a marketing",
+        "linhas": 37,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "120",
+        "template": 43
+    },
+    {
+        "titulo": "pre\u00e7o opera\u00e7\u00e3o",
+        "linhas": 45,
+        "aprovado": false,
+        "url": "",
+        "usuario": "36036",
+        "template": 38
+    },
+    {
+        "titulo": "risco internacionaliza\u00e7\u00e3o",
+        "linhas": 88,
+        "aprovado": false,
+        "url": "",
+        "usuario": "15015",
+        "template": 186
+    },
+    {
+        "titulo": "competi\u00e7\u00e3o opera\u00e7\u00e3o",
+        "linhas": 69,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "17017",
+        "template": 92
+    },
+    {
+        "titulo": "estrutura retorno",
+        "linhas": 12,
+        "aprovado": false,
+        "url": "",
+        "usuario": "38038",
+        "template": 22
+    },
+    {
+        "titulo": "parceria mercado",
+        "linhas": 78,
+        "aprovado": false,
+        "url": "",
+        "usuario": "12012",
+        "template": 3
+    },
+    {
+        "titulo": "e-commerce varejo",
+        "linhas": 95,
+        "aprovado": false,
+        "url": "",
+        "usuario": "1001",
+        "template": 172
+    },
+    {
+        "titulo": "internacionaliza\u00e7\u00e3o internacionaliza\u00e7\u00e3o",
+        "linhas": 26,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "7007",
+        "template": 176
+    },
+    {
+        "titulo": "franquia marketing",
+        "linhas": 73,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "10010",
+        "template": 33
+    },
+    {
+        "titulo": "estoque estrat\u00e9gia",
+        "linhas": 38,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "7007",
+        "template": 83
+    },
+    {
+        "titulo": "fideliza\u00e7\u00e3o lideran\u00e7a",
+        "linhas": 27,
+        "aprovado": false,
+        "url": "",
+        "usuario": "8008",
+        "template": 61
+    },
+    {
+        "titulo": "fideliza\u00e7\u00e3o concilia\u00e7\u00e3o",
+        "linhas": 37,
+        "aprovado": false,
+        "url": "",
+        "usuario": "23023",
+        "template": 13
+    },
+    {
+        "titulo": "estrat\u00e9gia parceria",
+        "linhas": 28,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "20020",
+        "template": 119
+    },
+    {
+        "titulo": "expans\u00e3o varejo",
+        "linhas": 84,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "7007",
+        "template": 163
+    },
+    {
+        "titulo": "franquia despesas",
+        "linhas": 92,
+        "aprovado": false,
+        "url": "",
+        "usuario": "32032",
+        "template": 88
+    },
+    {
+        "titulo": "concilia\u00e7\u00e3o franquia",
+        "linhas": 70,
+        "aprovado": false,
+        "url": "",
+        "usuario": "10010",
+        "template": 187
+    },
+    {
+        "titulo": "inova\u00e7\u00e3o concorr\u00eancia",
+        "linhas": 95,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "21021",
+        "template": 1
+    },
+    {
+        "titulo": "empregados vendas",
+        "linhas": 32,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "15015",
+        "template": 185
+    },
+    {
+        "titulo": "demografia vis\u00e3o",
+        "linhas": 45,
+        "aprovado": false,
+        "url": "",
+        "usuario": "17017",
+        "template": 117
+    },
+    {
+        "titulo": "internacionaliza\u00e7\u00e3o or\u00e7amento",
+        "linhas": 78,
+        "aprovado": false,
+        "url": "",
+        "usuario": "23023",
+        "template": 132
+    },
+    {
+        "titulo": "estrat\u00e9gia expans\u00e3o",
+        "linhas": 65,
+        "aprovado": false,
+        "url": "",
+        "usuario": "16016",
+        "template": 117
+    },
+    {
+        "titulo": "expans\u00e3o estrat\u00e9gia",
+        "linhas": 90,
+        "aprovado": false,
+        "url": "",
+        "usuario": "17017",
+        "template": 116
+    },
+    {
+        "titulo": "estrat\u00e9gia estrat\u00e9gia",
+        "linhas": 26,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "7007",
+        "template": 145
+    },
+    {
+        "titulo": "crescimento empregados",
+        "linhas": 33,
+        "aprovado": false,
+        "url": "",
+        "usuario": "36036",
+        "template": 88
+    },
+    {
+        "titulo": "lucratividade concorr\u00eancia",
+        "linhas": 97,
+        "aprovado": false,
+        "url": "",
+        "usuario": "4004",
+        "template": 158
+    },
+    {
+        "titulo": "satisfa\u00e7\u00e3o fornecedores",
+        "linhas": 12,
+        "aprovado": false,
+        "url": "",
+        "usuario": "42042",
+        "template": 196
+    },
+    {
+        "titulo": "estrutura lucratividade",
+        "linhas": 11,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "980192",
+        "template": 11
+    },
+    {
+        "titulo": "fus\u00e3o visibilidade",
+        "linhas": 28,
+        "aprovado": false,
+        "url": "",
+        "usuario": "8008",
+        "template": 107
+    },
+    {
+        "titulo": "internacionaliza\u00e7\u00e3o estoque",
+        "linhas": 89,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "35035",
+        "template": 39
+    },
+    {
+        "titulo": "neg\u00f3cios desempenho",
+        "linhas": 17,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "19019",
+        "template": 64
+    },
+    {
+        "titulo": "desempenho estrutura",
+        "linhas": 100,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "2002",
+        "template": 200
+    },
+    {
+        "titulo": "procedimento estoque",
+        "linhas": 58,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "3003",
+        "template": 134
+    },
+    {
+        "titulo": "empreendedor procedimento",
+        "linhas": 89,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "22022",
+        "template": 74
+    },
+    {
+        "titulo": "concorr\u00eancia estoque",
+        "linhas": 32,
+        "aprovado": false,
+        "url": "",
+        "usuario": "22022",
+        "template": 107
+    },
+    {
+        "titulo": "receita franquia",
+        "linhas": 40,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "7007",
+        "template": 179
+    },
+    {
+        "titulo": "concorr\u00eancia pre\u00e7o",
+        "linhas": 70,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "48048",
+        "template": 156
+    },
+    {
+        "titulo": "risco estoque",
+        "linhas": 23,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "1001",
+        "template": 81
+    },
+    {
+        "titulo": "fornecedores or\u00e7amento",
+        "linhas": 95,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "20020",
+        "template": 134
+    },
+    {
+        "titulo": "concilia\u00e7\u00e3o liquida\u00e7\u00e3o",
+        "linhas": 78,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "22022",
+        "template": 180
+    },
+    {
+        "titulo": "planejamento vendas",
+        "linhas": 46,
+        "aprovado": false,
+        "url": "",
+        "usuario": "2002",
+        "template": 29
+    },
+    {
+        "titulo": "marketing retorno",
+        "linhas": 21,
+        "aprovado": false,
+        "url": "",
+        "usuario": "19019",
+        "template": 77
+    },
+    {
+        "titulo": "treinamento produ\u00e7\u00e3o",
+        "linhas": 64,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "35035",
+        "template": 25
+    },
+    {
+        "titulo": "franquia competi\u00e7\u00e3o",
+        "linhas": 88,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "9009",
+        "template": 95
+    },
+    {
+        "titulo": "log\u00edstica parceria",
+        "linhas": 76,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "23023",
+        "template": 71
+    },
+    {
+        "titulo": "qualidade pre\u00e7o",
+        "linhas": 79,
+        "aprovado": false,
+        "url": "",
+        "usuario": "34034",
+        "template": 134
+    },
+    {
+        "titulo": "opera\u00e7\u00e3o atendimento",
+        "linhas": 99,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "29029",
+        "template": 148
+    },
+    {
+        "titulo": "liquida\u00e7\u00e3o planejamento",
+        "linhas": 64,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "27027",
+        "template": 168
+    },
+    {
+        "titulo": "log\u00edstica feedback",
+        "linhas": 82,
+        "aprovado": false,
+        "url": "",
+        "usuario": "22022",
+        "template": 100
+    },
+    {
+        "titulo": "expans\u00e3o fornecedores",
+        "linhas": 47,
+        "aprovado": false,
+        "url": "",
+        "usuario": "20020",
+        "template": 1
+    },
+    {
+        "titulo": "gerenciamento crescimento",
+        "linhas": 40,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "15015",
+        "template": 75
+    },
+    {
+        "titulo": "inova\u00e7\u00e3o despesas",
+        "linhas": 100,
+        "aprovado": false,
+        "url": "",
+        "usuario": "16016",
+        "template": 3
+    },
+    {
+        "titulo": "fornecedores competi\u00e7\u00e3o",
+        "linhas": 92,
+        "aprovado": false,
+        "url": "",
+        "usuario": "34034",
+        "template": 198
+    },
+    {
+        "titulo": "concilia\u00e7\u00e3o parceria",
+        "linhas": 95,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "32032",
+        "template": 43
+    },
+    {
+        "titulo": "fus\u00e3o estrutura",
+        "linhas": 79,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "1001",
+        "template": 52
+    },
+    {
+        "titulo": "compras retorno",
+        "linhas": 30,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "17017",
+        "template": 100
+    },
+    {
+        "titulo": "estrat\u00e9gia benchmark",
+        "linhas": 14,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "12012",
+        "template": 121
+    },
+    {
+        "titulo": "fus\u00e3o lucratividade",
+        "linhas": 86,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "22022",
+        "template": 198
+    },
+    {
+        "titulo": "fideliza\u00e7\u00e3o estoques",
+        "linhas": 41,
+        "aprovado": false,
+        "url": "",
+        "usuario": "15015",
+        "template": 55
+    },
+    {
+        "titulo": "satisfa\u00e7\u00e3o estoque",
+        "linhas": 42,
+        "aprovado": true,
+        "url": "http://google.com",
+        "usuario": "38038",
+        "template": 152
+    },
+    {
+        "titulo": "parceria qualidade",
+        "linhas": 41,
+        "aprovado": false,
+        "url": "",
+        "usuario": "5005",
+        "template": 22
+    }
+]
