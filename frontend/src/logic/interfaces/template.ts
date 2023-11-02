@@ -1,3 +1,4 @@
+import { PieChartProps } from "../../components/charts/PieFormatos";
 import { FileProps } from "./file";
 import { FormatoProps } from "./formato";
 import { UserMainProps } from "./user";
@@ -77,4 +78,8 @@ export interface TemplateContainerProps {
     templates: GetTemplateProps[];
     loading?: boolean;
     message?: string
+}
+
+export interface TemplateFormatoPropsContainer extends TemplateContainerProps {
+    formatoInfo: PieChartProps[]
 }

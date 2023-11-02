@@ -4,15 +4,14 @@ import img2 from '../../assets/drawkit/inicio/gerente2.svg'
 import { Grid } from "@mui/material";
 import TemplateContainer from "../../components/templates/container";
 import FileContainer from '../../components/files/container';
-import TemplateCharts from "../../components/charts/mine/TemplateActives";
-import { TemplateContainerProps } from "../../logic/interfaces/template";
+import { TemplateFormatoPropsContainer } from "../../logic/interfaces/template";
 import * as React from 'react';
 import { FileProps } from "../../logic/interfaces/file";
 import api from "../../logic/api/api";
 import BoxLoading from "../../components/muiComponents/boxLoading";
+import TemplateFormatoCharts from "../../components/charts/mine/TemplateFormatoChart";
 
-
-const InicioCadastro = ({ formatos, message, templates, loading }: TemplateContainerProps) => {
+const InicioCadastro = ({ formatos, message, templates, loading, formatoInfo }: TemplateFormatoPropsContainer) => {
 
     const [arquivos, setArquivos] = React.useState<FileProps[]>([]);
     const [messageArquivo, setMessageArquivo] = React.useState("");
@@ -51,7 +50,7 @@ const InicioCadastro = ({ formatos, message, templates, loading }: TemplateConta
 
                 <GridContainers align='center' direction='row'>
                     <Grid item xl={7} lg={7} md={7} sm={12} xs={12}>
-                        <h1>grafico arqui </h1>
+                        <TemplateFormatoCharts data={formatoInfo} />
                     </Grid>
 
                     <Grid mt={3} display='flex' justifyContent='center' item xl={5} lg={5} md={5} sm={12} xs={12}>

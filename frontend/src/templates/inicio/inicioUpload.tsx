@@ -5,14 +5,14 @@ import { Grid } from "@mui/material";
 import TemplateContainer from "../../components/templates/container";
 import * as React from 'react';
 import FileContainer from '../../components/files/container';
-import TemplateCharts from "../../components/charts/mine/TemplateActives";
-import { TemplateContainerProps } from "../../logic/interfaces/template";
+import { TemplateFormatoPropsContainer } from "../../logic/interfaces/template";
 import { FileProps } from "../../logic/interfaces/file";
 import api from "../../logic/api/api";
 import BoxLoading from "../../components/muiComponents/boxLoading";
+import TemplateFormatoCharts from "../../components/charts/mine/TemplateFormatoChart";
 
 
-const InicioUpload = ({formatos, message, templates, loading}: TemplateContainerProps) => {
+const InicioUpload = ({formatos, message, templates, loading, formatoInfo }: TemplateFormatoPropsContainer) => {
     const [arquivos, setArquivos] = React.useState<FileProps[]>([]);
     const [messageArquivo, setMessageArquivo] = React.useState("");
     const [loadingFile, setLoadingFile] = React.useState(true);
@@ -50,7 +50,7 @@ const InicioUpload = ({formatos, message, templates, loading}: TemplateContainer
 
                 <GridContainers align='center' direction='row'>
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
-                        <h1>grafico arqui </h1>
+                        <TemplateFormatoCharts data={formatoInfo} />
                     </Grid>
                     <Grid mt={3} display='flex' justifyContent='center' item xl={6} lg={6} md={6} sm={12} xs={12}>
                         <img src={img2} alt="imagem 2" height='100%' />

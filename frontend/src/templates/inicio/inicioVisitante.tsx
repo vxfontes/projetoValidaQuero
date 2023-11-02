@@ -6,15 +6,17 @@ import { Box, Grid, Typography } from "@mui/material";
 import TemplateContainer from "../../components/templates/container";
 import theme from "../../theme";
 import { useScreenSize } from "../../components/muiComponents/breakpoints";
-import TemplateCharts from "../../components/charts/mine/TemplateActives";
 import { TemplateContainerProps } from "../../logic/interfaces/template";
 import { UserProtectedProps } from "../../logic/interfaces/user";
+import TemplateFormatoCharts from "../../components/charts/mine/TemplateFormatoChart";
+import { PieChartProps } from "../../components/charts/PieFormatos";
 
 interface UserGetProps extends TemplateContainerProps {
     usuario: UserProtectedProps
+    formatoInfo: PieChartProps[]
 }
 
-const InicioVisitante = ({ usuario, formatos, message, templates, loading }: UserGetProps) => {
+const InicioVisitante = ({ usuario, formatos, message, templates, loading, formatoInfo }: UserGetProps) => {
     const { showTablet } = useScreenSize()
 
     return (
@@ -23,7 +25,7 @@ const InicioVisitante = ({ usuario, formatos, message, templates, loading }: Use
             {!showTablet && (
                 <Grid p={5} display='block' textAlign={'center'} item xl={4} lg={4} md={4} sm={12} xs={12}>
                     <img src={img1} alt="imagem 1" height='100%' />
-                    <h1>grafico arqui </h1>
+                    <TemplateFormatoCharts data={formatoInfo} />
                     <img src={img3} alt="imagem 3" height='100%' />
                 </Grid>
             )}
