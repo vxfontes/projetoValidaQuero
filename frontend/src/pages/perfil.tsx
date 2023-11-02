@@ -46,7 +46,7 @@ const MeuPerfil = () => {
         // get templates
         api.get(`/user/templates/${perfil.matricula}`).then(res => {
             if (res.data.status === 'success') {
-                if (res.data.templates.lenght === 0) setMessageTemplate("Não existem templates cadastrados pelo usuário")
+                if (res.data.templates.length === 0) setMessageTemplate("Não existem templates cadastrados pelo usuário")
                 else setTemplates(res.data.templates)
             }
         }).catch((error) => setMessageTemplate(error.response.data.message)
@@ -56,7 +56,7 @@ const MeuPerfil = () => {
         // get arquivos
         api.get(`/user/arquivos/${perfil.matricula}`).then(res => {
             if (res.data.status === 'success') {
-                if (res.data.arquivos.lenght === undefined) setMessageArquivo("Não existem arquivos cadastrados pelo usuário")
+                if (res.data.arquivos.length === undefined) setMessageArquivo("Não existem arquivos cadastrados pelo usuário")
                 else setArquivos(res.data.arquivos)
             }
         }).catch((error) => {
@@ -122,7 +122,7 @@ const MeuPerfil = () => {
                             {loadingFile ? (
                                 <BoxLoading loading message={messageArquivo === undefined ? "Carregando..." : messageArquivo} />
                             ) : (
-                                <FileContainer message={messageArquivo} itemsPerPage={10} arquivos={arquivos} />
+                                <FileContainer message={messageArquivo} itemsPerPage={6} arquivos={arquivos} />
                             )}
                         </Grid>
                     </GridContainers>
