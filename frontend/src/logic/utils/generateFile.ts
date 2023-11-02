@@ -7,7 +7,7 @@ export const exportFile = (titulo: string, campos: CamposProps[], formato: strin
 }
 
 const handleExportCSV = (titulo: string, campos: CamposProps[]) => {
-    const nomes = campos.map(campo => campo.nome).join(', ');
+    const nomes = campos.map(campo => campo.nome).join(',');
     const csvContent = `${nomes}`;
     const blob = new Blob([csvContent], { type: 'text/csv' });
     const url = URL.createObjectURL(blob);
