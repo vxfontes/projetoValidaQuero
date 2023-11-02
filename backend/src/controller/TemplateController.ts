@@ -240,4 +240,23 @@ export class TemplateController {
         }
     }
 
+
+    /**
+     * 
+     * @param response formatos x quantidade de templates
+     */
+    async formatoQuant(request: Request, response: Response) {
+        try {
+            const resultado = await formatoRepository
+                .createQueryBuilder('formato')
+                .leftJoinAndSelect('formato.template', 'template')
+                .select(['formato.titulo AS formato', 'COUNT(template.id) AS quantidade'])
+                .groupBy('formato.id')
+                .getRawMany();
+
+            response.status(201).json({ status: 'success', message: 'Arquivos encontrados com sucesso', result: resultado });
+        } catch (error) {
+            response.status(500).json({ status: 'error', message: 'Erro ao obter arquivos por formato', error: error });
+        }
+    }
 }

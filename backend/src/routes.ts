@@ -34,6 +34,7 @@ routes.get("/template/:id", TemplateControl.one);
 routes.delete("/template/:id", TemplateControl.excluir); // exclui somente templates pendentes
 routes.get("/template/aprovar/:id", TemplateControl.aprovar);
 routes.post("/template/status", TemplateControl.mudarStatus);
+routes.get("/getformato", TemplateControl.formatoQuant);
 
 // arquivos
 routes.post("/arquivo", ArquivoControl.create);
