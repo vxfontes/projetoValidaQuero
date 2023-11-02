@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Chip, Grid, IconButton, Typography, styled, TextField, Button, Switch } from "@mui/material";
+import { Box, Chip, Grid, IconButton, Typography, styled, TextField, Button, Switch, CircularProgress } from "@mui/material";
 import { AiOutlineUser } from 'react-icons/ai';
 import { FiDownload, FiUpload } from 'react-icons/fi';
 import { useParams } from "react-router-dom";
@@ -38,6 +38,7 @@ const ViewTemplate = () => {
     const [message, setMessage] = React.useState("");
     const [nome, setnome] = React.useState("");
     const [loading, setLoading] = React.useState(true);
+    const [loadingFile, setLoadingFile] = React.useState(false);
     const [modal, setModal] = React.useState(false);
     const [flag, setFlag] = React.useState("");
     const [checked, setChecked] = React.useState<boolean>(true);
@@ -87,6 +88,7 @@ const ViewTemplate = () => {
 
     async function handleUpload() {
         if (arquivo && template) {
+            setLoadingFile(true)
             try {
                 const formData = new FormData();
                 formData.append('titulo', nome);
@@ -107,6 +109,7 @@ const ViewTemplate = () => {
                     setModal(false)
                     console.log('Upload bem-sucedido:', response.data.message);
                     AlertSweet(response.data.message, 'success', true)
+                    setLoadingFile(false)
                 }
             } catch (error) { getError(error, 'Houve um erro ao tentar enviar') }
         }
@@ -167,9 +170,11 @@ const ViewTemplate = () => {
 
                                                     <Box sx={{ border: '2px dashed #ccc', textAlign: 'center', width: '80%', ml: '10%', padding: '7%' }}>
                                                         <img src={nuvem} alt="Nuvem upload" /><br />
-                                                        <Typography my={1} variant="body1" color="initial">Escolha um arquivo</Typography>
+                                                        <Typography my={1} variant="body1" color="initial">
+                                                            {arquivo ? (<>Arquivo selecionado com sucesso!</>) : (<>Selecione o arquivo</>)}
+                                                        </Typography>
                                                         <Typography mb={2} variant="body1" color="GrayText">CSV, XLS or XLSX, tamanho menor que 100MB</Typography>
-                                                        <Button variant="outlined" component='label' color="info" disabled={arquivo ? true : false}>
+                                                        <Button endIcon={loadingFile && (<CircularProgress color='info' size={20} />)} variant="outlined" component='label' color="info" disabled={arquivo ? true : false}>
                                                             {" "}
                                                             Selecionar arquivo
                                                             <input hidden accept=".csv,.xls,.xlsx" type="file" onChange={handleFileChange} />
