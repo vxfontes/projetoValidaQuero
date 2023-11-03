@@ -28,7 +28,6 @@ const Inicio = () => {
 
         // get infos
         api.get('/getformato').then(res => {
-            console.log(res)
             if (res.data.status === 'success') setFormatoInfo(res.data.result)
         }).catch((error) => AlertSweet(error.response.data.message, 'error', false))
         
