@@ -10,10 +10,11 @@ interface Props {
     arquivos: FileProps[];
     formato?: string;
     message?: string;
+    all?:boolean;
 }
 
-const FileContainer = ({ arquivos, itemsPerPage, formato, message }: Props) => {
-    arquivos = arquivos.filter((arquivo) => arquivo.aprovado === true);
+const FileContainer = ({ arquivos, itemsPerPage, formato, message, all }: Props) => {
+    arquivos = all ? arquivos : (arquivos.filter((arquivo) => arquivo.aprovado === true));
     const getitemsPerPage = itemsPerPage;
     const newMessage = message === undefined ? 'Arquivos não foram encontrados' : message
     const [currentPage, setCurrentPage] = React.useState(1);
@@ -43,6 +44,7 @@ const FileContainer = ({ arquivos, itemsPerPage, formato, message }: Props) => {
                 <Pagination
                     sx={{ p: 1, pb: 2 }}
                     count={Math.ceil(arquivos.length / getitemsPerPage)}
+                    siblingCount={0}
                     page={currentPage}
                     onChange={(_event, page) => setCurrentPage(page)}
                     color="secondary"

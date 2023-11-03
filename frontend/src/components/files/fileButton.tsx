@@ -12,7 +12,7 @@ const Container = styled(Grid)({
     background: '#FFFFFF',
 })
 
-const FileButton = ({ file, formato }: {file: FileProps, formato: string}) => {
+const FileButton = ({ file, formato }: { file: FileProps, formato: string }) => {
 
     const [open, setOpen] = useState(false);
 
@@ -23,22 +23,22 @@ const FileButton = ({ file, formato }: {file: FileProps, formato: string}) => {
         <>
             <DialogSlide handleClose={handleClose} open={open}>
                 <Container container display='block' justifyContent={'center'} textAlign={'center'} spacing={3} px={6} py={3}>
-                    <Typography variant="h5" color="initial" mt={2}>{file.titulo}</Typography>
+                    <Typography variant="h5" color={file.url === null ? "error" : "initial"} mt={2}>{file.titulo}</Typography>
 
                     <Box pt={3}>
-                        <Typography variant="body1" color="initial" align="left">
+                        <Typography variant="body1" align="left" color={file.url === null ? "error" : "initial"}>
                             <BoxSpanGray>Template: </BoxSpanGray>{file.template.titulo}<br />
                             <BoxSpanGray>Formato: </BoxSpanGray>{formato}<br />
                             <BoxSpanGray>Data de criação: </BoxSpanGray>{formatarData(file.dataCriacao)}<br />
                             <BoxSpanGray>Autor: </BoxSpanGray>{file.usuario.nome} (matrícula: <BoxSpanGray>{file.usuario.matricula}</BoxSpanGray>) <br />
-                            <BoxSpanGray>Quantidade de linhas: </BoxSpanGray>{file.linhas}
+                            <BoxSpanGray>Quantidade de linhas: </BoxSpanGray>{file.url === null ? "Arquivo não aprovado" : file.linhas}
                         </Typography>
                     </Box>
 
                     <br />
 
                     <Link target="_blank" to={file.url}>
-                        <Button variant="contained" color="primary" startIcon={<AiOutlineDownload />}>Download</Button>
+                        <Button disabled={file.url === null ? true : false} variant="contained" color="primary" startIcon={<AiOutlineDownload />}>Download</Button>
                     </Link>
                 </Container>
             </DialogSlide>
