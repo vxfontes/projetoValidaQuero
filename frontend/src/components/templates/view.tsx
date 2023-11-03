@@ -217,6 +217,7 @@ const ViewTemplate = () => {
                                                                         backgroundColor: theme.palette.azulClaro?.dark,
                                                                         transform: 'scale(1.06)',
                                                                     },
+                                                                    ml: (usuario.verificado && usuario.perfil === 'Gestor') ? 0 : 8,
                                                                 }}
                                                                 onClick={() => setModal(true)}
                                                                 icon={<FiUpload color="white" size={20} style={{ marginLeft: 10 }} />}
