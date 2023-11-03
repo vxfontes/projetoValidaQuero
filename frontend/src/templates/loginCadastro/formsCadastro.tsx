@@ -51,7 +51,7 @@ export const FormCadastro = () => {
                     confirmButtonText: 'Continue',
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = '/';
+                        window.location.href = '/home';
                     }
                 });
             }

@@ -21,7 +21,7 @@ const Rotas = () => {
     const user = getUser();
 
     // Define um array de caminhos onde a SideBar não deve aparecer
-    const sideBarPaths = ['/login', '/cadastro'];
+    const sideBarPaths = ['/login', '/cadastro', '/'];
     const showSideBar = !sideBarPaths.includes(location.pathname);
 
     const isUserAuthenticated = () => {
@@ -43,7 +43,7 @@ const Rotas = () => {
         if (!isGestor) {
             if (location.pathname === '/dashboard' || location.pathname === '/users') {
                 AlertSweet("Você não está autorizado a entrar nessa rota", 'error', false)
-                navigate("/");
+                navigate("/home");
             }
         }
     }, [location.pathname, navigate, user]);
@@ -53,7 +53,7 @@ const Rotas = () => {
             <Routes location={location}>
                 <Route path='/login' element={<Login />} />
                 <Route path='/cadastro' element={<Cadastro />} />
-                <Route path='/' element={<Inicio />} />
+                <Route path='/home' element={<Inicio />} />
                 <Route path='/perfil' element={<MeuPerfil />} />
 
                 {isUserGestor() && (
