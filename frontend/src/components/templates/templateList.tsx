@@ -12,7 +12,7 @@ export const GetTemplate = ({ templates, itemsPerPage, formatos, message }: Prop
     const startIndex = (currentPage - 1) * getitemsPerPage;
     const endIndex = startIndex + getitemsPerPage;
 
-    const [selectedFormat, setSelectedFormat] = React.useState(formatos[0].titulo);
+    const [selectedFormat, setSelectedFormat] = React.useState('CSV');
     const filteredTemplates = templates.filter((template) => {
         return template.formato === selectedFormat;
     });
