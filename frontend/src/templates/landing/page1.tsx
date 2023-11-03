@@ -9,7 +9,7 @@ const Page1 = () => {
     const { showTablet } = useScreenSize()
     return (
         <GridContainers align="center" direction="row" sx={{
-            backgroundColor: 'rgba(79, 112, 156, 0.60)',
+            backgroundColor: theme.palette.azulClaro?.light,
             height: '100vh'
         }}>
 
