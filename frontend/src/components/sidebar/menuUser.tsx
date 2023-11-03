@@ -69,7 +69,7 @@ const MenuUser = () => {
                             <MenuItem onClick={handleClose}>Meu Perfil</MenuItem>
                         </Link>
                         <Divider />
-                        <Link href='/cadastro' sx={{ textDecoration: 'none' }}>
+                        <Link href='/' sx={{ textDecoration: 'none' }}>
                             <MenuItem onClick={handleLogout}>Logout</MenuItem>
                         </Link>
                     </Menu>
