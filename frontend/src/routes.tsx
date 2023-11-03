@@ -13,6 +13,7 @@ import { Box, Typography } from '@mui/material';
 import UsersPage from './pages/user';
 import { AlertSweet } from './components/alerts/sweetAlerts';
 import Dashboard from './pages/dashboard';
+import Landing from './pages/landing';
 
 const Rotas = () => {
     const location = useLocation();
@@ -54,6 +55,7 @@ const Rotas = () => {
                 <Route path='/login' element={<Login />} />
                 <Route path='/cadastro' element={<Cadastro />} />
                 <Route path='/home' element={<Inicio />} />
+                <Route path='/' element={<Landing />} />
                 <Route path='/perfil' element={<MeuPerfil />} />
 
                 {isUserGestor() && (
