@@ -2,6 +2,7 @@ from database import SessionLocal
 from utils import formatoFile, load_file_data
 from file import requisicao, upload_file
 from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import text
 from valida import verificar_tipos
@@ -133,3 +134,48 @@ async def data():
     dashboard_data["templateData"] = templates_mes
 
     return dashboard_data
+
+
+@app.get("/file")
+async def arquivos():
+    query_arquivos = """
+        SELECT
+            arquivo.id,
+            arquivo.titulo,
+            arquivo.aprovado,
+            arquivo.url,
+            arquivo.linhas,
+            arquivo."dataCriacao",
+            usuario.nome AS usuario_nome,
+            usuario.matricula AS usuario_matricula,
+            template.titulo AS template_titulo,
+            formato.titulo AS formato_titulo
+        FROM "ValidaQuero".arquivo
+        LEFT JOIN "ValidaQuero".usuario ON arquivo.usuario = usuario.matricula 
+        LEFT JOIN "ValidaQuero".template ON arquivo.template = template.id
+        LEFT JOIN "ValidaQuero".formato ON template.formato = formato.id;
+    """
+
+    result_arquivos = db.execute(text(query_arquivos)).fetchall()
+
+    formatted_arquivos = []
+    for row in result_arquivos:
+        formatted_arquivo = {
+            "id": row[0],
+            "titulo": row[1],
+            "aprovado": row[2],
+            "url": row[3],
+            "linhas": row[4],
+            "dataCriacao": str(row[5]),
+            "usuario": {
+                "nome": row[6],
+                "matricula": row[7]
+            },
+            "template": {
+                "titulo": row[8]
+            },
+            "formato": row[9],
+        }
+        formatted_arquivos.append(formatted_arquivo)
+
+    return JSONResponse(content=formatted_arquivos)
