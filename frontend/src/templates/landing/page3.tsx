@@ -7,7 +7,7 @@ import { BoxSpanGray } from "../../components/muiComponents/boxes";
 const Page3 = () => {
     return (
         <GridContainers align="center" direction="row" sx={{
-            height: '80vh',
+            minHeight: '80vh',
             display: 'flex',
             justifyContent: 'center'
         }}>
