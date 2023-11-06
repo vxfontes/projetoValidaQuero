@@ -10,10 +10,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         ConfigModule.forRoot(),
         TypeOrmModule.forRoot({ // configurações de root
             type: 'postgres',
+            host: 'localhost',
+            port: 5432,
             database: 'postgres',
             username: 'postgres',
             password: 'postgres',
-            schema: 'ValidaQueroNestJs'
+            schema: 'ValidaQueroNestJs',
+            synchronize: true,
+            entities: [__dirname + '/**/*.entity{.js,.ts}'], // buscando todas as entidades ao inves de selecionar individualmente
         })
     ],
     controllers: [AppController], // são os arquivos que recebem rota
