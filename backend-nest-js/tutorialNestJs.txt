@@ -1,0 +1,16 @@
+o nest é movido por decorator
+
+o module que inicia no app module, possui
+    - imports: criando pequenos "pedaços da aplicação
+    - controllers: são os arquivos que recebem rota
+    - providers: tudo que não é controller, é provider, como por exemplo os services
+
+lá no controller, podemos observar que precisa do decorator para informar que aquilo é um controller e as funções
+tem decorators para indicar o tipo da rota, get, post, update...
+    - @Controller('algumarota') e @get('getAll') -> faz com que a nossa rota tenha por exemplo /user/getAll
+    - observamos que possui uma arquitetura de inversão de dependencia (o D do SOLID), ou seja, o controller não 
+        busca a dependencia, e sim deve receber as suas dependencias
+    - o nest vai além disso, pois não recebe dependencia no seu module, ele realiza uma injeção de dependencia, ou seja,
+        busca a dependencia de forma automatica buscando a partir dos providers
+
+nos providers, para que a injeção de dependencia seja realizada, precisamos ter um decorator que indique: @Injectable()
