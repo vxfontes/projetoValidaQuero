@@ -23,6 +23,23 @@ nest g resource nome -> gera uma restapi, graphql, microservice ou websocket com
 -- teste
 definição de repositorios e suprindo os providers como vimos no user
 utilização do tripple A
-    // Arrange -> ajustes e mockando codigo
+    // Arrange -> ajustes e mockando codigo 
+        - criação de dto de teste
+        - criação de entidade teste usando dto anterior
+        - utilização do spy para ver se retorna valor ou promise
     // Act -> quando executamos o teste
+        - no result usamos o servico ou controler que queremos testar com o dto
     // Assert -> quando asseguramos os testes
+        - utilizamos o expect para ver se as coisas estão acontecendo
+
+-- validação de dto
+utilização de class-validator e class-transformer
+em cada item do nosso dto, colocamos que não pode ser empty ou que é data e coisas do tipo
+
+-- manipulação de response manualmente
+usamos o @Res res: Response sendo o Res do nestjs e o response do express
+nos testes, precisamos valizar no expect individualmente o status, json ou outra coisa que estamos usando no response
+exemplo em services:
+expect(res.status).toHaveBeenCalledWith(201);
+expect(res.json).toHaveBeenCalledWith(json que usamos)
+em controllers nós apenas tratamos o erro http e se vier como bem sucedido
