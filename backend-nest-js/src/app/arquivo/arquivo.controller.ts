@@ -1,34 +1,21 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Res, HttpStatus, HttpException } from '@nestjs/common';
 import { ArquivoService } from './arquivo.service';
-import { CreateArquivoDto } from './dto/create-arquivo.dto';
-import { UpdateArquivoDto } from './dto/update-arquivo.dto';
+import { Response } from 'express';
 
 @Controller('arquivo')
 export class ArquivoController {
-  constructor(private readonly arquivoService: ArquivoService) {}
+    constructor(private readonly arquivoService: ArquivoService) { }
 
-  @Post()
-  create(@Body() createArquivoDto: CreateArquivoDto) {
-    return this.arquivoService.create(createArquivoDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.arquivoService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.arquivoService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateArquivoDto: UpdateArquivoDto) {
-    return this.arquivoService.update(+id, updateArquivoDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.arquivoService.remove(+id);
-  }
+    @Get()
+    async findAll(@Res() res: Response) {
+        try {
+            const arquivos = await this.arquivoService.findAll();
+            res.status(HttpStatus.CREATED).json({ status: 'success', message: 'Arquivos encontrados com sucesso', arquivos: arquivos });
+        } catch (error) {
+            throw new HttpException({
+                status: 'error',
+                error: 'Erro ao obter arquivos',
+            }, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

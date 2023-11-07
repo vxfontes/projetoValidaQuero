@@ -1,34 +1,39 @@
 import { Injectable } from '@nestjs/common';
-import { CreateArquivoDto } from './dto/create-arquivo.dto';
-import { UpdateArquivoDto } from './dto/update-arquivo.dto';
+import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Arquivo } from './entities/arquivo.entity';
-import { Repository } from 'typeorm';
 
 @Injectable()
 export class ArquivoService {
     constructor(
         @InjectRepository(Arquivo)
-        private readonly TemplateRepository: Repository<Arquivo>,
+        private readonly ArquivoRepository: Repository<Arquivo>,
     ) { }
 
-    create(createArquivoDto: CreateArquivoDto) {
-        return 'This action adds a new arquivo';
+    async findAll() {
+        const arquivos = await this.ArquivoRepository.find({
+            where: { aprovado: true },
+            relations: ["usuario", "template", "template.formato"],
+            select: ["id", "titulo", "dataCriacao", "linhas", "aprovado", "url", "usuario", "template"]
+        });
+
+        let formattedArquivos = []
+
+        if (arquivos) {
+            formattedArquivos = arquivos.map(arquivo => ({
+                ...arquivo,
+                usuario: {
+                    nome: arquivo.usuario.nome,
+                    matricula: arquivo.usuario.matricula,
+                },
+                template: {
+                    titulo: arquivo.template.titulo,
+                },
+                formato: arquivo.template.formato.titulo
+            }));
+        }
+
+        return formattedArquivos;
     }
 
-    findAll() {
-        return `This action returns all arquivo`;
-    }
-
-    findOne(id: number) {
-        return `This action returns a #${id} arquivo`;
-    }
-
-    update(id: number, updateArquivoDto: UpdateArquivoDto) {
-        return `This action updates a #${id} arquivo`;
-    }
-
-    remove(id: number) {
-        return `This action removes a #${id} arquivo`;
-    }
 }
