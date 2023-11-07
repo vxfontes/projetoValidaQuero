@@ -49,9 +49,6 @@ export class TemplateService {
             usuario: existingUser
         });
 
-        console.log(template);
-
-
         return this.TemplateRepository.save(template);
     }
 

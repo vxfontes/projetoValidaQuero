@@ -58,7 +58,7 @@ export class TemplateController {
     }
 
     @Delete(':id')
-    async remove(@Param('id') id: string, @Res() res: Response) {
+    async remove(@Param('id') id: number, @Res() res: Response) {
         try {
             await this.templateService.remove(+id);
             return res.status(HttpStatus.CREATED).json({ status: "success", message: "Template excluido com sucesso" });
