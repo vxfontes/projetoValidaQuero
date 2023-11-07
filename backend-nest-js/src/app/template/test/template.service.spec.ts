@@ -12,6 +12,7 @@ import { TemplateModule } from '../template.module';
 import { UserModule } from '../../user/user.module';
 import { FormatoModule } from '../../formato/formato.module';
 import { MudarStatusTemplateDto } from '../dto/mudar-status-template.dto';
+import { PendenteTemplateDto } from '../dto/pendente-template.dto';
 
 describe('TemplateService', () => {
     let service: TemplateService;
@@ -29,6 +30,7 @@ describe('TemplateService', () => {
                         save: jest.fn(),
                         create: jest.fn(),
                         update: jest.fn(),
+                        find: jest.fn(),
                         findOne: jest.fn(),
                         findOneBy: jest.fn(),
                         remove: jest.fn(),
@@ -363,6 +365,52 @@ describe('TemplateService', () => {
 
             // Act & Assert
             await expect(service.remove(id)).rejects.toThrow('Template não pode ser excluido pois não é pendente');
+        });
+    });
+
+
+    describe('pendente', () => {
+        it('Retornar todos os templates pendentes do banco', async () => {
+            // Arrange
+            const userMock = {
+                matricula: '123',
+                nome: 'Vanessa',
+                perfil: PerfilEnum.Gerente,
+                senha: '123',
+                verificado: true
+            } as User;
+
+            const mainTemplate = {
+                titulo: 'Template Title',
+                descricao: 'Template Description',
+                status: StatusEnum.Ativo,
+                campos: [{} as any],
+                quantidadeCampos: 2,
+                id: 123,
+                dataCriacao: new Date(),
+            }
+
+            const existingTemplates = [{
+                ...mainTemplate,
+                formato: { id: 1, titulo: 'CSV' } as Formato, // Substitua 1 pelo ID do formato
+                usuario: userMock,
+            }] as Template[];
+
+            const mockTemplate: PendenteTemplateDto[] = [{
+                ...mainTemplate,
+                formato: 'CSV',
+                usuario: { nome: userMock.nome, matricula: userMock.matricula },
+            }];
+
+            jest.spyOn(templateRepository, 'find').mockResolvedValue(existingTemplates);
+
+            // Act
+            const result = await service.pendente();
+
+            // Assert
+            expect(result).toBeDefined();
+            expect(result).toEqual(mockTemplate);
+            expect(templateRepository.find).toHaveBeenCalledTimes(1);
         });
     });
 

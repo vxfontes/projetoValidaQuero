@@ -91,7 +91,7 @@ export class TemplateService {
 
     async remove(id: number) {
         if (!id) throw new Error("ID é obrigatório.");
-        
+
         const template = await this.TemplateRepository.findOneBy({ id })
 
         if (template) {
@@ -100,5 +100,24 @@ export class TemplateService {
         } else {
             throw new Error('Template não encontrado');
         }
+    }
+
+
+    async pendente() {
+        const templates = await this.TemplateRepository.find({
+            relations: ["usuario", "formato"],
+            where: { status: StatusEnum.Pendente }
+        });
+
+        const formattedTemplates = templates.map(template => ({
+            ...template,
+            usuario: {
+                nome: template.usuario.nome,
+                matricula: template.usuario.matricula,
+            },
+            formato: template.formato.titulo
+        }));
+
+        return formattedTemplates;
     }
 }

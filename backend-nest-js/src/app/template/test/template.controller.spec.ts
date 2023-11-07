@@ -10,6 +10,7 @@ import { CreateTemplateDto } from '../dto/create-template.dto';
 import { StatusEnum } from '../entities/status.entity';
 import { PerfilEnum } from '../../user/entities/perfil.entity';
 import { MudarStatusTemplateDto } from '../dto/mudar-status-template.dto';
+import { PendenteTemplateDto } from '../dto/pendente-template.dto';
 
 describe('TemplateController', () => {
     let controller: TemplateController;
@@ -159,18 +160,18 @@ describe('TemplateController', () => {
             // Arrange
             const id = 1;
             const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
-            
+
             jest.spyOn(service, 'aprovar').mockResolvedValueOnce(undefined);
-            
+
             // Act
             await controller.aprovar(id, res as any);
-            
+
             // Assert
             expect(res.status).toHaveBeenCalledWith(201);
             expect(res.json).toHaveBeenCalledWith({ status: "success", message: "Template aprovado com sucesso" });
             expect(service.aprovar).toHaveBeenCalledTimes(1);
         });
-        
+
         it('Deveria lançar um erro se a aprovação falhar', async () => {
             // Arrange
             const id = 1;
@@ -190,18 +191,18 @@ describe('TemplateController', () => {
             // Arrange
             const id = 1;
             const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
-            
+
             jest.spyOn(service, 'remove').mockResolvedValueOnce(undefined);
-            
+
             // Act
             await controller.remove(id, res as any);
-            
+
             // Assert
             expect(res.status).toHaveBeenCalledWith(201);
             expect(res.json).toHaveBeenCalledWith({ status: "success", message: "Template excluido com sucesso" });
             expect(service.remove).toHaveBeenCalledTimes(1);
         });
-        
+
         it('Deveria lançar um erro se a remoção falhar', async () => {
             // Arrange
             const id = 1;
@@ -212,6 +213,47 @@ describe('TemplateController', () => {
             // Act and Assert
             await expect(controller.remove(id, res as any)).rejects.toThrow(HttpException);
             expect(service.remove).toHaveBeenCalledTimes(1);
+        })
+    });
+
+
+    describe('pendente', () => {
+        it('Deveria retornar todos os template pendente do banco', async () => {
+            // Arrange
+            const mockTemplate: PendenteTemplateDto[] = [{
+                titulo: 'Template Title',
+                descricao: 'Template Description',
+                status: StatusEnum.Ativo,
+                campos: [{} as any],
+                quantidadeCampos: 2,
+                id: 123,
+                dataCriacao: new Date(),
+                formato: 'CSV',
+                usuario: { nome: 'nome', matricula: '123' },
+            }];
+
+            const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+
+            jest.spyOn(service, 'pendente').mockResolvedValueOnce(mockTemplate);
+
+            // Act
+            await controller.pendente(res as any);
+
+            // Assert
+            expect(res.status).toHaveBeenCalledWith(201);
+            expect(res.json).toHaveBeenCalledWith({ status: 'success', message: 'Templates encontrados com sucesso', templates: mockTemplate });
+            expect(service.pendente).toHaveBeenCalledTimes(1);
+        });
+
+        it('Deveria lançar um erro se a requisição de pendentes falhar', async () => {
+            // Arrange
+            const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+
+            jest.spyOn(service, 'pendente').mockRejectedValueOnce(new Error());
+
+            // Act and Assert
+            await expect(controller.pendente(res as any)).rejects.toThrow(HttpException);
+            expect(service.pendente).toHaveBeenCalledTimes(1);
         })
     });
 });
