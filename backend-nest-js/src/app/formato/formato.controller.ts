@@ -8,8 +8,16 @@ export class FormatoController {
     constructor(private readonly formatoService: FormatoService) { }
 
     @Post()
-    create(@Body() createFormatoDto: CreateFormatoDto) {
-        return this.formatoService.create(createFormatoDto);
+    async create(@Body() createFormatoDto: CreateFormatoDto, @Res() res: Response) {
+        try {
+            this.formatoService.create(createFormatoDto);
+            res.status(HttpStatus.CREATED).json({ status: 'success', message: 'Formato criado com sucesso' });
+        } catch (error) {
+            throw new HttpException({
+                status: 'error',
+                error: error.message,
+            }, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Get()

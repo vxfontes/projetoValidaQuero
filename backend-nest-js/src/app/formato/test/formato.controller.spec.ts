@@ -4,6 +4,7 @@ import { HttpException } from '@nestjs/common';
 import { FormatoService } from '../formato.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Formato } from '../entities/formato.entity';
+import { CreateFormatoDto } from '../dto/create-formato.dto';
 
 describe('FormatoController', () => {
     let controller: FormatoController;

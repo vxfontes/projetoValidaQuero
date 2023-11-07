@@ -3,6 +3,7 @@ import { FormatoService } from '../formato.service';
 import { Repository } from 'typeorm';
 import { Formato } from '../entities/formato.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { CreateFormatoDto } from '../dto/create-formato.dto';
 
 describe('FormatoService', () => {
     let service: FormatoService;
@@ -16,6 +17,8 @@ describe('FormatoService', () => {
                     provide: getRepositoryToken(Formato),
                     useValue: {
                         findAll: jest.fn(),
+                        findOne: jest.fn(),
+                        save: jest.fn(),
                         find: jest.fn()
                     },
                 }
@@ -59,5 +62,37 @@ describe('FormatoService', () => {
             // Act & Assert
             await expect(service.findAll()).rejects.toThrow('Formatos não encontrados');
         });
-    })
+    });
+
+
+    describe('create', () => {
+        it('Deveria criar um novo formato', async () => {
+            // Arrange
+            const formatoDtoMock: CreateFormatoDto = { titulo: 'Titulo de teste' };
+            const formatoEntityMock = { ...formatoDtoMock, id: 1 };
+
+            jest.spyOn(repository, 'findOne').mockResolvedValue(undefined);
+            jest.spyOn(repository, 'save').mockResolvedValue(formatoEntityMock);
+
+            // Act
+            const result = await service.create(formatoDtoMock);
+
+            // Assert
+            expect(result).toBeDefined();
+            expect(result).toEqual(formatoEntityMock);
+            expect(repository.findOne).toHaveBeenCalledTimes(1);
+            expect(repository.save).toHaveBeenCalledTimes(1);
+        });
+
+        it('Deveria retornar erro se o formato já existir', async () => {
+            // Arrange
+            const formatoDtoMock = { titulo: 'Titulo de teste' };
+            const formatoEntityMock = { ...formatoDtoMock, id: 1 };
+
+            jest.spyOn(repository, 'findOne').mockResolvedValue(formatoEntityMock);
+
+            // Act & Assert
+            await expect(service.create(formatoDtoMock)).rejects.toThrow('Formato já existe no banco de dados');
+        });
+    });
 });

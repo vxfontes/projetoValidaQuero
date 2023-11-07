@@ -11,8 +11,13 @@ export class FormatoService {
         private readonly FormatoRepository: Repository<Formato>
     ) { }
 
-    create(createFormatoDto: CreateFormatoDto) {
-        return 'This action adds a new formato';
+    async create(formato: CreateFormatoDto) {
+        if (!formato) throw new Error("Campo é obrigatório");
+
+        const existingFormato = await this.FormatoRepository.findOne({ where: { titulo: formato.titulo } });
+
+        if (existingFormato) throw new Error('Formato já existe no banco de dados');
+        else return this.FormatoRepository.save(formato);
     }
 
     async findAll() {
