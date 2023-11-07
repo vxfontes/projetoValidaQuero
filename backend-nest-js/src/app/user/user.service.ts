@@ -7,12 +7,18 @@ import { User } from './entities/user.entity';
 import { PerfilEnum } from './entities/perfil.entity';
 import { AuthUserDto } from './dto/auth-user.dto';
 import { StatusEnum } from '../template/entities/status.entity';
+import { Template } from '../template/entities/template.entity';
+import { Arquivo } from '../arquivo/entities/arquivo.entity';
 
 @Injectable()
 export class UserService {
     constructor(
         @InjectRepository(User) // adição de metodos para manipulação do banco de dados
-        private readonly UserRepository: Repository<User>
+        private readonly UserRepository: Repository<User>,
+        @InjectRepository(Template)
+        private readonly TemplateRepository: Repository<Template>,
+        @InjectRepository(Arquivo)
+        private readonly ArquivoRepository: Repository<Arquivo>,
     ) { }
 
 
@@ -145,5 +151,68 @@ export class UserService {
         if (existingUser.verificado) throw new Error("Usuário verificado não pode ser excluido")
 
         return this.UserRepository.remove(existingUser)
+    }
+
+
+    async templates(matricula: string) {
+        let formattedTemplates = [];
+
+        const usuarioExistente = await this.UserRepository.findOneBy({ matricula });
+        if (!usuarioExistente) throw new Error('Usuário não encontrado no banco de dados');
+        if (usuarioExistente.perfil === PerfilEnum.Time) throw new Error("Usuários do time não possuem templates");
+        if (!usuarioExistente.verificado) throw new Error("Usuários não verificados não possuem templates");
+
+        const templates = await this.TemplateRepository.find({
+            where: { usuario: { matricula: matricula } },
+            relations: ["usuario", "formato"],
+            select: ['campos', 'dataCriacao', 'descricao', 'formato', 'id', 'quantidadeCampos', 'status', 'titulo', 'usuario']
+        });
+
+        if (templates.length === 0) throw new Error('Usuário não possui templates');
+
+        formattedTemplates = templates.map(template => ({
+            ...template,
+            status: template.status,
+            usuario: {
+                nome: template.usuario.nome,
+                matricula: template.usuario.matricula,
+                verificado: template.usuario.verificado,
+                perfil: template.usuario.perfil,
+            },
+            formato: template.formato.titulo,
+        }))
+
+        return formattedTemplates;
+    }
+
+
+    async arquivos(matricula: string) {
+        const usuarioExistente = await this.UserRepository.findOneBy({ matricula });
+
+        if (!usuarioExistente) throw new Error('Usuário não encontrado no banco de dados');
+        if (usuarioExistente.perfil === PerfilEnum.Gerente) throw new Error("Gerentes não possuem arquivos");
+        if (!usuarioExistente.verificado) throw new Error("Usuários não verificados não possuem arquivos");
+
+        const arquivos = await this.ArquivoRepository.find({
+            where: { usuario: { matricula: matricula }, aprovado: true },
+            relations: ['usuario', 'template', 'template.formato'],
+            select: ['aprovado', 'dataCriacao', 'id', 'linhas', 'template', 'titulo', 'url', 'usuario']
+        });
+
+        if (arquivos.length === 0) throw new Error('Usuário não possui arquivos');
+
+        const formattedArquivos = arquivos.map(arquivo => ({
+            ...arquivo,
+            usuario: {
+                nome: arquivo.usuario.nome,
+                matricula: arquivo.usuario.matricula,
+            },
+            template: {
+                titulo: arquivo.template.titulo,
+            },
+            formato: arquivo.template.formato.titulo
+        }));
+
+        return formattedArquivos;
     }
 }

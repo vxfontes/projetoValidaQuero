@@ -105,4 +105,32 @@ export class UserController {
             }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+    @Get('template/:matricula')
+    async templates(@Param('matricula') matricula: string, @Res() res: Response) {
+        try {
+            const templates = await this.userService.templates(matricula);
+            res.status(HttpStatus.CREATED).json({ status: 'success', message: `Templates de ${matricula} encontrados com sucesso`, templates: templates });
+        } catch (error) {
+            throw new HttpException({
+                status: 'error',
+                error: error.message,
+            }, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    @Get('arquivo/:matricula')
+    async arquivos(@Param('matricula') matricula: string, @Res() res: Response) {
+        try {
+            const arquivos = await this.userService.arquivos(matricula);
+            res.status(HttpStatus.CREATED).json({ status: 'success', message: `Arquivos de ${matricula} encontrados com sucesso`, arquivos: arquivos });
+        } catch (error) {
+            throw new HttpException({
+                status: 'error',
+                error: error.message,
+            }, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

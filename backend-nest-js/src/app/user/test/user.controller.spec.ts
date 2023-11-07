@@ -7,7 +7,9 @@ import { User } from '../entities/user.entity';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { PerfilEnum } from '../entities/perfil.entity';
 import { AuthUserDto } from '../dto/auth-user.dto';
-import { usuariosMock } from '../dto/get-user.dto';
+import { arquivosMock, arquivosMockReturn, templatesMock, usuariosMock } from '../dto/get-user.dto';
+import { Template } from '../../template/entities/template.entity';
+import { Arquivo } from '../../arquivo/entities/arquivo.entity';
 
 describe('UserController', () => {
     let controller: UserController;
@@ -23,7 +25,15 @@ describe('UserController', () => {
                     useValue: {
                         create: jest.fn()
                     }
-                }
+                },
+                {
+                    provide: getRepositoryToken(Template),
+                    useValue: {}
+                },
+                {
+                    provide: getRepositoryToken(Arquivo),
+                    useValue: {}
+                },
             ],
         }).compile();
 
@@ -281,4 +291,65 @@ describe('UserController', () => {
         });
     });
 
+
+    describe('templates', () => {
+        it('Deveria retornar todos os templates de um usuário', async () => {
+            // Arrange
+            const matricula = '123';
+            const res = { status: jest.fn().mockReturnThis(), json: jest.fn(), templates: jest.fn().mockResolvedValueOnce(templatesMock) };
+
+            jest.spyOn(service, 'templates').mockResolvedValueOnce(templatesMock);
+
+            // Act
+            await controller.templates(matricula, res as any);
+
+            // Assert
+            expect(res.status).toHaveBeenCalledWith(HttpStatus.CREATED);
+            expect(res.json).toHaveBeenCalledWith({ status: 'success', message: `Templates de ${matricula} encontrados com sucesso`, templates: templatesMock });
+            expect(service.templates).toHaveBeenCalledTimes(1);
+        });
+
+        it('Deveria retornar erro caso não encontre templates de usuários ou usuários', async () => {
+            // Arrange
+            const matricula = '123';
+            jest.spyOn(service, 'templates').mockRejectedValueOnce(new Error());
+
+            const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+
+            // Act & Assert
+            await expect(controller.templates(matricula, res as any)).rejects.toThrow(HttpException);
+            expect(service.templates).toHaveBeenCalledTimes(1);
+        });
+    });
+
+
+    describe('arquivos', () => {
+        it('Deveria retornar todos os arquivos de um usuário', async () => {
+            // Arrange
+            const matricula = '123';
+            const res = { status: jest.fn().mockReturnThis(), json: jest.fn(), arquivos: jest.fn().mockResolvedValueOnce(arquivosMockReturn) };
+
+            jest.spyOn(service, 'arquivos').mockResolvedValueOnce(arquivosMockReturn);
+
+            // Act
+            await controller.arquivos(matricula, res as any);
+
+            // Assert
+            expect(res.status).toHaveBeenCalledWith(HttpStatus.CREATED);
+            expect(res.json).toHaveBeenCalledWith({ status: 'success', message: `Arquivos de ${matricula} encontrados com sucesso`, arquivos: arquivosMockReturn });
+            expect(service.arquivos).toHaveBeenCalledTimes(1);
+        });
+
+        it('Deveria retornar erro caso não encontre arquivos de usuários ou usuários', async () => {
+            // Arrange
+            const matricula = '123';
+            jest.spyOn(service, 'arquivos').mockRejectedValueOnce(new Error());
+
+            const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+
+            // Act & Assert
+            await expect(controller.arquivos(matricula, res as any)).rejects.toThrow(HttpException);
+            expect(service.arquivos).toHaveBeenCalledTimes(1);
+        });
+    });
 });

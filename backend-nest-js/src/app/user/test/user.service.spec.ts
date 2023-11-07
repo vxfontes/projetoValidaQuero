@@ -7,12 +7,17 @@ import { CreateUserDto } from '../dto/create-user.dto';
 import { PerfilEnum } from '../entities/perfil.entity';
 import { AuthUserDto } from '../dto/auth-user.dto';
 import * as bcrypt from 'bcrypt';
-import { usuariosMock } from '../dto/get-user.dto';
+import { arquivosMock, arquivosMockReturn, templatesMock, templatesMockReturn, userMock, usuariosMock } from '../dto/get-user.dto';
 import { StatusEnum } from '../../template/entities/status.entity';
+import { Template } from '../../template/entities/template.entity';
+import { Arquivo } from '../../arquivo/entities/arquivo.entity';
+import { Formato } from '../../formato/entities/formato.entity';
 
 describe('UserService', () => {
     let service: UserService;
     let repository: Repository<User>;
+    let templateRepository: Repository<Template>;
+    let arquivoRepository: Repository<Arquivo>;
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
@@ -26,21 +31,38 @@ describe('UserService', () => {
                         find: jest.fn(),
                         findAll: jest.fn(),
                         findOne: jest.fn(),
+                        findOneBy: jest.fn(),
                         remove: jest.fn(),
                         auth: jest.fn(),
+                    },
+                },
+                {
+                    provide: getRepositoryToken(Template),
+                    useValue: {
+                        find: jest.fn()
                     }
-                }
+                },
+                {
+                    provide: getRepositoryToken(Arquivo),
+                    useValue: {
+                        find: jest.fn()
+                    }
+                },
             ],
         }).compile();
 
         service = module.get<UserService>(UserService);
         // repository = module.get(getRepositoryToken(User)); - tanto faz, aceita os dois
         repository = module.get<Repository<User>>(getRepositoryToken(User));
+        templateRepository = module.get<Repository<Template>>(getRepositoryToken(Template));
+        arquivoRepository = module.get<Repository<Arquivo>>(getRepositoryToken(Arquivo));
     });
 
     it('should be defined', () => {
         expect(service).toBeDefined();
         expect(repository).toBeDefined();
+        expect(arquivoRepository).toBeDefined();
+        expect(templateRepository).toBeDefined();
     });
 
     describe('create', () => {
@@ -316,7 +338,7 @@ describe('UserService', () => {
                 template: Array(usuariosMock.template.ativo).fill({ status: StatusEnum.Ativo }),
                 arquivo: Array(usuariosMock.arquivo.aprovados).fill({ aprovado: true }).concat(Array(usuariosMock.arquivo.naoaprovados).fill({ aprovado: false }))
             } as User];
-            
+
 
             jest.spyOn(repository, 'find').mockResolvedValueOnce(usuariosMockAll);
 
@@ -351,28 +373,207 @@ describe('UserService', () => {
                 template: Array(usuariosMock.template.ativo).fill({ status: StatusEnum.Ativo }),
                 arquivo: Array(usuariosMock.arquivo.aprovados).fill({ aprovado: true }).concat(Array(usuariosMock.arquivo.naoaprovados).fill({ aprovado: false }))
             } as User;
-    
+
             jest.spyOn(repository, 'findOne').mockResolvedValueOnce(usuariosMockAll);
-    
+
             // Act
             const result = await service.findOne(matricula);
-    
+
             // Assert
             expect(result).toBeDefined();
             expect(result).toEqual(usuariosMock);
             expect(repository.findOne).toHaveBeenCalledTimes(1);
         });
-        
+
         it('Deveria retornar erro caso não encontre o usuário', async () => {
             // Arrange
             const matricula = '123';
-            
+
             jest.spyOn(repository, 'findOne').mockResolvedValueOnce(null);
-            
+
             // Act & Assert
             await expect(service.findOne(matricula)).rejects.toThrow('Usuário não encontrado');
             expect(repository.findOne).toHaveBeenCalledTimes(1);
         });
     });
-    
+
+
+    describe('templates', () => {
+        it('Deveria retornar um erro se o usuário não for encontrado', async () => {
+            // Arrange
+            const matricula = '123';
+
+            jest.spyOn(repository, 'findOneBy').mockResolvedValueOnce(null);
+
+            // Act & Assert
+            await expect(service.templates(matricula)).rejects.toThrow('Usuário não encontrado no banco de dados');
+            expect(repository.findOneBy).toHaveBeenCalledTimes(1);
+        });
+
+        it('Deveria retornar erro caso o usuário fosse time', async () => {
+            // Arrange
+            const matricula = '123';
+
+            const userMock = {
+                matricula: matricula,
+                nome: 'Usuário de teste',
+                perfil: PerfilEnum.Time,
+                senha: '123',
+                verificado: true
+            } as User;
+
+            jest.spyOn(repository, 'findOneBy').mockResolvedValueOnce(userMock);
+
+            // Act && Assert
+            await expect(service.templates(matricula)).rejects.toThrow('Usuários do time não possuem templates');
+            expect(repository.findOneBy).toHaveBeenCalledTimes(1);
+        });
+
+        it('Deveria retornar erro caso o usuário não fosse verificado', async () => {
+            // Arrange
+            const matricula = '123';
+
+            const userMock = {
+                matricula: matricula,
+                nome: 'Usuário de teste',
+                perfil: PerfilEnum.Gerente,
+                senha: '123',
+                verificado: false
+            } as User;
+
+            jest.spyOn(repository, 'findOneBy').mockResolvedValueOnce(userMock);
+
+            // Act && Assert
+            await expect(service.templates(matricula)).rejects.toThrow('Usuários não verificados não possuem templates');
+            expect(repository.findOneBy).toHaveBeenCalledTimes(1);
+        });
+
+        it('Deveria retornar erro caso o usuário não possuia templates', async () => {
+            // Arrange
+            const matricula = '123';
+
+            const userMock = {
+                matricula: matricula,
+                nome: 'Usuário de teste',
+                perfil: PerfilEnum.Gerente,
+                senha: '123',
+                verificado: true
+            } as User;
+
+            jest.spyOn(repository, 'findOneBy').mockResolvedValueOnce(userMock);
+            jest.spyOn(templateRepository, 'find').mockResolvedValueOnce([]);
+
+            // Act && Assert
+            await expect(service.templates(matricula)).rejects.toThrow('Usuário não possui templates');
+            expect(repository.findOneBy).toHaveBeenCalledTimes(1);
+            expect(templateRepository.find).toHaveBeenCalledTimes(1);
+        });
+
+        it('Deveria retornar todos os templates do usuário', async () => {
+            // Arrange
+            const matricula = '123';
+
+            jest.spyOn(repository, 'findOneBy').mockResolvedValueOnce(userMock);
+            jest.spyOn(templateRepository, 'find').mockResolvedValueOnce(templatesMock);
+
+            // Act
+            const result = await service.templates(matricula);
+
+            // Assert
+            expect(result).toBeDefined();
+            expect(result).toEqual(templatesMockReturn);
+            expect(repository.findOneBy).toHaveBeenCalledTimes(1);
+            expect(templateRepository.find).toHaveBeenCalledTimes(1);
+        });
+    });
+
+
+    describe('arquivos', () => {
+        it('Deveria retornar um erro se o usuário não for encontrado', async () => {
+            // Arrange
+            const matricula = '123';
+
+            jest.spyOn(repository, 'findOneBy').mockResolvedValueOnce(null);
+
+            // Act & Assert
+            await expect(service.arquivos(matricula)).rejects.toThrow('Usuário não encontrado no banco de dados');
+            expect(repository.findOneBy).toHaveBeenCalledTimes(1);
+        });
+
+        it('Deveria retornar erro caso o usuário fosse gerente', async () => {
+            // Arrange
+            const matricula = '123';
+
+            const userMock = {
+                matricula: matricula,
+                nome: 'Usuário de teste',
+                perfil: PerfilEnum.Gerente,
+                senha: '123',
+                verificado: true
+            } as User;
+
+            jest.spyOn(repository, 'findOneBy').mockResolvedValueOnce(userMock);
+
+            // Act && Assert
+            await expect(service.arquivos(matricula)).rejects.toThrow('Gerentes não possuem arquivos');
+            expect(repository.findOneBy).toHaveBeenCalledTimes(1);
+        });
+
+        it('Deveria retornar erro caso o usuário não fosse verificado', async () => {
+            // Arrange
+            const matricula = '123';
+
+            const userMock = {
+                matricula: matricula,
+                nome: 'Usuário de teste',
+                perfil: PerfilEnum.Time,
+                senha: '123',
+                verificado: false
+            } as User;
+
+            jest.spyOn(repository, 'findOneBy').mockResolvedValueOnce(userMock);
+
+            // Act && Assert
+            await expect(service.arquivos(matricula)).rejects.toThrow('Usuários não verificados não possuem arquivos');
+            expect(repository.findOneBy).toHaveBeenCalledTimes(1);
+        });
+
+        it('Deveria retornar erro caso o usuário não possuia arquivos', async () => {
+            // Arrange
+            const matricula = '123';
+
+            const userMock = {
+                matricula: matricula,
+                nome: 'Usuário de teste',
+                perfil: PerfilEnum.Time,
+                senha: '123',
+                verificado: true
+            } as User;
+
+            jest.spyOn(repository, 'findOneBy').mockResolvedValueOnce(userMock);
+            jest.spyOn(arquivoRepository, 'find').mockResolvedValueOnce([]);
+
+            // Act && Assert
+            await expect(service.arquivos(matricula)).rejects.toThrow('Usuário não possui arquivos');
+            expect(repository.findOneBy).toHaveBeenCalledTimes(1);
+            expect(arquivoRepository.find).toHaveBeenCalledTimes(1);
+        });
+
+        it('Deveria retornar todos os arquivos do usuário', async () => {
+            // Arrange
+            const matricula = '123';
+
+            jest.spyOn(repository, 'findOneBy').mockResolvedValueOnce(userMock);
+            jest.spyOn(arquivoRepository, 'find').mockResolvedValueOnce(arquivosMock);
+
+            // Act
+            const result = await service.arquivos(matricula);
+
+            // Assert
+            expect(result).toBeDefined();
+            expect(result).toEqual(arquivosMockReturn);
+            expect(repository.findOneBy).toHaveBeenCalledTimes(1);
+            expect(arquivoRepository.find).toHaveBeenCalledTimes(1);
+        });
+    });
 });
