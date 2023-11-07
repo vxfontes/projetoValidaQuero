@@ -4,7 +4,6 @@ import { HttpException } from '@nestjs/common';
 import { FormatoService } from '../formato.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Formato } from '../entities/formato.entity';
-import { CreateFormatoDto } from '../dto/create-formato.dto';
 
 describe('FormatoController', () => {
     let controller: FormatoController;
@@ -63,6 +62,39 @@ describe('FormatoController', () => {
             // Act and Assert
             await expect(controller.findAll(res as any)).rejects.toThrow(HttpException);
             expect(service.findAll).toHaveBeenCalledTimes(1);
+        });
+    });
+
+
+    describe('formatoQuantidade', () => {
+        it('Deveria retornar todos os formatos e a quantidade de templates', async () => {
+            // Arrange
+            const formatoXquantidade = [
+                { formato: 'PDF', quantidade: 10 },
+                { formato: 'DOC', quantidade: 5 },
+            ]
+            const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+
+            jest.spyOn(service, "formatoQuantidade").mockResolvedValue(formatoXquantidade);
+
+            // Act
+            await controller.formatoQuantidade(res as any)
+
+            // Assert
+            expect(res.status).toHaveBeenCalledWith(201);
+            expect(res.json).toHaveBeenCalledWith({ status: 'success', message: 'Arquivos encontrados com sucesso', result: formatoXquantidade });
+            expect(service.formatoQuantidade).toHaveBeenCalledTimes(1);
+        });
+
+        it('Deveria lançar um erro se a não retornar formato x quantidade', async () => {
+            // Arrange
+            const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+
+            jest.spyOn(service, 'formatoQuantidade').mockRejectedValueOnce(new Error())
+
+            // Act and Assert
+            await expect(controller.formatoQuantidade(res as any)).rejects.toThrow(HttpException);
+            expect(service.formatoQuantidade).toHaveBeenCalledTimes(1);
         });
     });
 });

@@ -26,4 +26,15 @@ export class FormatoService {
 
         return formatos;
     }
+
+    async formatoQuantidade() {
+        const resultado = await this.FormatoRepository
+            .createQueryBuilder('formato')
+            .leftJoinAndSelect('formato.template', 'template')
+            .select(['formato.titulo AS formato', 'COUNT(template.id) AS quantidade'])
+            .groupBy('formato.id')
+            .getRawMany();
+
+        return resultado;
+    }
 }

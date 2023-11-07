@@ -8,8 +8,24 @@ import { CreateFormatoDto } from '../dto/create-formato.dto';
 describe('FormatoService', () => {
     let service: FormatoService;
     let repository: Repository<Formato>;
+    let mockQueryBuilder;
+
+    const formatoXquantidade = [
+        { formato: 'PDF', quantidade: 10 },
+        { formato: 'DOC', quantidade: 5 },
+    ]
 
     beforeEach(async () => {
+        mockQueryBuilder = {
+            leftJoinAndSelect: jest.fn().mockReturnThis(),
+            select: jest.fn().mockReturnThis(),
+            groupBy: jest.fn().mockReturnThis(),
+            getRawMany: jest.fn().mockResolvedValue([
+                { formato: 'PDF', quantidade: 10 },
+                { formato: 'DOC', quantidade: 5 },
+            ]),
+        };
+
         const module: TestingModule = await Test.createTestingModule({
             providers: [
                 FormatoService,
@@ -19,7 +35,8 @@ describe('FormatoService', () => {
                         findAll: jest.fn(),
                         findOne: jest.fn(),
                         save: jest.fn(),
-                        find: jest.fn()
+                        find: jest.fn(),
+                        createQueryBuilder: jest.fn(jest.fn(() => mockQueryBuilder)),
                     },
                 }
             ],
@@ -107,4 +124,20 @@ describe('FormatoService', () => {
             await expect(service.create(formatoDtoMock)).rejects.toThrow('Formato já existe no banco de dados');
         });
     });
+
+
+    describe('formatoQuantidade', () => {
+        it('Deve retornar a quantidade de template x formatos disponíveis', async () => {
+            // Arrange
+            jest.spyOn(repository, 'createQueryBuilder');
+
+            // Act && Assert
+            const result = await service.formatoQuantidade();
+            expect(result).toEqual(formatoXquantidade);
+            expect(mockQueryBuilder.leftJoinAndSelect).toHaveBeenCalled();
+            expect(mockQueryBuilder.select).toHaveBeenCalled();
+            expect(mockQueryBuilder.groupBy).toHaveBeenCalled();
+            expect(mockQueryBuilder.getRawMany).toHaveBeenCalled();
+        });
+    })
 });

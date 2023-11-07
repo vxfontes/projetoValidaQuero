@@ -32,4 +32,17 @@ export class FormatoController {
             }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @Get('/templates')
+    async formatoQuantidade(@Res() res: Response) {
+        try {
+            const resultado = await this.formatoService.formatoQuantidade();
+            res.status(HttpStatus.CREATED).json({ status: 'success', message: 'Arquivos encontrados com sucesso', result: resultado });
+        } catch (error) {
+            throw new HttpException({
+                status: 'error',
+                error: 'Erro ao obter arquivos por formato',
+            }, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
