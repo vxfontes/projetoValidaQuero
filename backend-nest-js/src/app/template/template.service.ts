@@ -8,6 +8,7 @@ import { User } from '../user/entities/user.entity';
 import { StatusEnum } from './entities/status.entity';
 import { PerfilEnum } from '../user/entities/perfil.entity';
 import { MudarStatusTemplateDto } from './dto/mudar-status-template.dto';
+import { FindOneTemplateDto } from './dto/find-one-template.dto';
 
 @Injectable()
 export class TemplateService {
@@ -81,13 +82,63 @@ export class TemplateService {
     }
 
 
-    findAll() {
-        return `This action returns all template`;
+    async findAll() {
+        let formattedTemplates = [];
+        const templates = await this.TemplateRepository.find({
+            relations: ['usuario', 'formato', 'arquivos'],
+            select: ['id', 'titulo', 'campos', 'dataCriacao', 'formato', 'quantidadeCampos', 'status', 'descricao', 'usuario', 'arquivos']
+        });
+
+        if (templates) {
+            formattedTemplates = templates.map(template => ({
+                ...template,
+                status: template.status,
+                usuario: {
+                    nome: template.usuario.nome,
+                    matricula: template.usuario.matricula,
+                    verificado: template.usuario.verificado,
+                    perfil: template.usuario.perfil,
+                },
+                formato: template.formato.titulo,
+            }))
+        }
+
+        return formattedTemplates;
     }
 
-    findOne(id: number) {
-        return `This action returns a #${id} template`;
+
+    async findOne(id: number) {
+        let formattedTemplate: FindOneTemplateDto;
+        const template = await this.TemplateRepository.findOne({
+            where: { id: id },
+            relations: ['usuario', 'formato', 'arquivos', 'arquivos.usuario'],
+            select: ['id', 'titulo', 'campos', 'dataCriacao', 'formato', 'quantidadeCampos', 'status', 'descricao', 'usuario', 'arquivos']
+        });
+
+        if (!template) throw new Error('Template não encontrado');
+
+        formattedTemplate = {
+            ...template,
+            formato: template.formato.titulo,
+            usuario: {
+                nome: template.usuario.nome,
+                matricula: template.usuario.matricula,
+            },
+            arquivos: template.arquivos.map(arq => ({
+                id: arq.id,
+                titulo: arq.titulo,
+                dataCriacao: arq.dataCriacao,
+                linhas: arq.linhas,
+                aprovado: arq.aprovado,
+                url: arq.url,
+                usuario: { nome: arq.usuario.nome, matricula: arq.usuario.matricula },
+                template: { titulo: template.titulo }
+            }))
+        }
+
+        return formattedTemplate;
     }
+
 
     async remove(id: number) {
         if (!id) throw new Error("ID é obrigatório.");

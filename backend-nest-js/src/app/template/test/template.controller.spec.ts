@@ -10,7 +10,7 @@ import { CreateTemplateDto } from '../dto/create-template.dto';
 import { StatusEnum } from '../entities/status.entity';
 import { PerfilEnum } from '../../user/entities/perfil.entity';
 import { MudarStatusTemplateDto } from '../dto/mudar-status-template.dto';
-import { PendenteTemplateDto } from '../dto/pendente-template.dto';
+import { formattedTemplatesPuroMock, templatesPuroMock } from '../dto/mock-template.dto';
 
 describe('TemplateController', () => {
     let controller: TemplateController;
@@ -255,6 +255,79 @@ describe('TemplateController', () => {
             // Act and Assert
             await expect(controller.pendente(res as any)).rejects.toThrow(HttpException);
             expect(service.pendente).toHaveBeenCalledTimes(1);
+        })
+    });
+
+
+    describe('findAll', () => {
+        it('Deveria retornar todos os templates do banco', async () => {
+            // Arrange
+            const mockTemplates = [
+                {
+                    ...templatesPuroMock,
+                    "usuario": {
+                        "nome": "Vanessa",
+                        "matricula": "312",
+                        "verificado": true,
+                        "perfil": PerfilEnum.Gerente,
+                    },
+                    "formato": "XLSX",
+                }
+            ];
+
+            const res = { status: jest.fn().mockReturnThis(), json: jest.fn(), templates: jest.fn().mockResolvedValueOnce(mockTemplates) };
+
+            jest.spyOn(service, 'findAll').mockResolvedValueOnce(mockTemplates);
+
+            // Act
+            await controller.findAll(res as any);
+
+            // Assert
+            expect(res.status).toHaveBeenCalledWith(201);
+            expect(res.json).toHaveBeenCalledWith({ status: 'success', message: 'Templates encontrados com sucesso', templates: mockTemplates });
+            expect(service.findAll).toHaveBeenCalledTimes(1);
+        });
+
+        it('Deveria lançar um erro se a requisição de templates falhar', async () => {
+            // Arrange
+            const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+
+            jest.spyOn(service, 'findAll').mockRejectedValueOnce(new Error());
+
+            // Act and Assert
+            await expect(controller.findAll(res as any)).rejects.toThrow(HttpException);
+            expect(service.findAll).toHaveBeenCalledTimes(1);
+        })
+    });
+
+
+    describe('findOne', () => {
+        it('Deveria retornar o template do banco', async () => {
+            // Arrange
+            const id = 1;
+            const res = { status: jest.fn().mockReturnThis(), json: jest.fn(), templates: jest.fn().mockResolvedValueOnce(formattedTemplatesPuroMock) };
+
+            jest.spyOn(service, 'findOne').mockResolvedValueOnce(formattedTemplatesPuroMock);
+
+            // Act
+            await controller.findOne(id, res as any);
+
+            // Assert
+            expect(res.status).toHaveBeenCalledWith(201);
+            expect(res.json).toHaveBeenCalledWith({ status: 'success', message: 'Template encontrado com sucesso', template: formattedTemplatesPuroMock });
+            expect(service.findOne).toHaveBeenCalledTimes(1);
+        });
+
+        it('Deveria lançar um erro se a requisição de template falhar', async () => {
+            // Arrange
+            const id = 1;
+            const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+
+            jest.spyOn(service, 'findOne').mockRejectedValueOnce(new Error());
+
+            // Act and Assert
+            await expect(controller.findOne(id, res as any)).rejects.toThrow(HttpException);
+            expect(service.findOne).toHaveBeenCalledTimes(1);
         })
     });
 });

@@ -10,6 +10,7 @@ import { User } from '../../user/entities/user.entity';
 import { PerfilEnum } from '../../user/entities/perfil.entity';
 import { MudarStatusTemplateDto } from '../dto/mudar-status-template.dto';
 import { PendenteTemplateDto } from '../dto/pendente-template.dto';
+import { formattedTemplatesMockAll, formattedTemplatesPuroMock, templatesMock, templatesPuroMock } from '../dto/mock-template.dto';
 
 describe('TemplateService', () => {
     let service: TemplateService;
@@ -409,6 +410,50 @@ describe('TemplateService', () => {
             expect(result).toBeDefined();
             expect(result).toEqual(mockTemplate);
             expect(templateRepository.find).toHaveBeenCalledTimes(1);
+        });
+    });
+
+
+    describe('findAll', () => {
+        it('Deveria retornar todos os templates', async () => {
+            // Arrange
+            jest.spyOn(templateRepository, 'find').mockResolvedValueOnce(templatesMock);
+
+            // Act
+            const result = await service.findAll();
+
+            // Assert
+            expect(result).toBeDefined();
+            expect(result).toEqual(formattedTemplatesMockAll);
+            expect(templateRepository.find).toHaveBeenCalledTimes(1);
+        });
+    });
+
+
+    describe('findOne', () => {
+        it('Deveria retornar o template', async () => {
+            // Arrange
+            const id = 1;
+
+            jest.spyOn(templateRepository, 'findOne').mockResolvedValueOnce(templatesPuroMock);
+
+            // Act
+            const result = await service.findOne(id);
+
+            // Assert
+            expect(result).toBeDefined();
+            expect(result).toEqual(formattedTemplatesPuroMock);
+            expect(templateRepository.findOne).toHaveBeenCalledTimes(1);
+        });
+        
+        it('Deveria retornar erro caso o template não seja encontrado', async () => {
+            // Arrange
+            const id = 1;
+
+            jest.spyOn(templateRepository, 'findOne').mockResolvedValueOnce(null);
+
+            // Act && Assert
+            await expect(service.findOne(id)).rejects.toThrow('Template não encontrado');
         });
     });
 

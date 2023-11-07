@@ -79,13 +79,29 @@ export class TemplateController {
 
 
     @Get()
-    findAll() {
-        return this.templateService.findAll();
+    async findAll(@Res() res: Response) {
+        try {
+            const templates = await this.templateService.findAll();
+            res.status(HttpStatus.CREATED).json({ status: 'success', message: 'Templates encontrados com sucesso', templates: templates });
+        } catch (error) {
+            throw new HttpException({
+                status: 'error',
+                error: 'Erro ao obter templates',
+            }, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
     @Get(':id')
-    findOne(@Param('id') id: string) {
-        return this.templateService.findOne(+id);
+    async findOne(@Param('id') id: number, @Res() res: Response) {
+        try {
+            const template = await this.templateService.findOne(+id);
+            res.status(HttpStatus.CREATED).json({ status: 'success', message: 'Template encontrado com sucesso', template: template });
+        } catch (error) {
+            throw new HttpException({
+                status: 'error',
+                error: error.message,
+            }, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
