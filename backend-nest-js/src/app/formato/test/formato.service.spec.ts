@@ -41,6 +41,8 @@ describe('FormatoService', () => {
             const formatoEntityMock = [
                 {
                     titulo: 'Titulo de teste',
+                    id: 1,
+                    template: []
                 }
             ] as Formato[];
 
@@ -68,8 +70,14 @@ describe('FormatoService', () => {
     describe('create', () => {
         it('Deveria criar um novo formato', async () => {
             // Arrange
-            const formatoDtoMock: CreateFormatoDto = { titulo: 'Titulo de teste' };
-            const formatoEntityMock = { ...formatoDtoMock, id: 1 };
+            const formatoDtoMock: CreateFormatoDto = {
+                titulo: 'Titulo de teste'
+            };
+            const formatoEntityMock = {
+                ...formatoDtoMock,
+                id: 1,
+                template: [],
+            } as Formato;
 
             jest.spyOn(repository, 'findOne').mockResolvedValue(undefined);
             jest.spyOn(repository, 'save').mockResolvedValue(formatoEntityMock);
@@ -87,7 +95,11 @@ describe('FormatoService', () => {
         it('Deveria retornar erro se o formato já existir', async () => {
             // Arrange
             const formatoDtoMock = { titulo: 'Titulo de teste' };
-            const formatoEntityMock = { ...formatoDtoMock, id: 1 };
+            const formatoEntityMock = {
+                ...formatoDtoMock,
+                id: 1,
+                template: [],
+            } as Formato;
 
             jest.spyOn(repository, 'findOne').mockResolvedValue(formatoEntityMock);
 
