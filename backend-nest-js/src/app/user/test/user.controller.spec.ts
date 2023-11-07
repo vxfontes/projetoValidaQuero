@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { HttpException } from '@nestjs/common';
+import { HttpException, HttpStatus } from '@nestjs/common';
 import { UserController } from '../user.controller';
 import { UserService } from '../user.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
@@ -7,6 +7,7 @@ import { User } from '../entities/user.entity';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { PerfilEnum } from '../entities/perfil.entity';
 import { AuthUserDto } from '../dto/auth-user.dto';
+import { usuariosMock } from '../dto/get-user.dto';
 
 describe('UserController', () => {
     let controller: UserController;
@@ -220,4 +221,64 @@ describe('UserController', () => {
             expect(service.remove).toHaveBeenCalledTimes(1);
         });
     });
+
+
+    describe('findAll', () => {
+        it('Deveria retornar todos os usuários', async () => {
+            const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+
+            jest.spyOn(service, 'findAll').mockResolvedValueOnce([{ ...usuariosMock, senha: '123' }]);
+
+            // Act
+            await controller.findAll(res as any);
+
+            // Assert
+            expect(res.status).toHaveBeenCalledWith(HttpStatus.CREATED);
+            expect(res.json).toHaveBeenCalledWith({ status: 'success', message: 'Usuários encontrados com sucesso', usuarios: [{ ...usuariosMock, senha: '123' }] });
+            expect(service.findAll).toHaveBeenCalledTimes(1);
+        });
+
+        it('Deveria retornar erro caso não encontre usuários', async () => {
+            // Arrange
+            jest.spyOn(service, 'findAll').mockRejectedValueOnce(new Error('Erro ao obter usuários'));
+
+            const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+
+            // Act & Assert
+            await expect(controller.findAll(res as any)).rejects.toThrow(HttpException);
+            expect(service.findAll).toHaveBeenCalledTimes(1);
+        });
+    });
+
+
+    describe('findOne', () => {
+        it('Deveria retornar todos os usuários', async () => {
+            // Arrange
+            const matricula = '123';
+            const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+
+            jest.spyOn(service, 'findOne').mockResolvedValueOnce({ ...usuariosMock, senha: '123' });
+
+            // Act
+            await controller.findOne(matricula, res as any);
+
+            // Assert
+            expect(res.status).toHaveBeenCalledWith(HttpStatus.CREATED);
+            expect(res.json).toHaveBeenCalledWith({ status: 'success', message: 'Usuário encontrado com sucesso', usuario: { ...usuariosMock, senha: '123' } });
+            expect(service.findOne).toHaveBeenCalledTimes(1);
+        });
+
+        it('Deveria retornar erro caso não encontre usuários', async () => {
+            // Arrange
+            const matricula = '123';
+            jest.spyOn(service, 'findOne').mockRejectedValueOnce(new Error());
+
+            const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+
+            // Act & Assert
+            await expect(controller.findOne(matricula, res as any)).rejects.toThrow(HttpException);
+            expect(service.findOne).toHaveBeenCalledTimes(1);
+        });
+    });
+
 });

@@ -7,6 +7,8 @@ import { CreateUserDto } from '../dto/create-user.dto';
 import { PerfilEnum } from '../entities/perfil.entity';
 import { AuthUserDto } from '../dto/auth-user.dto';
 import * as bcrypt from 'bcrypt';
+import { usuariosMock } from '../dto/get-user.dto';
+import { StatusEnum } from '../../template/entities/status.entity';
 
 describe('UserService', () => {
     let service: UserService;
@@ -183,11 +185,11 @@ describe('UserService', () => {
         it('Deveria retornar todos os usuários não verificados', async () => {
             // Arrange
             const userEntityMock = [
-                { 
-                    nome: 'Usuário de teste', 
-                    matricula: '123123123', 
-                    perfil: 'Gerente', 
-                    verificado: false 
+                {
+                    nome: 'Usuário de teste',
+                    matricula: '123123123',
+                    perfil: 'Gerente',
+                    verificado: false
                 }
             ] as User[];
 
@@ -208,15 +210,15 @@ describe('UserService', () => {
         it('Deveria verificar um usuário', async () => {
             // Arrange
             const matricula = '123123123';
-            
-            const userEntityMock = { 
-                nome: 'Usuário de teste', 
-                matricula: matricula, 
-                perfil: 'Gerente', 
+
+            const userEntityMock = {
+                nome: 'Usuário de teste',
+                matricula: matricula,
+                perfil: 'Gerente',
                 verificado: false,
                 senha: '123'
             } as User;
-            
+
             const userEntityMockTrue = {
                 ...userEntityMock,
                 verificado: true,
@@ -301,4 +303,76 @@ describe('UserService', () => {
             expect(repository.findOne).toHaveBeenCalledTimes(1);
         })
     });
+
+
+    describe('findAll', () => {
+        it('Deveria retornar todos os usuários', async () => {
+            // Arrange
+            const usuariosMockAll = [{
+                matricula: usuariosMock.matricula,
+                nome: usuariosMock.nome,
+                perfil: usuariosMock.perfil,
+                verificado: usuariosMock.verificado,
+                template: Array(usuariosMock.template.ativo).fill({ status: StatusEnum.Ativo }),
+                arquivo: Array(usuariosMock.arquivo.aprovados).fill({ aprovado: true }).concat(Array(usuariosMock.arquivo.naoaprovados).fill({ aprovado: false }))
+            } as User];
+            
+
+            jest.spyOn(repository, 'find').mockResolvedValueOnce(usuariosMockAll);
+
+            // Act
+            const result = await service.findAll();
+
+            // Assert
+            expect(result).toBeDefined();
+            expect(result).toEqual([usuariosMock]);
+            expect(repository.find).toHaveBeenCalledTimes(1);
+        });
+
+        it('Deveria retornar erro caso não encontre usuários', async () => {
+            // Arrange
+            jest.spyOn(repository, 'find').mockResolvedValueOnce(null);
+
+            // Act & Assert
+            await expect(service.findAll()).rejects.toThrow('Usuários não foram encontrados');
+        });
+    });
+
+
+    describe('findOne', () => {
+        it('Deveria retornar o usuário', async () => {
+            // Arrange
+            const matricula = '123';
+            const usuariosMockAll = {
+                matricula: usuariosMock.matricula,
+                nome: usuariosMock.nome,
+                perfil: usuariosMock.perfil,
+                verificado: usuariosMock.verificado,
+                template: Array(usuariosMock.template.ativo).fill({ status: StatusEnum.Ativo }),
+                arquivo: Array(usuariosMock.arquivo.aprovados).fill({ aprovado: true }).concat(Array(usuariosMock.arquivo.naoaprovados).fill({ aprovado: false }))
+            } as User;
+    
+            jest.spyOn(repository, 'findOne').mockResolvedValueOnce(usuariosMockAll);
+    
+            // Act
+            const result = await service.findOne(matricula);
+    
+            // Assert
+            expect(result).toBeDefined();
+            expect(result).toEqual(usuariosMock);
+            expect(repository.findOne).toHaveBeenCalledTimes(1);
+        });
+        
+        it('Deveria retornar erro caso não encontre o usuário', async () => {
+            // Arrange
+            const matricula = '123';
+            
+            jest.spyOn(repository, 'findOne').mockResolvedValueOnce(null);
+            
+            // Act & Assert
+            await expect(service.findOne(matricula)).rejects.toThrow('Usuário não encontrado');
+            expect(repository.findOne).toHaveBeenCalledTimes(1);
+        });
+    });
+    
 });
