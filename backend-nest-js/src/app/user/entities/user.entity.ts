@@ -1,6 +1,7 @@
 import { Entity, Column, PrimaryColumn, OneToMany } from "typeorm";
 import { PerfilEnum } from "./perfil.entity";
 import { Template } from "../../template/entities/template.entity";
+import { Arquivo } from "../../arquivo/entities/arquivo.entity";
 
 @Entity({ name: 'usuario', schema: "ValidaQueroNestJs" })
 export class User {
@@ -19,8 +20,8 @@ export class User {
     @Column({ type: 'boolean', nullable: false })
     verificado: boolean;
 
-    // @OneToMany(() => Arquivo, (arquivo) => arquivo.usuario, { cascade: true })
-    // arquivo: Arquivo[];
+    @OneToMany(() => Arquivo, (arquivo) => arquivo.usuario, { cascade: true })
+    arquivo: Arquivo[];
 
     @OneToMany(() => Template, (template) => template.usuario, { cascade: true })
     template: Template[];

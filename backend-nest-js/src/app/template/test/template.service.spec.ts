@@ -8,9 +8,6 @@ import { StatusEnum } from '../entities/status.entity';
 import { Formato } from '../../formato/entities/formato.entity';
 import { User } from '../../user/entities/user.entity';
 import { PerfilEnum } from '../../user/entities/perfil.entity';
-import { TemplateModule } from '../template.module';
-import { UserModule } from '../../user/user.module';
-import { FormatoModule } from '../../formato/formato.module';
 import { MudarStatusTemplateDto } from '../dto/mudar-status-template.dto';
 import { PendenteTemplateDto } from '../dto/pendente-template.dto';
 
@@ -95,6 +92,7 @@ describe('TemplateService', () => {
                 usuario: userMock,
                 id: 123,
                 dataCriacao: new Date(),
+                arquivos: []
             };
 
             jest.spyOn(formatoRepository, 'findOne').mockResolvedValueOnce({ id: 1, titulo: 'CSV' } as Formato);

@@ -220,7 +220,7 @@ describe('TemplateController', () => {
     describe('pendente', () => {
         it('Deveria retornar todos os template pendente do banco', async () => {
             // Arrange
-            const mockTemplate: PendenteTemplateDto[] = [{
+            const mockTemplate = [{
                 titulo: 'Template Title',
                 descricao: 'Template Description',
                 status: StatusEnum.Ativo,
@@ -230,6 +230,7 @@ describe('TemplateController', () => {
                 dataCriacao: new Date(),
                 formato: 'CSV',
                 usuario: { nome: 'nome', matricula: '123' },
+                arquivos: []
             }];
 
             const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
