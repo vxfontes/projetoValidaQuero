@@ -16,36 +16,7 @@ export class UserController {
         } catch (error) {
             throw new HttpException({
                 status: 'error',
-                error: error.message,
-            }, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-
-
-    @Get()
-    async findAll(@Res() res: Response) {
-        try {
-            const usuarios = await this.userService.findAll();
-            res.status(HttpStatus.CREATED).json({ status: 'success', message: 'Usuários encontrados com sucesso', usuarios: usuarios });
-        } catch (error) {
-            throw new HttpException({
-                status: 'error',
-                error: 'Erro ao obter usuários',
-            }, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-
-    @Get(':matricula')
-    async findOne(@Param('matricula') matricula: string, @Res() res: Response) {
-        try {
-            const usuario = await this.userService.findOne(matricula);
-            res.status(HttpStatus.CREATED).json({ status: 'success', message: 'Usuário encontrado com sucesso', usuario: usuario });
-        } catch (error) {
-            throw new HttpException({
-                status: 'error',
-                error: error.message,
+                message: error.message,
             }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -59,7 +30,7 @@ export class UserController {
         } catch (error) {
             throw new HttpException({
                 status: 'error',
-                error: error.message,
+                message: error.message,
             }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -73,7 +44,7 @@ export class UserController {
         } catch (error) {
             throw new HttpException({
                 status: 'error',
-                error: error.message,
+                message: error.message,
             }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -87,7 +58,7 @@ export class UserController {
         } catch (error) {
             throw new HttpException({
                 status: 'error',
-                error: error.message,
+                message: 'Erro ao obter usuários pendentes',
             }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -101,7 +72,7 @@ export class UserController {
         } catch (error) {
             throw new HttpException({
                 status: 'error',
-                error: error.message,
+                message: error.message,
             }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -115,7 +86,7 @@ export class UserController {
         } catch (error) {
             throw new HttpException({
                 status: 'error',
-                error: error.message,
+                message: error.message,
             }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -129,7 +100,35 @@ export class UserController {
         } catch (error) {
             throw new HttpException({
                 status: 'error',
-                error: error.message,
+                message: error.message,
+            }, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    @Get()
+    async findAll(@Res() res: Response) {
+        try {
+            const usuarios = await this.userService.findAll();
+            res.status(HttpStatus.CREATED).json({ status: 'success', message: 'Usuários encontrados com sucesso', usuarios: usuarios });
+        } catch (error) {
+            throw new HttpException({
+                status: 'error',
+                message: 'Erro ao obter usuários',
+            }, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    @Get(':matricula')
+    async findOne(@Param('matricula') matricula: string, @Res() res: Response) {
+        try {
+            const usuario = await this.userService.findOne(matricula);
+            res.status(HttpStatus.CREATED).json({ status: 'success', message: 'Usuário encontrado com sucesso', usuario: usuario });
+        } catch (error) {
+            throw new HttpException({
+                status: 'error',
+                message: error.message,
             }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

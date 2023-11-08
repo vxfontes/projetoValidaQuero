@@ -15,7 +15,7 @@ export class FormatoController {
         } catch (error) {
             throw new HttpException({
                 status: 'error',
-                error: error.message,
+                message: error.message,
             }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -28,7 +28,7 @@ export class FormatoController {
         } catch (error) {
             throw new HttpException({
                 status: 'error',
-                error: error.message,
+                message: error.message,
             }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -41,7 +41,7 @@ export class FormatoController {
         } catch (error) {
             throw new HttpException({
                 status: 'error',
-                error: 'Erro ao obter arquivos por formato',
+                message: error.message,
             }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

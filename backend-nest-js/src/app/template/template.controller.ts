@@ -16,7 +16,7 @@ export class TemplateController {
         } catch (error) {
             throw new HttpException({
                 status: 'error',
-                error: error.message,
+                message: error.message,
             }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -30,7 +30,7 @@ export class TemplateController {
         } catch (error) {
             throw new HttpException({
                 status: 'error',
-                error: error.message,
+                message: error.message,
             }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -44,7 +44,7 @@ export class TemplateController {
         } catch (error) {
             throw new HttpException({
                 status: 'error',
-                error: error.message,
+                message: error.message,
             }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -58,7 +58,7 @@ export class TemplateController {
         } catch (error) {
             throw new HttpException({
                 status: 'error',
-                error: error.message,
+                message: error.message,
             }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -72,7 +72,7 @@ export class TemplateController {
         } catch (error) {
             throw new HttpException({
                 status: 'error',
-                error: 'Erro ao obter templates pendentes',
+                message: 'Erro ao obter templates pendentes',
             }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -86,7 +86,7 @@ export class TemplateController {
         } catch (error) {
             throw new HttpException({
                 status: 'error',
-                error: 'Erro ao obter templates',
+                message: 'Erro ao obter templates',
             }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -100,7 +100,7 @@ export class TemplateController {
         } catch (error) {
             throw new HttpException({
                 status: 'error',
-                error: error.message,
+                message: error.message,
             }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

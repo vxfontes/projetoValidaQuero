@@ -1,6 +1,7 @@
-import { Controller, Get, Res, HttpStatus, HttpException } from '@nestjs/common';
+import { Controller, Get, Res, HttpStatus, HttpException, Body, Post } from '@nestjs/common';
 import { ArquivoService } from './arquivo.service';
 import { Response } from 'express';
+import { Arquivo } from './entities/arquivo.entity';
 
 @Controller('arquivo')
 export class ArquivoController {
@@ -14,7 +15,7 @@ export class ArquivoController {
         } catch (error) {
             throw new HttpException({
                 status: 'error',
-                error: 'Erro ao obter arquivos',
+                message: 'Erro ao obter arquivos',
             }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
