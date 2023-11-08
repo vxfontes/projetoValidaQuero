@@ -8,11 +8,10 @@ import { PiMagnifyingGlassBold } from 'react-icons/pi';
 
 export const GetTemplate = ({ templates, itemsPerPage, formatos, message }: Props) => {
 
-    const [getitemsPerPage, setitemsPerPage] = React.useState(itemsPerPage);
     const [searchValue, setSearchValue] = React.useState('');
     const [currentPage, setCurrentPage] = React.useState(1);
-    const startIndex = (currentPage - 1) * getitemsPerPage;
-    const endIndex = startIndex + getitemsPerPage;
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
 
     const [selectedFormat, setSelectedFormat] = React.useState('CSV');
     const filteredByName = templates.filter((template) => {
@@ -31,6 +30,7 @@ export const GetTemplate = ({ templates, itemsPerPage, formatos, message }: Prop
 
     React.useMemo(() => {
         setCurrentPage(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedFormat]);
 
     return (
@@ -82,7 +82,7 @@ export const GetTemplate = ({ templates, itemsPerPage, formatos, message }: Prop
                 <Grid pt={1} item xl={11} lg={11} md={11} sm={11} xs={11}>
                     <GridContainers align='center' direction='row' justify="end">
                         <Pagination
-                            count={Math.ceil(filteredTemplates.length / getitemsPerPage)}
+                            count={Math.ceil(filteredTemplates.length / itemsPerPage)}
                             page={currentPage}
                             onChange={(_event, page) => setCurrentPage(page)}
                             color="secondary"

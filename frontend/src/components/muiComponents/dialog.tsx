@@ -3,7 +3,6 @@ import { TransitionProps } from '@mui/material/transitions';
 import * as React from 'react';
 import { ChildrenProps } from '../../logic/interfaces/children';
 import theme from '../../theme';
-import iconCheck from '../../assets/icon/iconCheck.svg'
 
 interface DialogProps extends ChildrenProps {
     open: boolean;
@@ -17,13 +16,9 @@ interface DialogMessageProps extends DialogProps {
     link?: string
 }
 
-export const iconsDialog = {
-    check: iconCheck
-}
-
 export const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
-        children: React.ReactElement<any, any>;
+        children: React.ReactElement;
     },
     ref: React.Ref<unknown>,
 ) {
