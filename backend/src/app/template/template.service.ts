@@ -106,7 +106,6 @@ export class TemplateService {
 
 
     async findOne(id: number) {
-        let formattedTemplate: FindOneTemplateDto;
         const template = await this.TemplateRepository.findOne({
             where: { id: id },
             relations: ['usuario', 'formato', 'arquivos', 'arquivos.usuario'],
@@ -115,7 +114,7 @@ export class TemplateService {
 
         if (!template) throw new Error('Template não encontrado');
 
-        formattedTemplate = {
+        const formattedTemplate: FindOneTemplateDto = {
             ...template,
             formato: template.formato.titulo,
             usuario: {
