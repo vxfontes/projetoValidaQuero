@@ -21,13 +21,6 @@ app.add_middleware(
 )
 
 
-@app.get("/teste/")
-async def teste():
-    result = db.execute(text('''SELECT * FROM "ValidaQuero"."formato"''')).fetchall()
-    # print(result[0])
-    return {"Teste": "indo"}
-
-
 @app.post("/file/upload/")
 async def verify_file(data: Request):
     form = await data.form()
