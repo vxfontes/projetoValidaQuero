@@ -20,51 +20,34 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 @app.post("/file/upload/")
 async def verify_file(data: Request):
     form = await data.form()
-
     file = form.get("file")
-    fileToGo = form.get("file")
     titulo = form.get("titulo")
     usuario = form.get("usuario")
     template = form.get("template")
     formato_esperado = form.get("formato")
-    getCampos = form.get("campos")
+    campos = json.loads(form.get("campos", "[]"))
 
     formato = formatoFile(file.filename)
     
-    campos = []
-    try:
-        campos = json.loads(getCampos)
-    except json.JSONDecodeError as e:
-        return {"status": "error", "message": "Erro ao analisar campos JSON: " + str(e)}
-
     if not file or formato_esperado != formato:
         return {"status": "error", "message": "Arquivo não enviado ou formato não permitido", "linhas": 0}
 
-    content = load_file_data(file)
-    df = pd.DataFrame()
-    
-    if formato == 'csv':
-        df = pd.read_csv(content)
-    elif formato in ['xlsx', 'xls']:
-        df = pd.read_excel(content)
-
+    df = pd.read_csv(file.file) if formato == 'csv' else pd.read_excel(file.file)
     linhas = df.shape[0]
     erro = verificar_tipos(df, campos)
 
     if erro:
         return requisicao(titulo, linhas, False, "", usuario, template, erro)
     else:
-        upload_result = upload_file(fileToGo, formato_esperado)
+        upload_result = upload_file(file, formato_esperado)
         if upload_result and upload_result["status"] == "success":
             url = upload_result["message"]
             return requisicao(titulo, linhas, True, url, usuario, template)
         else:
             return upload_result
-
 
 @app.get("/dashboard")
 async def data():

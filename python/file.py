@@ -1,10 +1,8 @@
 from database import bucket, bucket_name, SessionLocal
 from sqlalchemy import text
 import uuid
-from io import BytesIO
 
 db = SessionLocal()
-
 
 def upload_file(file, formato):
     try:
@@ -22,7 +20,6 @@ def upload_file(file, formato):
         print(f"Erro durante o upload do arquivo: {str(e)}")
         return {"status": "error", "message": "Arquivo não armazenado", "linhas": 0, "erro": str(e)}
 
-
 def requisicao(titulo, linhas, aprovado, url, usuario, template, erro_message="Arquivo aceito com sucesso"):
     query = text('''INSERT INTO "ValidaQuero".arquivo
                 (titulo, linhas, aprovado, url, usuario, "template")
@@ -38,10 +35,7 @@ def requisicao(titulo, linhas, aprovado, url, usuario, template, erro_message="A
         })
         db.commit()
 
-        if aprovado:
-            return {"status": "success", "message": erro_message, "linhas": linhas}
-        else:
-            return {"status": "error", "message": erro_message, "linhas": 0}
+        return {"status": "success" if aprovado else "error", "message": erro_message, "linhas": linhas if aprovado else 0}
     except Exception as e:
         db.rollback()
         print(e)
