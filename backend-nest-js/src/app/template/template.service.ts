@@ -63,7 +63,7 @@ export class TemplateService {
 
         if (template) {
             template.status = status;
-            this.TemplateRepository.update(id, template);
+            this.TemplateRepository.save(template);
         } else throw new Error('Template não encontrado');
     }
 

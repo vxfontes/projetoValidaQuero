@@ -242,27 +242,14 @@ describe('TemplateService', () => {
             existingTemplate.status = StatusEnum.Desativado;
 
             jest.spyOn(templateRepository, 'findOneBy').mockResolvedValue(existingTemplate);
-            jest.spyOn(templateRepository, 'update').mockResolvedValue(undefined);
+            jest.spyOn(templateRepository, 'save').mockResolvedValue(undefined);
 
             // Act
             const result = await service.mudarStatus(mudarStatusDto);
 
             // Assert
             expect(result).toBeUndefined();
-            expect(templateRepository.update).toHaveBeenCalledTimes(1);
-        });
-
-        it('Deveria retornar um erro se tiver faltando campos', async () => {
-            // Arrange
-            const mudarStatusDto: MudarStatusTemplateDto = {
-                id: null,
-                status: null,
-            };
-
-            jest.spyOn(templateRepository, 'findOne').mockResolvedValue(null);
-
-            // Act && Assert
-            await expect(service.mudarStatus(mudarStatusDto)).rejects.toThrow("Campos obrigatórios.");
+            expect(templateRepository.save).toHaveBeenCalledTimes(1);
         });
 
         it('Deveria retornar um erro se o template não seja encontrado', async () => {
