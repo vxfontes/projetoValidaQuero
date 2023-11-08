@@ -7,7 +7,7 @@ import { User } from '../entities/user.entity';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { PerfilEnum } from '../entities/perfil.entity';
 import { AuthUserDto } from '../dto/auth-user.dto';
-import { arquivosMock, arquivosMockReturn, templatesMock, usuariosMock } from '../dto/get-user.dto';
+import { arquivosMockReturn, templatesMock, usuariosMock } from '../dto/get-user.dto';
 import { Template } from '../../template/entities/template.entity';
 import { Arquivo } from '../../arquivo/entities/arquivo.entity';
 

@@ -1,4 +1,3 @@
-import { User } from "../../user/entities/user.entity";
 import { StatusEnum } from "../entities/status.entity";
 
 export class PendenteTemplateDto {

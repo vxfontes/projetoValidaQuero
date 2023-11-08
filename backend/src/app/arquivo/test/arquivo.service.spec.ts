@@ -3,13 +3,11 @@ import { ArquivoService } from '../arquivo.service';
 import { Repository } from 'typeorm';
 import { Arquivo } from '../entities/arquivo.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { Template } from '../../template/entities/template.entity';
-import { User } from '../../user/entities/user.entity';
 
 describe('ArquivoService', () => {
     let service: ArquivoService;
     let arquivoRepository: Repository<Arquivo>;
-    let mockRepository = {
+    const mockRepository = {
         find: jest.fn(),
     };
 
