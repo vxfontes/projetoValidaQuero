@@ -1,62 +1,73 @@
-<div align="center" id="top"> 
-  <img src="https://firebasestorage.googleapis.com/v0/b/vxfontes.appspot.com/o/pics%20projects%2Fvalidaquero%2FvalidaQuero.png?alt=media&token=a22a195b-e266-4eb5-b30c-5db30954c5a3" alt="Estagio" />
-
-  &#xa0;
-</div>
-
-<h1 align="center">
-	Projeto ValidaQuero
-</h1>
-
 <p align="center">
-  <img alt="rotas" src="https://img.shields.io/badge/inicializar_projeto-finalizado-green"><br>
-  <img alt="rotas" src="https://img.shields.io/badge/criar_template-finalizada-green">
-  <img alt="rotas" src="https://img.shields.io/badge/excluir_template-finalizada-green">
-  <img alt="rotas" src="https://img.shields.io/badge/consultar_template-finalizada-green"><br>
-  <img alt="rotas" src="https://img.shields.io/badge/criar_usuario-finalizada-green">
-  <img alt="rotas" src="https://img.shields.io/badge/excluir_usuario-finalizada-green">
-  <img alt="rotas" src="https://img.shields.io/badge/consultar_usuario-finalizada-green">
-  <img alt="rotas" src="https://img.shields.io/badge/mudar_permissão_usuario-finalizada-green"><b>
-  <img alt="rotas" src="https://img.shields.io/badge/criar_arquivo-finalizada-green">
-  <img alt="rotas" src="https://img.shields.io/badge/consultar_arquivo-finalizada-green">
-  <img alt="rotas" src="https://img.shields.io/badge/lista_de_arquivos-finalizada-green">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
-<!-- Status -->
+[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
+[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-<h4 align="center"> 
-	
-	Backend
-	🚧 NodeJS 🚀 Em progresso  🚧
-</h4> 
+  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+    <p align="center">
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
+<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
+<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
+<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
+<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
+<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
+  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
+    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
+  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
+</p>
+  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
+  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-<hr>
+## Description
 
-<br>
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## :dart: Sobre ##
+## Installation
 
-- Backend completo da aplicação
-- Utilização de postgres
-- NoSQL do firebase para armazenamento de arquivos
-- CRUD para template, arquivos, usuários entre outros
-- Criptografia de senha
-
-## 💫 Ideias ##
-- Tabela de status - informa o status do template: desativado, ativado, pendente
-- Tabela de formato - csv, xls, xlsx
-- Tabela de aprovado - informa o status do arquivo e faz contagem(?): aprovado ou negado
-- Tabela de perfil - time, gerente ou gestão
-
-- Template: criar, listar, consultar, baixar (criar arquivo com python)
-- Usuario: criar, apagar, editar, autorizar
-- Arquivo: criar (validar), baixar + consultar, listar
-
-## :rocket: Utilização ##
+```bash
+$ npm install
 ```
-1. Para usar, primeiro criamos o schema no banco com o nome: ValidaQuero
-2. Logo depois, instalamos as dependencias com: yarn install
-3. Criamos então as migrations com: yarn migration:generate 
-4. Rodamos as migrations com: yarn migration:run 
-5. Então agora rodamos o servidor com: yarn dev
+
+## Running the app
+
+```bash
+# development
+$ npm run start
+
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod
 ```
+
+## Test
+
+```bash
+# unit tests
+$ npm run test
+
+# e2e tests
+$ npm run test:e2e
+
+# test coverage
+$ npm run test:cov
+```
+
+## Support
+
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+
+## Stay in touch
+
+- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+- Website - [https://nestjs.com](https://nestjs.com/)
+- Twitter - [@nestframework](https://twitter.com/nestframework)
+
+## License
+
+Nest is [MIT licensed](LICENSE).
