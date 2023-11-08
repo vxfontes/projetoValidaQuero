@@ -6,16 +6,15 @@ from io import BytesIO
 db = SessionLocal()
 
 
-def upload_file(file):
+def upload_file(file, formato):
     try:
         myID = uuid.uuid4()
         nome = file.filename[:file.filename.rfind('.')]
-        objeto_nome = f'arquivos/{nome}/{myID}'
+        objeto_nome = f'arquivos/{nome}/{myID}.{formato}'
         blob = bucket.blob(objeto_nome)
-        
-        file_data = BytesIO(file.file.read())
 
-        blob.upload_from_file(file_data)
+        file.file.seek(0)
+        blob.upload_from_file(file.file)
 
         url = f'https://storage.googleapis.com/{bucket_name}/{objeto_nome}'
         return {"status": "success", "message": url, "linhas": 0}

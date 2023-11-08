@@ -26,6 +26,7 @@ async def verify_file(data: Request):
     form = await data.form()
 
     file = form.get("file")
+    fileToGo = form.get("file")
     titulo = form.get("titulo")
     usuario = form.get("usuario")
     template = form.get("template")
@@ -57,7 +58,7 @@ async def verify_file(data: Request):
     if erro:
         return requisicao(titulo, linhas, False, "", usuario, template, erro)
     else:
-        upload_result = upload_file(file)
+        upload_result = upload_file(fileToGo, formato_esperado)
         if upload_result and upload_result["status"] == "success":
             url = upload_result["message"]
             return requisicao(titulo, linhas, True, url, usuario, template)
