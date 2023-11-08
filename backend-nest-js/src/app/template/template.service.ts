@@ -57,8 +57,6 @@ export class TemplateService {
     async mudarStatus(mudarStatus: MudarStatusTemplateDto) {
         const { id, status } = mudarStatus;
 
-        if (!id || !status) throw new Error("Campos obrigatórios.");
-
         if (!Object.values(StatusEnum).includes(status)) throw new Error('Status inválido');
 
         const template = await this.TemplateRepository.findOneBy({ id });
