@@ -11,9 +11,9 @@
 <br>
   <img alt="etapas" src="https://img.shields.io/badge/protótipo-concluido-green">
   <img alt="etapas" src="https://img.shields.io/badge/MER-concluido-green">
-  <img alt="etapas" src="https://img.shields.io/badge/backend-em_progresso-blue">
-  <img alt="etapas" src="https://img.shields.io/badge/frontend-em_progresso-blue">
-  <img alt="etapas" src="https://img.shields.io/badge/entrega_final-iniciado-orange">
+  <img alt="etapas" src="https://img.shields.io/badge/backend-concluido-green">
+  <img alt="etapas" src="https://img.shields.io/badge/frontend-concluido-green">
+  <img alt="etapas" src="https://img.shields.io/badge/entrega_final-em_progresso-blue">
 </p>
 
 <!-- Status -->
