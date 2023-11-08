@@ -41,16 +41,37 @@ const Dashboard = () => {
     const [templatesAll, setTemplatesAll] = React.useState<GetTemplateProps[]>([]);
     const [messageTemplate, setMessageTemplate] = React.useState("");
     const [loading, setLoading] = React.useState(true);
+    const [fileExport, setFileExport] = React.useState<File>(new File([], ''));
 
     async function getData() {
         try {
-            const response = await python.get('/dashboard/', {
+            const response = await python.get('/dashboard/data', {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 }
             });
             if (response.data) setData(response.data)
             else AlertSweet('Houve um erro ao tentar obter as requisições', 'error', false)
+        } catch (error) {
+            console.log(error);
+            AlertSweet('Houve um erro ao tentar obter as requisições', 'error', false)
+        }
+    }
+
+    async function getExcel() {
+        try {
+            const response = await python.get('/dashboard/excel', {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+                responseType: 'blob'  // Indica que a resposta é um arquivo binário
+            });
+            if (response.data) {
+                // Armazene o arquivo no estado
+                setFileExport(new File([response.data], "dashboard_data.xlsx"));
+            } else {
+                AlertSweet('Houve um erro ao tentar obter as requisições', 'error', false)
+            }
         } catch (error) {
             console.log(error);
             AlertSweet('Houve um erro ao tentar obter as requisições', 'error', false)
@@ -110,16 +131,17 @@ const Dashboard = () => {
             if (res.data.status === 'success') setFormatos(res.data.formatos)
         }).catch((error) => AlertSweet(error.response.data.message, 'error', false));
 
-        getData();
+        getExcel();
         getArquivos();
+        getData();
     }, []);
 
     return (
         <FundoBackground container>
             {allData ? (
-                <MainPageDashboard formatos={formatos} templates={templatesAll} loading={loading} 
-                    message={messageTemplate} files={files} disabled={disabled} users={users} 
-                    arquivo={allData.arquivo} templatesPendente={templates} cardAtivo={allData.arquivoData.Ativo} 
+                <MainPageDashboard fileExport={fileExport} formatos={formatos} templates={templatesAll} loading={loading}
+                    message={messageTemplate} files={files} disabled={disabled} users={users}
+                    arquivo={allData.arquivo} templatesPendente={templates} cardAtivo={allData.arquivoData.Ativo}
                     cardPendente={allData.arquivoData.Pendente} templateData={allData.templateData} />
             ) : (
                 <Box sx={{ width: '100%' }} display='flex' alignItems='center' justifyContent='center'>

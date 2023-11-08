@@ -15,6 +15,7 @@ import ModalUsers from '../../components/dashboard/modalUserts';
 import { FileProps } from '../../logic/interfaces/file';
 import FileContainer from '../../components/files/container';
 import TemplateContainer from '../../components/templates/container';
+import { Link } from 'react-router-dom';
 
 
 export interface DashMainProps extends TemplateContainerProps {
@@ -29,12 +30,15 @@ export interface DashMainProps extends TemplateContainerProps {
     users: UserVerifyProps[];
     disabled: boolean;
     files: FileProps[];
+    fileExport: File;
 }
 
-const MainPageDashboard = ({ disabled, users, templateData, cardAtivo, cardPendente, templates, templatesPendente, arquivo, files, formatos, loading, message }: DashMainProps) => {
+const MainPageDashboard = ({ fileExport, disabled, users, templateData, cardAtivo, cardPendente, templates, templatesPendente, arquivo, files, formatos, loading, message }: DashMainProps) => {
 
     const [open, setOpen] = React.useState(false);
     const { showTablet } = useScreenSize()
+
+    const url = window.URL.createObjectURL(fileExport);
 
     return (
         <GridContainers sx={{ mt: 5, mx: 2, alignItems: 'center', justifyContent: 'center' }} align='center' direction='row' spacing={2}>
@@ -50,10 +54,12 @@ const MainPageDashboard = ({ disabled, users, templateData, cardAtivo, cardPende
             </Grid>
 
             <Grid mx={2} item xl={2} lg={2} md={2} sm={11} xs={11}>
-                <DashButton icon={<AiOutlineFilePdf size={32} color='black' />}
-                    text="Exportar"
-                    onClick={() => console.log('exportando')}
-                />
+                <Link target="_blank" to={url} style={{ textDecoration: 'none', color: 'black' }}>
+                    <DashButton icon={<AiOutlineFilePdf size={32} color='black' />}
+                        text="Exportar"
+                        onClick={() => console.log('redirecionando')}
+                    />
+                </Link>
                 <DashButton icon={<AiOutlineUsergroupAdd size={32} color='black' />}
                     disabled={disabled}
                     text="Usuários"
