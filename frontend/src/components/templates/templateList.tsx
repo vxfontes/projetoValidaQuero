@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Box, Divider, Grid, IconButton, InputAdornment, MenuItem, Pagination, Select, TextField, Typography } from "@mui/material";
-import { AiFillAppstore, AiOutlineMenu } from 'react-icons/ai'
+import { Box, Divider, Grid, InputAdornment, MenuItem, Pagination, Select, TextField, Typography } from "@mui/material";
 import GridContainers from "../muiComponents/gridContainers";
 import TemplateGrade from "./grade";
 import { Props } from './container';
@@ -30,7 +29,7 @@ export const GetTemplate = ({ templates, itemsPerPage, formatos, message }: Prop
 
     React.useMemo(() => {
         setCurrentPage(1);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedFormat]);
 
     return (
@@ -38,31 +37,23 @@ export const GetTemplate = ({ templates, itemsPerPage, formatos, message }: Prop
             <Box pl={1} display='flex' justifyContent='space-between' alignItems='center'>
                 <Typography variant="h6" color="initial">Lista de templates</Typography>
                 <Box display='flex' alignItems='center'>
-                    <Box>
-                        <TextField
-                            sx={{ mr: 1 }}
-                            variant="standard"
-                            placeholder='Pesquise por template...'
-                            value={searchValue}
-                            onChange={(e) => setSearchValue(e.target.value)}
-                            InputProps={{
-                                startAdornment: (<InputAdornment position="start"><PiMagnifyingGlassBold /></InputAdornment>),
-                            }}
-                        />
-                        <Select value={selectedFormat} variant="standard" onChange={(e) => setSelectedFormat(e.target.value)}>
-                            {formatos.map((format) => (
-                                <MenuItem key={format.id} value={format.titulo}>
-                                    {format.titulo}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </Box>
-                    <IconButton sx={{ color: '#000' }}>
-                        <AiOutlineMenu />
-                    </IconButton>
-                    <IconButton sx={{ color: '#000' }}>
-                        <AiFillAppstore />
-                    </IconButton>
+                    <TextField
+                        sx={{ mr: 1 }}
+                        variant="standard"
+                        placeholder='Pesquise por template...'
+                        value={searchValue}
+                        onChange={(e) => setSearchValue(e.target.value)}
+                        InputProps={{
+                            startAdornment: (<InputAdornment position="start"><PiMagnifyingGlassBold /></InputAdornment>),
+                        }}
+                    />
+                    <Select value={selectedFormat} variant="standard" onChange={(e) => setSelectedFormat(e.target.value)}>
+                        {formatos.map((format) => (
+                            <MenuItem key={format.id} value={format.titulo}>
+                                {format.titulo}
+                            </MenuItem>
+                        ))}
+                    </Select>
                 </Box>
             </Box>
             <Divider sx={{ py: '1px' }} />
