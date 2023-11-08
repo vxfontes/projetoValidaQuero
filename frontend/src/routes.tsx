@@ -47,6 +47,7 @@ const Rotas = () => {
                 navigate("/home");
             }
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location.pathname, navigate, user]);
 
     return (
