@@ -62,7 +62,7 @@ const ViewTemplate = () => {
             } else setMessage(res.data.message)
         }).catch((error) => setMessage(error.response.data.message)
         ).finally(() => setLoading(false));
-    }, []);
+    }, [id]);
 
     React.useEffect(() => {
         const value = checked ? 'Ativo' : 'Desativado';
@@ -73,14 +73,14 @@ const ViewTemplate = () => {
             AlertSweet(error.response.data.message, error.response.data.status, false)
             setChecked(!checked)
         })
-    }, [checked]);
+    }, [checked, template?.id]);
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = event.target.files && event.target.files[0];
         if (selectedFile) setarquivo(selectedFile);
     };
 
-    const getError = (error: any, message: string) => {
+    const getError = (error: Error, message: string) => {
         setModal(false)
         console.log('Upload deu errado: ', error);
         AlertSweet(message, 'error', true)
@@ -111,7 +111,7 @@ const ViewTemplate = () => {
                     AlertSweet(response.data.message, 'success', true)
                     setLoadingFile(false)
                 }
-            } catch (error) { getError(error, 'Houve um erro ao tentar enviar') }
+            } catch (error) { getError(error as Error, 'Houve um erro ao tentar enviar') }
         }
     }
 
@@ -197,7 +197,7 @@ const ViewTemplate = () => {
                                                     <Switch color="primary"
                                                         value={checked}
                                                         checked={checked}
-                                                        onChange={(e: any) => setChecked(e.target.checked)}
+                                                        onChange={(e) => setChecked(e.target.checked)}
                                                     />
                                                 )}
 

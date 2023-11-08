@@ -1,12 +1,32 @@
 import * as React from 'react';
-import { IconButton, InputAdornment, TextField } from "@mui/material";
+import { IconButton, InputAdornment, TextField, TextFieldProps } from "@mui/material";
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
-export const TextFieldOutlined = ({
+interface TextFieldMyProps {
+    field: {
+        name: string;
+        value: string;
+        onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+        onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
+    };
+    form: {
+        touched: {
+            [key: string]: boolean;
+        };
+        errors: {
+            [key: string]: string;
+        };
+        values: {
+            [key: string]: string;
+        };
+    };
+}
+
+export const TextFieldOutlined: React.FC<TextFieldMyProps & TextFieldProps> = ({
     field, // { name, value, onChange, onBlur }
     form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
     ...props
-}: any) => (
+}) => (
     <div>
         <TextField {...field} {...props} variant='outlined' fullWidth
             error={touched[field.name] && Boolean(errors[field.name])}
@@ -14,11 +34,11 @@ export const TextFieldOutlined = ({
     </div>
 );
 
-export const TextFieldOutlinedSenha = ({
+export const TextFieldOutlinedSenha: React.FC<TextFieldMyProps & TextFieldProps> = ({
     field, // { name, value, onChange, onBlur }
     form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
     ...props
-}: any) => {
+}) => {
     const [showPassword, setShowPassword] = React.useState(false);
 
     return (
@@ -45,11 +65,11 @@ export const TextFieldOutlinedSenha = ({
     );
 }
 
-export const TextFieldFilled = ({
+export const TextFieldFilled: React.FC<TextFieldMyProps & TextFieldProps> = ({
     field, // { name, value, onChange, onBlur }
     form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
     ...props
-}: any) => (
+}) => (
     <div>
         <TextField {...field} {...props} variant='filled' fullWidth
             error={touched[field.name] && Boolean(errors[field.name])}
@@ -58,12 +78,12 @@ export const TextFieldFilled = ({
 );
 
 
-export const FieldSelectOutlined = ({
+export const FieldSelectOutlined: React.FC<TextFieldMyProps & TextFieldProps> = ({
     field, // { name, value, onChange, onBlur }
     children,
     form: { touched, errors, values }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
     ...props
-}: any) => (
+}) => (
 
     <div>
         <TextField select {...field} {...props} variant='outlined' defaultValue=""
@@ -74,12 +94,12 @@ export const FieldSelectOutlined = ({
     </div>
 );
 
-export const FieldSelectFilled = ({
+export const FieldSelectFilled: React.FC<TextFieldMyProps & TextFieldProps> = ({
     field, // { name, value, onChange, onBlur }
     children,
     form: { touched, errors, values }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
     ...props
-}: any) => (
+}) => (
 
     <div>
         <TextField select {...field} {...props} variant='filled' defaultValue=""
@@ -90,12 +110,12 @@ export const FieldSelectFilled = ({
     </div>
 );
 
-export const FieldSelectFilledCampos = ({
+export const FieldSelectFilledCampos: React.FC<TextFieldMyProps & TextFieldProps> = ({
     field, // { name, value, onChange, onBlur }
     children,
     form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
     ...props
-}: any) => (
+}) => (
 
     <div>
         <TextField select {...field} {...props} variant='filled'

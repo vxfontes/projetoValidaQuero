@@ -1,13 +1,19 @@
 import { Box, Typography, styled } from "@mui/material";
 import { ChildrenProps } from "../../logic/interfaces/children";
-import { ErrorMessage } from "formik";
+import { ErrorMessage, FormikErrors } from "formik";
 
 export const Errormsg = styled(Typography)({
     color: '#d42c2c'
 });
 
 interface FieldCampoProps extends ChildrenProps {
-    errors: any;
+    errors: FormikErrors<{
+        campos: {
+            nome: string;
+            tipo: string;
+            nulo: string;
+        }[];
+    }>;
     index: number;
     campo: string;
 }

@@ -1,5 +1,5 @@
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
-import { styled } from '@mui/material';
+import { Theme, styled } from '@mui/material';
 import { AiFillCheckCircle } from 'react-icons/ai'
 
 export interface StepperButtonsProps {
@@ -30,7 +30,7 @@ export const QontoStepIconRoot = styled('div')<{ ownerState: { active?: boolean 
     }),
 );
 
-export const QontoConnector = styled(StepConnector)(({ theme }: any) => ({
+export const QontoConnector = styled(StepConnector)(({ theme }: { theme: Theme }) => ({
     [`&.${stepConnectorClasses.alternativeLabel}`]: {
         top: 10,
         left: 'calc(-50% + 16px)',
@@ -53,9 +53,13 @@ export const QontoConnector = styled(StepConnector)(({ theme }: any) => ({
     },
 }));
 
-export function QontoStepIcon(props: any) {
-    const { active, completed, className } = props;
+interface QontoStepIconProps {
+    active: boolean;
+    completed: boolean;
+    className?: string;
+}
 
+export function QontoStepIcon({ active, completed, className }: QontoStepIconProps) {
     return (
         <QontoStepIconRoot ownerState={{ active }} className={className}>
             {completed ? (
