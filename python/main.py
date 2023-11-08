@@ -1,5 +1,5 @@
 from database import SessionLocal
-from utils import formatoFile
+from utils import formatoFile, load_file_data
 from file import requisicao, upload_file
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse, FileResponse
@@ -35,7 +35,15 @@ async def verify_file(data: Request):
     if not file or formato_esperado != formato:
         return {"status": "error", "message": "Arquivo não enviado ou formato não permitido", "linhas": 0}
 
-    df = pd.read_csv(file.file) if formato == 'csv' else pd.read_excel(file.file)
+    content = load_file_data(file)
+    df = pd.DataFrame()
+
+    if formato == 'csv':
+        df = pd.read_csv(content)
+    elif formato in ['xlsx', 'xls']:
+        df = pd.read_excel(content)
+
+
     linhas = df.shape[0]
     erro = verificar_tipos(df, campos)
 
