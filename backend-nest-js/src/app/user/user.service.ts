@@ -133,8 +133,8 @@ export class UserService {
     }
 
 
-    pendente() {
-        return this.UserRepository.find({
+    async pendente() {
+        return await this.UserRepository.find({
             select: ["nome", "matricula", "perfil", "verificado"],
             where: { verificado: false }
         });
