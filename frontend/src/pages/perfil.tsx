@@ -64,7 +64,7 @@ const MeuPerfil = () => {
         }).finally(() => {
             setLoadingFile(false)
         })
-    }, []);
+    }, [perfil.matricula]);
 
 
     return (
