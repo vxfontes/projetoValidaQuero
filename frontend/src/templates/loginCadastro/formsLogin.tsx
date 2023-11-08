@@ -30,7 +30,7 @@ export const FormLogin = () => {
     const { login } = useUsuario();
 
     async function onSubmit(values: UserLoginProps, { setSubmitting, setStatus }: FormikHelpers<UserLoginProps>) {
-        api.post('/login', values).then((res) => {
+        api.post('/users/login', values).then((res) => {
             if (res.data.status === 'success') {
                 login(res.data.usuario)
                 Swal.fire({

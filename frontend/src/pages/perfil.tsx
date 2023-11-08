@@ -44,7 +44,7 @@ const MeuPerfil = () => {
 
 
         // get templates
-        api.get(`/user/templates/${perfil.matricula}`).then(res => {
+        api.get(`/users/template/${perfil.matricula}`).then(res => {
             if (res.data.status === 'success') {
                 if (res.data.templates.length === 0) setMessageTemplate("Não existem templates cadastrados pelo usuário")
                 else setTemplates(res.data.templates)
@@ -54,7 +54,7 @@ const MeuPerfil = () => {
 
 
         // get arquivos
-        api.get(`/user/arquivos/${perfil.matricula}`).then(res => {
+        api.get(`/users/arquivo/${perfil.matricula}`).then(res => {
             if (res.data.status === 'success') {
                 if (res.data.arquivos.length === undefined) setMessageArquivo("Não existem arquivos cadastrados pelo usuário")
                 else setArquivos(res.data.arquivos)

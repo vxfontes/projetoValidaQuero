@@ -90,7 +90,7 @@ const Dashboard = () => {
             } else AlertSweet(res.data.message, 'error', false)
         }).catch((error) => AlertSweet(error.response.data.message, 'error', false))
 
-        api.get(`/users/pendente`).then(res => {
+        api.get(`/users/pendentes`).then(res => {
             if (res.data.status === 'success') {
                 if (res.data.usuarios === undefined) {
                     setDisabled(true)

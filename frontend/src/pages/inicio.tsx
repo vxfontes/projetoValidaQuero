@@ -27,7 +27,7 @@ const Inicio = () => {
         }).catch((error) => AlertSweet(error.response.data.message, 'error', false))
 
         // get infos
-        api.get('/getformato').then(res => {
+        api.get('/formato/templates').then(res => {
             if (res.data.status === 'success') setFormatoInfo(res.data.result)
         }).catch((error) => AlertSweet(error.response.data.message, 'error', false))
         
