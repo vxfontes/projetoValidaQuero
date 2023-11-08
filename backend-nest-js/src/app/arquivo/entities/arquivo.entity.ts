@@ -3,7 +3,7 @@ import { Template } from "../../template/entities/template.entity";
 import { User } from "../../user/entities/user.entity";
 import { Entity, Column, ManyToOne, JoinColumn } from "typeorm";
 
-@Entity({ name: 'arquivo', schema: "ValidaQueroNestJs" })
+@Entity({ name: 'arquivo', schema: "ValidaQuero" })
 export class Arquivo extends Base {
     @Column({ type: 'varchar', length: 30, nullable: false })
     titulo: string;

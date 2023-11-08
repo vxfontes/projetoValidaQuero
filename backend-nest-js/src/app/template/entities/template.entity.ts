@@ -5,7 +5,7 @@ import { Formato } from "../../formato/entities/formato.entity";
 import { User } from "../../user/entities/user.entity";
 import { Arquivo } from "../../arquivo/entities/arquivo.entity";
 
-@Entity({ name: 'template', schema: "ValidaQueroNestJs" })
+@Entity({ name: 'template', schema: "ValidaQuero" })
 export class Template extends Base {
     @Column({ type: 'varchar', nullable: false })
     titulo: string;

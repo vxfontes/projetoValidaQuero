@@ -3,7 +3,7 @@ import { PerfilEnum } from "./perfil.entity";
 import { Template } from "../../template/entities/template.entity";
 import { Arquivo } from "../../arquivo/entities/arquivo.entity";
 
-@Entity({ name: 'usuario', schema: "ValidaQueroNestJs" })
+@Entity({ name: 'usuario', schema: "ValidaQuero" })
 export class User {
     @Column({ type: 'varchar', nullable: false })
     nome: string;

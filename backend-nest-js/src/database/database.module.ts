@@ -16,7 +16,7 @@ const filePattern = join(directoryAbove, '**', '*.entity.{js,ts}');
             database: 'postgres',
             username: 'postgres',
             password: 'postgres',
-            schema: 'ValidaQueroNestJs',
+            schema: 'ValidaQuero',
             synchronize: true,
             entities: [filePattern], // buscando todas as entidades ao inves de selecionar individualmente
         }),
