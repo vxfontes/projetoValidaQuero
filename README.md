@@ -39,13 +39,35 @@ Teremos 5 entregas diferentes:
 
 ## :rocket: Tecnologias ##
 
+### Protótipo
 :heavy_check_mark: Excalidraw\
-:heavy_check_mark: Figma\
-:heavy_check_mark: ReactJS\
-:heavy_check_mark: MaterialUI\
+:heavy_check_mark: Figma
+
+### BackEnd
+:heavy_check_mark: NestJS\
 :heavy_check_mark: NodeJS\
 :heavy_check_mark: Express\
-:heavy_check_mark: Nodemon\
+:heavy_check_mark: Jest\
+:heavy_check_mark: TypeORM\
+:heavy_check_mark: bcrypt\
 :heavy_check_mark: Postgres
+
+### Frontend
+:heavy_check_mark: ReactJS\
+:heavy_check_mark: MaterialUI\
+:heavy_check_mark: Axios\
+:heavy_check_mark: Nivo\
+:heavy_check_mark: Formik\
+:heavy_check_mark: Yup\
+:heavy_check_mark: Xlsx\
+:heavy_check_mark: SweetAlert2
+
+### Python
+:heavy_check_mark: FastAPI\
+:heavy_check_mark: Unicorn\
+:heavy_check_mark: Psycopg2\
+:heavy_check_mark: SqlAlChemy\
+:heavy_check_mark: Pandas\
+:heavy_check_mark: Google-cloud-storage
 
 
