@@ -32,4 +32,21 @@ $ source .venv/scripts/activate
 # iniciar a api
 $  uvicorn main:app --reload
 
+#linux
+
+# instalando dependencias
+$ sudo apt install python3.11-venv
+
+# criando sistema
+$ python3 -m venv .venv
+
+# abrir ambiente virtual
+$ source .venv/bin/activate
+
+# baixando dependencias
+$ python3 -m pip install -r requirements.txt
+
+# iniciar a api
+$  uvicorn main:app --reload
+
 ```
