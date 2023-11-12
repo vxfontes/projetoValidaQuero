@@ -50,7 +50,7 @@ async def verify_file(data: Request):
     if erro:
         return requisicao(titulo, linhas, False, "", usuario, template, erro)
     else:
-        upload_result = upload_file(file, formato_esperado)
+        upload_result = upload_file(file, formato_esperado, usuario, template)
         if upload_result and upload_result["status"] == "success":
             url = upload_result["message"]
             return requisicao(titulo, linhas, True, url, usuario, template)
@@ -160,23 +160,23 @@ async def excel():
         dashboard_data["arquivo"]["aprovado"] = aprovados
         dashboard_data["arquivo"]["recusado"] = reprovados
 
-    arquivoData = {}
+    templateInfo = {}
     total = 0
     for status, quantidade in result_templates:
         total = total + quantidade
 
     for status, quantidade in result_templates:
-        arquivoData[status] = {
-            "value": quantidade,
+        templateInfo[status] = {
+            "quantidade": quantidade,
             "total": total
         }
     
-    dashboard_data["arquivoData"] = arquivoData
+    dashboard_data["templateInfo"] = templateInfo
 
     templates_mes = []
     for month, ativos, inativos in result_templates_mes:
         templates_mes.append({
-            "month": month,
+            "mes": month,
             "ativos": ativos,
             "inativos": inativos
         })
@@ -184,12 +184,12 @@ async def excel():
     dashboard_data["templateData"] = templates_mes
 
     df_templates_mes = pd.DataFrame(dashboard_data["templateData"])
-    df_arquivoData = pd.DataFrame(dashboard_data["arquivoData"])
+    df_templateInfo = pd.DataFrame(dashboard_data["templateInfo"])
     df_arquivos = pd.DataFrame(dashboard_data["arquivo"], index=[0])
 
     with pd.ExcelWriter('dashboard_data.xlsx') as writer:
         df_arquivos.to_excel(writer, sheet_name='Arquivos')
-        df_arquivoData.to_excel(writer, sheet_name='ArquivoData')
+        df_templateInfo.to_excel(writer, sheet_name='TemplateInfo')
         df_templates_mes.to_excel(writer, sheet_name='TemplatesMes')
 
     return 'dashboard_data.xlsx'
