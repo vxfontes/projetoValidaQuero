@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { Box, Chip, Grid, IconButton, Typography, styled, TextField, Button, Switch, CircularProgress } from "@mui/material";
+import { Box, Chip, Grid, IconButton, Typography, styled, TextField, Button, Switch, CircularProgress, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from "@mui/material";
 import { AiOutlineUser } from 'react-icons/ai';
 import { FiDownload, FiUpload } from 'react-icons/fi';
+import { PiCloudArrowUpLight, PiCloudCheckLight } from 'react-icons/pi';
 import { useParams } from "react-router-dom";
 import theme from "../../theme";
 import { FundoBackground } from "../background/fundoPrincipal";
@@ -18,7 +19,6 @@ import BoxLoading from "../muiComponents/boxLoading";
 import python from "../../logic/api/python";
 import DialogSlide from "../muiComponents/dialog";
 import { AlertSweet } from "../alerts/sweetAlerts";
-import nuvem from '../../assets/icon/nuvem.png'
 import { BoxSpanGray } from "../muiComponents/boxes";
 import { exportFile } from '../../logic/utils/generateFile';
 
@@ -46,6 +46,8 @@ const ViewTemplate = () => {
     const { showFullHD } = useScreenSize();
     const { getUser } = useUsuario();
     const usuario = getUser().result;
+    const [verify, setVerify] = React.useState('simples');
+
 
     React.useEffect(() => {
 
@@ -77,8 +79,24 @@ const ViewTemplate = () => {
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = event.target.files && event.target.files[0];
-        if (selectedFile) setarquivo(selectedFile);
+        if (selectedFile) {
+            const limiteTamanhoArquivo = 100 * 1024 * 1024; // limite de 100mb
+
+            if (selectedFile.size > limiteTamanhoArquivo) {
+                setModal(false);
+                AlertSweet('O arquivo selecionado excede o tamanho máximo permitido (100 MB)', 'error', false);
+                event.target.value = '';
+                return;
+            }
+
+            setarquivo(selectedFile);
+        }
     };
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setVerify((event.target as HTMLInputElement).value);
+    };
+
 
     const getError = (error: Error, message: string) => {
         setModal(false)
@@ -97,6 +115,7 @@ const ViewTemplate = () => {
                 formData.append('file', arquivo);
                 formData.append('formato', template.formato.toLowerCase());
                 formData.append('usuario', usuario.matricula);
+                formData.append('verify', verify);
 
                 const response = await python.post('/file/upload/', formData, {
                     headers: {
@@ -169,16 +188,26 @@ const ViewTemplate = () => {
                                                     <TextField sx={{ mb: 3, mt: 1 }} label="Escreva o nome do arquivo" variant="filled" value={nome} onChange={(e) => setnome(e.target.value)} fullWidth />
 
                                                     <Box sx={{ border: '2px dashed #ccc', textAlign: 'center', width: '80%', ml: '10%', padding: '7%' }}>
-                                                        <img src={nuvem} alt="Nuvem upload" /><br />
+                                                        {arquivo ? (<PiCloudCheckLight size={55} />) : (<PiCloudArrowUpLight size={55} />)}
                                                         <Typography my={1} variant="body1" color="initial">
                                                             {arquivo ? (<>Arquivo selecionado com sucesso!</>) : (<>Selecione o arquivo</>)}
                                                         </Typography>
-                                                        <Typography mb={2} variant="body1" color="GrayText">CSV, XLS or XLSX, tamanho menor que 100MB</Typography>
-                                                        <Button endIcon={loadingFile && (<CircularProgress color='info' size={20} />)} variant="outlined" component='label' color="info" disabled={arquivo ? true : false}>
-                                                            {" "}
-                                                            Selecionar arquivo
-                                                            <input hidden accept=".csv,.xls,.xlsx" type="file" onChange={handleFileChange} />
-                                                        </Button>
+                                                        {arquivo ? (
+                                                            <FormControl sx={{ mt: 1 }}>
+                                                                <FormLabel><Typography variant="body1" color="initial">Tipo de verificação</Typography></FormLabel>
+                                                                <RadioGroup value={verify} onChange={handleChange} >
+                                                                    <FormControlLabel value="simples" control={<Radio />} label="Verificação rápida" />
+                                                                    <FormControlLabel value="completa" control={<Radio />} label="Verificação completa" />
+                                                                </RadioGroup>
+                                                            </FormControl>
+                                                        ) : (
+                                                            <>
+                                                                <Typography mb={2} variant="body1" color="GrayText">CSV, XLS or XLSX, tamanho menor que 100MB</Typography>
+                                                                <Button endIcon={loadingFile && (<CircularProgress color='info' size={20} />)} variant="outlined" component='label' color="info" disabled={arquivo ? true : false}>
+                                                                    {" "} Selecionar arquivo<input hidden accept=".csv,.xls,.xlsx" type="file" onChange={handleFileChange} />
+                                                                </Button>
+                                                            </>
+                                                        )}
                                                     </Box>
 
                                                     <Box sx={{ display: 'flex', justifyContent: 'center', gap: 6, pt: 3, pb: 1 }}>
