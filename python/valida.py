@@ -1,6 +1,7 @@
 import pandas as pd
+from utils import pandas_to_human
 
-def verificar_tipos(df, campos):
+def verificar_tipos(df, campos, verify):
     campos_df = set(df.columns)
     campos_esperados = set(campo['nome'].strip() for campo in campos)
     campos_faltando = campos_df - campos_esperados
@@ -29,8 +30,18 @@ def verificar_tipos(df, campos):
             adicionar_erro(erros, f"Campo '{nome_campo}' não deveria possuir valores nulos, mas possui.")
             break
 
-        for valor in df[nome_campo]:
-            verificar_tipo_valor(valor, tipo_esperado, nulo_esperado, nome_campo, erros)
+        if verify == 'completa':
+            for valor in df[nome_campo]:
+                verificar_tipo_valor(valor, tipo_esperado, nulo_esperado, nome_campo, erros)
+        elif verify == 'simples':
+            tipo_atual = df[nome_campo].dtype
+
+            if tipo_esperado == 'datetime64':
+                df[nome_campo] = pd.to_datetime(df[nome_campo], errors='coerce')
+                if df['data'].isnull().any():
+                    adicionar_erro(erros, f"Campo '{nome_campo}' possui valores que não são data")
+            if tipo_esperado != 'datetime64' and tipo_esperado != tipo_atual:
+                adicionar_erro(erros, f"Campo '{nome_campo}' possui valores que não são {pandas_to_human(tipo_esperado)}")
 
     return erros if erros else None
 
@@ -47,12 +58,12 @@ def adicionar_erro(erros, mensagem):
 
 def verificar_tipo_valor(valor, tipo_esperado, nulo_esperado, nome_campo, erros):
     if tipo_esperado == 'datetime64' and not is_valid_datetime(valor):
-        adicionar_erro(erros, f"Campo '{nome_campo}' possui valores que não são data")
+        adicionar_erro(erros, f"Campo '{nome_campo}' possui valores que não são datas")
     elif tipo_esperado == 'int64' and not isinstance(valor, (int, float) if nulo_esperado else int):
-        adicionar_erro(erros, f"Campo '{nome_campo}' possui valores que não são {tipo_esperado}")
+        adicionar_erro(erros, f"Campo '{nome_campo}' possui valores que não são {pandas_to_human(tipo_esperado)}")
     elif tipo_esperado == 'float' and not isinstance(valor, float):
-        adicionar_erro(erros, f"Campo '{nome_campo}' possui valores que não são {tipo_esperado}")
+        adicionar_erro(erros, f"Campo '{nome_campo}' possui valores que não são {pandas_to_human(tipo_esperado)}")
     elif tipo_esperado == 'bool' and not isinstance(valor, bool):
-        adicionar_erro(erros, f"Campo '{nome_campo}' possui valores que não são {tipo_esperado}")
+        adicionar_erro(erros, f"Campo '{nome_campo}' possui valores que não são {pandas_to_human(tipo_esperado)}")
     elif tipo_esperado == 'object' and not isinstance(valor, str):
-        adicionar_erro(erros, f"Campo '{nome_campo}' possuem valores que não são {tipo_esperado}.")
+        adicionar_erro(erros, f"Campo '{nome_campo}' possuem valores que não são {pandas_to_human(tipo_esperado)}.")

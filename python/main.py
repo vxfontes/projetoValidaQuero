@@ -27,6 +27,7 @@ async def verify_file(data: Request):
     titulo = form.get("titulo")
     usuario = form.get("usuario")
     template = form.get("template")
+    verify = form.get("verify")
     formato_esperado = form.get("formato")
     campos = json.loads(form.get("campos", "[]"))
 
@@ -45,7 +46,7 @@ async def verify_file(data: Request):
 
 
     linhas = df.shape[0]
-    erro = verificar_tipos(df, campos)
+    erro = verificar_tipos(df, campos, verify)
 
     if erro:
         return requisicao(titulo, linhas, False, "", usuario, template, erro)
