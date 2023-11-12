@@ -1,14 +1,13 @@
 from database import bucket, bucket_name, SessionLocal
 from sqlalchemy import text
-import uuid
+from datetime import datetime
 
 db = SessionLocal()
 
-def upload_file(file, formato):
+def upload_file(file, formato, usuario, template):
     try:
-        myID = uuid.uuid4()
-        nome = file.filename[:file.filename.rfind('.')]
-        objeto_nome = f'arquivos/{nome}/{myID}.{formato}'
+        myDate = datetime.timestamp(datetime.now())
+        objeto_nome = f'arquivos/user-{usuario}/{template}/{myDate}.{formato}'
         blob = bucket.blob(objeto_nome)
 
         file.file.seek(0)
