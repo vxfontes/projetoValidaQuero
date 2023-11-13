@@ -102,6 +102,7 @@ const ViewTemplate = () => {
         setModal(false)
         console.log('Upload deu errado: ', error);
         AlertSweet(message, 'error', true)
+        setLoadingFile(false)
     }
 
     async function handleUpload() {
@@ -190,6 +191,7 @@ const ViewTemplate = () => {
                                                     <Box sx={{ border: '2px dashed #ccc', textAlign: 'center', width: '80%', ml: '10%', padding: '7%' }}>
                                                         {arquivo ? (<PiCloudCheckLight size={55} />) : (<PiCloudArrowUpLight size={55} />)}
                                                         <Typography my={1} variant="body1" color="initial">
+                                                            {loadingFile && (<CircularProgress color='info' size={30} />)}<br/>
                                                             {arquivo ? (<>Arquivo selecionado com sucesso!</>) : (<>Selecione o arquivo</>)}
                                                         </Typography>
                                                         {arquivo ? (
@@ -203,7 +205,7 @@ const ViewTemplate = () => {
                                                         ) : (
                                                             <>
                                                                 <Typography mb={2} variant="body1" color="GrayText">CSV, XLS or XLSX, tamanho menor que 100MB</Typography>
-                                                                <Button endIcon={loadingFile && (<CircularProgress color='info' size={20} />)} variant="outlined" component='label' color="info" disabled={arquivo ? true : false}>
+                                                                <Button variant="outlined" component='label' color="info" disabled={arquivo ? true : false}>
                                                                     {" "} Selecionar arquivo<input hidden accept=".csv,.xls,.xlsx" type="file" onChange={handleFileChange} />
                                                                 </Button>
                                                             </>
