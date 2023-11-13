@@ -27,3 +27,17 @@ def converter(valor, tipo):
         return True
     except:
         return False
+
+def is_valid_datetime(string):
+    try:
+        pd.to_datetime(string)
+        return True
+    except ValueError:
+        return False
+
+def adicionar_erro(erros, mensagem):
+    if mensagem not in erros:
+        erros.append(mensagem)
+
+def mensagemErro(nome_campo, tipo_esperado, erros, linha, valor):
+    adicionar_erro(erros, f"\nCampo '{nome_campo}' possui valor(es) que não são {pandas_to_human(tipo_esperado)}, linha {linha}: '{valor}'")

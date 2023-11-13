@@ -1,5 +1,5 @@
 import pandas as pd
-from utils import pandas_to_human, converter
+from utils import pandas_to_human, converter, adicionar_erro, mensagemErro, is_valid_datetime
 
 def verificar_tipos(df, campos, verify):
     campos_df = set(df.columns)
@@ -37,9 +37,7 @@ def verificar_tipos(df, campos, verify):
                 nome_campo = campos[j]['nome']
                 for i in range(len(df)):
                     data = df.iloc[i, j]
-
-                    if not converter(data, tipo_esperado):
-                        adicionar_erro(erros, f"\nCampo '{nome_campo}' possui valor(es) que não são {pandas_to_human(tipo_esperado)}, linha {i+1}: '{data}'")
+                    verificar_tipo_valor(data, tipo_esperado, nome_campo, erros, i+1)
         except Exception as error:
             adicionar_erro(erros, f"Erro ao verificar dados: " + error.args[0])
 
@@ -52,19 +50,20 @@ def verificar_tipos(df, campos, verify):
             if tipo_esperado == 'datetime64':
                 df[nome_campo] = pd.to_datetime(df[nome_campo], errors='coerce')
                 if df['data'].isnull().any():
-                    adicionar_erro(erros, f"Campo '{nome_campo}' possui valores que não são data")
+                    adicionar_erro(erros, f"\nCampo '{nome_campo}' possui valores que não são data")
             if tipo_esperado != 'datetime64' and tipo_esperado != tipo_atual:
-                adicionar_erro(erros, f"Campo '{nome_campo}' possui valores que não são {pandas_to_human(tipo_esperado)}")
+                adicionar_erro(erros, f"\nCampo '{nome_campo}' possui valores que não são {pandas_to_human(tipo_esperado)}")
 
     return erros if erros else None
 
-def is_valid_datetime(string):
-    try:
-        pd.to_datetime(string)
-        return True
-    except ValueError:
-        return False
-
-def adicionar_erro(erros, mensagem):
-    if mensagem not in erros:
-        erros.append(mensagem)
+def verificar_tipo_valor(valor, tipo_esperado, nome_campo, erros, linha):
+    if tipo_esperado == 'datetime64' and not is_valid_datetime(valor):
+        mensagemErro(nome_campo, tipo_esperado, erros, linha, valor)
+    elif tipo_esperado == 'int64' and not converter(valor, tipo_esperado):
+        mensagemErro(nome_campo, tipo_esperado, erros, linha, valor)
+    elif tipo_esperado == 'float' and not converter(valor, tipo_esperado):
+        mensagemErro(nome_campo, tipo_esperado, erros, linha, valor)
+    elif tipo_esperado == 'bool' and not (valor == "true" or valor == "True" or valor == "false" or valor == "False"  or valor == True  or valor == False):
+        mensagemErro(nome_campo, tipo_esperado, erros, linha, valor)
+    elif tipo_esperado == 'object' and not converter(valor, tipo_esperado):
+        mensagemErro(nome_campo, tipo_esperado, erros, linha, valor)
