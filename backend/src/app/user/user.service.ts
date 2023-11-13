@@ -196,7 +196,7 @@ export class UserService {
         const arquivos = await this.ArquivoRepository.find({
             where: { usuario: { matricula: matricula }, aprovado: true },
             relations: ['usuario', 'template', 'template.formato'],
-            select: ['aprovado', 'dataCriacao', 'id', 'linhas', 'template', 'titulo', 'url', 'usuario']
+            select: ['aprovado', 'dataCriacao', 'id', 'linhas', 'template', 'titulo', 'url', 'usuario', 'publico']
         });
 
         if (arquivos.length === 0) throw new Error('Usuário não possui arquivos');

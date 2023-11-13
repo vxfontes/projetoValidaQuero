@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Chip, Grid, IconButton, Typography, styled, TextField, Button, Switch, CircularProgress, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from "@mui/material";
+import { Box, Chip, Grid, IconButton, Typography, styled, TextField, Button, Switch, CircularProgress, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Checkbox } from "@mui/material";
 import { AiOutlineUser } from 'react-icons/ai';
 import { FiDownload, FiUpload } from 'react-icons/fi';
 import { PiCloudArrowUpLight, PiCloudCheckLight } from 'react-icons/pi';
@@ -42,6 +42,7 @@ const ViewTemplate = () => {
     const [modal, setModal] = React.useState(false);
     const [flag, setFlag] = React.useState("");
     const [checked, setChecked] = React.useState<boolean>(true);
+    const [publico, setPublico] = React.useState<boolean>(true);
     const [arquivo, setarquivo] = React.useState<File | null>(null);
     const { showFullHD } = useScreenSize();
     const { getUser } = useUsuario();
@@ -93,10 +94,8 @@ const ViewTemplate = () => {
         }
     };
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setVerify((event.target as HTMLInputElement).value);
-    };
-
+    const handleChangeVerify = (event: React.ChangeEvent<HTMLInputElement>) => setVerify((event.target as HTMLInputElement).value);
+    const handleChangePublico = (event: React.ChangeEvent<HTMLInputElement>) => setPublico(event.target.checked);
 
     const getError = (error: Error, message: string) => {
         setModal(false)
@@ -106,6 +105,12 @@ const ViewTemplate = () => {
     }
 
     async function handleUpload() {
+        if (nome.length === 0) {
+            setModal(false);
+            AlertSweet('É preciso inserir nome no arquivo', 'error', false);
+            return;
+        }
+
         if (arquivo && template) {
             setLoadingFile(true)
             try {
@@ -117,6 +122,7 @@ const ViewTemplate = () => {
                 formData.append('formato', template.formato.toLowerCase());
                 formData.append('usuario', usuario.matricula);
                 formData.append('verify', verify);
+                formData.append('publico', String(publico));
 
                 const response = await python.post('/file/upload/', formData, {
                     headers: {
@@ -188,16 +194,21 @@ const ViewTemplate = () => {
 
                                                     <TextField sx={{ mb: 3, mt: 1 }} label="Escreva o nome do arquivo" variant="filled" value={nome} onChange={(e) => setnome(e.target.value)} fullWidth />
 
+                                                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: -3, mb: 1 }}>
+                                                        <Checkbox checked={publico} onChange={handleChangePublico} />
+                                                        <Typography variant="body1" color="initial">Deseja manter o arquivo público?</Typography>
+                                                    </Box>
+
                                                     <Box sx={{ border: '2px dashed #ccc', textAlign: 'center', width: '80%', ml: '10%', padding: '7%' }}>
                                                         {arquivo ? (<PiCloudCheckLight size={55} />) : (<PiCloudArrowUpLight size={55} />)}
                                                         <Typography my={1} variant="body1" color="initial">
-                                                            {loadingFile && (<CircularProgress color='info' size={30} />)}<br/>
+                                                            {loadingFile && (<CircularProgress color='info' size={30} />)}<br />
                                                             {arquivo ? (<>Arquivo selecionado com sucesso!</>) : (<>Selecione o arquivo</>)}
                                                         </Typography>
                                                         {arquivo ? (
                                                             <FormControl sx={{ mt: 1 }}>
                                                                 <FormLabel><Typography variant="body1" color="initial">Tipo de verificação</Typography></FormLabel>
-                                                                <RadioGroup value={verify} onChange={handleChange} >
+                                                                <RadioGroup value={verify} onChange={handleChangeVerify} >
                                                                     <FormControlLabel value="simples" control={<Radio />} label="Verificação rápida" />
                                                                     <FormControlLabel value="completa" control={<Radio />} label="Verificação completa" />
                                                                 </RadioGroup>

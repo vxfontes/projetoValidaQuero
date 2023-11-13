@@ -20,6 +20,9 @@ export class Arquivo extends Base {
     @Column({ type: 'varchar', nullable: true })
     url: string;
 
+    @Column({ type: 'boolean', nullable: false, default: true })
+    publico: boolean;
+
     @ManyToOne(() => User, { nullable: false })
     @JoinColumn({ name: 'usuario' })
     usuario: User;

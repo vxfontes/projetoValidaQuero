@@ -128,6 +128,7 @@ export class TemplateService {
                 linhas: arq.linhas,
                 aprovado: arq.aprovado,
                 url: arq.url,
+                publico: arq.publico,
                 usuario: { nome: arq.usuario.nome, matricula: arq.usuario.matricula },
                 template: { titulo: template.titulo }
             }))

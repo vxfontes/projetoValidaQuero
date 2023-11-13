@@ -12,9 +12,9 @@ export class ArquivoService {
 
     async findAll() {
         const arquivos = await this.ArquivoRepository.find({
-            where: { aprovado: true },
+            where: { aprovado: true, publico: true },
             relations: ["usuario", "template", "template.formato"],
-            select: ["id", "titulo", "dataCriacao", "linhas", "aprovado", "url", "usuario", "template"]
+            select: ["id", "titulo", "dataCriacao", "linhas", "aprovado", "url", "usuario", "template", 'publico']
         });
 
         let formattedArquivos = []

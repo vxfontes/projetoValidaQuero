@@ -26,6 +26,7 @@ async def verify_file(data: Request):
     file = form.get("file")
     titulo = form.get("titulo")
     usuario = form.get("usuario")
+    publico = form.get("publico")
     template = form.get("template")
     verify = form.get("verify")
     formato_esperado = form.get("formato")
@@ -49,12 +50,12 @@ async def verify_file(data: Request):
     erro = verificar_tipos(df, campos, verify)
 
     if erro:
-        return requisicao(titulo, linhas, False, "", usuario, template, erro)
+        return requisicao(titulo, linhas, False, "", usuario, template, publico, erro)
     else:
         upload_result = upload_file(file, formato_esperado, usuario, template)
         if upload_result and upload_result["status"] == "success":
             url = upload_result["message"]
-            return requisicao(titulo, linhas, True, url, usuario, template)
+            return requisicao(titulo, linhas, True, url, usuario, template, publico)
         else:
             return upload_result
 
@@ -205,6 +206,7 @@ async def arquivos():
             arquivo.aprovado,
             arquivo.url,
             arquivo.linhas,
+            arquivo.publico,
             arquivo."dataCriacao",
             usuario.nome AS usuario_nome,
             usuario.matricula AS usuario_matricula,
@@ -226,15 +228,16 @@ async def arquivos():
             "aprovado": row[2],
             "url": row[3],
             "linhas": row[4],
-            "dataCriacao": str(row[5]),
+            "publico": row[5],
+            "dataCriacao": str(row[6]),
             "usuario": {
-                "nome": row[6],
-                "matricula": row[7]
+                "nome": row[7],
+                "matricula": row[8]
             },
             "template": {
-                "titulo": row[8]
+                "titulo": row[9]
             },
-            "formato": row[9],
+            "formato": row[10],
         }
         formatted_arquivos.append(formatted_arquivo)
 

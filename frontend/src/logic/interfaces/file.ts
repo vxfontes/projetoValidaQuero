@@ -3,6 +3,7 @@ import { UserMainProps } from "./user";
 export interface FileProps {
     id: number;
     titulo: string;
+    publico: boolean;
     dataCriacao: string;
     formato: string;
     linhas: number;

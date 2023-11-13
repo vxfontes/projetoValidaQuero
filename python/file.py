@@ -19,10 +19,15 @@ def upload_file(file, formato, usuario, template):
         print(f"Erro durante o upload do arquivo: {str(e)}")
         return {"status": "error", "message": "Arquivo não armazenado", "linhas": 0, "erro": str(e)}
 
-def requisicao(titulo, linhas, aprovado, url, usuario, template, erro_message="Arquivo aceito com sucesso"):
+def requisicao(titulo, linhas, aprovado, url, usuario, template, publico, erro_message="Arquivo aceito com sucesso"):
+    newPublico = False
+    
+    if(publico == 'true'):
+        newPublico = True
+    
     query = text('''INSERT INTO "ValidaQuero".arquivo
-                (titulo, linhas, aprovado, url, usuario, "template")
-                VALUES(:titulo, :linhas, :aprovado, :url, :usuario, :template)''')
+                (titulo, linhas, aprovado, url, usuario, template, publico)
+                VALUES(:titulo, :linhas, :aprovado, :url, :usuario, :template, :publico)''')
     try:
         db.execute(query, {
             "titulo": titulo,
@@ -30,7 +35,8 @@ def requisicao(titulo, linhas, aprovado, url, usuario, template, erro_message="A
             "aprovado": aprovado,
             "url": url,
             "usuario": usuario,
-            "template": template
+            "template": template,
+            "publico": newPublico
         })
         db.commit()
 

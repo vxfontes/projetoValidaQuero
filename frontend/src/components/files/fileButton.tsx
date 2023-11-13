@@ -1,4 +1,4 @@
-import { Box, Divider, Grid, Typography, styled, Button } from "@mui/material";
+import { Box, Divider, Grid, Typography, styled, Button, Checkbox } from "@mui/material";
 import { FileProps } from "../../logic/interfaces/file";
 import { formatarData } from "../../logic/utils/data";
 import theme from "../../theme";
@@ -31,7 +31,10 @@ const FileButton = ({ file, formato }: { file: FileProps, formato: string }) => 
                             <BoxSpanGray>Formato: </BoxSpanGray>{formato}<br />
                             <BoxSpanGray>Data de criação: </BoxSpanGray>{formatarData(file.dataCriacao)}<br />
                             <BoxSpanGray>Autor: </BoxSpanGray>{file.usuario.nome} (matrícula: <BoxSpanGray>{file.usuario.matricula}</BoxSpanGray>) <br />
-                            <BoxSpanGray>Quantidade de linhas: </BoxSpanGray>{file.url === null ? "Arquivo não aprovado" : file.linhas}
+                            <BoxSpanGray>Quantidade de linhas: </BoxSpanGray>{file.url === null ? "Arquivo não aprovado" : file.linhas} <br />
+                        </Typography>
+                        <Typography sx={{ mt: '-0.38em' }} variant="body1" align="left" color={file.url === null ? "error" : "initial"}>
+                            <BoxSpanGray>Público: </BoxSpanGray><Checkbox sx={{ ml: -1, mt: '-0.2em' }} disabled checked={file.publico == true} />
                         </Typography>
                     </Box>
 

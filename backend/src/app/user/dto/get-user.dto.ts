@@ -70,6 +70,7 @@ template.formato = { id: 2, titulo: 'XLSX' } as Formato;
 export const arquivosMock = [
     {
         id: 4,
+        publico: true,
         titulo: 'Titulo Aleatorio',
         dataCriacao: new Date(),
         linhas: 10,
@@ -87,6 +88,7 @@ export const arquivosMockReturn = [
         titulo: 'Titulo Aleatorio',
         dataCriacao: new Date(),
         linhas: 10,
+        publico: true,
         aprovado: true,
         url: 'google.com',
         usuario: { matricula: '123', nome: 'Usuário de teste' },

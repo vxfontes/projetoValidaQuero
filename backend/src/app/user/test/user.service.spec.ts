@@ -11,7 +11,6 @@ import { arquivosMock, arquivosMockReturn, templatesMock, templatesMockReturn, u
 import { StatusEnum } from '../../template/entities/status.entity';
 import { Template } from '../../template/entities/template.entity';
 import { Arquivo } from '../../arquivo/entities/arquivo.entity';
-import { Formato } from '../../formato/entities/formato.entity';
 
 describe('UserService', () => {
     let service: UserService;
