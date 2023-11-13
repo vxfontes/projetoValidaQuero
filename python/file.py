@@ -4,10 +4,10 @@ from datetime import datetime
 
 db = SessionLocal()
 
-def upload_file(file, formato, usuario, template):
+def upload_file(file, formato, usuario, template, repositorio):
     try:
         myDate = datetime.timestamp(datetime.now())
-        objeto_nome = f'arquivos/user-{usuario}/{template}/{myDate}.{formato}'
+        objeto_nome = f'arquivos/{repositorio}/user-{usuario}/{template}/{myDate}.{formato}'
         blob = bucket.blob(objeto_nome)
 
         file.file.seek(0)
