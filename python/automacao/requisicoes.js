@@ -16,17 +16,17 @@ async function templatesReq() {
 }
 
 async function arquivosReq() {
-    const apiUrl = 'http://localhost:3003/arquivo/';
+    const apiUrl = 'http://localhost:3000/arquivo/';
 
     for (const arquivo of arquivos) {
         try {
-            const response = await axios.post(apiUrl, arquivo);
-            console.log(response.data.message)
+            await axios.post(apiUrl, arquivo);
+            // console.log(response.data.message)
         } catch (error) {
-            console.error(`Erro na requisição para o arquivo: `, error);
+            console.error(`Erro na requisição para o arquivo: `);
         }
     }
 }
 
 // templatesReq();
-// arquivosReq();
+arquivosReq();
