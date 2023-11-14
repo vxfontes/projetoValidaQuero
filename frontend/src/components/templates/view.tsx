@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Chip, Grid, IconButton, Typography, styled, TextField, Button, Switch, CircularProgress, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Checkbox } from "@mui/material";
+import { Box, Chip, Grid, IconButton, Typography, styled, TextField, Button, Switch, CircularProgress, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Checkbox, MenuItem } from "@mui/material";
 import { AiOutlineUser } from 'react-icons/ai';
 import { FiDownload, FiUpload } from 'react-icons/fi';
 import { PiCloudArrowUpLight, PiCloudCheckLight } from 'react-icons/pi';
@@ -37,6 +37,7 @@ const ViewTemplate = () => {
     const [template, setTemplate] = React.useState<GetTemplateProps>();
     const [message, setMessage] = React.useState("");
     const [nome, setnome] = React.useState("");
+    const [repositorio, setrepositorio] = React.useState("");
     const [loading, setLoading] = React.useState(true);
     const [loadingFile, setLoadingFile] = React.useState(false);
     const [modal, setModal] = React.useState(false);
@@ -111,6 +112,12 @@ const ViewTemplate = () => {
             return;
         }
 
+        if (repositorio.length === 0) {
+            setModal(false);
+            AlertSweet('É preciso selecionar o repositório', 'error', false);
+            return;
+        }
+
         if (arquivo && template) {
             setLoadingFile(true)
             try {
@@ -122,6 +129,7 @@ const ViewTemplate = () => {
                 formData.append('formato', template.formato.toLowerCase());
                 formData.append('usuario', usuario.matricula);
                 formData.append('verify', verify);
+                formData.append('repositorio', repositorio);
                 formData.append('publico', String(publico));
 
                 const response = await python.post('/file/upload/', formData, {
@@ -173,6 +181,65 @@ const ViewTemplate = () => {
                                     </Grid>
 
 
+                                    <DialogSlide open={modal} handleClose={() => setModal(false)}>
+                                        <Grid container bgcolor='#fff' display='block' justifyContent={'center'} textAlign={'center'} spacing={3} px={6} py={3}>
+                                            <Typography mt={3} variant="h5" color="inherit" align="left">Upload de Arquivo</Typography>
+
+                                            <Typography mt={1} variant="body1" color="inherit" align="left">Template: <BoxSpanGray>{template.titulo}</BoxSpanGray></Typography>
+                                            <Typography variant="body1" color="inherit" align="left">Formato: <BoxSpanGray>{template.formato}</BoxSpanGray></Typography>
+
+                                            <TextField sx={{ mb: 1, mt: 1 }} label="Escreva o nome do arquivo" variant="filled" value={nome} onChange={(e) => setnome(e.target.value)} fullWidth />
+
+                                            <TextField select label="Informe o repositório que você deseja salvar" variant="filled" value={repositorio} onChange={(e) => setrepositorio(e.target.value)} fullWidth>
+                                                <MenuItem key={1} value='principal'>Servidor principal</MenuItem>
+                                                <MenuItem key={1} value='secundario'>Servidor secundário</MenuItem>
+                                                <MenuItem key={1} value='temporario'>Servidor temporário</MenuItem>
+                                            </TextField>
+
+                                            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 1 }}>
+                                                <Checkbox checked={publico} onChange={handleChangePublico} />
+                                                <Typography variant="body1" color="initial">Deseja manter o arquivo público?</Typography>
+                                            </Box>
+
+                                            <Box sx={{ border: '2px dashed #ccc', textAlign: 'center', width: '90%', ml: '5%', py: 2 }}>
+                                                {!loadingFile && (
+                                                    <>
+                                                        {arquivo ? (<PiCloudCheckLight size={55} />) : (<PiCloudArrowUpLight size={55} />)}
+                                                    </>
+                                                )}
+                                                <Typography my={1} mt={-2} variant="body1" color="initial">
+                                                    {loadingFile && (<CircularProgress sx={{ mt: 2 }} color='info' size={30} />)}<br />
+                                                    {arquivo ? (<>Arquivo selecionado com sucesso!</>) : (<>Selecione o arquivo</>)}
+                                                </Typography>
+                                                {arquivo ? (
+                                                    <FormControl sx={{ mt: 1 }}>
+                                                        <FormLabel><Typography variant="body1" color="initial">Tipo de verificação</Typography></FormLabel>
+                                                        <RadioGroup value={verify} onChange={handleChangeVerify} >
+                                                            <FormControlLabel value="simples" control={<Radio />} label="Verificação rápida" />
+                                                            <FormControlLabel value="completa" control={<Radio />} label="Verificação completa" />
+                                                        </RadioGroup>
+                                                    </FormControl>
+                                                ) : (
+                                                    <>
+                                                        <Typography mb={2} variant="body1" color="GrayText">CSV, XLS or XLSX, tamanho menor que 100MB</Typography>
+                                                        <Button variant="outlined" component='label' color="info" disabled={arquivo ? true : false}>
+                                                            {" "} Selecionar arquivo<input hidden accept=".csv,.xls,.xlsx" type="file" onChange={handleFileChange} />
+                                                        </Button>
+                                                    </>
+                                                )}
+                                            </Box>
+
+                                            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 6, pt: 3, pb: 1 }}>
+                                                <Button variant="outlined" color='primary' onClick={() => setModal(false)} disabled={loadingFile}>
+                                                    Retornar
+                                                </Button>
+                                                <Button variant="contained" color='primary' onClick={handleUpload} disabled={loadingFile}>
+                                                    Continue
+                                                </Button>
+                                            </Box>
+                                        </Grid>
+                                    </DialogSlide>
+
                                     <Grid mt={2} item xl={5} lg={5} md={5} sm={12} xs={12}>
                                         <Box display='flex' gap={5} alignItems='center'>
                                             <Box display='flex' gap={1} alignItems='center'>
@@ -184,55 +251,6 @@ const ViewTemplate = () => {
                                                     </IconButton>
                                                 )}
                                             </Box>
-
-                                            <DialogSlide open={modal} handleClose={() => setModal(false)}>
-                                                <Grid container bgcolor='#fff' display='block' justifyContent={'center'} textAlign={'center'} spacing={3} px={6} py={3}>
-                                                    <Typography mt={3} variant="h5" color="inherit" align="left">Upload de Arquivo</Typography>
-
-                                                    <Typography mt={1} variant="body1" color="inherit" align="left">Template: <BoxSpanGray>{template.titulo}</BoxSpanGray></Typography>
-                                                    <Typography variant="body1" color="inherit" align="left">Formato: <BoxSpanGray>{template.formato}</BoxSpanGray></Typography>
-
-                                                    <TextField sx={{ mb: 3, mt: 1 }} label="Escreva o nome do arquivo" variant="filled" value={nome} onChange={(e) => setnome(e.target.value)} fullWidth />
-
-                                                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: -3, mb: 1 }}>
-                                                        <Checkbox checked={publico} onChange={handleChangePublico} />
-                                                        <Typography variant="body1" color="initial">Deseja manter o arquivo público?</Typography>
-                                                    </Box>
-
-                                                    <Box sx={{ border: '2px dashed #ccc', textAlign: 'center', width: '80%', ml: '10%', padding: '7%' }}>
-                                                        {arquivo ? (<PiCloudCheckLight size={55} />) : (<PiCloudArrowUpLight size={55} />)}
-                                                        <Typography my={1} variant="body1" color="initial">
-                                                            {loadingFile && (<CircularProgress color='info' size={30} />)}<br />
-                                                            {arquivo ? (<>Arquivo selecionado com sucesso!</>) : (<>Selecione o arquivo</>)}
-                                                        </Typography>
-                                                        {arquivo ? (
-                                                            <FormControl sx={{ mt: 1 }}>
-                                                                <FormLabel><Typography variant="body1" color="initial">Tipo de verificação</Typography></FormLabel>
-                                                                <RadioGroup value={verify} onChange={handleChangeVerify} >
-                                                                    <FormControlLabel value="simples" control={<Radio />} label="Verificação rápida" />
-                                                                    <FormControlLabel value="completa" control={<Radio />} label="Verificação completa" />
-                                                                </RadioGroup>
-                                                            </FormControl>
-                                                        ) : (
-                                                            <>
-                                                                <Typography mb={2} variant="body1" color="GrayText">CSV, XLS or XLSX, tamanho menor que 100MB</Typography>
-                                                                <Button variant="outlined" component='label' color="info" disabled={arquivo ? true : false}>
-                                                                    {" "} Selecionar arquivo<input hidden accept=".csv,.xls,.xlsx" type="file" onChange={handleFileChange} />
-                                                                </Button>
-                                                            </>
-                                                        )}
-                                                    </Box>
-
-                                                    <Box sx={{ display: 'flex', justifyContent: 'center', gap: 6, pt: 3, pb: 1 }}>
-                                                        <Button variant="outlined" color='primary' onClick={() => setModal(false)}>
-                                                            Retornar
-                                                        </Button>
-                                                        <Button variant="contained" color='primary' onClick={handleUpload}>
-                                                            Continue
-                                                        </Button>
-                                                    </Box>
-                                                </Grid>
-                                            </DialogSlide>
 
                                             <Box display='flex' gap={1} alignItems='center'>
                                                 {(usuario.verificado && usuario.perfil === 'Gestor') && (

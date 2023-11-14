@@ -29,6 +29,7 @@ async def verify_file(data: Request):
     publico = form.get("publico")
     template = form.get("template")
     verify = form.get("verify")
+    repositorio = form.get("repositorio")
     formato_esperado = form.get("formato")
     campos = json.loads(form.get("campos", "[]"))
 
@@ -52,7 +53,7 @@ async def verify_file(data: Request):
     if erro:
         return requisicao(titulo, linhas, False, "", usuario, template, publico, erro)
     else:
-        upload_result = upload_file(file, formato_esperado, usuario, template)
+        upload_result = upload_file(file, formato_esperado, usuario, template, repositorio)
         if upload_result and upload_result["status"] == "success":
             url = upload_result["message"]
             return requisicao(titulo, linhas, True, url, usuario, template, publico)

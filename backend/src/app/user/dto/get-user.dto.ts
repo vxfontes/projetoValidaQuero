@@ -4,6 +4,8 @@ import { Formato } from '../../formato/entities/formato.entity';
 import { User } from '../entities/user.entity';
 import { Template } from '../../template/entities/template.entity';
 
+const myDate = new Date();
+
 export const usuariosMock = {
     nome: 'Vanessa',
     matricula: '123',
@@ -32,7 +34,7 @@ export const templatesMock = [
         id: 3,
         titulo: 'Template 1',
         descricao: 'asdasdasdasd',
-        dataCriacao: new Date(),
+        dataCriacao: myDate,
         quantidadeCampos: 2,
         campos: [{} as any],
         status: StatusEnum.Ativo,
@@ -47,7 +49,7 @@ export const templatesMockReturn = [
         id: 3,
         titulo: 'Template 1',
         descricao: 'asdasdasdasd',
-        dataCriacao: new Date(),
+        dataCriacao: myDate,
         quantidadeCampos: 2,
         campos: [{} as any],
         status: StatusEnum.Ativo,
@@ -61,7 +63,7 @@ const template = new Template();
 template.id = 3;
 template.titulo = 'Template 1';
 template.descricao = 'asdasdasdasd';
-template.dataCriacao = new Date();
+template.dataCriacao = myDate;
 template.quantidadeCampos = 2;
 template.campos = [{} as any];
 template.status = StatusEnum.Ativo;
@@ -72,7 +74,7 @@ export const arquivosMock = [
         id: 4,
         publico: true,
         titulo: 'Titulo Aleatorio',
-        dataCriacao: new Date(),
+        dataCriacao: myDate,
         linhas: 10,
         aprovado: true,
         url: 'google.com',
@@ -86,7 +88,7 @@ export const arquivosMockReturn = [
     {
         id: 4,
         titulo: 'Titulo Aleatorio',
-        dataCriacao: new Date(),
+        dataCriacao: myDate,
         linhas: 10,
         publico: true,
         aprovado: true,
