@@ -6,7 +6,7 @@ interface CustomButtonProps {
     icon: React.ReactNode;
     text: string;
     onClick: (event: React.MouseEvent) => void;
-    disabled?:boolean;
+    disabled?: boolean;
 }
 
 const DashButton: React.FC<CustomButtonProps> = ({ icon, text, onClick, disabled }) => {
@@ -32,10 +32,12 @@ const DashButton: React.FC<CustomButtonProps> = ({ icon, text, onClick, disabled
                     transform: 'scale(1.10)',
                     transition: 'transform 0.4s ease'
                 },
-                '&[disabled]': { 
+                '&[disabled]': {
                     backgroundColor: theme.palette.fundoComponente?.dark,
                 },
-                [theme.breakpoints.down('md')]: { ml: '10%' }
+                [theme.breakpoints.down('md')]: {
+                    width: '100%',
+                }
             }}
         >
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 1 }}>

@@ -9,6 +9,7 @@ import { BoxSpanGray } from "../muiComponents/boxes";
 import api from "../../logic/api/api";
 import Swal from "sweetalert2";
 import { AlertSweet } from "../alerts/sweetAlerts";
+import { useScreenSize } from "../muiComponents/breakpoints";
 
 
 const UserComponent = styled(Grid)({
@@ -30,7 +31,8 @@ interface Props {
 }
 
 const ModalUsers = ({ open, handleClose, users }: Props) => {
-    const getitemsPerPage = 6
+    const { showTablet } = useScreenSize();
+    const getitemsPerPage = showTablet ? 4 : 6;
     const [currentPage, setCurrentPage] = React.useState(1);
     const startIndex = (currentPage - 1) * getitemsPerPage;
     const endIndex = startIndex + getitemsPerPage;

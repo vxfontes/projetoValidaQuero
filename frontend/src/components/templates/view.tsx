@@ -34,6 +34,7 @@ const FundoComponente = styled(Grid)({
 
 const ViewTemplate = () => {
     const { id } = useParams();
+    const { showTablet } = useScreenSize();
     const [template, setTemplate] = React.useState<GetTemplateProps>();
     const [message, setMessage] = React.useState("");
     const [nome, setnome] = React.useState("");
@@ -182,7 +183,7 @@ const ViewTemplate = () => {
 
 
                                     <DialogSlide open={modal} handleClose={() => setModal(false)}>
-                                        <Grid container bgcolor='#fff' display='block' justifyContent={'center'} textAlign={'center'} spacing={3} px={6} py={3}>
+                                        <Grid container bgcolor='#fff' display='block' justifyContent={'center'} textAlign={'center'} spacing={showTablet ? 0 : 3} px={showTablet ? 3 : 6} py={showTablet ? 2 : 3}>
                                             <Typography mt={3} variant="h5" color="inherit" align="left">Upload de Arquivo</Typography>
 
                                             <Typography mt={1} variant="body1" color="inherit" align="left">Template: <BoxSpanGray>{template.titulo}</BoxSpanGray></Typography>

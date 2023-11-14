@@ -6,9 +6,11 @@ import api from "../../logic/api/api";
 import Swal from "sweetalert2";
 import * as React from 'react';
 import { AlertSweet } from "../alerts/sweetAlerts";
+import { useScreenSize } from "../muiComponents/breakpoints";
 
 const TableUsers = ({ users }: { users: UserPerfilProps[] }) => {
 
+    const { showTablet } = useScreenSize();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -54,7 +56,7 @@ const TableUsers = ({ users }: { users: UserPerfilProps[] }) => {
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, users.length - page * rowsPerPage);
 
     return (
-        <Container maxWidth="lg">
+        <Container maxWidth={showTablet ? "xs" : 'lg'}>
             <Typography variant="h5" color="initial">Lista de usuários cadastrados</Typography>
             <TableContainer>
                 <Table>

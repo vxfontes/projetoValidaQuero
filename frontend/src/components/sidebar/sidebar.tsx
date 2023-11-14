@@ -10,6 +10,7 @@ import MenuUser from './menuUser';
 import { MainSide, MainSideAdm, MainSideNewUser } from '../../data/sidebar';
 import useUsuario from '../../logic/core/functions/user';
 import { MenuList, MenuTemplate } from './menuList';
+import { useScreenSize } from '../muiComponents/breakpoints';
 
 const drawerWidth = 240;
 
@@ -68,12 +69,12 @@ const AppBar = styled(MuiAppBar, {
     }),
 }));
 
-const CustomDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+const CustomDrawer = styled(MuiDrawer)(
     ({ theme, open }) => ({
         width: drawerWidth,
         flexShrink: 0,
-        whiteSpace: 'nowrap',
         boxSizing: 'border-box',
+        whiteSpace: 'nowrap',
         ...(open && {
             ...openedMixin(theme),
             '& .MuiDrawer-paper': {
@@ -94,6 +95,7 @@ const CustomDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== '
 
 const SideBar = ({ children, show }: SideProps) => {
     const theme = useTheme();
+    const { showTablet } = useScreenSize();
     const [open, setOpen] = React.useState(false);
     const [selectedItem, setSelectedItem] = React.useState<string | null>('Início');
     const { getUser } = useUsuario();
@@ -130,7 +132,7 @@ const SideBar = ({ children, show }: SideProps) => {
                             <MenuUser />
                         </Toolbar>
                     </AppBar>
-                    <CustomDrawer variant="permanent" open={open}>
+                    <CustomDrawer variant={showTablet ? "temporary" : 'permanent'} open={open} anchor="left">
                         <DrawerHeader>
                             <IconButton onClick={handleDrawerClose} sx={{
                                 ...(!open && { display: 'none' }),
@@ -160,7 +162,6 @@ const SideBar = ({ children, show }: SideProps) => {
                                 <MenuList open={open} selectedItem={selectedItem} handleListItemClick={handleListItemClick} data={MainSideNewUser} />
                             )}
                         </List>
-
                     </CustomDrawer>
                 </>
             )}

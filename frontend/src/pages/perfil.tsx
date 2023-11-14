@@ -14,10 +14,12 @@ import { FileProps } from "../logic/interfaces/file";
 import BoxLoading from "../components/muiComponents/boxLoading";
 import { UserPerfilProps } from "../logic/interfaces/user";
 import { AlertSweet } from "../components/alerts/sweetAlerts";
+import { useScreenSize } from '../components/muiComponents/breakpoints';
 
 
 const MeuPerfil = () => {
     const { getUser } = useUsuario();
+    const { showTablet } = useScreenSize();
     const perfil = getUser().result;
     const [formatos, setFormatos] = React.useState([]);
     const [templates, setTemplates] = React.useState<GetTemplateProps[]>([]);
@@ -69,7 +71,7 @@ const MeuPerfil = () => {
 
     return (
         <FundoBackground container display='flex'>
-            <GridContainers sx={{ px: 8, pt: 10, pb: 4 }} align="center" direction="row" justify="space-between">
+            <GridContainers sx={{ px: showTablet ? 3 : 10, pt: 10, pb: 4 }} align="center" direction="row" justify="space-between">
 
                 <Box mb={1}>
                     <Typography variant="h5" color="initial">Seu perfil, {perfil.nome}</Typography>
@@ -80,7 +82,9 @@ const MeuPerfil = () => {
                 </Box>
 
                 <Box display='flex' gap={3}>
-                    <img src={svg} alt="Calculadora" width='100px' />
+                    {!showTablet && (
+                        <img src={svg} alt="Calculadora" width='100px' />
+                    )}
 
                     {(loadingPerfil && user !== undefined) ? (
                         <>
@@ -93,7 +97,9 @@ const MeuPerfil = () => {
                             )}
                         </>
                     ) : (
-                        <BoxLoading loading message="" />
+                        <Box minWidth='90vw' justifyContent='center'>
+                            <BoxLoading loading message="" />
+                        </Box>
                     )}
                 </Box>
 
@@ -118,7 +124,7 @@ const MeuPerfil = () => {
                         <Grid mt={4} item xl={8} lg={8} md={8} sm={12} xs={12}>
                             <TemplateContainer itemsPerPage={6} onlyActive={false} formatos={formatos} templates={templates} message={messageTemplate} loading={loading} />
                         </Grid>
-                        <Grid mt={4} item xl={3} lg={3} md={3} sm={12} xs={12}>
+                        <Grid mt={1} item xl={3} lg={3} md={3} sm={12} xs={12}>
                             {loadingFile ? (
                                 <BoxLoading loading message={messageArquivo === undefined ? "Carregando..." : messageArquivo} />
                             ) : (

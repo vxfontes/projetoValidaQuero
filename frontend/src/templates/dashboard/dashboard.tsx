@@ -36,12 +36,12 @@ export interface DashMainProps extends TemplateContainerProps {
 const MainPageDashboard = ({ fileExport, disabled, users, templateData, cardAtivo, cardPendente, templates, templatesPendente, arquivo, files, formatos, loading, message }: DashMainProps) => {
 
     const [open, setOpen] = React.useState(false);
-    const { showTablet } = useScreenSize()
+    const { showTablet } = useScreenSize();
 
     const url = window.URL.createObjectURL(fileExport);
 
     return (
-        <GridContainers sx={{ mt: 5, mx: 2, alignItems: 'center', justifyContent: 'center' }} align='center' direction='row' spacing={2}>
+        <GridContainers sx={{ mt: showTablet ? 7 : 5, mx: showTablet ? 0 : 2, alignItems: 'center', justifyContent: 'center' }} align='center' direction='row'>
 
             {/* primeira linha */}
             <Grid item xl={5} lg={5} md={5} sm={11} xs={11}>
@@ -84,10 +84,10 @@ const MainPageDashboard = ({ fileExport, disabled, users, templateData, cardAtiv
             </Grid>
 
             {/* terceira linha */}
-            <Grid mb={2} item xl={8} lg={8} md={8} sm={12} xs={12}>
+            <Grid mb={2} mt={showTablet ? 3 : 0} mx={showTablet ? 2 : 0} item xl={8} lg={8} md={8} sm={12} xs={12}>
                 <TemplateContainer itemsPerPage={4} onlyActive={false} formatos={formatos} templates={templates} message={message} loading={loading} />
             </Grid>
-            <Grid mx={2} mt={-3} mb={2} item xl={3} lg={3} md={3} sm={12} xs={12}>
+            <Grid mx={2} mt={showTablet ? -1 : -3} mb={2} item xl={3} lg={3} md={3} sm={12} xs={12}>
                 <FileContainer itemsPerPage={7} arquivos={files} all />
             </Grid>
         </GridContainers>
