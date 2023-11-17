@@ -9,49 +9,28 @@ import { Transition } from "../muiComponents/dialog";
 import TableCampos from "../templates/tableCampos";
 import { BoxSpanGray } from "../muiComponents/boxes";
 import api from "../../logic/api/api";
-import Swal from "sweetalert2";
-import theme from "../../theme";
 import { AlertSweet } from "../alerts/sweetAlerts";
 
-const TemplateRow = ({ template }: { template: GetTemplatePuroProps }) => {
+const TemplateRow = ({ template, deleteTemplate }: { template: GetTemplatePuroProps, deleteTemplate: (template: GetTemplatePuroProps) => void; }) => {
     const [open, setOpen] = React.useState(false);
     const handleClose = () => setOpen(false);
 
     const handleDeletar = () => {
         api.delete(`/template/${template.id}`).then(res => {
+            deleteTemplate(template);
             handleClose();
-            Swal.fire({
-                icon: res.data.status,
-                iconColor: theme.palette.primary.main,
-                title: res.data.message,
-                confirmButtonColor: theme.palette.primary.main,
-                confirmButtonText: 'Continue',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = '/dashboard';
-                }
-            });
+            AlertSweet(res.data.message, 'success', false);
         }).catch((error) => {
             handleClose();
             console.log(error);
-            AlertSweet('Houve um erro', 'error', false, error.response.data.message)
+            AlertSweet('Houve um erro', 'error', false, error.response.data.message);
         });
     }
 
     const handleAprovar = () => {
         api.get(`/template/aprovar/${template.id}`).then(res => {
             handleClose();
-            Swal.fire({
-                icon: res.data.status,
-                iconColor: theme.palette.primary.main,
-                title: res.data.message,
-                confirmButtonColor: theme.palette.primary.main,
-                confirmButtonText: 'Continue',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = '/dashboard';
-                }
-            });
+            AlertSweet(res.data.message, 'success', true);
         }).catch((error) => {
             handleClose();
             console.log(error);

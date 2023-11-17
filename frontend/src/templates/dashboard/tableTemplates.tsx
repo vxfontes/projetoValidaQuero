@@ -6,7 +6,7 @@ import TemplateRow from "../../components/dashboard/templateRow";
 
 const TableTemplates = ({ data }: { data: GetTemplatePuroProps[] }) => {
 
-    const templates = data
+    const [templates, setTemplates] = React.useState(data);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -16,6 +16,15 @@ const TableTemplates = ({ data }: { data: GetTemplatePuroProps[] }) => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
+
+    const deleteTemplate = (template: GetTemplatePuroProps) => {
+        const newTemplates = templates.filter((t) => t.id !== template.id);
+        setTemplates(newTemplates);
+    }
+
+    React.useEffect(() => {
+        setTemplates(data);
+    }, [data]);
 
     return (
         <TemplateContainerGrid my={4} py={2} >
@@ -32,14 +41,18 @@ const TableTemplates = ({ data }: { data: GetTemplatePuroProps[] }) => {
                             </TableRow>
                         </TableHead>
 
-                        <TableBody>
-                            {(rowsPerPage > 0
-                                ? templates.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                : templates
-                            ).map((template) => (
-                                <TemplateRow key={template.id} template={template} />
-                            ))}
-                        </TableBody>
+                        {templates.length > 0 ? (
+                            <TableBody>
+                                {(rowsPerPage > 0
+                                    ? templates.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                    : templates
+                                ).map((template) => (
+                                    <TemplateRow key={template.id} template={template} deleteTemplate={deleteTemplate} />
+                                ))}
+                            </TableBody>
+                        ) : (
+                            <Typography variant="body1" color="initial" mt={1}>Não existem templates pendentes</Typography>
+                        )}
                     </Table>
                 </TableContainer>
 
