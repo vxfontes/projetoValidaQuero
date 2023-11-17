@@ -121,17 +121,19 @@ export class TemplateService {
                 nome: template.usuario.nome,
                 matricula: template.usuario.matricula,
             },
-            arquivos: template.arquivos.map(arq => ({
-                id: arq.id,
-                titulo: arq.titulo,
-                dataCriacao: arq.dataCriacao,
-                linhas: arq.linhas,
-                aprovado: arq.aprovado,
-                url: arq.url,
-                publico: arq.publico,
-                usuario: { nome: arq.usuario.nome, matricula: arq.usuario.matricula },
-                template: { titulo: template.titulo }
-            }))
+            arquivos: template.arquivos
+                .filter((arq) => arq.publico)
+                .map(arq => ({
+                    id: arq.id,
+                    titulo: arq.titulo,
+                    dataCriacao: arq.dataCriacao,
+                    linhas: arq.linhas,
+                    aprovado: arq.aprovado,
+                    url: arq.url,
+                    publico: arq.publico,
+                    usuario: { nome: arq.usuario.nome, matricula: arq.usuario.matricula },
+                    template: { titulo: template.titulo }
+                }))
         }
 
         return formattedTemplate;
