@@ -40,7 +40,18 @@ def requisicao(titulo, linhas, aprovado, url, usuario, template, publico, erro_m
         })
         db.commit()
 
-        return {"status": "success" if aprovado else "error", "message": erro_message, "linhas": linhas if aprovado else 0}
+        file = {
+            "titulo": titulo,
+            "dataCriacao": datetime.now(),
+            "linhas": linhas,
+            "aprovado": aprovado,
+            "url": url,
+            "publico": newPublico,
+            "usuario": usuario,
+            "template": template,
+        }
+
+        return {"status": "success" if aprovado else "error", "message": erro_message, "linhas": linhas if aprovado else 0, "file": file}
     except Exception as e:
         db.rollback()
         print(e)

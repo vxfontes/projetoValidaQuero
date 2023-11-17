@@ -141,10 +141,16 @@ const ViewTemplate = () => {
 
                 if (response.data.status == 'error') getError(response.data, response.data.message)
                 else {
-                    setModal(false)
                     console.log('Upload bem-sucedido:', response.data.message);
-                    AlertSweet(response.data.message, 'success', true)
+                    template.arquivos.push({
+                        ...response.data.file,
+                        id: crypto.randomUUID(),
+                        template: { titulo: template.titulo },
+                        usuario: { nome: usuario.nome, matricula: usuario.matricula }
+                    });
                     setLoadingFile(false)
+                    setModal(false)
+                    AlertSweet(response.data.message, 'success', false)
                 }
             } catch (error) { getError(error as Error, 'Houve um erro ao tentar enviar') }
         }
@@ -193,8 +199,8 @@ const ViewTemplate = () => {
 
                                             <TextField select label="Informe o repositório que você deseja salvar" variant="filled" value={repositorio} onChange={(e) => setrepositorio(e.target.value)} fullWidth>
                                                 <MenuItem key={1} value='principal'>Servidor principal</MenuItem>
-                                                <MenuItem key={1} value='secundario'>Servidor secundário</MenuItem>
-                                                <MenuItem key={1} value='temporario'>Servidor temporário</MenuItem>
+                                                <MenuItem key={2} value='secundario'>Servidor secundário</MenuItem>
+                                                <MenuItem key={3} value='temporario'>Servidor temporário</MenuItem>
                                             </TextField>
 
                                             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 1 }}>
