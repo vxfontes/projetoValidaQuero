@@ -100,10 +100,12 @@ const ViewTemplate = () => {
     const handleChangePublico = (event: React.ChangeEvent<HTMLInputElement>) => setPublico(event.target.checked);
 
     const getError = (error: Error, message: string) => {
-        setModal(false)
+        setModal(false);
+        setarquivo(null);
+        setnome('');
         console.log('Upload deu errado: ', error);
-        AlertSweet(message, 'error', true)
-        setLoadingFile(false)
+        AlertSweet(message, 'error', false);
+        setLoadingFile(false);
     }
 
     async function handleUpload() {
@@ -148,9 +150,11 @@ const ViewTemplate = () => {
                         template: { titulo: template.titulo },
                         usuario: { nome: usuario.nome, matricula: usuario.matricula }
                     });
-                    setLoadingFile(false)
-                    setModal(false)
-                    AlertSweet(response.data.message, 'success', false)
+                    setLoadingFile(false);
+                    setModal(false);
+                    setarquivo(null);
+                    setnome('');
+                    AlertSweet(response.data.message, 'success', false);
                 }
             } catch (error) { getError(error as Error, 'Houve um erro ao tentar enviar') }
         }
