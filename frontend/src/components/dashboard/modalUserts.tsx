@@ -7,7 +7,6 @@ import { BsCheckLg, BsX } from 'react-icons/bs';
 import theme from "../../theme";
 import { BoxSpanGray } from "../muiComponents/boxes";
 import api from "../../logic/api/api";
-import Swal from "sweetalert2";
 import { AlertSweet } from "../alerts/sweetAlerts";
 import { useScreenSize } from "../muiComponents/breakpoints";
 
@@ -31,27 +30,19 @@ interface Props {
 }
 
 const ModalUsers = ({ open, handleClose, users }: Props) => {
+    const [getUser, setUser] = React.useState<UserVerifyProps[]>(users);
     const { showTablet } = useScreenSize();
     const getitemsPerPage = showTablet ? 4 : 6;
     const [currentPage, setCurrentPage] = React.useState(1);
     const startIndex = (currentPage - 1) * getitemsPerPage;
     const endIndex = startIndex + getitemsPerPage;
-    const usersToDisplay = users.slice(startIndex, endIndex);
+    const usersToDisplay = getUser.slice(startIndex, endIndex);
 
     const handleDeletar = (matricula: string) => {
         api.delete(`/users/${matricula}`).then(res => {
+            setUser(users.filter(user => user.matricula !== matricula));
             handleClose();
-            Swal.fire({
-                icon: res.data.status,
-                iconColor: theme.palette.primary.main,
-                title: res.data.message,
-                confirmButtonColor: theme.palette.primary.main,
-                confirmButtonText: 'Continue',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = '/dashboard';
-                }
-            });
+            AlertSweet(res.data.message, 'success', false)
         }).catch((error) => {
             handleClose();
             console.log(error);
@@ -61,18 +52,9 @@ const ModalUsers = ({ open, handleClose, users }: Props) => {
 
     const handleAprovar = (matricula: string) => {
         api.get(`/users/verify/${matricula}`).then(res => {
+            setUser(users.filter(user => user.matricula !== matricula));
             handleClose();
-            Swal.fire({
-                icon: res.data.status,
-                iconColor: theme.palette.primary.main,
-                title: res.data.message,
-                confirmButtonColor: theme.palette.primary.main,
-                confirmButtonText: 'Continue',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = '/dashboard';
-                }
-            });
+            AlertSweet(res.data.message, 'error', false)
         }).catch((error) => {
             handleClose();
             console.log(error);
