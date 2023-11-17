@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { AiOutlineFilePdf, AiOutlineUsergroupAdd } from 'react-icons/ai';
-import { Grid } from "@mui/material";
+import { AiOutlineFileExcel, AiOutlineUsergroupAdd } from 'react-icons/ai';
+import { Grid, Typography } from "@mui/material";
 import GridContainers from "../../components/muiComponents/gridContainers";
 import TemplateCharts from "../../components/charts/mine/TemplateActives";
 import { CardDashBoardInfo, TemplateBoxInfoProps } from "../../components/dashboard/CardData";
@@ -54,8 +54,9 @@ const MainPageDashboard = ({ fileExport, disabled, users, templateData, cardAtiv
             </Grid>
 
             <Grid mx={2} item xl={2} lg={2} md={2} sm={11} xs={11}>
+                <Typography variant="h6" color="initial">Exporte os dados desse dashboard <br/>em Excel</Typography>
                 <Link target="_blank" to={url} style={{ textDecoration: 'none', color: 'black' }}>
-                    <DashButton icon={<AiOutlineFilePdf size={32} color='black' />}
+                    <DashButton icon={<AiOutlineFileExcel size={32} color='black' />}
                         text="Exportar"
                         onClick={() => console.log('redirecionando')}
                     />
