@@ -36,7 +36,7 @@ export interface DashMainProps extends TemplateContainerProps {
 const MainPageDashboard = ({ fileExport, disabled, users, templateData, cardAtivo, cardPendente, templates, templatesPendente, arquivo, files, formatos, loading, message }: DashMainProps) => {
 
     const [open, setOpen] = React.useState(false);
-    const { showTablet } = useScreenSize();
+    const { showTablet, showNote } = useScreenSize();
 
     const url = window.URL.createObjectURL(fileExport);
 
@@ -54,7 +54,7 @@ const MainPageDashboard = ({ fileExport, disabled, users, templateData, cardAtiv
             </Grid>
 
             <Grid mx={2} item xl={2} lg={2} md={2} sm={11} xs={11}>
-                <Typography variant="h6" color="initial">Exporte os dados desse dashboard em Excel</Typography>
+                <Typography variant="h6" color="initial" align={showNote ? 'left' : 'center'}>Exporte os dados desse dashboard {showNote && <br />} em Excel</Typography>
                 <Link target="_blank" to={url} style={{ textDecoration: 'none', color: 'black' }}>
                     <DashButton icon={<AiOutlineFileExcel size={32} color='black' />}
                         text="Exportar"
