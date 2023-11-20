@@ -38,6 +38,10 @@ const ModalUsers = ({ open, handleClose, users }: Props) => {
     const endIndex = startIndex + getitemsPerPage;
     const usersToDisplay = getUser.slice(startIndex, endIndex);
 
+    React.useEffect(() => {
+        setUser(users);
+    }, [users]);
+
     const handleDeletar = (matricula: string) => {
         api.delete(`/users/${matricula}`).then(res => {
             setUser(users.filter(user => user.matricula !== matricula));
