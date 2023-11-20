@@ -70,7 +70,7 @@ const MenuUser = () => {
                         </Link>
                         <Divider />
                         <Link href='/' sx={{ textDecoration: 'none' }}>
-                            <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                            <MenuItem onClick={handleLogout}>Sair</MenuItem>
                         </Link>
                     </Menu>
                 </>
