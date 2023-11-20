@@ -120,16 +120,18 @@ const MeuPerfil = () => {
                 )}
 
                 {perfil.perfil === 'Gestor' && (
-                    <GridContainers align="start" direction="row" justify="space-evenly">
-                        <Grid mt={4} item xl={8} lg={8} md={8} sm={12} xs={12}>
-                            <TemplateContainer itemsPerPage={6} onlyActive={false} formatos={formatos} templates={templates} message={messageTemplate} loading={loading} />
+                    <GridContainers align="start" direction="row" justify="space-between">
+                        <Grid mt={2} item xl={4} lg={4} md={4} sm={12} xs={12}>
+                            <Box mr={!showTablet ? 2 : 0}>
+                                {loadingFile ? (
+                                    <BoxLoading loading message={messageArquivo === undefined ? "Carregando..." : messageArquivo} />
+                                ) : (
+                                    <FileContainer message={messageArquivo} itemsPerPage={7} arquivos={arquivos} />
+                                )}
+                            </Box>
                         </Grid>
-                        <Grid mt={1} item xl={3} lg={3} md={3} sm={12} xs={12}>
-                            {loadingFile ? (
-                                <BoxLoading loading message={messageArquivo === undefined ? "Carregando..." : messageArquivo} />
-                            ) : (
-                                <FileContainer message={messageArquivo} itemsPerPage={6} arquivos={arquivos} />
-                            )}
+                        <Grid mt={4} item xl={8} lg={8} md={8} sm={12} xs={12}>
+                            <TemplateContainer itemsPerPage={4} onlyActive={false} formatos={formatos} templates={templates} message={messageTemplate} loading={loading} />
                         </Grid>
                     </GridContainers>
                 )}
