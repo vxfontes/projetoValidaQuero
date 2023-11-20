@@ -56,7 +56,7 @@ const TableUsers = ({ users }: { users: UserPerfilProps[] }) => {
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, users.length - page * rowsPerPage);
 
     return (
-        <Container maxWidth={showTablet ? "xs" : 'lg'}>
+        <Container maxWidth={showTablet && "xs"}>
             <Typography variant="h5" color="initial">Lista de usuários cadastrados</Typography>
             <TableContainer>
                 <Table>
