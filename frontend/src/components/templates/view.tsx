@@ -138,25 +138,31 @@ const ViewTemplate = () => {
                 const response = await python.post('/file/upload/', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
+                        timeout: 4000000,
                     }
                 });
 
                 if (response.data.status == 'error') getError(response.data, response.data.message)
                 else {
                     console.log('Upload bem-sucedido:', response.data.message);
-                    template.arquivos.push({
-                        ...response.data.file,
-                        id: crypto.randomUUID(),
-                        template: { titulo: template.titulo },
-                        usuario: { nome: usuario.nome, matricula: usuario.matricula }
-                    });
+                    if (publico) {
+                        template.arquivos.push({
+                            ...response.data.file,
+                            id: crypto.randomUUID(),
+                            template: { titulo: template.titulo },
+                            usuario: { nome: usuario.nome, matricula: usuario.matricula }
+                        });
+                    }
                     setLoadingFile(false);
                     setModal(false);
                     setarquivo(null);
                     setnome('');
                     AlertSweet(response.data.message, 'success', false);
                 }
-            } catch (error) { getError(error as Error, 'Houve um erro ao tentar enviar') }
+            } catch (error) {
+                console.log(error);
+                getError(error as Error, 'Houve um erro ao tentar enviar')
+            }
         }
     }
 
@@ -193,7 +199,7 @@ const ViewTemplate = () => {
 
 
                                     <DialogSlide open={modal} handleClose={() => setModal(false)}>
-                                        <Grid container bgcolor='#fff' display='block' justifyContent={'center'} textAlign={'center'} spacing={showTablet ? 0 : 3} px={showTablet ? 3 : 6} py={showTablet ? 2 : 3}>
+                                        <Grid container bgcolor='#fff' display='block' justifyContent={'center'} textAlign={'center'} spacing={showTablet ? 0 : 3} px={showTablet ? 3 : 2} pl={showTablet ? 3 : 5} py={showTablet ? 2 : 3}>
                                             <Typography mt={3} variant="h5" color="inherit" align="left">Upload de Arquivo</Typography>
 
                                             <Typography mt={1} variant="body1" color="inherit" align="left">Template: <BoxSpanGray>{template.titulo}</BoxSpanGray></Typography>
@@ -252,7 +258,7 @@ const ViewTemplate = () => {
                                     </DialogSlide>
 
                                     <Grid mt={2} item xl={5} lg={5} md={5} sm={12} xs={12}>
-                                        <Box display='flex' gap={5} alignItems='center'>
+                                        <Box display='flex' gap={1} alignItems='center' justifyContent='space-between'>
                                             <Box display='flex' gap={1} alignItems='center'>
                                                 <Chip label={template.formato} color="secondary" />
                                                 <Chip label={getStatusTemplate(flag).titulo} color={getStatusTemplate(flag).color} />
@@ -308,7 +314,7 @@ const ViewTemplate = () => {
                                             </Box>
                                         </Box>
 
-                                        <Box maxWidth='88%'>
+                                        <Box maxWidth='100%'>
                                             <TableCampos campos={template.campos} />
                                         </Box>
                                     </Grid>

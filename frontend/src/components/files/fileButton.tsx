@@ -7,6 +7,7 @@ import { useState } from "react";
 import { BoxSpanGray } from "../muiComponents/boxes";
 import { AiOutlineDownload } from 'react-icons/ai';
 import { Link } from "react-router-dom";
+import useUsuario from "../../logic/core/functions/user";
 
 const Container = styled(Grid)({
     background: '#FFFFFF',
@@ -15,6 +16,8 @@ const Container = styled(Grid)({
 const FileButton = ({ file, formato }: { file: FileProps, formato: string }) => {
 
     const [open, setOpen] = useState(false);
+    const { getUser } = useUsuario();
+    const usuario = getUser().result;
 
     const handleClose = () => setOpen(false)
     const handleOpen = () => setOpen(true)
@@ -41,7 +44,7 @@ const FileButton = ({ file, formato }: { file: FileProps, formato: string }) => 
                     <br />
 
                     <Link target="_blank" to={file.url}>
-                        <Button disabled={file.url === null ? true : false} variant="contained" color="primary" startIcon={<AiOutlineDownload />}>Download</Button>
+                        <Button disabled={file.url === null ? true : !usuario.verificado ? true : false} variant="contained" color="primary" startIcon={<AiOutlineDownload />}>Download</Button>
                     </Link>
                 </Container>
             </DialogSlide>
@@ -62,7 +65,7 @@ const FileButton = ({ file, formato }: { file: FileProps, formato: string }) => 
                 onClick={handleOpen}
             >
                 <Box>
-                    <Typography align='left' variant="body1" color="initial">{file.titulo.slice(0, 15) + '...'}</Typography>
+                    <Typography align='left' variant="body1" color="initial">{file.titulo}</Typography>
                     <Typography align='left' variant="body2" color="GrayText">{file.template.titulo}</Typography>
                 </Box>
                 <Typography variant="caption" color="initial">{formatarData(file.dataCriacao)}</Typography>
