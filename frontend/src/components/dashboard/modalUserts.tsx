@@ -58,7 +58,7 @@ const ModalUsers = ({ open, handleClose, users }: Props) => {
         api.get(`/users/verify/${matricula}`).then(res => {
             setUser(users.filter(user => user.matricula !== matricula));
             handleClose();
-            AlertSweet(res.data.message, 'error', false)
+            AlertSweet(res.data.message, 'success', false)
         }).catch((error) => {
             handleClose();
             console.log(error);
