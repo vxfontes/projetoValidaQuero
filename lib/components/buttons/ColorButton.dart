@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 
 class ColorButton extends StatelessWidget {
   final Color color;
+  final Function function;
   final String text;
 
-  const ColorButton({super.key, required this.color, required this.text});
+  const ColorButton({super.key, required this.color, required this.text, required this.function});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          function();
+        },
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),

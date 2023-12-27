@@ -5,6 +5,10 @@ import 'package:validaquero/themes/app_colors.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
+  
+  cadastro(BuildContext context) {
+    Navigator.pushNamed(context, '/cadastro');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,13 +59,19 @@ class Login extends StatelessWidget {
                     ),
                   ),
                 ),
-                const ColorButton(
+                ColorButton(
                   color: ThemeColors.secondaryColor,
                   text: 'login',
+                  function: () {
+                    print('teste');
+                  },
                 ),
-                const ColorButton(
+                ColorButton(
                   color: ThemeColors.primaryColor,
                   text: 'se cadastre',
+                  function: () {
+                    cadastro(context);
+                  },
                 )
               ],
             ),
