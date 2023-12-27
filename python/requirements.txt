@@ -1,7 +1,0 @@
-fastapi
-uvicorn
-psycopg2
-pandas
-sqlalchemy
-google-cloud-storage
-openpyxl
