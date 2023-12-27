@@ -16,9 +16,9 @@ class Login extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 25.0),
+              padding: const EdgeInsets.fromLTRB(10, 35.0, 0, 0),
               child: Image.asset(
-                'assets/images/validaquero.png',
+                'assets/images/sr-logo.png',
                 width: 200,
               ),
             ),
