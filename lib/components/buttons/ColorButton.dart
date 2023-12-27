@@ -8,22 +8,25 @@ class ColorButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {},
-      style: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+      child: ElevatedButton(
+        onPressed: () {},
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          minimumSize: const Size(double.infinity, 45),
+          backgroundColor: color,
         ),
-        minimumSize: const Size(double.infinity, 45),
-        backgroundColor: color,
-      ),
-      child: Text(
-        text.toUpperCase(),
-        style: const TextStyle(
-          color: Colors.white,
-          fontFamily: 'Roboto',
-          fontWeight: FontWeight.w400,
-          letterSpacing: 1.2,
+        child: Text(
+          text.toUpperCase(),
+          style: const TextStyle(
+            color: Colors.white,
+            fontFamily: 'Roboto',
+            fontWeight: FontWeight.w400,
+            letterSpacing: 1.2,
+          ),
         ),
       ),
     );
