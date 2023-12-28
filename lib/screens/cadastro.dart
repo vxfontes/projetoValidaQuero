@@ -18,122 +18,125 @@ class Cadastro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: ThemeColors.fundoPrincipalColor,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 35.0, 0, 0),
-              child: Image.asset(
-                'assets/images/sr-logo.png',
-                width: 200,
+      backgroundColor: ThemeColors.fundoPrincipalColor,
+      body: SingleChildScrollView(
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 35.0, 0, 0),
+                child: Image.asset(
+                  'assets/images/sr-logo.png',
+                  width: 200,
+                ),
               ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(left: 12),
-                  child: Text(
-                    'Faça o cadastro na plataforma',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 16,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(left: 12),
+                    child: Text(
+                      'Faça o cadastro na plataforma',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-                  child: TextFormField(
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Nome completo',
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Nome completo',
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-                  child: TextFormField(
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Matrícula',
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Matrícula',
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-                  child: DropdownButtonFormField(
-                    isExpanded: true,
-                    hint: const Text('Perfil'),
-                    icon: const Icon(
-                      Icons.arrow_drop_down,
-                      color: Colors.black45,
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+                    child: DropdownButtonFormField(
+                      isExpanded: true,
+                      hint: const Text('Perfil'),
+                      icon: const Icon(
+                        Icons.arrow_drop_down,
+                        color: Colors.black45,
+                      ),
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                      ),
+                      iconSize: 25,
+                      onChanged: (value) {
+                        print(value);
+                      },
+                      items: perfil
+                          .map(
+                            (perf) => DropdownMenuItem(
+                              value: perf,
+                              child: Text(perf),
+                            ),
+                          )
+                          .toList(),
                     ),
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
+                    child: TextFormField(
+                      keyboardType: TextInputType.visiblePassword,
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Senha',
+                      ),
                     ),
-                    iconSize: 25,
-                    onChanged: (value) {
-                      print(value);
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
+                    child: TextFormField(
+                      keyboardType: TextInputType.visiblePassword,
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Confirmar senha',
+                      ),
+                    ),
+                  ),
+                  ColorButton(
+                    color: ThemeColors.secondaryColor,
+                    text: 'Cadastrar',
+                    function: () {
+                      print('teste');
                     },
-                    items: perfil
-                        .map(
-                          (perf) => DropdownMenuItem(
-                            value: perf,
-                            child: Text(perf),
-                          ),
-                        )
-                        .toList(),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
-                  child: TextFormField(
-                    keyboardType: TextInputType.visiblePassword,
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Senha',
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
-                  child: TextFormField(
-                    keyboardType: TextInputType.visiblePassword,
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Confirmar senha',
-                    ),
-                  ),
-                ),
-                ColorButton(
-                  color: ThemeColors.secondaryColor,
-                  text: 'Cadastrar',
-                  function: () {
-                    print('teste');
-                  },
-                ),
-                ColorButton(
-                  color: ThemeColors.primaryColor,
-                  text: 'Já possui conta?',
-                  function: () {
-                    login(context);
-                  },
-                )
-              ],
-            ),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('ValidaQuero * Quero Quero Tech',
-                    style: TextStyle(color: Colors.black, fontSize: 14)),
-              ],
-            )
-          ],
+                  ColorButton(
+                    color: ThemeColors.primaryColor,
+                    text: 'Já possui conta?',
+                    function: () {
+                      login(context);
+                    },
+                  )
+                ],
+              ),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('ValidaQuero * Quero Quero Tech',
+                      style: TextStyle(color: Colors.black, fontSize: 14)),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
