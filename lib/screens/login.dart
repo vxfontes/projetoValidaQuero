@@ -10,6 +10,10 @@ class Login extends StatelessWidget {
     Navigator.pushNamed(context, '/cadastro');
   }
 
+  void home(BuildContext context) {
+    Navigator.pushNamed(context, '/home');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +67,7 @@ class Login extends StatelessWidget {
                   color: ThemeColors.secondaryColor,
                   text: 'login',
                   function: () {
-                    print('teste');
+                    home(context);
                   },
                 ),
                 ColorButton(

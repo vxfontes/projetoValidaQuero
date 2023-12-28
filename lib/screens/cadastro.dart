@@ -15,6 +15,10 @@ class Cadastro extends StatelessWidget {
     Navigator.pushNamed(context, '/login');
   }
 
+  void home(BuildContext context) {
+    Navigator.pushNamed(context, '/home');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,7 +120,7 @@ class Cadastro extends StatelessWidget {
                     color: ThemeColors.secondaryColor,
                     text: 'Cadastrar',
                     function: () {
-                      print('teste');
+                      home(context);
                     },
                   ),
                   ColorButton(

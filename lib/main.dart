@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:validaquero/screens/cadastro.dart';
+import 'package:validaquero/screens/initial_screen.dart';
 import 'package:validaquero/screens/login.dart';
 import 'package:validaquero/themes/main_theme.dart';
 
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/login": (context) => const Login(),
         "/cadastro": (context) => Cadastro(),
+        "/home": (context) => const InitialScreen(),
       },
     );
   }
