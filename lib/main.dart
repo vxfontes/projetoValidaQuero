@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/login',
       routes: {
         "/login": (context) => const Login(),
-        "/cadastro": (context) => const Cadastro(),
+        "/cadastro": (context) => Cadastro(),
       },
     );
   }

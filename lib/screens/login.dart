@@ -6,7 +6,7 @@ import 'package:validaquero/themes/app_colors.dart';
 class Login extends StatelessWidget {
   const Login({super.key});
   
-  cadastro(BuildContext context) {
+  void cadastro(BuildContext context) {
     Navigator.pushNamed(context, '/cadastro');
   }
 
