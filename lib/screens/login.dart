@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:validaquero/components/buttons/ColorButton.dart';
 import 'package:validaquero/themes/app_colors.dart';
@@ -7,11 +6,11 @@ class Login extends StatelessWidget {
   const Login({super.key});
   
   void cadastro(BuildContext context) {
-    Navigator.pushNamed(context, '/cadastro');
+    Navigator.pushReplacementNamed(context, '/cadastro');
   }
 
   void home(BuildContext context) {
-    Navigator.pushNamed(context, '/home');
+    Navigator.pushReplacementNamed(context, '/home');
   }
 
   @override

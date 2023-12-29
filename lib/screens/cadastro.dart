@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:validaquero/components/buttons/ColorButton.dart';
+import 'package:validaquero/data/perfil.dart';
 import 'package:validaquero/themes/app_colors.dart';
 
 class Cadastro extends StatelessWidget {
-  Cadastro({super.key});
-
-  final List<String> perfil = [
-    'Gestor',
-    'Gerente',
-    'Time',
-  ];
+  const Cadastro({super.key});
 
   void login(BuildContext context) {
-    Navigator.pushNamed(context, '/login');
+    Navigator.pushReplacementNamed(context, '/login');
   }
 
   void home(BuildContext context) {
-    Navigator.pushNamed(context, '/home');
+    Navigator.pushReplacementNamed(context, '/home');
   }
 
   @override
