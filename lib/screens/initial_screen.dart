@@ -1,54 +1,67 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:validaquero/components/cards/card_template.dart';
+import 'package:validaquero/screens/templates.dart';
 import 'package:validaquero/themes/app_colors.dart';
 
-class InitialScreen extends StatelessWidget {
+class InitialScreen extends StatefulWidget {
   const InitialScreen({super.key});
 
   @override
+  State<InitialScreen> createState() => _InitialScreenState();
+}
+
+class _InitialScreenState extends State<InitialScreen> {
+  int _currentPage = 0;
+
+  @override
   Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> pages = [
+      {'widget': const Templates(), 'nome': 'Lista de Templates'},
+      {'widget': const Templates(), 'nome': 'Lista de Arquivos'},
+    ];
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ThemeColors.fundoPrincipalColor,
         elevation: 0,
-        title: const Text(
-          'ValidaQuero Hub',
-          style: TextStyle(
+        title: Text(
+          pages[_currentPage]['nome'],
+          style: const TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w400,
           ),
         ),
+        actions: const <Widget>[
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: Icon(
+              Icons.account_circle,
+              size: 32,
+            ),
+          )
+        ],
       ),
       backgroundColor: ThemeColors.fundoPrincipalColor,
-      body: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        child: const Column(
-          children: [
-            CardTemplate(
-              title: 'Template de vendas',
-              autor: 'Vanessa Fontes',
-              formato: 'XLSX',
-              colunas: 24,
-              status: 'Ativo',
-            ),
-            CardTemplate(
-              title: 'Template de vendas',
-              autor: 'Vanessa Fontes',
-              formato: 'XLSX',
-              colunas: 24,
-              status: 'Desativado',
-            ),
-            CardTemplate(
-              title: 'Template de vendas',
-              autor: 'Vanessa Fontes',
-              formato: 'XLSX',
-              colunas: 24,
-              status: 'Ativo',
-            ),
-          ],
-        ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: ThemeColors.fundoPrincipalColor,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.folder_copy),
+            label: 'Templates',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.file_copy),
+            label: 'Arquivos',
+          ),
+        ],
+        selectedItemColor: ThemeColors.primaryColor,
+        currentIndex: _currentPage,
+        onTap: (index) {
+          setState(() {
+            _currentPage = index;
+          });
+        },
       ),
+      body: pages[_currentPage]['widget'],
     );
   }
 }
