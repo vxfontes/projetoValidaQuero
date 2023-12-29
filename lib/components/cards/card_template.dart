@@ -19,7 +19,7 @@ class CardTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 18.0),
+      padding: const EdgeInsets.only(bottom: 18.0),
       child: Container(
         height: 162,
         width: 300,
@@ -37,11 +37,11 @@ class CardTemplate extends StatelessWidget {
                 ConstrainedBox(
                   constraints: const BoxConstraints(
                     minWidth: 70,
-                    maxWidth: 200,
-                    minHeight: 26,
-                    maxHeight: 26,
+                    maxWidth: 270,
                   ),
                   child: Text(title,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                       style: const TextStyle(
                           fontSize: 21, fontWeight: FontWeight.w500)),
                 ),
@@ -63,16 +63,10 @@ class CardTemplate extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   ChipAtivoDesativado(
                       label: status, ativo: status == 'Ativo' ? true : false),
-                  const Icon(
-                    Icons.remove_red_eye,
-                    size: 28,
-                    color: Color.fromRGBO(0, 0, 0, 0.7),
-                  )
                 ],
               ),
             )
