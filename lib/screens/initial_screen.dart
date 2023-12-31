@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:validaquero/components/drawer.dart';
 import 'package:validaquero/screens/arquivos.dart';
 import 'package:validaquero/screens/templates.dart';
 import 'package:validaquero/themes/app_colors.dart';
@@ -63,6 +64,7 @@ class _InitialScreenState extends State<InitialScreen> {
         },
       ),
       body: pages[_currentPage]['widget'],
+      drawer: const MainDrawer()
     );
   }
 }
