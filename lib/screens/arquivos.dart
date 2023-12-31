@@ -4,7 +4,7 @@ import 'package:validaquero/data/arquivos.dart';
 import 'package:validaquero/themes/app_colors.dart';
 
 class Arquivos extends StatelessWidget {
-  const Arquivos({super.key});
+  Arquivos({super.key});
 
   final List arquivos = arquivosList;
 
@@ -23,9 +23,7 @@ class Arquivos extends StatelessWidget {
             delegate: SliverChildBuilderDelegate(
               (context, index) {
                 return CardArquivo(
-                  title: arquivos[index]['title'],
-                  template: arquivos[index]['template'],
-                  data: arquivos[index]['data'],
+                  arquivo: arquivos[index],
                 );
               },
               childCount: arquivos.length,
