@@ -34,17 +34,7 @@ class CardTemplate extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    minWidth: 70,
-                    maxWidth: 270,
-                  ),
-                  child: Text(title,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      style: const TextStyle(
-                          fontSize: 21, fontWeight: FontWeight.w500)),
-                ),
+                TextTitleBold(title: title, arquivo: false),
                 ChipPink(label: formato),
               ],
             ),
