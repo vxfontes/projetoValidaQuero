@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:validaquero/components/cards/card_template.dart';
-import 'package:validaquero/components/texts/texts.dart';
 import 'package:validaquero/data/templates.dart';
 
 class Templates extends StatelessWidget {
