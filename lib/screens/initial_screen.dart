@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:validaquero/screens/arquivos.dart';
 import 'package:validaquero/screens/templates.dart';
 import 'package:validaquero/themes/app_colors.dart';
 
@@ -16,7 +17,7 @@ class _InitialScreenState extends State<InitialScreen> {
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> pages = [
       {'widget': const Templates(), 'nome': 'Lista de Templates'},
-      {'widget': const Templates(), 'nome': 'Lista de Arquivos'},
+      {'widget': const Arquivos(), 'nome': 'Arquivos recentes'},
     ];
 
     return Scaffold(
