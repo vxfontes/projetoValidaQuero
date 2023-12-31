@@ -17,7 +17,7 @@ class _InitialScreenState extends State<InitialScreen> {
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> pages = [
       {'widget': const Templates(), 'nome': 'Lista de Templates'},
-      {'widget': const Arquivos(), 'nome': 'Arquivos recentes'},
+      {'widget': Arquivos(), 'nome': 'Arquivos recentes'},
     ];
 
     return Scaffold(
