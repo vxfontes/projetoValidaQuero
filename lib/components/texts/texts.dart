@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// texto - Nome: informação
 class TextNumberLegend extends StatelessWidget {
   final String label, value;
 
@@ -19,24 +20,26 @@ class TextNumberLegend extends StatelessWidget {
   }
 }
 
-class TextTableCard extends StatelessWidget {
-  const TextTableCard({super.key, required this.text});
+// texto titulo
+class TextTitleBold extends StatelessWidget {
+  const TextTitleBold({super.key, required this.title, required this.arquivo});
 
-  final String text;
+  final String title;
+  final bool arquivo;
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 8.0),
-          child: Text(
-                text,
-                style: const TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 20,
-          color: Colors.black,
-                ),
-              ),
-        ));
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        minWidth: 70,
+        maxWidth: arquivo == true ? 210 : 270,
+      ),
+      child: Text(
+        title,
+        overflow: TextOverflow.ellipsis,
+        maxLines: 1,
+        style: const TextStyle(fontSize: 21, fontWeight: FontWeight.w500),
+      ),
+    );
   }
 }
