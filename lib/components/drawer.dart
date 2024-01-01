@@ -4,6 +4,18 @@ import 'package:validaquero/themes/app_colors.dart';
 class MainDrawer extends StatelessWidget {
   const MainDrawer({super.key});
 
+  void logout(BuildContext context) {
+    Navigator.pushReplacementNamed(context, '/login');
+  }
+
+  void home(BuildContext context) {
+    Navigator.pushReplacementNamed(context, '/home');
+  }
+
+  void usuarios(BuildContext context) {
+    Navigator.pushReplacementNamed(context, '/usuarios');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -21,7 +33,9 @@ class MainDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.home, color: ThemeColors.primaryColor),
             title: const Text('Início'),
-            onTap: () {},
+            onTap: () {
+              home(context);
+            },
           ),
           ListTile(
             leading: const Icon(Icons.dashboard, color: ThemeColors.primaryColor),
@@ -31,12 +45,16 @@ class MainDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.people, color: ThemeColors.primaryColor),
             title: const Text('Usuários'),
-            onTap: () {},
+            onTap: () {
+              usuarios(context);
+            },
           ),
           ListTile(
             leading: const Icon(Icons.exit_to_app, color: ThemeColors.primaryColor),
             title: const Text('Sair'),
-            onTap: () {},
+            onTap: () {
+              logout(context);
+            },
           ),
         ],
       ),

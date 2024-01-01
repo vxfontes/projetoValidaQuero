@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:validaquero/screens/cadastro.dart';
 import 'package:validaquero/screens/initial_screen.dart';
 import 'package:validaquero/screens/login.dart';
+import 'package:validaquero/screens/usuarios.dart';
 import 'package:validaquero/themes/main_theme.dart';
 
 void main() {
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/login',
       routes: {
         "/login": (context) => const Login(),
-        "/cadastro": (context) => Cadastro(),
+        "/cadastro": (context) => const Cadastro(),
+        "/usuarios": (context) => const Usuarios(),
         "/home": (context) => const InitialScreen(),
       },
     );
