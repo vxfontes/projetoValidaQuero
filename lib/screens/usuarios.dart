@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:validaquero/components/cards/card_usuario.dart';
 import 'package:validaquero/components/drawer.dart';
+import 'package:validaquero/data/usuarios.dart';
 import 'package:validaquero/themes/app_colors.dart';
 
 class Usuarios extends StatelessWidget {
@@ -8,6 +9,8 @@ class Usuarios extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List usuarioList = usuariosList;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ThemeColors.fundoPrincipalColor,
@@ -39,13 +42,20 @@ class Usuarios extends StatelessWidget {
             color: ThemeColors.fundoComponenteColor,
             borderRadius: BorderRadius.circular(10),
           ),
-          child: Column(
-            children: [
-              CardUsuario(),
-              CardUsuario(),
-              CardUsuario(),
+          child: CustomScrollView(
+            slivers: [
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                    return CardUsuario(
+                      usuario: usuarioList[index],
+                    );
+                  },
+                  childCount: usuarioList.length,
+                ),
+              )
             ],
-          )
+          ),
         ),
       )
     );

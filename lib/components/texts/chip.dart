@@ -28,6 +28,33 @@ class ChipPink extends StatelessWidget {
   }
 }
 
+class ChipPerfil extends StatelessWidget {
+  final String label;
+
+  const ChipPerfil({super.key, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          color: ThemeColors.azulClaroTransparente,
+          borderRadius: BorderRadius.circular(30)
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 13.0, vertical: 6.0),
+        child: Text(
+          label,
+          style: const TextStyle(
+            color: ThemeColors.azulClaro,
+            fontWeight: FontWeight.w400,
+            fontSize: 14,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class ChipAtivoDesativado extends StatelessWidget {
   final String label;
   final bool ativo;

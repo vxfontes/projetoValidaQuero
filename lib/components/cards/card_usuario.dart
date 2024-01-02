@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:validaquero/components/modals/modal_usuario.dart';
+import 'package:validaquero/components/texts/chip.dart';
 import 'package:validaquero/components/texts/texts.dart';
+import 'package:validaquero/models/usuario_list_model.dart';
 
 class CardUsuario extends StatelessWidget {
-  const CardUsuario({super.key});
+  const CardUsuario({super.key, required this.usuario});
+  final UsuarioList usuario;
 
   @override
   Widget build(BuildContext context) {
@@ -11,34 +15,31 @@ class CardUsuario extends StatelessWidget {
         showModalBottomSheet(
           context: context,
           builder: (BuildContext context) {
-            return Container();
+            return ModalUsuario(usuario: usuario);
           },
         );
       },
-      child: const Column(
+      child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextTitleBold(
-                title: 'nome',
+                title: usuario.nome,
                 arquivo: true,
               ),
-              Text(
-                'fazer chip de cargo',
-                style: TextStyle(fontSize: 17),
-              ),
+              ChipPerfil(label: usuario.perfil),
             ],
           ),
           Row(
             children: [
               Text(
-                'matricula',
-                style: TextStyle(fontSize: 17, color: Colors.black54),
+                usuario.matricula,
+                style: const TextStyle(fontSize: 17, color: Colors.black54),
               )
             ],
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.symmetric(vertical: 3.0),
             child: Divider(
               color: Colors.black12,
