@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:validaquero/components/drawer.dart';
 import 'package:validaquero/screens/arquivos.dart';
+import 'package:validaquero/screens/cadastro_template.dart';
 import 'package:validaquero/screens/templates.dart';
 import 'package:validaquero/themes/app_colors.dart';
 
@@ -64,7 +65,15 @@ class _InitialScreenState extends State<InitialScreen> {
         },
       ),
       body: pages[_currentPage]['widget'],
-      drawer: const MainDrawer()
+      drawer: const MainDrawer(),
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: ThemeColors.primaryColor,
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const CadastroTemplate()));
+        },
+        label: const Text('Template', style: TextStyle(color: Colors.white)),
+        icon: const Icon(Icons.add, color: Colors.white),
+      ),
     );
   }
 }
