@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:validaquero/components/texts/data_help.dart';
 import 'package:validaquero/components/texts/texts.dart';
 import 'package:validaquero/models/usuario_list_model.dart';
 import 'package:validaquero/themes/app_colors.dart';

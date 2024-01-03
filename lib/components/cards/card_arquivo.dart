@@ -1,11 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:validaquero/components/buttons/ColorButton.dart';
 import 'package:validaquero/components/modals/modal_arquivo.dart';
 import 'package:validaquero/components/texts/data_help.dart';
 import 'package:validaquero/components/texts/texts.dart';
 import 'package:validaquero/models/arquivo_model.dart';
-import 'package:validaquero/themes/app_colors.dart';
 
 class CardArquivo extends StatelessWidget {
   const CardArquivo({super.key, required this.arquivo});
