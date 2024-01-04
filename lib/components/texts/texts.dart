@@ -43,3 +43,26 @@ class TextTitleBold extends StatelessWidget {
     );
   }
 }
+
+// texto maior
+class TextTitleBig extends StatelessWidget {
+  const TextTitleBig({super.key, required this.title});
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return ConstrainedBox(
+      constraints: const BoxConstraints(
+        minWidth: 70,
+        maxWidth: 270,
+      ),
+      child: Text(
+        title,
+        overflow: TextOverflow.ellipsis,
+        maxLines: 1,
+        style: const TextStyle(fontSize: 21),
+      ),
+    );
+  }
+}
