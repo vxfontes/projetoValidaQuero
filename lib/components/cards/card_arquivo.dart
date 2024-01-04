@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:validaquero/components/modals/modal_arquivo.dart';
-import 'package:validaquero/components/texts/data_help.dart';
+import 'package:validaquero/utils/data_help.dart';
 import 'package:validaquero/components/texts/texts.dart';
 import 'package:validaquero/models/arquivo_model.dart';
 
