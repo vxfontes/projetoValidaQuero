@@ -19,8 +19,8 @@ class MyApp extends StatelessWidget {
       theme: MainTheme,
       initialRoute: '/login',
       routes: {
-        "/login": (context) => const Login(),
-        "/cadastro": (context) => const Cadastro(),
+        "/login": (context) => Login(),
+        "/cadastro": (context) => Cadastro(),
         "/usuarios": (context) => const Usuarios(),
         "/home": (context) => const InitialScreen(),
       },
