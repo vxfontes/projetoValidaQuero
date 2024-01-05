@@ -42,7 +42,7 @@ class _TemplatesState extends State<Templates> {
                 onChanged: filterTemplates,
                 decoration: const InputDecoration(
                   icon: Icon(Icons.search),
-                  hintText: 'Buscar por nome...',
+                  hintText: 'Buscar templates por nome...',
                 ),
               ),
             ),
