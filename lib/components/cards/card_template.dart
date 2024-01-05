@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:validaquero/components/texts/chip.dart';
 import 'package:validaquero/components/texts/texts.dart';
+import 'package:validaquero/models/template_model.dart';
 import 'package:validaquero/themes/app_colors.dart';
 
 class CardTemplate extends StatelessWidget {
-  final String title, autor, formato;
-  final int colunas;
-  final String status;
+  final Template template;
 
   const CardTemplate(
       {super.key,
-      required this.title,
-      required this.autor,
-      required this.formato,
-      required this.colunas,
-      required this.status});
+      required this.template,});
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +29,8 @@ class CardTemplate extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                TextTitleBold(title: title, arquivo: false),
-                ChipPink(label: formato),
+                TextTitleBold(title: template.titulo, arquivo: false),
+                ChipPink(label: template.formato),
               ],
             ),
             Padding(
@@ -43,12 +38,12 @@ class CardTemplate extends StatelessWidget {
               child: Row(
                 children: [
                   TextNumberLegend(
-                      label: 'Número de colunas: ', value: colunas.toString())
+                      label: 'Número de colunas: ', value: template.quantidadeCampos.toString())
                 ],
               ),
             ),
             Row(
-              children: [TextNumberLegend(label: 'Autor: ', value: autor)],
+              children: [TextNumberLegend(label: 'Autor: ', value: template.usuario.nome)],
             ),
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
@@ -56,7 +51,7 @@ class CardTemplate extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   ChipAtivoDesativado(
-                      label: status, ativo: status == 'Ativo' ? true : false),
+                      label: template.status, ativo: template.status == 'Ativo' ? true : false),
                 ],
               ),
             )
