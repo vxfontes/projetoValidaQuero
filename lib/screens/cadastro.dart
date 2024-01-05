@@ -1,17 +1,84 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:validaquero/components/buttons/ColorButton.dart';
 import 'package:validaquero/data/perfil.dart';
+import 'package:validaquero/services/usuario.dart';
 import 'package:validaquero/themes/app_colors.dart';
+import 'package:validaquero/utils/valueValidator.dart';
 
 class Cadastro extends StatelessWidget {
-  const Cadastro({super.key});
+  Cadastro({super.key});
+
+  final _formKey = GlobalKey<FormState>();
+
+  TextEditingController nomeController = TextEditingController();
+  TextEditingController matriculaController = TextEditingController();
+  TextEditingController senhaController = TextEditingController();
+  TextEditingController confirmarSenhaController = TextEditingController();
+  String perfilController = '';
 
   void login(BuildContext context) {
     Navigator.pushReplacementNamed(context, '/login');
   }
 
-  void home(BuildContext context) {
-    Navigator.pushReplacementNamed(context, '/home');
+  void home(BuildContext context) async {
+    if (senhaController.text != confirmarSenhaController.text) {
+      senhaController.clear();
+      confirmarSenhaController.clear();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: ThemeColors.primaryColor,
+          content: Text('As senhas não coincidem'),
+          duration: Duration(seconds: 15),
+        ),
+      );
+      return;
+    }
+
+    if (perfilController == '') {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: ThemeColors.primaryColor,
+          content: Text('Selecione o seu perfil'),
+          duration: Duration(seconds: 15),
+        ),
+      );
+      return;
+    }
+
+    UsuarioService usuarioService = UsuarioService();
+    final res = await usuarioService.register(
+      nomeController.text,
+      matriculaController.text,
+      senhaController.text,
+      perfilController,
+    );
+    final response = json.decode(res);
+
+    if (response['status'] == 'error') {
+      matriculaController.clear();
+      senhaController.clear();
+      confirmarSenhaController.clear();
+      String errorMessage = response['message'];
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: ThemeColors.primaryColor,
+          content: Text(errorMessage),
+          duration: const Duration(seconds: 15),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: ThemeColors.primaryColor,
+          content: Text('Cadastro realizado com sucesso!'),
+          duration: Duration(seconds: 15),
+        ),
+      );
+      Navigator.pushReplacementNamed(context, '/home');
+    }
   }
 
   @override
@@ -32,100 +99,134 @@ class Cadastro extends StatelessWidget {
                   width: 200,
                 ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(left: 12),
-                    child: Text(
-                      'Faça o cadastro na plataforma',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 16,
+              Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(left: 12),
+                      child: Text(
+                        'Faça o cadastro na plataforma',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 16,
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Nome completo',
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+                      child: TextFormField(
+                        controller: nomeController,
+                        validator: (String? value) {
+                          if (valueValidator(value)) {
+                            return 'Insira a seu nome completo';
+                          }
+                          return null;
+                        },
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Nome completo',
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Matrícula',
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+                      child: TextFormField(
+                        controller: matriculaController,
+                        keyboardType: TextInputType.number,
+                        validator: (String? value) {
+                          if (valueValidator(value)) {
+                            return 'Insira a sua matrícula';
+                          }
+                          return null;
+                        },
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Matrícula',
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-                    child: DropdownButtonFormField(
-                      isExpanded: true,
-                      hint: const Text('Perfil'),
-                      icon: const Icon(
-                        Icons.arrow_drop_down,
-                        color: Colors.black45,
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+                      child: DropdownButtonFormField(
+                        isExpanded: true,
+                        hint: const Text('Perfil'),
+                        icon: const Icon(
+                          Icons.arrow_drop_down,
+                          color: Colors.black45,
+                        ),
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                        ),
+                        iconSize: 25,
+                        onChanged: (value) {
+                          perfilController = value.toString();
+                        },
+                        items: perfil
+                            .map(
+                              (perf) => DropdownMenuItem(
+                                value: perf,
+                                child: Text(perf),
+                              ),
+                            )
+                            .toList(),
                       ),
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
+                      child: TextFormField(
+                        keyboardType: TextInputType.visiblePassword,
+                        controller: senhaController,
+                        validator: (String? value) {
+                          if (valueValidator(value)) {
+                            return 'Insira a sua senha';
+                          }
+                          return null;
+                        },
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Senha',
+                        ),
                       ),
-                      iconSize: 25,
-                      onChanged: (value) {
-                        print(value);
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
+                      child: TextFormField(
+                        keyboardType: TextInputType.visiblePassword,
+                        controller: confirmarSenhaController,
+                        validator: (String? value) {
+                          if (valueValidator(value)) {
+                            return 'Confirme a sua senha';
+                          }
+                          return null;
+                        },
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Confirmar senha',
+                        ),
+                      ),
+                    ),
+                    ColorButton(
+                      color: ThemeColors.secondaryColor,
+                      text: 'Cadastrar',
+                      function: () {
+                        if (_formKey.currentState!.validate()) {
+                          home(context);
+                        }
                       },
-                      items: perfil
-                          .map(
-                            (perf) => DropdownMenuItem(
-                              value: perf,
-                              child: Text(perf),
-                            ),
-                          )
-                          .toList(),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
-                    child: TextFormField(
-                      keyboardType: TextInputType.visiblePassword,
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Senha',
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
-                    child: TextFormField(
-                      keyboardType: TextInputType.visiblePassword,
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Confirmar senha',
-                      ),
-                    ),
-                  ),
-                  ColorButton(
-                    color: ThemeColors.secondaryColor,
-                    text: 'Cadastrar',
-                    function: () {
-                      home(context);
-                    },
-                  ),
-                  ColorButton(
-                    color: ThemeColors.primaryColor,
-                    text: 'Já possui conta?',
-                    function: () {
-                      login(context);
-                    },
-                  )
-                ],
+                    ColorButton(
+                      color: ThemeColors.primaryColor,
+                      text: 'Já possui conta?',
+                      function: () {
+                        login(context);
+                      },
+                    )
+                  ],
+                ),
               ),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
