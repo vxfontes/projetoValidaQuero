@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:validaquero/components/cards/card_template.dart';
 import 'package:validaquero/data/templates.dart';
 
 class Templates extends StatefulWidget {
-  Templates({super.key});
+  const Templates({super.key});
 
   @override
   State<Templates> createState() => _TemplatesState();

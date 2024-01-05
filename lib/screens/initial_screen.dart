@@ -18,7 +18,7 @@ class _InitialScreenState extends State<InitialScreen> {
   @override
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> pages = [
-      {'widget': Templates(), 'nome': 'Lista de Templates'},
+      {'widget': const Templates(), 'nome': 'Lista de Templates'},
       {'widget': Arquivos(), 'nome': 'Arquivos recentes'},
     ];
 
