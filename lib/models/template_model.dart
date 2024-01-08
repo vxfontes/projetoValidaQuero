@@ -1,3 +1,5 @@
+import 'package:validaquero/models/arquivo_model.dart';
+
 class Template {
   int id;
   String titulo;
@@ -8,7 +10,7 @@ class Template {
   String status;
   Usuario usuario;
   String formato;
-  List<Arquivo> arquivos;
+  List<ArquivoList> arquivos;
 
   Template({
     required this.id,
@@ -44,7 +46,7 @@ class Template {
       usuario: Usuario.fromJson(json["usuario"]),
       formato: json["formato"],
       arquivos: (json["arquivos"] as List<dynamic>)
-          .map((arquivoData) => Arquivo.fromJson(arquivoData))
+          .map((arquivoData) => ArquivoList.fromJson(arquivoData))
           .toList(),
     );
   }
@@ -93,7 +95,7 @@ class Campo {
   }
 }
 
-class Arquivo {
+class ArquivoList {
   int id;
   String titulo;
   String dataCriacao;
@@ -101,8 +103,10 @@ class Arquivo {
   bool aprovado;
   String url;
   bool publico;
+  UsuarioArquivo usuario;
+  TemplateArquivo template;
 
-  Arquivo({
+  ArquivoList({
     required this.id,
     required this.titulo,
     required this.dataCriacao,
@@ -110,10 +114,12 @@ class Arquivo {
     required this.aprovado,
     required this.url,
     required this.publico,
+    required this.usuario,
+    required this.template
   });
 
-  factory Arquivo.fromJson(Map<String, dynamic> json) {
-    return Arquivo(
+  factory ArquivoList.fromJson(Map<String, dynamic> json) {
+    return ArquivoList(
       id: json["id"],
       titulo: json["titulo"],
       dataCriacao: json["dataCriacao"],
@@ -121,6 +127,22 @@ class Arquivo {
       aprovado: json["aprovado"],
       url: json["url"],
       publico: json["publico"],
+      usuario: UsuarioArquivo.fromJson(json["usuario"]),
+      template: TemplateArquivo.fromJson(json["template"]),
+    );
+  }
+}
+
+class TemplateArquivo {
+  String titulo;
+
+  TemplateArquivo({
+    required this.titulo,
+  });
+
+  factory TemplateArquivo.fromJson(Map<String, dynamic> json) {
+    return TemplateArquivo(
+      titulo: json["titulo"],
     );
   }
 }

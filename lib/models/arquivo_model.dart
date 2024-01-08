@@ -3,7 +3,7 @@ class Arquivo {
   final String dataCriacao;
   final String template;
   final String formato;
-  Usuario usuario;
+  UsuarioArquivo usuario;
   final int linhas;
 
   Arquivo({
@@ -21,23 +21,23 @@ class Arquivo {
       dataCriacao: json['dataCriacao'],
       template: json['template']['titulo'],
       formato: json['formato'],
-      usuario: Usuario.fromJson(json["usuario"]),
+      usuario: UsuarioArquivo.fromJson(json["usuario"]),
       linhas: json['linhas'],
     );
   }
 }
 
-class Usuario {
+class UsuarioArquivo {
   String nome;
   String matricula;
 
-  Usuario({
+  UsuarioArquivo({
     required this.nome,
     required this.matricula,
   });
 
-  factory Usuario.fromJson(Map<String, dynamic> json) {
-    return Usuario(
+  factory UsuarioArquivo.fromJson(Map<String, dynamic> json) {
+    return UsuarioArquivo(
       nome: json["nome"],
       matricula: json["matricula"],
     );
