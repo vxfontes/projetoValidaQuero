@@ -3,6 +3,7 @@ import 'package:validaquero/components/SnackBars.dart';
 import 'package:validaquero/components/cards/card_usuario.dart';
 import 'package:validaquero/components/drawer.dart';
 import 'package:validaquero/models/usuario_list_model.dart';
+import 'package:validaquero/screens/perfil.dart';
 import 'package:validaquero/services/usuario.dart';
 import 'package:validaquero/themes/app_colors.dart';
 
@@ -67,12 +68,17 @@ class _UsuariosState extends State<Usuarios> {
               fontWeight: FontWeight.w400,
             ),
           ),
-          actions: const <Widget>[
+          actions: <Widget>[
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Icon(
-                Icons.account_circle,
-                size: 32,
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MeuPerfil()));
+                },
+                child: const Icon(
+                  Icons.account_circle,
+                  size: 32,
+                ),
               ),
             )
           ],

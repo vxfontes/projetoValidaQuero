@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:validaquero/components/drawer.dart';
 import 'package:validaquero/screens/arquivos.dart';
 import 'package:validaquero/screens/cadastro_template.dart';
+import 'package:validaquero/screens/perfil.dart';
 import 'package:validaquero/screens/templates.dart';
 import 'package:validaquero/themes/app_colors.dart';
 
@@ -19,7 +20,7 @@ class _InitialScreenState extends State<InitialScreen> {
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> pages = [
       {'widget': const Templates(), 'nome': 'Lista de Templates'},
-      {'widget': Arquivos(), 'nome': 'Arquivos recentes'},
+      {'widget': const Arquivos(), 'nome': 'Arquivos recentes'},
     ];
 
     return Scaffold(
@@ -33,12 +34,17 @@ class _InitialScreenState extends State<InitialScreen> {
             fontWeight: FontWeight.w400,
           ),
         ),
-        actions: const <Widget>[
+        actions: <Widget>[
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: Icon(
-              Icons.account_circle,
-              size: 32,
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => MeuPerfil()));
+              },
+              child: const Icon(
+                Icons.account_circle,
+                size: 32,
+              ),
             ),
           )
         ],
