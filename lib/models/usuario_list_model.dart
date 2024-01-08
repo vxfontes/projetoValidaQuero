@@ -14,6 +14,17 @@ class UsuarioList {
     required this.template,
     required this.arquivo,
   });
+
+  factory UsuarioList.fromJson(Map<String, dynamic> json) {
+    return UsuarioList(
+      nome: json['nome'],
+      matricula: json['matricula'],
+      perfil: json['perfil'],
+      verificado: json['verificado'],
+      template: TemplateModel.fromJson(json['template']),
+      arquivo: ArquivoModel.fromJson(json['arquivo']),
+    );
+  }
 }
 
 class TemplateModel {
@@ -24,14 +35,28 @@ class TemplateModel {
     required this.ativo,
     required this.desativado,
   });
+
+  factory TemplateModel.fromJson(Map<String, dynamic> json) {
+    return TemplateModel(
+      ativo: json['ativo'],
+      desativado: json['desativado'],
+    );
+  }
 }
 
 class ArquivoModel {
   int aprovados;
-  int naoAprovados;
+  int naoaprovados;
 
   ArquivoModel({
     required this.aprovados,
-    required this.naoAprovados,
+    required this.naoaprovados,
   });
+
+  factory ArquivoModel.fromJson(Map<String, dynamic> json) {
+    return ArquivoModel(
+      aprovados: json['aprovados'],
+      naoaprovados: json['naoaprovados'],
+    );
+  }
 }

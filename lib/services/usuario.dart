@@ -7,6 +7,14 @@ class UsuarioService {
   String url = WebClient.url;
   http.Client client = WebClient().client;
 
+  Future<Map<String, dynamic>> getAll() async {
+    http.Response response = await client.get(
+      Uri.parse("${url}users"),
+    );
+
+    return json.decode(response.body);
+  }
+
   Future<Map<String, dynamic>> login(String matricula, String senha) async {
     http.Response response = await client.post(
       Uri.parse("${url}users/login"),
