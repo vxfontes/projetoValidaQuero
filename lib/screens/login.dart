@@ -1,11 +1,11 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:validaquero/components/SnackBars.dart';
 import 'package:validaquero/components/buttons/ColorButton.dart';
 import 'package:validaquero/services/usuario.dart';
 import 'package:validaquero/themes/app_colors.dart';
 import 'package:validaquero/utils/valueValidator.dart';
 
+// ignore: must_be_immutable
 class Login extends StatelessWidget {
   Login({super.key});
 
@@ -20,30 +20,17 @@ class Login extends StatelessWidget {
 
   void home(BuildContext context) async {
     UsuarioService usuarioService = UsuarioService();
-    final res = await usuarioService.login(
+    final response = await usuarioService.login(
         matriculaController.text, senhaController.text);
-    final response = json.decode(res);
 
     if (response['status'] == 'error') {
       matriculaController.clear();
       senhaController.clear();
       String errorMessage = response['message'];
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: ThemeColors.primaryColor,
-          content: Text(errorMessage),
-          duration: const Duration(seconds: 15),
-        ),
-      );
+      showSnackBar(context, errorMessage);
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: ThemeColors.primaryColor,
-          content: Text('Login realizado com sucesso!'),
-          duration: Duration(seconds: 15),
-        ),
-      );
+      showSnackBar(context, 'Login realizado com sucesso!');
       Navigator.pushReplacementNamed(context, '/home');
     }
   }

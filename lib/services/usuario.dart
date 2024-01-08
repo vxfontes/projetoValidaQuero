@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:validaquero/services/webclient.dart';
 import 'package:http/http.dart' as http;
@@ -8,21 +7,21 @@ class UsuarioService {
   String url = WebClient.url;
   http.Client client = WebClient().client;
 
-  Future<String> login(String matricula, String senha) async {
+  Future<Map<String, dynamic>> login(String matricula, String senha) async {
     http.Response response = await client.post(
       Uri.parse("${url}users/login"),
       body: {"matricula": matricula, "senha": senha},
     );
 
     if (response.statusCode != 200) {
-      return (response.body);
-    } else {
       print(response.body);
-      return (response.body);
+      return json.decode(response.body);
+    } else {
+      return json.decode(response.body);
     }
   }
 
-  Future<String> register(
+  Future<Map<String, dynamic>> register(
     String nome,
     String matricula,
     String senha,
@@ -39,12 +38,10 @@ class UsuarioService {
       },
     );
 
-    print(response.body);
-
     if (response.statusCode != 200) {
-      return (response.body);
+      return json.decode(response.body);
     } else {
-      return (response.body);
+      return json.decode(response.body);
     }
   }
 //

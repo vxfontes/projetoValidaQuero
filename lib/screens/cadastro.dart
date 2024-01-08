@@ -1,12 +1,12 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:validaquero/components/SnackBars.dart';
 import 'package:validaquero/components/buttons/ColorButton.dart';
 import 'package:validaquero/data/perfil.dart';
 import 'package:validaquero/services/usuario.dart';
 import 'package:validaquero/themes/app_colors.dart';
 import 'package:validaquero/utils/valueValidator.dart';
 
+// ignore: must_be_immutable
 class Cadastro extends StatelessWidget {
   Cadastro({super.key});
 
@@ -26,35 +26,22 @@ class Cadastro extends StatelessWidget {
     if (senhaController.text != confirmarSenhaController.text) {
       senhaController.clear();
       confirmarSenhaController.clear();
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: ThemeColors.primaryColor,
-          content: Text('As senhas não coincidem'),
-          duration: Duration(seconds: 15),
-        ),
-      );
+      showSnackBar(context, 'As senhas não coincidem');
       return;
     }
 
     if (perfilController == '') {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: ThemeColors.primaryColor,
-          content: Text('Selecione o seu perfil'),
-          duration: Duration(seconds: 15),
-        ),
-      );
+      showSnackBar(context, 'Selecione o seu perfil');
       return;
     }
 
     UsuarioService usuarioService = UsuarioService();
-    final res = await usuarioService.register(
+    final response = await usuarioService.register(
       nomeController.text,
       matriculaController.text,
       senhaController.text,
       perfilController,
     );
-    final response = json.decode(res);
 
     if (response['status'] == 'error') {
       matriculaController.clear();
@@ -62,21 +49,9 @@ class Cadastro extends StatelessWidget {
       confirmarSenhaController.clear();
       String errorMessage = response['message'];
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: ThemeColors.primaryColor,
-          content: Text(errorMessage),
-          duration: const Duration(seconds: 15),
-        ),
-      );
+      showSnackBar(context, errorMessage);
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: ThemeColors.primaryColor,
-          content: Text('Cadastro realizado com sucesso!'),
-          duration: Duration(seconds: 15),
-        ),
-      );
+      showSnackBar(context, 'Cadastro realizado com sucesso!');
       Navigator.pushReplacementNamed(context, '/home');
     }
   }
