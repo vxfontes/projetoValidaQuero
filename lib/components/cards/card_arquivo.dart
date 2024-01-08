@@ -11,7 +11,7 @@ class CardArquivo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final DateTime dataBruta = DateTime.parse(arquivo.data);
+    final DateTime dataBruta = DateTime.parse(arquivo.dataCriacao);
 
     return GestureDetector(
       onTap: () {
@@ -28,7 +28,7 @@ class CardArquivo extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextTitleBold(
-                title: arquivo.title,
+                title: arquivo.titulo,
                 arquivo: true,
               ),
               Text(

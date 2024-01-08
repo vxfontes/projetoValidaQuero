@@ -21,7 +21,7 @@ class ModalArquivo extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: Text(
-                  arquivo.title,
+                  arquivo.titulo,
                   style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w500,
@@ -39,10 +39,10 @@ class ModalArquivo extends StatelessWidget {
           Row(children: [
             TextNumberLegend(
                 label: 'Data de criação: ',
-                value: DataHelp(DateTime.parse(arquivo.data)))
+                value: DataHelp(DateTime.parse(arquivo.dataCriacao)))
           ]),
           Row(children: [
-            TextNumberLegend(label: 'Autor: ', value: arquivo.autor)
+            TextNumberLegend(label: 'Autor: ', value: arquivo.usuario.nome)
           ]),
           Row(children: [
             TextNumberLegend(
