@@ -28,6 +28,33 @@ class TextNumberLegend extends StatelessWidget {
   }
 }
 
+// texto - 0/0 ativos
+class TextAtivo extends StatelessWidget {
+  final String value1, value2, label;
+
+  const TextAtivo({super.key, required this.label, required this.value1, required this.value2});
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Text.rich(
+      TextSpan(
+        text: value1,
+        children: [
+          TextSpan(
+            text: ' / $value2 $label',
+            style: const TextStyle(fontSize: 17),
+          ),
+        ],
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 24,
+        ),
+      ),
+    );
+  }
+}
+
 // texto titulo
 class TextTitleBold extends StatelessWidget {
   const TextTitleBold({super.key, required this.title, required this.arquivo});
