@@ -32,7 +32,7 @@ class CardArquivo extends StatelessWidget {
                 arquivo: true,
               ),
               Text(
-                DataHelp(dataBruta),
+                dataHelp(dataBruta),
                 style: const TextStyle(fontSize: 17),
               ),
             ],

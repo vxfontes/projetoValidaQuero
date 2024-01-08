@@ -39,7 +39,7 @@ class ModalArquivo extends StatelessWidget {
           Row(children: [
             TextNumberLegend(
                 label: 'Data de criação: ',
-                value: DataHelp(DateTime.parse(arquivo.dataCriacao)))
+                value: dataHelp(DateTime.parse(arquivo.dataCriacao)))
           ]),
           Row(children: [
             TextNumberLegend(label: 'Autor: ', value: arquivo.usuario.nome)
