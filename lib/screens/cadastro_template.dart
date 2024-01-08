@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:validaquero/components/SnackBars.dart';
 import 'package:validaquero/components/texts/texts.dart';
 import 'package:validaquero/data/formato.dart';
 import 'package:validaquero/data/tipos.dart';
+import 'package:validaquero/services/template.dart';
 import 'package:validaquero/themes/app_colors.dart';
 import 'package:validaquero/utils/valueValidator.dart';
 
@@ -16,6 +18,7 @@ class _CadastroTemplateState extends State<CadastroTemplate> {
   int _activeStep = 0;
   bool isCompleted = false;
 
+  TemplateService templateService = TemplateService();
   final _formKey = GlobalKey<FormState>();
 
   final tituloController = TextEditingController();
@@ -305,19 +308,29 @@ class _CadastroTemplateState extends State<CadastroTemplate> {
       final template = {
         'titulo': tituloController.text,
         'descricao': descricaoController.text,
-        'quantidadeCampos': 1,
         'status': 'Pendente',
-        'campos': {
+        'campos': [{
           'nome': nomeController.text,
           'tipo': tipoController,
           'nulo': nuloController,
-        },
-        'formato': getValue(formatoController),
-        'usuario': ''
+        }],
+        'formato': getValue(formatoController).toInt(),
+        'usuario': '980192'
       };
-      print(template);
-      Navigator.pop(context);
+
+      createTemplate(template);
     }
     return false;
+  }
+
+  void createTemplate(template) async {
+    final response = await templateService.create(template);
+
+    if (response['status'] == 'error') {
+      showSnackBar(context, response['message']);
+    } else {
+      showSnackBar(context, response['message']);
+      Navigator.pop(context);
+    }
   }
 }

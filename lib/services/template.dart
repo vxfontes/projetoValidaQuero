@@ -13,4 +13,14 @@ class TemplateService {
 
     return json.decode(response.body);
   }
+
+  Future<Map<String, dynamic>> create(body) async {
+    http.Response response = await client.post(
+      Uri.parse("${url}template"),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(body),
+    );
+
+    return json.decode(response.body);
+  }
 }

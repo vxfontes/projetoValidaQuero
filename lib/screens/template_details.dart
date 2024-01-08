@@ -32,17 +32,17 @@ class TemplateDetails extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      TextTitleBig(title: template.titulo),
-                      ChipAtivoDesativado(
-                        label: template.status,
-                        ativo: template.status == 'Ativo' ? true : false,
-                      ),
-                    ],
-                  ),
+                  child: TextTitleBig(title: template.titulo),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ChipAtivoDesativado(
+                      label: template.status,
+                      ativo: template.status == 'Ativo' ? true : false,
+                    ),
+                    ChipPink(label: template.formato),
+                  ],
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -78,7 +78,6 @@ class TemplateDetails extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    ChipPink(label: template.formato),
                     const Icon(
                       Icons.download_rounded,
                       color: ThemeColors.primaryColor,
