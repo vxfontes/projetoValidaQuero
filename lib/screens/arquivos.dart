@@ -30,12 +30,12 @@ class _ArquivosState extends State<Arquivos> {
     if (response["status"] == "success") {
       List<dynamic> arquivoDataList = response["arquivos"];
 
-      List<Arquivo> arquivoList =
+      List<Arquivo> arquivo =
           arquivoDataList.map((arq) => Arquivo.fromJson(arq)).toList();
 
       setState(() {
-        arquivoList = arquivoList;
-        filteredList = arquivoList;
+        arquivosList = arquivo;
+        filteredList = arquivosList;
         isLoading = false;
       });
     } else {
@@ -44,6 +44,7 @@ class _ArquivosState extends State<Arquivos> {
   }
 
   void filterArquivos(String query) {
+    filteredList = arquivosList;
     setState(() {
       filteredList = filteredList
           .where((arquivo) =>

@@ -30,12 +30,12 @@ class _TemplatesState extends State<Templates> {
     if (response["status"] == "success") {
       List<dynamic> templateDataList = response["templates"];
 
-      List<Template> templateList = templateDataList
+      List<Template> template = templateDataList
           .map((templateData) => Template.fromJson(templateData))
           .toList();
 
       setState(() {
-        templateList = templateList;
+        templateList = template;
         filteredList = templateList;
         isLoading = false;
       });
@@ -45,6 +45,7 @@ class _TemplatesState extends State<Templates> {
   }
 
   void filterTemplates(String query) {
+    filteredList = templateList;
     setState(() {
       filteredList = filteredList
           .where((template) =>
