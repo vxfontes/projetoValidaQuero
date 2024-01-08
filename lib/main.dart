@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:validaquero/screens/cadastro.dart';
 import 'package:validaquero/screens/initial_screen.dart';
 import 'package:validaquero/screens/login.dart';
 import 'package:validaquero/screens/usuarios.dart';
 import 'package:validaquero/themes/main_theme.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPreferences.getInstance();
   runApp(const MyApp());
 }
 
