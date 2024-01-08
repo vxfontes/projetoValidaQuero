@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:validaquero/components/SnackBars.dart';
 import 'package:validaquero/components/cards/card_template.dart';
 import 'package:validaquero/models/template_model.dart';
 import 'package:validaquero/services/template.dart';
@@ -39,13 +40,7 @@ class _TemplatesState extends State<Templates> {
         isLoading = false;
       });
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: ThemeColors.primaryColor,
-          content: Text(response["message"]),
-          duration: const Duration(seconds: 15),
-        ),
-      );
+      showSnackBar(context, response['message']);
     }
   }
 
