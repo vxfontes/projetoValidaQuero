@@ -38,11 +38,6 @@ class MainDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.dashboard, color: ThemeColors.primaryColor),
-            title: const Text('Dashboard'),
-            onTap: () {},
-          ),
-          ListTile(
             leading: const Icon(Icons.people, color: ThemeColors.primaryColor),
             title: const Text('Usuários'),
             onTap: () {
