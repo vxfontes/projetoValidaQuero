@@ -1,5 +1,3 @@
-import 'package:validaquero/models/arquivo_model.dart';
-
 class Template {
   int id;
   String titulo;
@@ -103,8 +101,6 @@ class ArquivoList {
   bool aprovado;
   String url;
   bool publico;
-  UsuarioArquivo usuario;
-  TemplateArquivo template;
 
   ArquivoList({
     required this.id,
@@ -114,8 +110,6 @@ class ArquivoList {
     required this.aprovado,
     required this.url,
     required this.publico,
-    required this.usuario,
-    required this.template
   });
 
   factory ArquivoList.fromJson(Map<String, dynamic> json) {
@@ -127,22 +121,6 @@ class ArquivoList {
       aprovado: json["aprovado"],
       url: json["url"],
       publico: json["publico"],
-      usuario: UsuarioArquivo.fromJson(json["usuario"]),
-      template: TemplateArquivo.fromJson(json["template"]),
-    );
-  }
-}
-
-class TemplateArquivo {
-  String titulo;
-
-  TemplateArquivo({
-    required this.titulo,
-  });
-
-  factory TemplateArquivo.fromJson(Map<String, dynamic> json) {
-    return TemplateArquivo(
-      titulo: json["titulo"],
     );
   }
 }
