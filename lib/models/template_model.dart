@@ -22,6 +22,32 @@ class Template {
     required this.formato,
     required this.arquivos,
   });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is Template &&
+              runtimeType == other.runtimeType &&
+              id == other.id;
+
+  factory Template.fromJson(Map<String, dynamic> json) {
+    return Template(
+      id: json["id"],
+      titulo: json["titulo"],
+      descricao: json["descricao"],
+      dataCriacao: json["dataCriacao"],
+      quantidadeCampos: json["quantidadeCampos"],
+      campos: (json["campos"] as List<dynamic>)
+          .map((campoData) => Campo.fromJson(campoData))
+          .toList(),
+      status: json["status"],
+      usuario: Usuario.fromJson(json["usuario"]),
+      formato: json["formato"],
+      arquivos: (json["arquivos"] as List<dynamic>)
+          .map((arquivoData) => Arquivo.fromJson(arquivoData))
+          .toList(),
+    );
+  }
 }
 
 class Usuario {
@@ -36,6 +62,15 @@ class Usuario {
     required this.verificado,
     required this.perfil,
   });
+
+  factory Usuario.fromJson(Map<String, dynamic> json) {
+    return Usuario(
+      nome: json["nome"],
+      matricula: json["matricula"],
+      verificado: json["verificado"],
+      perfil: json["perfil"],
+    );
+  }
 }
 
 class Campo {
@@ -48,6 +83,14 @@ class Campo {
     required this.nulo,
     required this.tipo,
   });
+
+  factory Campo.fromJson(Map<String, dynamic> json) {
+    return Campo(
+      nome: json["nome"],
+      nulo: json["nulo"],
+      tipo: json["tipo"],
+    );
+  }
 }
 
 class Arquivo {
@@ -68,4 +111,16 @@ class Arquivo {
     required this.url,
     required this.publico,
   });
+
+  factory Arquivo.fromJson(Map<String, dynamic> json) {
+    return Arquivo(
+      id: json["id"],
+      titulo: json["titulo"],
+      dataCriacao: json["dataCriacao"],
+      linhas: json["linhas"],
+      aprovado: json["aprovado"],
+      url: json["url"],
+      publico: json["publico"],
+    );
+  }
 }
