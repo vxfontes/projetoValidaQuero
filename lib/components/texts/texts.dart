@@ -8,14 +8,22 @@ class TextNumberLegend extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Text.rich(
       TextSpan(
         text: label,
         children: [
-          TextSpan(text: value, style: const TextStyle(color: Colors.black)),
+          TextSpan(
+            text: value,
+            style: const TextStyle(color: Colors.black),
+          ),
         ],
-        style: const TextStyle(color: Colors.black45, fontSize: 17),
+        style: const TextStyle(
+          color: Colors.black45,
+          fontSize: 17,
+        ),
       ),
+      textAlign: value.length > 200 ? TextAlign.justify : TextAlign.left,
     );
   }
 }
