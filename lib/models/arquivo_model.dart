@@ -5,6 +5,7 @@ class Arquivo {
   final String formato;
   UsuarioArquivo usuario;
   final int linhas;
+  final String url;
 
   Arquivo({
     required this.titulo,
@@ -13,6 +14,7 @@ class Arquivo {
     required this.formato,
     required this.usuario,
     required this.linhas,
+    required this.url,
   });
 
   factory Arquivo.fromJson(Map<String, dynamic> json) {
@@ -23,6 +25,7 @@ class Arquivo {
       formato: json['formato'],
       usuario: UsuarioArquivo.fromJson(json["usuario"]),
       linhas: json['linhas'],
+      url: json['url'],
     );
   }
 }

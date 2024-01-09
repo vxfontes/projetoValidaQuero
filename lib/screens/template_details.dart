@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:validaquero/components/modals/modal_upload.dart';
 import 'package:validaquero/components/texts/chip.dart';
 import 'package:validaquero/components/texts/tables.dart';
 import 'package:validaquero/components/texts/texts.dart';
@@ -74,37 +75,34 @@ class TemplateDetails extends StatelessWidget {
                     ],
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.download_rounded,
-                      color: ThemeColors.primaryColor,
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return ModalUpload();
+                        },
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ThemeColors.primaryColor,
                     ),
-                    Center(
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: ThemeColors.primaryColor,
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.cloud_upload,
+                          color: Colors.white,
                         ),
-                        child: const Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.cloud_upload,
-                              color: Colors.white,
-                            ),
-                            SizedBox(width: 8),
-                            Text(
-                              'Upload de arquivo',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
+                        SizedBox(width: 8),
+                        Text(
+                          'Upload de arquivo',
+                          style: TextStyle(color: Colors.white),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ],
             ),
