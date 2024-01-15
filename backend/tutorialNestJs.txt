@@ -1,0 +1,45 @@
+o nest é movido por decorator
+
+o module que inicia no app module, possui
+    - imports: criando pequenos "pedaços da aplicação", como os ouros modules de usuario, template...
+    - controllers: são os arquivos que recebem rota
+    - providers: tudo que não é controller, é provider, como por exemplo os services
+
+lá no controller, podemos observar que precisa do decorator para informar que aquilo é um controller e as funções
+tem decorators para indicar o tipo da rota, get, post, update...
+    - @Controller('algumarota') e @get('getAll') -> faz com que a nossa rota tenha por exemplo /user/getAll
+    - observamos que possui uma arquitetura de inversão de dependencia (o D do SOLID), ou seja, o controller não 
+        busca a dependencia, e sim deve receber as suas dependencias
+    - o nest vai além disso, pois não recebe dependencia no seu module, ele realiza uma injeção de dependencia, ou seja,
+        busca a dependencia de forma automatica buscando a partir dos providers
+
+nos providers, para que a injeção de dependencia seja realizada, precisamos ter um decorator que indique: @Injectable()
+
+-- geração de arquivo automática
+nest g module controllers/user -> gera um module na pasta controllers dentro de src com o arquivo de nome user dentro da parta user
+nest g service services/user -> gera um service na pasta services dentro de src com o arquivo de nome user dentro da parta user
+nest g resource nome -> gera uma restapi, graphql, microservice ou websocket completo dentro da pasta nome
+
+-- teste
+definição de repositorios e suprindo os providers como vimos no user
+utilização do tripple A
+    // Arrange -> ajustes e mockando codigo 
+        - criação de dto de teste
+        - criação de entidade teste usando dto anterior
+        - utilização do spy para ver se retorna valor ou promise
+    // Act -> quando executamos o teste
+        - no result usamos o servico ou controler que queremos testar com o dto
+    // Assert -> quando asseguramos os testes
+        - utilizamos o expect para ver se as coisas estão acontecendo
+
+-- validação de dto
+utilização de class-validator e class-transformer
+em cada item do nosso dto, colocamos que não pode ser empty ou que é data e coisas do tipo
+
+-- manipulação de response manualmente
+usamos o @Res res: Response sendo o Res do nestjs e o response do express
+nos testes, precisamos valizar no expect individualmente o status, json ou outra coisa que estamos usando no response
+exemplo em services:
+expect(res.status).toHaveBeenCalledWith(201);
+expect(res.json).toHaveBeenCalledWith(json que usamos)
+em controllers nós apenas tratamos o erro http e se vier como bem sucedido
