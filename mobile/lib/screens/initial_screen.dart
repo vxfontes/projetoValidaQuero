@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:validaquero/components/drawer.dart';
 import 'package:validaquero/screens/arquivos.dart';
 import 'package:validaquero/screens/cadastro_template.dart';
@@ -15,6 +16,32 @@ class InitialScreen extends StatefulWidget {
 
 class _InitialScreenState extends State<InitialScreen> {
   int _currentPage = 0;
+  String nome = '', perfil = '', matricula = '';
+  late bool verificado;
+
+  @override
+  void initState() {
+    getTipoUsuario();
+    super.initState();
+  }
+
+  void getTipoUsuario() async {
+    SharedPreferences.getInstance().then((prefs) {
+      String? getnome = prefs.getString('nome');
+      String? getperfil = prefs.getString('perfil');
+      String? getmatricula = prefs.getString('matricula');
+      bool? getverificado = prefs.getBool('verificado');
+
+      if (getnome != null && getperfil != null && getverificado != null) {
+        setState(() {
+          nome = getnome;
+          perfil = getperfil;
+          verificado = getverificado;
+          matricula = getmatricula!;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +66,8 @@ class _InitialScreenState extends State<InitialScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MeuPerfil()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MeuPerfil()));
               },
               child: const Icon(
                 Icons.account_circle,
@@ -72,14 +100,23 @@ class _InitialScreenState extends State<InitialScreen> {
       ),
       body: pages[_currentPage]['widget'],
       drawer: const MainDrawer(),
-      floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: ThemeColors.primaryColor,
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const CadastroTemplate()));
-        },
-        label: const Text('Template', style: TextStyle(color: Colors.white)),
-        icon: const Icon(Icons.add, color: Colors.white),
-      ),
+      floatingActionButton: (perfil == 'Gestor' || perfil == 'Gerente')
+          ? FloatingActionButton.extended(
+              backgroundColor: ThemeColors.primaryColor,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        CadastroTemplate(matricula: matricula),
+                  ),
+                );
+              },
+              label:
+                  const Text('Template', style: TextStyle(color: Colors.white)),
+              icon: const Icon(Icons.add, color: Colors.white),
+            )
+          : null,
     );
   }
 }
