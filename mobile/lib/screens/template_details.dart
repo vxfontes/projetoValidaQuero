@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:validaquero/components/modals/modal_upload.dart';
 import 'package:validaquero/components/texts/chip.dart';
 import 'package:validaquero/components/texts/tables.dart';
@@ -7,16 +8,43 @@ import 'package:validaquero/models/template_model.dart';
 import 'package:validaquero/themes/app_colors.dart';
 import 'package:validaquero/utils/data_help.dart';
 
-class TemplateDetails extends StatelessWidget {
+class TemplateDetails extends StatefulWidget {
   const TemplateDetails({super.key, required this.template});
 
   final Template template;
 
   @override
+  State<TemplateDetails> createState() => _TemplateDetailsState();
+}
+
+class _TemplateDetailsState extends State<TemplateDetails> {
+  String perfil = '', matricula = '';
+
+  @override
+  void initState() {
+    getTipoUsuario();
+    super.initState();
+  }
+
+  void getTipoUsuario() async {
+    SharedPreferences.getInstance().then((prefs) {
+      String? getperfil = prefs.getString('perfil');
+      String? getmatricula = prefs.getString('matricula');
+
+      if (getperfil != null) {
+        setState(() {
+          perfil = getperfil;
+          matricula = getmatricula!;
+        });
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(template.titulo),
+        title: Text(widget.template.titulo),
         backgroundColor: ThemeColors.fundoComponenteColor,
       ),
       backgroundColor: ThemeColors.fundoPrincipalColor,
@@ -33,26 +61,26 @@ class TemplateDetails extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: TextTitleBig(title: template.titulo),
+                  child: TextTitleBig(title: widget.template.titulo),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ChipAtivoDesativado(
-                      label: template.status,
-                      ativo: template.status == 'Ativo' ? true : false,
+                      label: widget.template.status,
+                      ativo: widget.template.status == 'Ativo' ? true : false,
                     ),
-                    ChipPink(label: template.formato),
+                    ChipPink(label: widget.template.formato),
                   ],
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: TextNumberLegend(
                     label: 'Descrição ',
-                    value: template.descricao,
+                    value: widget.template.descricao,
                   ),
                 ),
-                TabelaCampos(campos: template.campos),
+                TabelaCampos(campos: widget.template.campos),
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Row(
@@ -65,12 +93,13 @@ class TemplateDetails extends StatelessWidget {
                             padding: EdgeInsets.only(right: 8.0),
                             child: Icon(Icons.account_circle_outlined),
                           ),
-                          Text(template.usuario.nome),
+                          Text(widget.template.usuario.nome),
                         ],
                       ),
                       Column(children: [
                         const Text('Data de criação'),
-                        Text(dataHelp(DateTime.parse(template.dataCriacao))),
+                        Text(dataHelp(
+                            DateTime.parse(widget.template.dataCriacao))),
                       ])
                     ],
                   ),
@@ -81,7 +110,12 @@ class TemplateDetails extends StatelessWidget {
                       showModalBottomSheet(
                         context: context,
                         builder: (BuildContext context) {
-                          return ModalUpload();
+                          return ModalUpload(
+                            usuario: matricula,
+                            campos: widget.template.campos,
+                            formato: widget.template.formato,
+                            template: widget.template.id,
+                          );
                         },
                       );
                     },

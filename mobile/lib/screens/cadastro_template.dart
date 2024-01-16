@@ -8,7 +8,8 @@ import 'package:validaquero/themes/app_colors.dart';
 import 'package:validaquero/utils/valueValidator.dart';
 
 class CadastroTemplate extends StatefulWidget {
-  const CadastroTemplate({super.key});
+  const CadastroTemplate({super.key, required this.matricula});
+  final matricula;
 
   @override
   State<CadastroTemplate> createState() => _CadastroTemplateState();
@@ -315,7 +316,7 @@ class _CadastroTemplateState extends State<CadastroTemplate> {
           'nulo': nuloController,
         }],
         'formato': getValue(formatoController).toInt(),
-        'usuario': '980192'
+        'usuario': widget.matricula,
       };
 
       createTemplate(template);

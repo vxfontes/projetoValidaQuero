@@ -1,10 +1,17 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:validaquero/components/texts/texts.dart';
+import 'package:validaquero/services/arquivo.dart';
 import 'package:validaquero/themes/app_colors.dart';
 import 'package:validaquero/utils/valueValidator.dart';
 
 class ModalUpload extends StatefulWidget {
-  ModalUpload({super.key});
+  const ModalUpload(
+      {super.key, this.usuario, this.template, this.formato, this.campos});
+
+  final usuario, template, formato, campos;
 
   @override
   State<ModalUpload> createState() => _ModalUploadState();
@@ -15,13 +22,25 @@ class _ModalUploadState extends State<ModalUpload> {
 
   var servidor = '';
 
+  var file;
   bool isChecked = true;
 
   @override
   Widget build(BuildContext context) {
+    void sendFile(FilePickerResult? result) {
+      if (result != null) {
+        PlatformFile getfile = result.files.first;
+        file = getfile;
+        // File(result.files.single.path!)
+      }
+    }
+
     return Container(
       height: 440,
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery
+          .of(context)
+          .size
+          .width,
       padding: const EdgeInsets.all(25),
       child: Column(
         children: [
@@ -42,7 +61,7 @@ class _ModalUploadState extends State<ModalUpload> {
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: DropdownButtonFormField(
               isExpanded: true,
-              hint: const Text('Perfil'),
+              hint: const Text('Local de armazenamento'),
               icon: const Icon(
                 Icons.arrow_drop_down,
                 color: Colors.black45,
@@ -68,6 +87,7 @@ class _ModalUploadState extends State<ModalUpload> {
             ),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Checkbox(
                 activeColor: ThemeColors.primaryColor,
@@ -82,35 +102,44 @@ class _ModalUploadState extends State<ModalUpload> {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  showModalBottomSheet(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return ModalUpload();
-                    },
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: ThemeColors.secondaryColor,
-                ),
-                child: const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.cloud_upload,
-                      color: Colors.white,
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            child: Column(
+              children: [
+                Center(
+                  child: ElevatedButton(
+                    onPressed: file == null
+                        ? () async {
+                      FilePickerResult? result =
+                      await FilePicker.platform.pickFiles();
+
+                      sendFile(result);
+                    }
+                        : null,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ThemeColors.secondaryColor,
                     ),
-                    SizedBox(width: 8),
-                    Text(
-                      'Upload de arquivo',
-                      style: TextStyle(color: Colors.white),
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.cloud_upload,
+                          color: Colors.white,
+                        ),
+                        SizedBox(width: 8),
+                        Text(
+                          'Upload de arquivo',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 6.0),
+                  child: Text(
+                      file != null ? 'Arquivo selecionado com sucesso!' : ''),
+                ),
+              ],
             ),
           ),
           Row(
@@ -119,7 +148,24 @@ class _ModalUploadState extends State<ModalUpload> {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 15),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      ArquivoService().uploadFile(
+                        file,
+                        nomeArquivo.text,
+                        widget.usuario,
+                        isChecked,
+                        servidor,
+                        widget.template,
+                        widget.formato,
+                        widget.campos,
+                      ).then((value) {
+                        if (value.isNotEmpty) {
+                          print("ENTREI NO VALUE");
+                          print(value);
+                          Navigator.pop(context);
+                        }
+                      });
+                    },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
