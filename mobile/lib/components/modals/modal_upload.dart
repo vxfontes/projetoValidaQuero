@@ -1,7 +1,6 @@
-import 'dart:io';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:validaquero/components/SnackBars.dart';
 import 'package:validaquero/components/texts/texts.dart';
 import 'package:validaquero/services/arquivo.dart';
 import 'package:validaquero/themes/app_colors.dart';
@@ -23,28 +22,62 @@ class _ModalUploadState extends State<ModalUpload> {
   var servidor = '';
 
   var file;
+  var message = '';
   bool isChecked = true;
 
   @override
   Widget build(BuildContext context) {
     void sendFile(FilePickerResult? result) {
       if (result != null) {
-        PlatformFile getfile = result.files.first;
-        file = getfile;
-        // File(result.files.single.path!)
+        file = result;
       }
     }
 
+    void sendToApi() {
+        if (file != null && servidor != '') {
+          ArquivoService()
+              .uploadFile(
+            file,
+            nomeArquivo.text,
+            widget.usuario,
+            isChecked,
+            servidor,
+            widget.template,
+            widget.formato,
+            widget.campos,
+          )
+              .then((value) {
+            message = '';
+            if (value.isNotEmpty) {
+              if(value['status'] != 'error') {
+                Navigator.pop(context);
+                showSnackBar(context, value['message']);
+              } else {
+                setState(() {
+                  message = value['message'];
+                });
+              }
+            }
+          });
+        } else {
+          setState(() {
+            message = 'Preencha todos os campos';
+          });
+        }
+    }
+
     return Container(
-      height: 440,
-      width: MediaQuery
-          .of(context)
-          .size
-          .width,
+      height: 900,
       padding: const EdgeInsets.all(25),
       child: Column(
         children: [
           const TextTitleBig(title: 'Upload de arquivo'),
+          message != ''
+              ? Text(
+                message,
+                style: const TextStyle(color: Colors.red),
+              )
+              : Container(),
           TextFormField(
             controller: nomeArquivo,
             validator: (String? value) {
@@ -109,11 +142,11 @@ class _ModalUploadState extends State<ModalUpload> {
                   child: ElevatedButton(
                     onPressed: file == null
                         ? () async {
-                      FilePickerResult? result =
-                      await FilePicker.platform.pickFiles();
+                            FilePickerResult? result =
+                                await FilePicker.platform.pickFiles();
 
-                      sendFile(result);
-                    }
+                            sendFile(result);
+                          }
                         : null,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: ThemeColors.secondaryColor,
@@ -149,22 +182,7 @@ class _ModalUploadState extends State<ModalUpload> {
                   padding: const EdgeInsets.only(top: 15),
                   child: ElevatedButton(
                     onPressed: () {
-                      ArquivoService().uploadFile(
-                        file,
-                        nomeArquivo.text,
-                        widget.usuario,
-                        isChecked,
-                        servidor,
-                        widget.template,
-                        widget.formato,
-                        widget.campos,
-                      ).then((value) {
-                        if (value.isNotEmpty) {
-                          print("ENTREI NO VALUE");
-                          print(value);
-                          Navigator.pop(context);
-                        }
-                      });
+                      sendToApi();
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
