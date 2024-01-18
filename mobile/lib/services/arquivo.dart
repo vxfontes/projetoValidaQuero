@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:file_picker/file_picker.dart';
+import 'package:validaquero/models/template_model.dart';
 import 'package:validaquero/services/webclient.dart';
 import 'package:http/http.dart' as http;
 
@@ -25,30 +26,34 @@ class ArquivoService {
     String repositorio,
     int template,
     String formato,
-    campos,
+      List<Campo> campos,
   ) async {
-    print('ENTREI NO PYTHON');
 
-    var formData = http.MultipartRequest(
-      'POST',
-      Uri.parse("${python}file/upload/"),
-    );
-
-    formData.files.add(http.MultipartFile.fromBytes(
-      'file',
-      file.files.single.bytes!,
-      filename: file.files.single.name,
-    ));
-
-    formData.fields['titulo'] = titulo;
-    formData.fields['usuario'] = usuario;
-    formData.fields['publico'] = publico.toString();
-    formData.fields['template'] = template.toString();
-    formData.fields['verify'] = 'true';
-    formData.fields['repositorio'] = repositorio;
-    formData.fields['formato'] = formato;
+    List<Map<String, dynamic>> camposJson = campos.map((campo) => {
+      'nome': campo.nome,
+      'nulo': campo.nulo,
+      'tipo': campo.tipo,
+    }).toList();
 
     try {
+      var formData = http.MultipartRequest(
+        'POST',
+        Uri.parse("${python}file/upload"),
+      );
+
+      formData.files.add(
+        await http.MultipartFile.fromPath('file', file.files.single.path!),
+      );
+
+      formData.fields['titulo'] = titulo;
+      formData.fields['usuario'] = usuario;
+      formData.fields['publico'] = publico.toString();
+      formData.fields['template'] = template.toString();
+      formData.fields['verify'] = 'true';
+      formData.fields['repositorio'] = repositorio;
+      formData.fields['formato'] = formato;
+      formData.fields['campos'] = jsonEncode(camposJson);
+
       http.Response response = await http.Response.fromStream(await formData.send());
 
       print('Resposta do servidor: ${response.body}');
