@@ -20,7 +20,7 @@ class TabelaCampos extends StatelessWidget {
         DataTable(
           columns: const [
             DataColumn(label: Text('Nome')),
-            DataColumn(label: Text('Nulo')),
+            // DataColumn(label: Text('Nulo')),
             DataColumn(label: Text('Tipo')),
           ],
           rows: campos
@@ -28,7 +28,7 @@ class TabelaCampos extends StatelessWidget {
                 (campo) => DataRow(
                   cells: [
                     DataCell(Text(campo.nome)),
-                    DataCell(Text(campo.nulo ? 'Sim' : 'Não')),
+                    // DataCell(Text(campo.nulo ? 'Sim' : 'Não')),
                     DataCell(Text(campo.tipo)),
                   ],
                 ),
