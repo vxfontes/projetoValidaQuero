@@ -49,14 +49,8 @@ class _ModalUploadState extends State<ModalUpload> {
               .then((value) {
             message = '';
             if (value.isNotEmpty) {
-              if(value['status'] != 'error') {
                 Navigator.pop(context);
                 showSnackBar(context, value['message']);
-              } else {
-                setState(() {
-                  message = value['message'];
-                });
-              }
             }
           });
         } else {
@@ -72,12 +66,6 @@ class _ModalUploadState extends State<ModalUpload> {
       child: Column(
         children: [
           const TextTitleBig(title: 'Upload de arquivo'),
-          message != ''
-              ? Text(
-                message,
-                style: const TextStyle(color: Colors.red),
-              )
-              : Container(),
           TextFormField(
             controller: nomeArquivo,
             validator: (String? value) {
@@ -145,7 +133,9 @@ class _ModalUploadState extends State<ModalUpload> {
                             FilePickerResult? result =
                                 await FilePicker.platform.pickFiles();
 
-                            sendFile(result);
+                            setState(() {
+                              sendFile(result);
+                            });
                           }
                         : null,
                     style: ElevatedButton.styleFrom(
@@ -178,26 +168,23 @@ class _ModalUploadState extends State<ModalUpload> {
           Row(
             children: [
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 15),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      sendToApi();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      backgroundColor: ThemeColors.primaryColor,
+                child: ElevatedButton(
+                  onPressed: () {
+                    sendToApi();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
                     ),
-                    child: const Text(
-                      'Continue',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'Roboto',
-                        fontWeight: FontWeight.w400,
-                        letterSpacing: 1.2,
-                      ),
+                    backgroundColor: ThemeColors.primaryColor,
+                  ),
+                  child: const Text(
+                    'Continue',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.w400,
+                      letterSpacing: 1.2,
                     ),
                   ),
                 ),
