@@ -20,7 +20,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.post("/file/upload/")
+
+@app.post("/file/upload")
 async def verify_file(data: Request):
     form = await data.form()
     file = form.get("file")
@@ -30,7 +31,7 @@ async def verify_file(data: Request):
     template = form.get("template")
     verify = form.get("verify")
     repositorio = form.get("repositorio")
-    formato_esperado = form.get("formato")
+    formato_esperado = form.get("formato").lower()
     campos = json.loads(form.get("campos", "[]"))
 
     formato = formatoFile(file.filename)
